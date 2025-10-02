@@ -13,9 +13,12 @@
     "check": "prettier --write . && eslint --fix"
   },
   "dependencies": {
+    "@radix-ui/themes": "^3.2.1",
+    "@rainbow-me/rainbowkit": "^2.2.8",
     "@tailwindcss/vite": "^4.0.6",
     "@tanstack/nitro-v2-vite-plugin": "^1.132.31",
     "@tanstack/react-devtools": "^0.7.0",
+    "@tanstack/react-query": "^5.90.2",
     "@tanstack/react-router": "^1.132.0",
     "@tanstack/react-router-devtools": "^1.132.0",
     "@tanstack/react-router-ssr-query": "^1.131.7",
@@ -24,7 +27,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.0.6",
-    "vite-tsconfig-paths": "^5.1.4"
+    "viem": "^2.37.11",
+    "vite-tsconfig-paths": "^5.1.4",
+    "wagmi": "^2.17.5"
   },
   "devDependencies": {
     "@tanstack/eslint-config": "^0.3.0",
