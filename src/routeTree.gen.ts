@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StartDepositRouteImport } from './routes/start-deposit'
+import { Route as CreateVaultRouteImport } from './routes/create-vault'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StartDepositRoute = StartDepositRouteImport.update({
+  id: '/start-deposit',
+  path: '/start-deposit',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreateVaultRoute = CreateVaultRouteImport.update({
+  id: '/create-vault',
+  path: '/create-vault',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/create-vault': typeof CreateVaultRoute
+  '/start-deposit': typeof StartDepositRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/create-vault': typeof CreateVaultRoute
+  '/start-deposit': typeof StartDepositRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/create-vault': typeof CreateVaultRoute
+  '/start-deposit': typeof StartDepositRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/create-vault' | '/start-deposit'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/create-vault' | '/start-deposit'
+  id: '__root__' | '/' | '/create-vault' | '/start-deposit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CreateVaultRoute: typeof CreateVaultRoute
+  StartDepositRoute: typeof StartDepositRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/start-deposit': {
+      id: '/start-deposit'
+      path: '/start-deposit'
+      fullPath: '/start-deposit'
+      preLoaderRoute: typeof StartDepositRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/create-vault': {
+      id: '/create-vault'
+      path: '/create-vault'
+      fullPath: '/create-vault'
+      preLoaderRoute: typeof CreateVaultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CreateVaultRoute: CreateVaultRoute,
+  StartDepositRoute: StartDepositRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

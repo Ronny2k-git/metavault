@@ -7,10 +7,10 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
-    <header className="h-[calc(100vh-88px)] flex flex-col gap-1 items-center bg-center justify-center bg-cover bg-[url(/web3.jpg)] text-white">
+    <header className="page background flex flex-col gap-1 items-center bg-center justify-center text-white">
       <img
         src={logo}
-        className="h-[40vmin] animate-[spin_20s_linear_infinite]"
+        className="h-[40vmin] min-h-52 animate-[spin_20s_linear_infinite]"
         alt="logo"
       />
       <div className="flex gap-2 items-center">
@@ -25,10 +25,10 @@ function App() {
       <h2 className="text-xl">
         Create your vault and secure your crypto today.
       </h2>
-      <Link className="flex max-w-[28rem] w-full" to="/contract-interaction">
+      <Link className="flex max-w-[28rem] w-full" to="/create-vault">
         <button
           type="button"
-          className="p-4 m-2 text-xl w-full bg-rose-900 hover:bg-rose-800 rounded-full"
+          className="p-4 text-xl w-full bg-sky-600 hover:bg-sky-500 rounded-full"
         >
           Start now
         </button>
