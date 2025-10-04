@@ -27,7 +27,7 @@ export function CardPreview() {
             <div className=" font-normal text-white text-base -mb-6">
               {'Unammed'}
               <br />
-              <div className="text-[10px] -mt-2">{'No chain selected'}</div>
+              <div className="text-[10px] -mt-0.5">{'No chain selected'}</div>
             </div>
           </div>
         </div>
