@@ -8,13 +8,11 @@ import {
   polygon,
   sepolia,
 } from 'wagmi/chains'
-import { metaMask, safe, walletConnect } from 'wagmi/connectors'
-
-const projectId = '<WALLETCONNECT_PROJECT_ID>'
+import { metaMask, safe } from 'wagmi/connectors'
 
 export const wagmiAppConfig: Config = createConfig({
   chains: [mainnet, sepolia, base],
-  connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
+  connectors: [injected(), metaMask(), safe()],
   transports: {
     [mainnet.id]: http(
       'https://eth-mainnet.g.alchemy.com/v2/tjpt7a_-Hkd4t7MG-0SuM542HkoIGvfg',

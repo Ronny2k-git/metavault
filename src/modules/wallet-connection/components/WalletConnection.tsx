@@ -14,7 +14,7 @@ import {
 export default function WalletConnection() {
   const [menuOpen, setMenuOpen] = useState(false)
   const account = useAccount()
-  const connectedWallet = account.isConnected
+  const connectedWallet = account.address
 
   return (
     <div className="relative z-30">
@@ -33,8 +33,8 @@ export default function WalletConnection() {
           </button>
           <button className="sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
             <FaWallet
-              className="size-5 cursor-pointer hover:bg-sky-600 rounded-sm"
-              color={connectedWallet ? 'cyan' : 'white'}
+              className="size-5 cursor-pointer hover:bg-gray-400 rounded-sm"
+              color={connectedWallet ? 'cyan' : 'gray'}
             />
           </button>
         </div>

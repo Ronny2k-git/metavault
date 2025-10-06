@@ -43,7 +43,7 @@ export function EthereumConnectors() {
       ) : (
         connectors.map((connector) => (
           <button
-            className="flex p-2 gap-2 bg-sky-600 hover:bg-sky-500 rounded-xl cursor-pointer"
+            className="flex p-2 gap-2 items-center bg-sky-600 hover:bg-sky-500 rounded-xl cursor-pointer"
             key={connector.id}
             onClick={() => connect({ connector })}
           >
