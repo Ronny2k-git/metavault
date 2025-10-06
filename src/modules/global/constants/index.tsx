@@ -19,3 +19,5 @@ export const PROJECT_ROUTES = [
     icon: <PiVaultFill className="size-6" />,
   },
 ]
+
+export const ECOSYSTEMS = ['ethereum', 'solana', 'move']

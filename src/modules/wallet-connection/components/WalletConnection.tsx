@@ -1,0 +1,81 @@
+import { ECOSYSTEMS } from '@/modules/global/constants'
+import { abreviateAddress } from '@/modules/global/utils'
+import { Tabs } from 'radix-ui'
+import { useState } from 'react'
+import { FaWallet } from 'react-icons/fa'
+import { IoCloseCircle } from 'react-icons/io5'
+import { useAccount } from 'wagmi'
+import { EthereumConnectors } from '../subcomponents/EthereumConnectors'
+
+export default function WalletConnection() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const account = useAccount()
+  const connectedWallet = account.isConnected
+
+  return (
+    <div className="relative z-30">
+      {!menuOpen && (
+        <div className="flex transition-shadow duration-300">
+          <button
+            className={`hidden sm:flex p-2 px-4 md:mx-8 items-center gap-2 
+              ${connectedWallet ? 'bg-sky-600 hover:bg-sky-500' : 'bg-gray-600 hover:bg-gray-500'}  rounded-lg cursor-pointer`}
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <FaWallet />
+            {connectedWallet
+              ? `${abreviateAddress(account.address)}`
+              : 'Connect Wallet'}
+          </button>
+          <button className="sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+            <FaWallet
+              className="size-5 cursor-pointer hover:bg-sky-600 rounded-sm"
+              color={connectedWallet ? 'cyan' : 'white'}
+            />
+          </button>
+        </div>
+      )}
+
+      {menuOpen && (
+        <>
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm " />
+          <div className="flex flex-col h-[30rem] w-full max-w-[22rem] py-4 px-4 background rounded-xl gap-4 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="flex justify-between">
+              <h1>Ecosystem</h1>
+              <button
+                className="cursor-pointer"
+                onClick={() => setMenuOpen(!menuOpen)}
+              >
+                <IoCloseCircle className="size-6 hover:bg-sky-300 rounded-full" />
+              </button>
+            </div>
+            <Tabs.Root defaultValue="ethereum">
+              <Tabs.List className="flex gap-4">
+                {ECOSYSTEMS.map((ecosystem, index) => (
+                  <Tabs.Trigger
+                    key={index}
+                    value={ecosystem}
+                    className="data-[state=active]:bg-sky-600 py-2 px-4 rounded-xl hover:bg-sky-600 cursor-pointer"
+                  >
+                    {ecosystem}
+                  </Tabs.Trigger>
+                ))}
+              </Tabs.List>
+
+              <div className="flex items-center gap-4 py-4">
+                <div className="w-1/2 h-px bg-sky-300" />
+                Wallets
+                <div className="w-1/2 h-px  bg-sky-300" />
+              </div>
+              <Tabs.Content value="ethereum">
+                <EthereumConnectors />
+              </Tabs.Content>
+              <Tabs.Content value="solana"></Tabs.Content>
+              <Tabs.Content value="move"></Tabs.Content>
+            </Tabs.Root>
+          </div>
+        </>
+      )}
+    </div>
+  )
+}

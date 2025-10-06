@@ -1,3 +1,5 @@
+'use client'
+
 import { CreateVaultForm } from '@/modules/create/components'
 import { CardPreview } from '@/modules/create/components/subcomponents'
 import { createFileRoute } from '@tanstack/react-router'

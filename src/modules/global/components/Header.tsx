@@ -1,12 +1,15 @@
 import { PROJECT_ROUTES } from '@/modules/global/constants'
-import { Link } from '@tanstack/react-router'
-import { FaWallet } from 'react-icons/fa'
+import WalletConnection from '@/modules/wallet-connection/components/WalletConnection'
+import { Link, useRouter } from '@tanstack/react-router'
 
 export default function Header() {
+  const router = useRouter()
+  const currentPath = router.state.location.pathname
+
   return (
     <header className="h-20 px-4 flex header-background text-white justify-between">
-      <nav className="w-full flex items-center max-md:justify-between justify-center gap-12">
-        <div className="flex gap- h-full">
+      <nav className="w-full flex items-center justify-between max-w-4xl mx-auto">
+        <div className="flex gap- h-full ">
           {PROJECT_ROUTES.map((route) => (
             <Link
               to={route.path}
@@ -17,18 +20,15 @@ export default function Header() {
             >
               <div className="hover:bg-blue-900 flex rounded-ful px-4 h-full items-center gap-1">
                 {route.icon}
-                {route.label}
+                {currentPath === route.path && (
+                  <div className="sm:hidden">{route.label}</div>
+                )}
+                <div className="max-sm:hidden">{route.label}</div>
               </div>
             </Link>
           ))}
         </div>
-        <button className="hidden sm:flex p-2 px-4 md:mx-8 bg-sky-600 hover:bg-sky-500 rounded-lg">
-          Connect Wallet
-        </button>
-        <button className="hidden max-sm:flex">
-          <FaWallet className="size-6 text-cyan-300" />
-          {/* color={connectedWallet ? "purple" : "white"} */}
-        </button>
+        <WalletConnection />
       </nav>
     </header>
   )
