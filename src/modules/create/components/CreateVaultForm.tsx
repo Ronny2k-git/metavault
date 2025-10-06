@@ -1,11 +1,23 @@
+import { convertTimestamp } from '@/modules/global/utils'
+import { vaultAbi } from '@/modules/global/utils/vaultAbi'
+import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useAccount } from 'wagmi'
+import { simulateContract } from 'wagmi/actions'
 import { vaultFormAtom } from '../atoms'
 import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
 import { vaultCreateFormSchema } from '../schemas/VaultCreateFormSchema'
 import { InputField } from './subcomponents'
+
+export type ContractParams = {
+  abi: any
+  address: `0x${string}`
+  functionName: string
+  args: Array<any>
+}
 
 const initialVaultForm = {
   network: '',
@@ -22,15 +34,39 @@ const initialVaultForm = {
 
 export function CreateVaultForm() {
   const [, setVaultData] = useAtom(vaultFormAtom)
+  const { isConnected } = useAccount()
 
   const { register, handleSubmit, reset, formState } =
     useForm<VaultCreateFormType>({
       resolver: zodResolver(vaultCreateFormSchema),
       defaultValues: initialVaultForm,
     })
+
   const networError = formState.errors.network
 
-  const onSubmit = (data: VaultCreateFormType) => {
+  const onSubmit = async (data: VaultCreateFormType) => {
+    if (!isConnected) {
+      toast.error('Please connect your wallet')
+      return
+    }
+
+    const configParams: ContractParams = {
+      abi: vaultAbi,
+      address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3',
+      functionName: 'createVault',
+      args: [
+        data.assetToken,
+        convertTimestamp(new Date(data.startDate)),
+        convertTimestamp(new Date(data.endDate)),
+        data.minDeposit,
+        data.maxDeposit,
+        data.salt,
+      ],
+    }
+    const simulation = await simulateContract(wagmiAppConfig, configParams)
+
+    console.log('Simulate:', simulation)
+
     toast.success('Vault created succesfully', {
       duration: 4000,
     })

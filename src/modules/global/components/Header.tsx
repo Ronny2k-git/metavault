@@ -21,9 +21,9 @@ export default function Header() {
               <div className="hover:bg-blue-900 flex rounded-ful px-4 h-full items-center gap-1">
                 {route.icon}
                 {currentPath === route.path && (
-                  <div className="sm:hidden">{route.label}</div>
+                  <span className="sm:hidden">{route.label}</span>
                 )}
-                <div className="max-sm:hidden">{route.label}</div>
+                <span className="max-sm:hidden">{route.label}</span>
               </div>
             </Link>
           ))}

@@ -15,7 +15,6 @@ const projectId = '<WALLETCONNECT_PROJECT_ID>'
 export const wagmiAppConfig: Config = createConfig({
   chains: [mainnet, sepolia, base],
   connectors: [injected(), walletConnect({ projectId }), metaMask(), safe()],
-
   transports: {
     [mainnet.id]: http(
       'https://eth-mainnet.g.alchemy.com/v2/tjpt7a_-Hkd4t7MG-0SuM542HkoIGvfg',

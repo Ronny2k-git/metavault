@@ -5,7 +5,11 @@ import { useState } from 'react'
 import { FaWallet } from 'react-icons/fa'
 import { IoCloseCircle } from 'react-icons/io5'
 import { useAccount } from 'wagmi'
-import { EthereumConnectors } from '../subcomponents/EthereumConnectors'
+import {
+  EthereumConnectors,
+  MoveConnectors,
+  SolanaConnectors,
+} from '../subcomponents'
 
 export default function WalletConnection() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -70,8 +74,12 @@ export default function WalletConnection() {
               <Tabs.Content value="ethereum">
                 <EthereumConnectors />
               </Tabs.Content>
-              <Tabs.Content value="solana"></Tabs.Content>
-              <Tabs.Content value="move"></Tabs.Content>
+              <Tabs.Content value="solana">
+                <SolanaConnectors />
+              </Tabs.Content>
+              <Tabs.Content value="move">
+                <MoveConnectors />
+              </Tabs.Content>
             </Tabs.Root>
           </div>
         </>

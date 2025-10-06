@@ -7,17 +7,6 @@ export const vaultCreateFormSchema = z.object({
   banner: z.string().nonempty({ message: 'Banner is required' }),
 
   assetToken: z.string().nonempty({ message: 'Asset token is required' }),
-  // salt: z.number().min(1, { message: 'Salt is required' }).optional(),
-  // minDeposit: z
-  //   .number()
-  //   .min(1, {
-  //     message: 'Minimum deposit must be greater than 0',
-  //   })
-  //   .optional(),
-  // maxDeposit: z
-  //   .number()
-  //   .min(1, { message: 'Maximum deposit must be greater than 0' })
-  //   .optional(),
   salt: z
     .string()
     .nonempty({ message: 'Salt is required and must be greater than 1' }),
