@@ -14,7 +14,6 @@ function InputFieldFn(
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
-    //  className="w-full relative"
     <div className={twMerge('relative flex flex-col', className)}>
       <input
         ref={ref}
@@ -32,4 +31,3 @@ function InputFieldFn(
 }
 
 export const InputField = React.forwardRef(InputFieldFn)
-InputField.displayName = 'InputField'
