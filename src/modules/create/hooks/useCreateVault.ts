@@ -6,7 +6,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Abi, Address } from 'viem'
 import { sepolia } from 'viem/chains'
-import { useAccount, useWriteContract } from 'wagmi'
+import { useAccount, useChainId, useWriteContract } from 'wagmi'
 import { simulateContract, waitForTransactionReceipt } from 'wagmi/actions'
 import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
 
@@ -27,6 +27,7 @@ export type ContractParams = {
 export function useCreateVault() {
   const { writeContractAsync } = useWriteContract()
   const { isConnected } = useAccount()
+  const chainId = useChainId()
   const [status, setStatus] = useState<string | null>(null)
   const navigate = useNavigate()
 
@@ -50,8 +51,13 @@ export function useCreateVault() {
         toast.error('Please connect your wallet')
         return
       }
-      setStatus('Simulating transaction...')
+      if (chainId != sepolia.id) {
+        toast.error('Switch your wallet to Sepolia testnet')
+        return
+      }
+
       // 1. Simulate transaction to avoid errors
+      setStatus('Simulating transaction...')
       const simulation = await simulateContract(wagmiAppConfig, configParams)
 
       // 2. Wait for user confirm the transaction

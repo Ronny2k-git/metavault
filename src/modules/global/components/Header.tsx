@@ -1,6 +1,6 @@
 import { PROJECT_ROUTES } from '@/modules/global/constants'
 import WalletConnection from '@/modules/wallet-connection/components/WalletConnection'
-import { Link, useRouter } from '@tanstack/react-router'
+import { ClientOnly, Link, useRouter } from '@tanstack/react-router'
 
 export default function Header() {
   const router = useRouter()
@@ -28,7 +28,9 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <WalletConnection />
+        <ClientOnly>
+          <WalletConnection />
+        </ClientOnly>
       </nav>
     </header>
   )

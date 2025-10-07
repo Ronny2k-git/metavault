@@ -5,6 +5,7 @@ import { CardPreview } from '@/modules/create/components/subcomponents'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/create-vault')({
+  ssr: false,
   component: RouteComponent,
 })
 

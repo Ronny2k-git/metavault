@@ -4,7 +4,6 @@ import { Spinner } from '@/ui/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
-import { useAccount } from 'wagmi'
 import { vaultFormAtom } from '../atoms'
 import { useCreateVault } from '../hooks'
 import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
@@ -26,7 +25,6 @@ const initialVaultForm = {
 
 export function CreateVaultForm() {
   const [, setVaultData] = useAtom(vaultFormAtom)
-  const { isConnected } = useAccount()
   const { createVault, status } = useCreateVault()
 
   const { register, handleSubmit, reset, formState } =
@@ -38,7 +36,10 @@ export function CreateVaultForm() {
   const networError = formState.errors.network
 
   const onSubmit = (data: VaultCreateFormType) => {
+    // 1. Create vault on the blockchain
     createVault(data)
+
+    // 2. Save the vault data on the database
   }
 
   return (
@@ -199,7 +200,6 @@ export function CreateVaultForm() {
       </button>
       <button
         className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
-        disabled={!isConnected}
         onClick={handleSubmit(onSubmit)}
       >
         {status && <Spinner />}
