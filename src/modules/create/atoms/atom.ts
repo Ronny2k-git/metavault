@@ -12,4 +12,5 @@ export const vaultFormAtom = atom<VaultCreateFormType>({
   maxDeposit: '',
   startDate: '',
   endDate: '',
+  description: '',
 })

@@ -1,15 +1,21 @@
 import { Dialog } from 'radix-ui'
 import { RiCloseLine } from 'react-icons/ri'
 
-type ModalProps = {
+export type ModalProps = {
   title: React.ReactNode
   description?: React.ReactNode
-  trigger: React.ReactNode
+  trigger?: React.ReactNode
   className?: string
   children?: React.ReactNode
+  open?: boolean
+  defaultOpen?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
 export function Modal({
+  open,
+  defaultOpen,
+  onOpenChange,
   title,
   description,
   trigger,
@@ -17,10 +23,14 @@ export function Modal({
   children,
 }: ModalProps) {
   return (
-    <Dialog.Root>
-      <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
+    <Dialog.Root
+      open={open}
+      defaultOpen={defaultOpen}
+      onOpenChange={onOpenChange}
+    >
+      {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/30 backdrop-blur-xs" />
+        <Dialog.Overlay className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
         <Dialog.Content className={className} asChild>
           <div
             className="background-modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col 

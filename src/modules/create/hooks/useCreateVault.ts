@@ -1,7 +1,6 @@
 import { convertTimestamp } from '@/modules/global/utils'
 import { vaultAbi } from '@/modules/global/utils/vaultAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
-import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Abi, Address } from 'viem'
@@ -24,12 +23,16 @@ export type ContractParams = {
   ]
 }
 
-export function useCreateVault() {
+export type useCreateVaultArgs = {
+  onError?: VoidFunction
+  onSuccess?: VoidFunction
+}
+
+export function useCreateVault({ onError, onSuccess }: useCreateVaultArgs) {
   const { writeContractAsync } = useWriteContract()
   const { isConnected } = useAccount()
   const chainId = useChainId()
   const [status, setStatus] = useState<string | null>(null)
-  const navigate = useNavigate()
 
   const createVault = async (data: VaultCreateFormType) => {
     const configParams: ContractParams = {
@@ -72,11 +75,11 @@ export function useCreateVault() {
       })
 
       setStatus('Vault created successfully')
-
-      setTimeout(() => navigate({ to: '/profile' }), 2500)
+      onSuccess?.()
     } catch (error) {
       await new Promise((resolve) => setTimeout(resolve, 1_000))
       console.error('Error creating: ', error)
+      onError?.()
     } finally {
       setTimeout(() => setStatus(null), 3000)
     }

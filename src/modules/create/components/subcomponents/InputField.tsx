@@ -18,7 +18,7 @@ function InputFieldFn(
       <input
         ref={ref}
         type={type}
-        className={`h-11 w-full px-4 rounded-md ${error ? 'border-red-300' : 'border-cyan-400'}
+        className={`min-h-11 ${className} w-full px-4 rounded-md ${error ? 'border-red-400' : 'border-cyan-400'}
          placeholder:text-gray-300 focus:border-black border outline-none`}
         placeholder={placeholder}
         {...props}

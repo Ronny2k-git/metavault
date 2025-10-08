@@ -32,8 +32,12 @@ code {
 }
 
 .background-modal {
-  background: linear-gradient(45deg, #0b1e3a, #0c2a95);
+  background: linear-gradient(45deg, #0b1e3a, #041e78);
   box-shadow: 0 0 20px 2px rgba(69, 107, 246, 0.6);
+}
+
+.background-vault-card {
+  background: linear-gradient(45deg, #0b1e3a, #043afe);
 }
 
 .header-background {

@@ -1,14 +1,17 @@
 'use client'
 
+import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Spinner } from '@/ui/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 import { vaultFormAtom } from '../atoms'
 import { useCreateVault } from '../hooks'
 import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
 import { vaultCreateFormSchema } from '../schemas/VaultCreateFormSchema'
-import { InputField } from './subcomponents'
+import { CardPreview, InputField } from './subcomponents'
 
 const initialVaultForm = {
   network: '',
@@ -21,25 +24,38 @@ const initialVaultForm = {
   maxDeposit: '',
   startDate: '',
   endDate: '',
+  description: '',
 }
 
 export function CreateVaultForm() {
   const [, setVaultData] = useAtom(vaultFormAtom)
-  const { createVault, status } = useCreateVault()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  // const navigate = useNavigate()
 
   const { register, handleSubmit, reset, formState } =
     useForm<VaultCreateFormType>({
       resolver: zodResolver(vaultCreateFormSchema),
       defaultValues: initialVaultForm,
     })
-
   const networError = formState.errors.network
+  const descriptionError = formState.errors.description
+
+  const create = useCreateVault({
+    onSuccess: () => {
+      toast.success('Vault created successfully')
+      setIsModalOpen(false)
+    },
+  })
 
   const onSubmit = (data: VaultCreateFormType) => {
+    setIsModalOpen(true)
     // 1. Create vault on the blockchain
-    createVault(data)
+    create.createVault(data)
 
+    // setTimeout(() => navigate({ to: '/profile' }), 2500)
     // 2. Save the vault data on the database
+    const save = 'test'
+    console.log(save)
   }
 
   return (
@@ -101,6 +117,28 @@ export function CreateVaultForm() {
         error={formState.errors.banner?.message}
       />
 
+      <div className="flex flex-col col-span-full">
+        <textarea
+          className={`p-2 h-30 border rounded-md border-cyan-400 placeholder:text-gray-300
+        focus:border-black outline-none ${descriptionError ? 'border-red-400' : 'border-cyan-400'}`}
+          placeholder="Your vault description..."
+          maxLength={120}
+          {...register('description', {
+            onChange(event) {
+              setVaultData((prev) => ({
+                ...prev,
+                description: event.target.value,
+              }))
+            },
+          })}
+        />
+        {descriptionError && (
+          <span className="text-sm text-red-400 mt-1">
+            {descriptionError.message}
+          </span>
+        )}
+      </div>
+
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
 
       {/* Token section */}
@@ -121,6 +159,7 @@ export function CreateVaultForm() {
         className="text-gray-300"
         placeholder="Salt"
         type={'number'}
+        min={0}
         {...register('salt', {
           onChange(event) {
             setVaultData((prev) => ({
@@ -135,6 +174,7 @@ export function CreateVaultForm() {
         className="text-gray-300"
         placeholder="Min deposit"
         type={'number'}
+        min={0}
         {...register('minDeposit', {
           onChange(event) {
             setVaultData((prev) => ({
@@ -149,6 +189,7 @@ export function CreateVaultForm() {
         className="text-gray-300"
         placeholder="Max deposit"
         type={'number'}
+        min={0}
         {...register('maxDeposit', {
           onChange(event) {
             setVaultData((prev) => ({
@@ -189,22 +230,36 @@ export function CreateVaultForm() {
 
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
 
-      <button
-        className="h-10 w-full bg-gray-600 hover:bg-gray-500 rounded-2xl cursor-pointer"
-        onClick={() => {
-          setVaultData(initialVaultForm)
-          reset()
-        }}
+      <h1 className="col-span-full text-2xl">Card Preview</h1>
+      <CardPreview />
+
+      <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
+
+      <div className="flex max-sm:flex-col col-span-full gap-3">
+        <button
+          className="h-10 w-full bg-gray-600 hover:bg-gray-500 rounded-2xl cursor-pointer"
+          onClick={() => {
+            setVaultData(initialVaultForm)
+            reset()
+          }}
+        >
+          Reset fields
+        </button>
+        <button
+          className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
+          onClick={handleSubmit(onSubmit)}
+        >
+          {create.status && <Spinner />}
+          {create.status ? create.status : 'Create Vault'}
+        </button>
+      </div>
+      <TransactionCardDialog
+        title="Create Vault"
+        open={isModalOpen}
+        onOpenChange={setIsModalOpen}
       >
-        Reset fields
-      </button>
-      <button
-        className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
-        onClick={handleSubmit(onSubmit)}
-      >
-        {status && <Spinner />}
-        {status ? status : 'Create Vault'}
-      </button>
+        effe
+      </TransactionCardDialog>
     </div>
   )
 }
