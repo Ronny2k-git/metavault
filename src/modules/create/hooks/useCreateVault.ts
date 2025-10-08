@@ -26,15 +26,22 @@ export type ContractParams = {
 export type useCreateVaultArgs = {
   onError?: VoidFunction
   onSuccess?: VoidFunction
+  onStatusChange: (status: 'openModal' | 'closeModal' | null) => void
 }
 
-export function useCreateVault({ onError, onSuccess }: useCreateVaultArgs) {
+export function useCreateVault({
+  onError,
+  onSuccess,
+  onStatusChange,
+}: useCreateVaultArgs) {
   const { writeContractAsync } = useWriteContract()
   const { isConnected } = useAccount()
   const chainId = useChainId()
   const [status, setStatus] = useState<string | null>(null)
 
-  const createVault = async (data: VaultCreateFormType) => {
+  const createVault = async (
+    data: Omit<VaultCreateFormType, 'description'>,
+  ) => {
     const configParams: ContractParams = {
       abi: vaultAbi,
       address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3',
@@ -58,13 +65,14 @@ export function useCreateVault({ onError, onSuccess }: useCreateVaultArgs) {
         toast.error('Switch your wallet to Sepolia testnet')
         return
       }
+      onStatusChange('openModal')
 
       // 1. Simulate transaction to avoid errors
       setStatus('Simulating transaction...')
       const simulation = await simulateContract(wagmiAppConfig, configParams)
 
       // 2. Wait for user confirm the transaction
-      setStatus('Confirm in you wallet...')
+      setStatus('Confirm in your wallet...')
       const tx = await writeContractAsync((await simulation).request)
 
       // 3. Wait transaction to be confirmed

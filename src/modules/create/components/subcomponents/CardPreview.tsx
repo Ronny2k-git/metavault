@@ -16,6 +16,7 @@ export function CardPreview() {
       startDate={formData.startDate}
       endDate={formData.endDate}
       description={formData.description}
+      status="coming"
     />
   )
 }

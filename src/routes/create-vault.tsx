@@ -12,11 +12,9 @@ function RouteComponent() {
   return (
     <div className="min-h-screen background px-4 flex flex-col gap-1 items-center text-white">
       <div className="max-w-2xl my-10 w-full">
-        <div className="flex gap-6 flex-col">
-          <h1 className="text-4xl text-center">Create Your Vault</h1>
-          <div className="w-full h-0.5 mb-8 bg-cyan-300" />
-          <CreateVaultForm />
-        </div>
+        <h1 className="text-4xl text-center">Create Your Vault</h1>
+        <hr className="w-full h-0.5 mt-4 mb-8 border border-cyan-400 " />
+        <CreateVaultForm />
       </div>
     </div>
   )

@@ -1,10 +1,13 @@
 import type { VaultCreateFormType } from '@/modules/create/schemas/VaultCreateFormSchema'
+import type { PoolStatus } from '@/modules/global/types'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
+import { StatusChip } from './StatusChip'
 
 interface BaseVaultProps
   extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
   description: string
+  status: PoolStatus
   children?: React.ReactNode
 }
 
@@ -17,8 +20,12 @@ export function BaseVaultCard(data: BaseVaultProps) {
       return false
     }
   }
+
   return (
-    <div className="w-full max-w-[20rem] background-vault-card md:min-w-[20rem] border h-auto rounded-md border-cyan-400">
+    <div className="w-full relative max-w-[20rem] background-vault-card md:min-w-[20rem] border h-auto rounded-md border-cyan-400">
+      <div className="absolute w-full flex justify-center">
+        <StatusChip status={data.status} />
+      </div>
       <img
         className="rounded-md mb-2 h-[17rem] w-full object-cover"
         src={isValidUrl(data.banner) ? data.banner : '/default-banner.jpg'}
@@ -63,10 +70,10 @@ export function BaseVaultCard(data: BaseVaultProps) {
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1 size-5" />
             </button>
           </Collapsible.Trigger>
-          <Collapsible.Content className="pt-2">
-            <span className="my-2 text-md break-all text-gray-300">
-              {data.description}
-            </span>
+          <Collapsible.Content className="mt-2">
+            <div className="py-2 px-3 text-md break-all rounded-md text-gray-300 border border-cyan-300">
+              <span className="text-gray-300">{data.description}</span>
+            </div>
           </Collapsible.Content>
         </Collapsible.Root>
       </div>

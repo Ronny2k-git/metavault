@@ -41,16 +41,25 @@ export function CreateVaultForm() {
   const descriptionError = formState.errors.description
 
   const create = useCreateVault({
+    onStatusChange: (status) => {
+      if (status === 'openModal') setIsModalOpen(true)
+      if (status === 'closeModal') setIsModalOpen(false)
+    },
+
     onSuccess: () => {
       toast.success('Vault created successfully')
       setIsModalOpen(false)
     },
+    onError: () => {
+      setIsModalOpen(false)
+      toast.error('Error creating vault')
+    },
   })
 
   const onSubmit = (data: VaultCreateFormType) => {
-    setIsModalOpen(true)
     // 1. Create vault on the blockchain
-    create.createVault(data)
+    const { description, ...vaultData } = data
+    create.createVault(vaultData)
 
     // setTimeout(() => navigate({ to: '/profile' }), 2500)
     // 2. Save the vault data on the database
