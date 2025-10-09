@@ -1,7 +1,7 @@
+import { useSteps } from '@/modules/global/hooks'
 import { convertTimestamp } from '@/modules/global/utils'
 import { vaultAbi } from '@/modules/global/utils/vaultAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
-import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Abi, Address } from 'viem'
 import { sepolia } from 'viem/chains'
@@ -13,14 +13,7 @@ export type ContractParams = {
   abi: Abi
   address: Address
   functionName: string
-  args: [
-    assetToken: string,
-    startDate: number,
-    endDate: number,
-    minDeposit: string,
-    maxDeposit: string,
-    salt: string,
-  ]
+  args: [assetToken: string, startDate: number, endDate: number, minDeposit: string, maxDeposit: string, salt: string]
 }
 
 export type useCreateVaultArgs = {
@@ -29,19 +22,18 @@ export type useCreateVaultArgs = {
   onStatusChange: (status: 'openModal' | 'closeModal' | null) => void
 }
 
-export function useCreateVault({
-  onError,
-  onSuccess,
-  onStatusChange,
-}: useCreateVaultArgs) {
+const initialCreateSteps = {
+  simulation: { label: 'Simulate ', status: 'pending' },
+  'confirm-create': { label: 'Confirm Create', status: 'idle' },
+} as const
+
+export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreateVaultArgs) {
   const { writeContractAsync } = useWriteContract()
   const { isConnected } = useAccount()
   const chainId = useChainId()
-  const [status, setStatus] = useState<string | null>(null)
+  const steps = useSteps(initialCreateSteps)
 
-  const createVault = async (
-    data: Omit<VaultCreateFormType, 'description'>,
-  ) => {
+  const createVault = async (data: Omit<VaultCreateFormType, 'description'>) => {
     const configParams: ContractParams = {
       abi: vaultAbi,
       address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3',
@@ -66,31 +58,35 @@ export function useCreateVault({
         return
       }
       onStatusChange('openModal')
+      steps.init()
 
       // 1. Simulate transaction to avoid errors
-      setStatus('Simulating transaction...')
+      steps.update({ id: 'simulation', label: 'Simulating Contract', status: 'pending' })
+      await new Promise((resolve) => setTimeout(resolve, 2_000))
       const simulation = await simulateContract(wagmiAppConfig, configParams)
+      steps.update({ id: 'simulation', label: 'Simulated Successfully', status: 'success' })
 
       // 2. Wait for user confirm the transaction
-      setStatus('Confirm in your wallet...')
+      steps.update({ id: 'confirm-create', label: 'Confirm in your wallet', status: 'pending' })
       const tx = await writeContractAsync((await simulation).request)
 
       // 3. Wait transaction to be confirmed
-      setStatus('Waiting for tx...')
+      steps.update({ id: 'confirm-create', label: 'Waiting For Tx Receipt', status: 'pending' })
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: tx,
         chainId: sepolia.id,
       })
 
-      setStatus('Vault created successfully')
+      steps.update({ id: 'confirm-create', label: 'Vault Created!', status: 'success' })
+      await new Promise((resolve) => setTimeout(resolve, 1_000))
       onSuccess?.()
     } catch (error) {
       await new Promise((resolve) => setTimeout(resolve, 1_000))
-      console.error('Error creating: ', error)
+      console.error('Error creating:', error)
       onError?.()
     } finally {
-      setTimeout(() => setStatus(null), 3000)
+      steps.clear()
     }
   }
-  return { createVault, status }
+  return { createVault, steps: steps.toStepper() }
 }

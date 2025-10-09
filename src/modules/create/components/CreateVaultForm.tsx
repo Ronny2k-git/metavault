@@ -1,7 +1,7 @@
 'use client'
 
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { Spinner } from '@/ui/components'
+import { Spinner, Stepper } from '@/ui/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
@@ -32,11 +32,10 @@ export function CreateVaultForm() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   // const navigate = useNavigate()
 
-  const { register, handleSubmit, reset, formState } =
-    useForm<VaultCreateFormType>({
-      resolver: zodResolver(vaultCreateFormSchema),
-      defaultValues: initialVaultForm,
-    })
+  const { register, handleSubmit, reset, formState } = useForm<VaultCreateFormType>({
+    resolver: zodResolver(vaultCreateFormSchema),
+    defaultValues: initialVaultForm,
+  })
   const networError = formState.errors.network
   const descriptionError = formState.errors.description
 
@@ -86,11 +85,7 @@ export function CreateVaultForm() {
           </option>
           <option value="Sepolia">Sepolia</option>
         </select>
-        {networError && (
-          <span className="text-sm absolute top-10 text-red-400">
-            {networError.message}
-          </span>
-        )}
+        {networError && <span className="text-sm absolute top-10 text-red-400">{networError.message}</span>}
       </div>
 
       <InputField
@@ -141,11 +136,7 @@ export function CreateVaultForm() {
             },
           })}
         />
-        {descriptionError && (
-          <span className="text-sm text-red-400 mt-1">
-            {descriptionError.message}
-          </span>
-        )}
+        {descriptionError && <span className="text-sm text-red-400 mt-1">{descriptionError.message}</span>}
       </div>
 
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
@@ -258,16 +249,12 @@ export function CreateVaultForm() {
           className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
           onClick={handleSubmit(onSubmit)}
         >
-          {create.status && <Spinner />}
-          {create.status ? create.status : 'Create Vault'}
+          {create.steps && <Spinner />}
+          Create Vault
         </button>
       </div>
-      <TransactionCardDialog
-        title="Create Vault"
-        open={isModalOpen}
-        onOpenChange={setIsModalOpen}
-      >
-        effe
+      <TransactionCardDialog title="Create Vault" open={isModalOpen} onOpenChange={setIsModalOpen}>
+        {create.steps && <Stepper steps={create.steps} />}
       </TransactionCardDialog>
     </div>
   )

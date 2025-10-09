@@ -4,13 +4,7 @@ export type Step = {
   label?: string
   href?: string
   hash?: string
-  status:
-    | 'idle'
-    | 'pending'
-    | 'success'
-    | 'waiting_user'
-    | 'waiting_confirmation'
-    | 'error'
+  status: 'idle' | 'pending' | 'success' | 'error'
 }
 
 export function useSteps<T extends Record<never, Step>>(initialSteps: T) {
@@ -33,7 +27,7 @@ export function useSteps<T extends Record<never, Step>>(initialSteps: T) {
 
   const toStepper = useCallback(() => {
     if (!steps) return null
-    return Object.values(steps)
+    return Object.values(steps).map((step) => step as Step)
   }, [steps])
 
   return { steps, init, clear, setSteps, update, toStepper }
