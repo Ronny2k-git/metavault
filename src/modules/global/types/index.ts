@@ -1,1 +1,1 @@
-export type PoolStatus = 'live' | 'coming' | 'ended'
+export type vaultStatus = 'live' | 'coming' | 'ended' | 'undefined'

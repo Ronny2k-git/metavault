@@ -1,5 +1,5 @@
 import type { VaultCreateFormType } from '@/modules/create/schemas/VaultCreateFormSchema'
-import type { PoolStatus } from '@/modules/global/types'
+import type { vaultStatus } from '@/modules/global/types'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { StatusChip } from './StatusChip'
@@ -7,7 +7,7 @@ import { StatusChip } from './StatusChip'
 interface BaseVaultProps
   extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
   description: string
-  status: PoolStatus
+  status: vaultStatus
   children?: React.ReactNode
 }
 
@@ -71,7 +71,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
             </button>
           </Collapsible.Trigger>
           <Collapsible.Content className="mt-2">
-            <div className="py-2 px-3 text-md break-all rounded-md text-gray-300 border border-cyan-300">
+            <div className="py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300">
               <span className="text-gray-300">{data.description}</span>
             </div>
           </Collapsible.Content>

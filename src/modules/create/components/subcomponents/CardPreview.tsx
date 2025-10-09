@@ -1,4 +1,5 @@
 import { BaseVaultCard } from '@/components'
+import { getStatus } from '@/modules/global/utils'
 import { useAtom } from 'jotai'
 import { vaultFormAtom } from '../../atoms'
 
@@ -16,7 +17,10 @@ export function CardPreview() {
       startDate={formData.startDate}
       endDate={formData.endDate}
       description={formData.description}
-      status="coming"
+      status={getStatus({
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+      })}
     />
   )
 }
