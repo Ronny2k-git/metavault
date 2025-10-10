@@ -1,7 +1,7 @@
 'use client'
 
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { Spinner, Stepper } from '@/ui/components'
+import { Stepper } from '@/ui/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
@@ -46,7 +46,6 @@ export function CreateVaultForm() {
     },
 
     onSuccess: () => {
-      toast.success('Vault created successfully')
       setIsModalOpen(false)
     },
     onError: () => {
@@ -55,15 +54,16 @@ export function CreateVaultForm() {
     },
   })
 
-  const onSubmit = (data: VaultCreateFormType) => {
-    // 1. Create vault on the blockchain
+  const onSubmit = async (data: VaultCreateFormType) => {
+    // 1. Create a vault on the blockchain
     const { description, ...vaultData } = data
-    create.createVault(vaultData)
+    await create.createVault(vaultData)
 
-    // setTimeout(() => navigate({ to: '/profile' }), 2500)
     // 2. Save the vault data on the database
-    const save = 'test'
-    console.log(save)
+    const saveOnDB = 'test'
+    console.log(saveOnDB)
+    // setTimeout(() => navigate({ to: '/profile' }), 2500)
+    toast.success('Vault created successfully')
   }
 
   return (
@@ -249,11 +249,10 @@ export function CreateVaultForm() {
           className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
           onClick={handleSubmit(onSubmit)}
         >
-          {create.steps && <Spinner />}
           Create Vault
         </button>
       </div>
-      <TransactionCardDialog title="Create Vault" open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <TransactionCardDialog title="Create your vault" open={isModalOpen} onOpenChange={setIsModalOpen}>
         {create.steps && <Stepper steps={create.steps} />}
       </TransactionCardDialog>
     </div>
