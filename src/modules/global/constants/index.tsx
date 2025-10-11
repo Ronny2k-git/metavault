@@ -20,8 +20,15 @@ export const ECOSYSTEMS = ['ethereum', 'solana', 'move']
 
 export const PROFILE_TABS = [
   {
-    path: '',
-    label: '',
-    icon: '',
+    value: 'user-vaults',
+    label: 'Vaults',
+    icon: 'Assured_Workload',
+    description: '(All your vaults will be here)',
+  },
+  {
+    value: 'trades',
+    label: 'Trades',
+    icon: 'currency_exchange',
+    description: '(Deposit or Withdraw in a vault)',
   },
 ]
