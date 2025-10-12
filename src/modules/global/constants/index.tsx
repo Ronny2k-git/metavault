@@ -7,12 +7,12 @@ export const PROJECT_ROUTES = [
   {
     path: '/create-vault',
     label: 'Create - Vault',
-    icon: 'Add',
+    icon: 'add_circle',
   },
   {
     path: '/profile',
     label: 'Profile',
-    icon: 'Enhanced_Encryption',
+    icon: 'account_circle',
   },
 ]
 
@@ -30,5 +30,11 @@ export const PROFILE_TABS = [
     label: 'Trades',
     icon: 'currency_exchange',
     description: '(Deposit or Withdraw in a vault)',
+  },
+  {
+    value: 'test',
+    label: 'Test',
+    icon: 'compare',
+    description: '(In progress...Thinking about it)',
   },
 ]

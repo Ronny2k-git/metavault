@@ -4,8 +4,7 @@ import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { StatusChip } from './StatusChip'
 
-interface BaseVaultProps
-  extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
+interface BaseVaultProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
   description: string
   status: vaultStatus
   children?: React.ReactNode
@@ -22,7 +21,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
   }
 
   return (
-    <div className="w-full relative max-w-[20rem] background-vault-card md:min-w-[20rem] border h-auto rounded-md border-cyan-400">
+    <div className="w-full relative lg:max-w-[20rem] background-vault-card border h-auto rounded-md border-cyan-400">
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
       </div>
@@ -39,9 +38,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
         />
         <div className="text-white">
           {data.vaultName || 'Unammed'}
-          <div className="text-xs -mt-0.5">
-            {data.network || 'No chain selected'}
-          </div>
+          <div className="text-xs -mt-0.5">{data.network || 'No chain selected'}</div>
         </div>
       </div>
       <div className="flex flex-col my-2 mx-2 gap-0.5">
@@ -61,6 +58,8 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <h3>End Date</h3>
           <div className="text-gray-300">{data.endDate || '00/00/0000'}</div>
         </div>
+
+        {data.children}
 
         <Collapsible.Root>
           <Collapsible.Trigger className="group w-full" asChild>

@@ -32,6 +32,10 @@ code {
   background: linear-gradient(45deg, #0b1e3a, #043afe);
 }
 
+.background-vault-row {
+  background: linear-gradient(45deg, #0b1e3a, hsl(227, 86%, 37%));
+}
+
 .header-background {
   background: linear-gradient(90deg, #041835, #223fb0, #213895);
 }
