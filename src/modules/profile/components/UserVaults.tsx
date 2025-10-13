@@ -45,7 +45,7 @@ export function UserVaults() {
         vaults="10"
       />
       <div className="w-full overflow-x-auto custom-scrollbar" style={{ paddingBottom: '8px' }}>
-        <table className="w-full min-w-[46rem] border-separate border-spacing-y-1.5">
+        <table className="w-full min-w-[46rem]">
           <thead>
             <tr className="[&_td]:text-nowrap">
               <td align="center" className="pr-16">
@@ -62,6 +62,7 @@ export function UserVaults() {
               <BaseVaultRow
                 key={index}
                 banner={'/default-icon.webp'}
+                logo={'/icon.png'}
                 vaultName={'Test Vault name'}
                 network={'sepolia'}
                 minDeposit={'1'}

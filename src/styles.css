@@ -50,3 +50,7 @@ code {
 
   border-radius: 9999px;
 }
+
+.card-transaction {
+  background: linear-gradient(0deg, #041e78);
+}

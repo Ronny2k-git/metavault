@@ -1,7 +1,7 @@
 import type { VaultCreateFormType } from '@/modules/create/schemas/VaultCreateFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
 
-interface BaseVaultRowProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken' | 'logo'> {
+interface BaseVaultRowProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
   description: string
   status: vaultStatus
   tx: string
@@ -20,9 +20,9 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
           />
           <div className="flex flex-col mx-4">
             <div>{data.vaultName}</div>
-            <div className="flex gap-2 mt-1">
-              <img src={data.network} className="min-w-4 max-w-4 min-h-4 max-h-4 rounded-full" />
-              <div className="opacity-50 text-xs">{'sepolia'}</div>
+            <div className="flex gap-2 items-center mt-1">
+              <img src={data.logo} className="min-w-5 max-w-5 min-h-5 max-h-5 rounded-full" />
+              <div className="text-xs">sepolia</div>
             </div>
           </div>
         </div>
