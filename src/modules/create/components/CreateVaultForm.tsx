@@ -1,7 +1,7 @@
 'use client'
 
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { Stepper } from '@/ui/components'
+import { Icon, Stepper } from '@/ui/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
@@ -67,9 +67,10 @@ export function CreateVaultForm() {
   }
 
   return (
-    <div className={`grid grid-cols-2 max-sm:grid-cols-1 gap-5.5`}>
+    <div className={`grid grid-cols-2 max-sm:grid-cols-1 gap-5`}>
       {/* Basic data section */}
       <h1 className="text-2xl">Basic Vault Data</h1>
+
       <div className="flex flex-col relative">
         <select
           className={`h-10 w-full px-4 rounded-md text-gray-300 border-1 placeholder:text-gray-300
@@ -237,18 +238,20 @@ export function CreateVaultForm() {
 
       <div className="flex max-sm:flex-col col-span-full gap-3">
         <button
-          className="h-10 w-full bg-gray-600 hover:bg-gray-500 rounded-2xl cursor-pointer"
+          className="h-10 w-full flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-500 rounded-2xl cursor-pointer"
           onClick={() => {
             setVaultData(initialVaultForm)
             reset()
           }}
         >
+          <Icon>close</Icon>
           Reset fields
         </button>
         <button
           className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
           onClick={handleSubmit(onSubmit)}
         >
+          <Icon>add_circle</Icon>
           Create Vault
         </button>
       </div>

@@ -44,26 +44,41 @@ export function UserVaults() {
         status="ended"
         vaults="10"
       />
-
-      {Array.from({ length: 10 }, (_, index) => (
-        <div className="w-full flex my-1">
-          <BaseVaultRow
-            key={index}
-            banner={'/default-icon.webp'}
-            vaultName={'Test Vault name'}
-            network={'sepolia'}
-            minDeposit={'1'}
-            maxDeposit={'100000000'}
-            startDate={'2025-10-18'}
-            endDate={'2025-10-24'}
-            description={'This is a simple phrase to testing the description field'}
-            status={getStatus({
-              startDate: '2025-10-11',
-              endDate: '2025-10-31',
-            })}
-          />
-        </div>
-      ))}
+      <div className="w-full overflow-x-auto custom-scrollbar" style={{ paddingBottom: '8px' }}>
+        <table className="w-full min-w-[46rem] border-separate border-spacing-y-1.5">
+          <thead>
+            <tr className="[&_td]:text-nowrap">
+              <td align="center" className="pr-16">
+                Project Name
+              </td>
+              <td align="center">Min deposit</td>
+              <td align="center">Max deposit</td>
+              <td align="center">End Date</td>
+              <td align="center">View</td>
+            </tr>
+          </thead>
+          <tbody>
+            {Array.from({ length: 10 }, (_, index) => (
+              <BaseVaultRow
+                key={index}
+                banner={'/default-icon.webp'}
+                vaultName={'Test Vault name'}
+                network={'sepolia'}
+                minDeposit={'1'}
+                maxDeposit={'100000000'}
+                startDate={'2025-10-18'}
+                endDate={'2025-10-24'}
+                tx="0x1896caaf59a5ab0de34af09d79f233683fb70dff818bc5dc87e60220adb22ddb"
+                description={'This is a simple phrase to testing the description field'}
+                status={getStatus({
+                  startDate: '2025-10-11',
+                  endDate: '2025-10-13',
+                })}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

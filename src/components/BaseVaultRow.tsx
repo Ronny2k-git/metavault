@@ -4,14 +4,15 @@ import type { vaultStatus } from '@/modules/global/types'
 interface BaseVaultRowProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken' | 'logo'> {
   description: string
   status: vaultStatus
+  tx: string
   children?: React.ReactNode
 }
 
 export function BaseVaultRow(data: BaseVaultRowProps) {
   return (
-    <tr className="w-full background-vault-row relative border h-16 rounded-lg border-cyan-400">
-      <td className="rounded-[inherit] h-[inherit] ">
-        <div className="flex h-[inherit] overflow-hidden z-0 gap- items-center rounded-[inherit] p p4 relative">
+    <tr className="background-vault-row border text-gray-300 border-cyan-400 rounded-lg h-16">
+      <td>
+        <div className="flex items-center">
           <img
             src={data.banner}
             className="h-15 w-28 aspect-square object-cover rounded-[inherit]"
@@ -25,6 +26,16 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
             </div>
           </div>
         </div>
+      </td>
+      <td align="center">{data.minDeposit}</td>
+      <td align="center">{data.maxDeposit}</td>
+      <td align="center">{data.endDate}</td>
+      <td align="center">
+        <a href={`https://sepolia.etherscan.io/tx/${data.tx}`}>
+          <div className="h-7 w-16 bg-sky-500 hover:bg-sky-600 rounded-full flex text-xs items-center justify-center">
+            View
+          </div>
+        </a>
       </td>
     </tr>
   )

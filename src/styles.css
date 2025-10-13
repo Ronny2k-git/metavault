@@ -39,3 +39,14 @@ code {
 .header-background {
   background: linear-gradient(90deg, #041835, #223fb0, #213895);
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  margin-top: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #0ea5e9, #22d3ee);
+
+  border-radius: 9999px;
+}

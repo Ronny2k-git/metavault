@@ -10,9 +10,7 @@ export const convertTimestamp = (value: Date) => {
   return Math.floor(value.getTime() / 1000)
 }
 
-export function getStatus(
-  date: Pick<VaultCreateFormType, 'startDate' | 'endDate'>,
-): vaultStatus {
+export function getStatus(date: Pick<VaultCreateFormType, 'startDate' | 'endDate'>): vaultStatus {
   if (!date.startDate || !date.endDate) return 'undefined'
 
   const currentDate = new Date()
@@ -22,4 +20,14 @@ export function getStatus(
   if (currentDate < startDate) return 'coming'
   if (currentDate >= startDate && currentDate <= endDate) return 'live'
   return 'ended'
+}
+
+export function scrollToConteiner(id: string) {
+  const element = document.getElementById(id)
+
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  } else {
+    console.warn(`Id not found: ${id}`)
+  }
 }
