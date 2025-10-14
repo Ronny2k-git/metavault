@@ -11,7 +11,7 @@ import { vaultFormAtom } from '../atoms'
 import { useCreateVault } from '../hooks'
 import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
 import { vaultCreateFormSchema } from '../schemas/VaultCreateFormSchema'
-import { CardPreview, InputField } from './subcomponents'
+import { CardPreview, CreateFormHeading, InputField } from './subcomponents'
 
 const initialVaultForm = {
   network: '',
@@ -67,9 +67,9 @@ export function CreateVaultForm() {
   }
 
   return (
-    <div className={`grid grid-cols-2 max-sm:grid-cols-1 gap-5`}>
+    <div className={`grid grid-cols-2 max-sm:grid-cols-1 gap-4.5`}>
       {/* Basic data section */}
-      <h1 className="text-2xl">Basic Vault Data</h1>
+      <CreateFormHeading title="Basic Vault Data" icon={'help'} />
 
       <div className="flex flex-col relative">
         <select
@@ -91,6 +91,7 @@ export function CreateVaultForm() {
 
       <InputField
         className="col-span-full"
+        label="Vault Name"
         placeholder="Your vault name"
         {...register('vaultName', {
           onChange(event) {
@@ -101,6 +102,7 @@ export function CreateVaultForm() {
       />
 
       <InputField
+        label="Logo Url"
         placeholder="Your logo url"
         className="col-span-full"
         {...register('logo', {
@@ -113,6 +115,7 @@ export function CreateVaultForm() {
 
       <InputField
         placeholder="Your banner url"
+        label="Banner Url"
         className="col-span-full"
         {...register('banner', {
           onChange(event) {
@@ -124,8 +127,8 @@ export function CreateVaultForm() {
 
       <div className="flex flex-col col-span-full">
         <textarea
-          className={`p-2 h-30 border rounded-md border-cyan-400 placeholder:text-gray-300
-        focus:border-black outline-none ${descriptionError ? 'border-red-400' : 'border-cyan-400'}`}
+          className={`p-4 h-[15rem] input-style border rounded-t-3xl rounded-md placeholder:text-gray-300 focus:border-black outline-none
+         ${descriptionError ? 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
           placeholder="Your vault description..."
           maxLength={120}
           {...register('description', {
@@ -143,9 +146,11 @@ export function CreateVaultForm() {
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
 
       {/* Token section */}
-      <h1 className="col-span-full text-2xl">Token Data</h1>
+      <CreateFormHeading className="col-span-full" title="Token Data" icon={'help'} />
+
       <InputField
-        placeholder="Asset token"
+        label="Asset Token"
+        placeholder="Your Asset token"
         {...register('assetToken', {
           onChange(event) {
             setVaultData((prev) => ({
@@ -205,7 +210,8 @@ export function CreateVaultForm() {
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
 
       {/* Time section */}
-      <h1 className="col-span-full text-2xl">Vault Time</h1>
+      <CreateFormHeading className="col-span-full" title="Vault Time" icon={'help'} />
+
       <InputField
         className="text-gray-300"
         placeholder="Start date"
@@ -231,7 +237,8 @@ export function CreateVaultForm() {
 
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
 
-      <h1 className="col-span-full text-2xl">Card Preview</h1>
+      {/* Card preview */}
+      <CreateFormHeading className="col-span-full" title="Card Preview" icon={'help'} />
       <CardPreview />
 
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
