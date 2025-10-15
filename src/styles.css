@@ -47,7 +47,6 @@ code {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(to right, #0ea5e9, #22d3ee);
-
   border-radius: 9999px;
 }
 

@@ -33,7 +33,7 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
   const chainId = useChainId()
   const steps = useSteps(initialCreateSteps)
 
-  const createVault = async (data: Omit<VaultCreateFormType, 'description'>) => {
+  const createVault = async (data: Omit<VaultCreateFormType, 'description' | 'creatorName'>) => {
     const configParams: ContractParams = {
       abi: vaultAbi,
       address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3',

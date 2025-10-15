@@ -6,6 +6,7 @@ export const vaultFormAtom = atom<VaultCreateFormType>({
   vaultName: '',
   logo: '',
   banner: '',
+  creatorName: '',
   assetToken: '',
   salt: '',
   minDeposit: '',

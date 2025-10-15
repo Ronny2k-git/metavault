@@ -1,18 +1,11 @@
-import { PROFILE_TABS } from '@/modules/global/constants'
 import { Trades, UserVaults } from '@/modules/profile/components'
+import { PROFILE_TABS } from '@/modules/profile/constants'
 import { Icon } from '@/ui/components'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { zodValidator } from '@tanstack/zod-adapter'
 import { Tabs } from 'radix-ui'
-import z from 'zod'
 
 export const Route = createFileRoute('/profile')({
   component: Profile,
-  validateSearch: zodValidator(
-    z.object({
-      tab: z.enum(['user-vaults', 'trades']).default('user-vaults'),
-    }),
-  ),
 })
 
 function Profile() {

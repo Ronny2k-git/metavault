@@ -1,7 +1,7 @@
 'use client'
 
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { Icon, Stepper } from '@/ui/components'
+import { Icon, Input, Stepper, TextArea } from '@/ui/components'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAtom } from 'jotai'
 import { useState } from 'react'
@@ -11,12 +11,13 @@ import { vaultFormAtom } from '../atoms'
 import { useCreateVault } from '../hooks'
 import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
 import { vaultCreateFormSchema } from '../schemas/VaultCreateFormSchema'
-import { CardPreview, CreateFormHeading, InputField } from './subcomponents'
+import { CardPreview, CreateFormHeading } from './subcomponents'
 
 const initialVaultForm = {
   network: '',
   vaultName: '',
   logo: '',
+  creatorName: '',
   banner: '',
   assetToken: '',
   salt: '',
@@ -37,7 +38,6 @@ export function CreateVaultForm() {
     defaultValues: initialVaultForm,
   })
   const networError = formState.errors.network
-  const descriptionError = formState.errors.description
 
   const create = useCreateVault({
     onStatusChange: (status) => {
@@ -56,7 +56,7 @@ export function CreateVaultForm() {
 
   const onSubmit = async (data: VaultCreateFormType) => {
     // 1. Create a vault on the blockchain
-    const { description, ...vaultData } = data
+    const { description, creatorName, ...vaultData } = data
     await create.createVault(vaultData)
 
     // 2. Save the vault data on the database
@@ -73,8 +73,8 @@ export function CreateVaultForm() {
 
       <div className="flex flex-col relative">
         <select
-          className={`h-10 w-full px-4 rounded-md text-gray-300 border-1 placeholder:text-gray-300
-          ${networError ? 'border-red-400' : 'border-cyan-400'} focus:border-black border outline-none`}
+          className={`h-12 w-full px-4 rounded-3xl input-style text-gray-300 outline-none
+          ${networError ? 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
           {...register('network', {
             onChange(event) {
               setVaultData((prev) => ({ ...prev, network: event.target.value }))
@@ -84,13 +84,15 @@ export function CreateVaultForm() {
           <option value="" hidden>
             Select a network
           </option>
-          <option value="Sepolia">Sepolia</option>
+          <option className="bg-blue-900" value="Sepolia">
+            Sepolia
+          </option>
         </select>
         {networError && <span className="text-sm absolute top-10 text-red-400">{networError.message}</span>}
       </div>
 
-      <InputField
-        className="col-span-full"
+      <Input
+        className="max-md:col-span-full"
         label="Vault Name"
         placeholder="Your vault name"
         {...register('vaultName', {
@@ -101,10 +103,10 @@ export function CreateVaultForm() {
         error={formState.errors.vaultName?.message}
       />
 
-      <InputField
+      <Input
         label="Logo Url"
         placeholder="Your logo url"
-        className="col-span-full"
+        className="max-md:col-span-full"
         {...register('logo', {
           onChange(event) {
             setVaultData((prev) => ({ ...prev, logo: event.target.value }))
@@ -113,10 +115,10 @@ export function CreateVaultForm() {
         error={formState.errors.logo?.message}
       />
 
-      <InputField
+      <Input
         placeholder="Your banner url"
         label="Banner Url"
-        className="col-span-full"
+        className="max-md:col-span-full"
         {...register('banner', {
           onChange(event) {
             setVaultData((prev) => ({ ...prev, banner: event.target.value }))
@@ -124,31 +126,40 @@ export function CreateVaultForm() {
         })}
         error={formState.errors.banner?.message}
       />
+      <Input
+        className="max-md:col-span-full"
+        label="Creator Name"
+        placeholder="Creatror Vault Name"
+        {...register('creatorName', {
+          onChange(event) {
+            setVaultData((prev) => ({ ...prev, creatorName: event.target.value }))
+          },
+        })}
+        error={formState.errors.creatorName?.message}
+      />
 
-      <div className="flex flex-col col-span-full">
-        <textarea
-          className={`p-4 h-[15rem] input-style border rounded-t-3xl rounded-md placeholder:text-gray-300 focus:border-black outline-none
-         ${descriptionError ? 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
-          placeholder="Your vault description..."
-          maxLength={120}
-          {...register('description', {
-            onChange(event) {
-              setVaultData((prev) => ({
-                ...prev,
-                description: event.target.value,
-              }))
-            },
-          })}
-        />
-        {descriptionError && <span className="text-sm text-red-400 mt-1">{descriptionError.message}</span>}
-      </div>
+      <TextArea
+        className="col-span-full"
+        label="Vault Description"
+        placeholder="Talk a bit about your vault"
+        {...register('description', {
+          onChange(event) {
+            setVaultData((prev) => ({
+              ...prev,
+              description: event.target.value,
+            }))
+          },
+        })}
+        maxLength={120}
+        error={formState.errors.description?.message}
+      />
 
       <div className="w-full h-0.5 my-4 bg-cyan-400 col-span-full" />
 
       {/* Token section */}
       <CreateFormHeading className="col-span-full" title="Token Data" icon={'help'} />
 
-      <InputField
+      <Input
         label="Asset Token"
         placeholder="Your Asset token"
         {...register('assetToken', {
@@ -161,9 +172,9 @@ export function CreateVaultForm() {
         })}
         error={formState.errors.assetToken?.message}
       />
-      <InputField
-        className="text-gray-300"
-        placeholder="Salt"
+      <Input
+        label="Salt"
+        placeholder="Vault Salt"
         type={'number'}
         min={0}
         {...register('salt', {
@@ -176,9 +187,9 @@ export function CreateVaultForm() {
         })}
         error={formState.errors.salt?.message}
       />
-      <InputField
-        className="text-gray-300"
-        placeholder="Min deposit"
+      <Input
+        label="Min Deposit"
+        placeholder="Min deposit per wallet"
         type={'number'}
         min={0}
         {...register('minDeposit', {
@@ -191,9 +202,9 @@ export function CreateVaultForm() {
         })}
         error={formState.errors.minDeposit?.message}
       />
-      <InputField
-        className="text-gray-300"
-        placeholder="Max deposit"
+      <Input
+        label="Max Deposit"
+        placeholder="Max deposit per wallet"
         type={'number'}
         min={0}
         {...register('maxDeposit', {
@@ -212,9 +223,8 @@ export function CreateVaultForm() {
       {/* Time section */}
       <CreateFormHeading className="col-span-full" title="Vault Time" icon={'help'} />
 
-      <InputField
-        className="text-gray-300"
-        placeholder="Start date"
+      <Input
+        label="Start Date"
         type="date"
         {...register('startDate', {
           onChange(event) {
@@ -223,9 +233,8 @@ export function CreateVaultForm() {
         })}
         error={formState.errors.startDate?.message}
       />
-      <InputField
-        className="text-gray-300"
-        placeholder="End date"
+      <Input
+        label="End Date"
         type="date"
         {...register('endDate', {
           onChange(event) {

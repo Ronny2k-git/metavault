@@ -1,4 +1,6 @@
 export * from './Icon'
+export * from './Input'
 export * from './Modal'
 export * from './Spinner'
 export * from './Stepper'
+export * from './TextArea'
