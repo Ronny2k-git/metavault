@@ -122,26 +122,6 @@ function CreateVault() {
             ]}
           />
         </div>
-
-        {/* <div className="flex max-sm:flex-col col-span-full gap-3">
-          <button
-            className="h-10 w-full flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-500 rounded-2xl cursor-pointer"
-            onClick={() => {
-              setVaultData(initialVaultForm)
-              reset()
-            }}
-          >
-            <Icon>close</Icon>
-            Reset fields
-          </button>
-          <button
-            className="h-10 w-full flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-2xl cursor-pointer"
-            onClick={handleSubmit(onSubmit)}
-          >
-            <Icon>add_circle</Icon>
-            Create Vault
-          </button>
-        </div> */}
       </div>
     </div>
   )

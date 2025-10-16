@@ -1,8 +1,8 @@
-import { Icon } from '@/ui/components'
 import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import { Tabs as PrimitiveTabs } from 'radix-ui'
 import type { ComponentPropsWithRef } from 'react'
+import { Icon } from './Icon'
 
 export type TabsProps = ComponentPropsWithRef<'div'> & {
   tabList: ReadonlyArray<{
@@ -18,16 +18,16 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
   className?: string
 } & VariantProps<typeof tabTrigger>
 
-const tabTrigger = cva(`w-full h-full flex items-center justify-center cursor-pointer`, {
+const tabTrigger = cva(`w-full h-full flex flex-col items-center justify-center cursor-pointer`, {
   variants: {
     variant: {
-      blue: 'data-[state=active]:bg-[linear-gradient(0deg,#2970f7,#001d7f)] data-[state=active]:hover:bg-[linear-gradient(0deg,#0471ff,#001d8f)]',
+      blue: 'data-[state=active]:bg-[linear-gradient(0deg,#2960f7,#000d5f)] data-[state=active]:hover:brightness-90',
       default: '',
     },
     size: {
       default: 'py-4 ',
-      md: 'py-6',
-      lg: 'py-8 min-w-[15rem] max-sm:text-lg md:text-xl lg:text-2xl rounded-t-xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
+      md: 'py-6 min-w-[13.5rem] text-xl rounded-t-xl',
+      lg: 'py-8 min-w-[15rem] max-sm:text-lg md:text-xl lg:text-2xl rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
     },
   },
   defaultVariants: {
@@ -44,11 +44,11 @@ export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'de
           <PrimitiveTabs.Trigger key={tab.value} value={tab.value} className={tabTrigger({ variant, size })}>
             <div className="flex flex-col">
               <span className="text-lg text-left">{tab.step}</span>
-              <div className="flex items-center gap-2">
+              <span>{tab.label}</span>
+              <div className="flex items-center gap-2 mt-1">
                 <Icon>{tab.icon}</Icon>
-                <span>{tab.label}</span>
+                <span className="text-base text-left text-gray-300">{tab.description}</span>
               </div>
-              <span className="text-sm text-left text-gray-200">{tab.description}</span>
             </div>
           </PrimitiveTabs.Trigger>
         ))}

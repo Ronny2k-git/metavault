@@ -1,4 +1,4 @@
-import { Divider, Input } from '@/ui/components'
+import { Divider, Icon, Input } from '@/ui/components'
 import type { CreateFormProps } from '../types'
 import { CreateFormHeading } from './subcomponents'
 
@@ -58,6 +58,26 @@ export function UserDataForm({ register, setVaultData, formState }: UserDataForm
         error={formState.errors.twitter?.message}
       />
       <Divider />
+
+      <div className="flex col-span-full gap-3">
+        <button
+          className="h-10 w-[10rem] flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-500 rounded-4xl cursor-pointer"
+          // onClick={() => {
+          //   setVaultData(initialVaultForm)
+          //   reset()
+          // }}
+        >
+          <Icon>backspace</Icon>
+          Reset fields
+        </button>
+        <button
+          className="h-10 w-[15rem] flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-4xl cursor-pointer"
+          // onClick={handleSubmit(onSubmit)}
+        >
+          Move to confirm
+          <Icon>arrow_right_alt</Icon>
+        </button>
+      </div>
     </div>
   )
 }

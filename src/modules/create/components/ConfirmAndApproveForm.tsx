@@ -1,5 +1,5 @@
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { Divider, Input } from '@/ui/components'
+import { Divider, Icon, Input } from '@/ui/components'
 import type { Dispatch, SetStateAction } from 'react'
 import type { CreateFormProps } from '../types'
 import { CardPreview, CreateFormHeading } from './subcomponents'
@@ -50,6 +50,26 @@ export function ConfirmAndApproveForm({
       <CardPreview />
 
       <Divider />
+
+      <div className="flex col-span-full gap-3">
+        <button
+          className="h-10 w-[10rem] flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-500 rounded-4xl cursor-pointer"
+          // onClick={() => {
+          //   setVaultData(initialVaultForm)
+          //   reset()
+          // }}
+        >
+          <Icon>backspace</Icon>
+          Reset fields
+        </button>
+        <button
+          className="h-10 w-[15rem] flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-4xl cursor-pointer"
+          // onClick={handleSubmit(onSubmit)}
+        >
+          <Icon>add_circle</Icon>
+          Create a vault
+        </button>
+      </div>
       <TransactionCardDialog title="Create your vault" isOpen={isOpen} onOpenChange={setIsOpen}>
         {/* {create.steps && <Stepper steps={create.steps} />} */}
       </TransactionCardDialog>
