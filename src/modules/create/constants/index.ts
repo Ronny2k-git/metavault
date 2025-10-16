@@ -2,22 +2,22 @@ export const CREATE_TAB_STEPS = ['vault-data', 'user-data', 'confirm-approve'] a
 
 export const CREATE_INFO_STEPS = [
   {
-    step: 'Step 1',
     value: 'vault-data',
+    step: 'Step 1',
     label: 'Vault Data',
     icon: 'Assured_Workload',
     description: 'Test',
   },
   {
-    step: 'Step 2',
     value: 'user-data',
+    step: 'Step 2',
     label: 'User Data',
     icon: 'currency_exchange',
     description: 'Test',
   },
   {
-    step: 'Step 3',
     value: 'confirm-approve',
+    step: 'Step 3',
     label: 'Confirm & Approve',
     icon: 'compare',
     description: 'Test',

@@ -6,11 +6,7 @@ import { Modal } from '@/ui/components'
 import { Tabs } from 'radix-ui'
 import { FaWallet } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
-import {
-  EthereumConnectors,
-  MoveConnectors,
-  SolanaConnectors,
-} from '../subcomponents'
+import { EthereumConnectors, MoveConnectors, SolanaConnectors } from '../subcomponents'
 
 export default function WalletConnection() {
   const account = useAccount()
@@ -27,9 +23,7 @@ export default function WalletConnection() {
             type="button"
           >
             <FaWallet />
-            {connectedWallet
-              ? `${abreviateAddress(account.address)}`
-              : 'Connect Wallet'}
+            {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
           </button>
           <button className="sm:hidden">
             <FaWallet
@@ -40,36 +34,34 @@ export default function WalletConnection() {
         </div>
       }
     >
-      <div className="">
-        <Tabs.Root defaultValue="ethereum">
-          <Tabs.List className="flex gap-4">
-            {ECOSYSTEMS.map((ecosystem, index) => (
-              <Tabs.Trigger
-                key={index}
-                value={ecosystem}
-                className="data-[state=active]:bg-sky-600 py-2 px-4 rounded-xl hover:bg-sky-600 cursor-pointer"
-              >
-                {ecosystem}
-              </Tabs.Trigger>
-            ))}
-          </Tabs.List>
+      <Tabs.Root defaultValue="ethereum">
+        <Tabs.List className="flex gap-4">
+          {ECOSYSTEMS.map((ecosystem, index) => (
+            <Tabs.Trigger
+              key={index}
+              value={ecosystem}
+              className="data-[state=active]:bg-sky-600 py-2 px-4 rounded-xl hover:bg-sky-600 cursor-pointer"
+            >
+              {ecosystem}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
 
-          <div className="flex items-center gap-4 py-4">
-            <div className="w-1/2 h-px bg-sky-300" />
-            Wallets
-            <div className="w-1/2 h-px  bg-sky-300" />
-          </div>
-          <Tabs.Content value="ethereum">
-            <EthereumConnectors />
-          </Tabs.Content>
-          <Tabs.Content value="solana">
-            <SolanaConnectors />
-          </Tabs.Content>
-          <Tabs.Content value="move">
-            <MoveConnectors />
-          </Tabs.Content>
-        </Tabs.Root>
-      </div>
+        <div className="flex items-center gap-4 py-4">
+          <div className="w-1/2 h-px bg-sky-300" />
+          Wallets
+          <div className="w-1/2 h-px  bg-sky-300" />
+        </div>
+        <Tabs.Content value="ethereum">
+          <EthereumConnectors />
+        </Tabs.Content>
+        <Tabs.Content value="solana">
+          <SolanaConnectors />
+        </Tabs.Content>
+        <Tabs.Content value="move">
+          <MoveConnectors />
+        </Tabs.Content>
+      </Tabs.Root>
     </Modal>
   )
 }

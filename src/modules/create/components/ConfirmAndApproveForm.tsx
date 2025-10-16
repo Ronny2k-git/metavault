@@ -1,17 +1,26 @@
 import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Input } from '@/ui/components'
+import type { Dispatch, SetStateAction } from 'react'
 import type { CreateFormProps } from '../types'
 import { CardPreview, CreateFormHeading } from './subcomponents'
 
 interface ConfirmAndApproveFormProps extends CreateFormProps {
   className?: string
-  open?:
-  setIsOpen?:
+  isOpen: boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
-export function ConfirmAndApproveForm({ register, setVaultData, formState }: ConfirmAndApproveFormProps) {
+export function ConfirmAndApproveForm({
+  register,
+  setVaultData,
+  formState,
+  isOpen,
+  setIsOpen,
+}: ConfirmAndApproveFormProps) {
   return (
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
+      <Divider />
+
       <CreateFormHeading className="col-span-full" title="Vault Time" icon={'help'} />
 
       <Input
@@ -41,7 +50,7 @@ export function ConfirmAndApproveForm({ register, setVaultData, formState }: Con
       <CardPreview />
 
       <Divider />
-      <TransactionCardDialog title="Create your vault" open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <TransactionCardDialog title="Create your vault" isOpen={isOpen} onOpenChange={setIsOpen}>
         {/* {create.steps && <Stepper steps={create.steps} />} */}
       </TransactionCardDialog>
     </div>

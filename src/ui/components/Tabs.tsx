@@ -5,7 +5,7 @@ import { Tabs as PrimitiveTabs } from 'radix-ui'
 import type { ComponentPropsWithRef } from 'react'
 
 export type TabsProps = ComponentPropsWithRef<'div'> & {
-  tabList: Array<{
+  tabList: ReadonlyArray<{
     value: string
     step?: string
     label: string
@@ -14,7 +14,7 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
   }>
   tabContent?: Array<{ value: string; content: React.ReactNode }>
   search: string
-  onValueChange: () => void
+  onValueChange: (value: string) => void
   className?: string
 } & VariantProps<typeof tabTrigger>
 
@@ -54,7 +54,7 @@ export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'de
         ))}
       </PrimitiveTabs.List>
       {tabContent?.map(({ value, content }) => (
-        <PrimitiveTabs.Content className="mt-10" value={value}>
+        <PrimitiveTabs.Content className="mt-5" value={value}>
           {content}
         </PrimitiveTabs.Content>
       ))}

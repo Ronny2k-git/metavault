@@ -12,6 +12,7 @@ export function CardPreview() {
       logo={formData.logo}
       vaultName={formData.vaultName}
       network={formData.network}
+      creatorName={formData.creatorName}
       minDeposit={formData.minDeposit}
       maxDeposit={formData.maxDeposit}
       startDate={formData.startDate}

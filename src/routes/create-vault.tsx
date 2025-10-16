@@ -110,7 +110,13 @@ function CreateVault() {
               {
                 value: 'confirm-approve',
                 content: (
-                  <ConfirmAndApproveForm register={register} formState={formState} setVaultData={setVaultData} />
+                  <ConfirmAndApproveForm
+                    register={register}
+                    formState={formState}
+                    setVaultData={setVaultData}
+                    isOpen={isModalOpen}
+                    setIsOpen={setIsModalOpen}
+                  />
                 ),
               },
             ]}

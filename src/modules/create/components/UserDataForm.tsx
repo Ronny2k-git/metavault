@@ -9,7 +9,10 @@ interface UserDataFormProps extends CreateFormProps {
 export function UserDataForm({ register, setVaultData, formState }: UserDataFormProps) {
   return (
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
+      <Divider />
+
       <CreateFormHeading className="col-span-full" title="User Data" icon={'help'} />
+
       <Input
         className="max-md:col-span-full"
         label="Discord Url"

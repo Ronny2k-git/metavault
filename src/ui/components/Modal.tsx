@@ -7,13 +7,13 @@ export type ModalProps = {
   trigger?: React.ReactNode
   className?: string
   children?: React.ReactNode
-  open?: boolean
+  isOpen?: boolean
   defaultOpen?: boolean
   onOpenChange?: (open: boolean) => void
 }
 
 export function Modal({
-  open,
+  isOpen,
   defaultOpen,
   onOpenChange,
   title,
@@ -23,11 +23,7 @@ export function Modal({
   children,
 }: ModalProps) {
   return (
-    <Dialog.Root
-      open={open}
-      defaultOpen={defaultOpen}
-      onOpenChange={onOpenChange}
-    >
+    <Dialog.Root open={isOpen} defaultOpen={defaultOpen} onOpenChange={onOpenChange}>
       {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
@@ -41,9 +37,7 @@ export function Modal({
             </Dialog.Close>
 
             <Dialog.Title className="text-xl pr-8 mb-6">{title}</Dialog.Title>
-            <Dialog.Description className="pr-8">
-              {description}
-            </Dialog.Description>
+            <Dialog.Description className="pr-8">{description}</Dialog.Description>
             {children}
           </div>
         </Dialog.Content>

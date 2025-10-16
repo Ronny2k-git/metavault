@@ -1,20 +1,29 @@
+import type { CreateTabSteps } from '@/modules/create/types'
 import { Trades, UserVaults } from '@/modules/profile/components'
-import { PROFILE_TABS } from '@/modules/profile/constants'
-import { Icon } from '@/ui/components'
+import { PROFILE_TABS, PROFILE_TABS_INFO } from '@/modules/profile/constants'
+import { Tabs } from '@/ui/components/Tabs'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { Tabs } from 'radix-ui'
+import { zodValidator } from '@tanstack/zod-adapter'
+import z from 'zod'
 
 export const Route = createFileRoute('/profile')({
   component: Profile,
+  validateSearch: zodValidator(
+    z.object({
+      tab: z.enum(PROFILE_TABS, 'user-vaults').default('user-vaults'),
+    }),
+  ),
 })
 
 function Profile() {
   const search = Route.useSearch()
   const navigate = useNavigate({ from: '/profile' })
 
+  const tabList = PROFILE_TABS_INFO
+
   return (
     <div className="background flex flex-col p-4 w-full items-center py-20 text-white">
-      <Tabs.Root
+      {/* <Tabs.Root
         value={search.tab}
         className="w-full max-w-4xl"
         onValueChange={(value) => {
@@ -46,7 +55,31 @@ function Profile() {
         <Tabs.Content className="mt-10" value={'trades'}>
           <Trades />
         </Tabs.Content>
-      </Tabs.Root>
+      </Tabs.Root> */}
+      <Tabs
+        variant={'blue'}
+        size={'md'}
+        search={search.tab}
+        onValueChange={(value) => {
+          navigate({ search: { tab: value as CreateTabSteps } })
+        }}
+        key={search.tab}
+        tabList={tabList}
+        tabContent={[
+          {
+            value: 'user-vaults',
+            content: <UserVaults />,
+          },
+          {
+            value: 'trades',
+            content: <Trades />,
+          },
+          {
+            value: 'test',
+            content: 'test',
+          },
+        ]}
+      />
     </div>
   )
 }

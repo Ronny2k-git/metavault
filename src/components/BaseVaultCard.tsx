@@ -43,6 +43,10 @@ export function BaseVaultCard(data: BaseVaultProps) {
       </div>
       <div className="flex flex-col my-2 mx-2 gap-0.5">
         <div className="flex font-SpaceGrotesk justify-between">
+          <h3>Creator</h3>
+          <div className="text-gray-300">{data.creatorName || 'unnamed'}</div>
+        </div>
+        <div className="flex font-SpaceGrotesk justify-between">
           <h3>Minimum Deposit</h3>
           <div className="text-gray-300">{data.minDeposit || 0}</div>
         </div>

@@ -1,4 +1,6 @@
-export const PROFILE_TABS = [
+export const PROFILE_TABS = ['user-vaults', 'trades', 'test']
+
+export const PROFILE_TABS_INFO = [
   {
     value: 'user-vaults',
     label: 'Vaults',
