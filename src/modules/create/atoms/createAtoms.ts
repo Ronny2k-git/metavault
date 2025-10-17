@@ -27,3 +27,15 @@ export const confirmFormAtom = atom<ConfirmAndCreateFormType>({
   startDate: '',
   endDate: '',
 })
+
+export const combinedCreateDataAtom = atom((get) => {
+  const vault = get(vaultFormAtom)
+  const user = get(userFormAtom)
+  const confirm = get(confirmFormAtom)
+
+  return {
+    ...vault,
+    ...user,
+    ...confirm,
+  }
+})

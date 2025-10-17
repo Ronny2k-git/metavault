@@ -2,14 +2,15 @@ import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { confirmFormAtom } from '../atoms'
+import { combinedCreateDataAtom, confirmFormAtom } from '../atoms/createAtoms'
 import { useCreateVault } from '../hooks'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
 import { confirmAndCreateFormSchema } from '../schemas/ConfirmAndCreateFormSchema'
+import type { VaultContractData } from '../schemas/VaultContractSchema'
 import { initialConfirmForm } from '../utils'
 import { CardPreview, CreateFormHeading } from './subcomponents'
 
@@ -20,6 +21,8 @@ interface ConfirmAndCreateFormProps {
 export function ConfirmAndCreateForm() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [, setConfirmData] = useAtom(confirmFormAtom)
+
+  const allFormData = useAtomValue(combinedCreateDataAtom)
 
   const { register, handleSubmit, reset, formState } = useForm<ConfirmAndCreateFormType>({
     resolver: zodResolver(confirmAndCreateFormSchema),
@@ -40,12 +43,12 @@ export function ConfirmAndCreateForm() {
       toast.error('Error creating vault')
     },
   })
-  const onSubmit = async (data: ConfirmAndCreateFormType) => {
+  const onSubmit = async () => {
     // 1. Create a vault on the blockchain
 
     // const { description, creatorName, ...vaultData } = data
-    const { ...vaultData } = data
-    await create.createVault(vaultData)
+    const { creatorName, description, discord, telegram, tag, twitter, ...vaultData } = allFormData
+    await create.createVault(vaultData as VaultContractData)
 
     // 2. Save the vault data on the database
     const saveOnDB = 'test'
@@ -61,6 +64,7 @@ export function ConfirmAndCreateForm() {
       <CreateFormHeading className="col-span-full" title="Vault Time" icon={'help'} />
 
       <Input
+        className=""
         label="Start Date"
         type="date"
         {...register('startDate', {
