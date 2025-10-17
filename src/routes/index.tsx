@@ -23,7 +23,7 @@ function App() {
         <h3 className="text-xl text-gray-200">Create your vault and secure your crypto today.</h3>
       </div>
       <Link className="flex max-w-[28rem] w-full mt-4" to="/create-vault">
-        <Button className="" variant={'primary'} size={'xl'}>
+        <Button variant={'primary'} size={'xl'}>
           Start Now
         </Button>
       </Link>

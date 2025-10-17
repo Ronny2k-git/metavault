@@ -1,26 +1,28 @@
 import { BaseVaultCard } from '@/components'
 import { getStatus } from '@/modules/global/utils'
 import { useAtom } from 'jotai'
-import { vaultFormAtom } from '../../atoms'
+import { confirmFormAtom, userFormAtom, vaultFormAtom } from '../../atoms'
 
 export function CardPreview() {
-  const [formData] = useAtom(vaultFormAtom)
+  const [vaultData] = useAtom(vaultFormAtom)
+  const [userData] = useAtom(userFormAtom)
+  const [confirmData] = useAtom(confirmFormAtom)
 
   return (
     <BaseVaultCard
-      banner={formData.banner}
-      logo={formData.logo}
-      vaultName={formData.vaultName}
-      network={formData.network}
-      creatorName={formData.creatorName}
-      minDeposit={formData.minDeposit}
-      maxDeposit={formData.maxDeposit}
-      startDate={formData.startDate}
-      endDate={formData.endDate}
-      description={formData.description}
+      banner={vaultData.banner}
+      logo={vaultData.logo}
+      vaultName={vaultData.vaultName}
+      network={vaultData.network}
+      creatorName={vaultData.creatorName}
+      minDeposit={vaultData.minDeposit}
+      maxDeposit={vaultData.maxDeposit}
+      startDate={confirmData.startDate}
+      endDate={confirmData.endDate}
+      description={vaultData.description}
       status={getStatus({
-        startDate: formData.startDate,
-        endDate: formData.endDate,
+        startDate: confirmData.startDate,
+        endDate: confirmData.endDate,
       })}
     />
   )

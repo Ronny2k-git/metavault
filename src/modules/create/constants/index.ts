@@ -1,4 +1,4 @@
-export const CREATE_TAB_STEPS = ['vault-data', 'user-data', 'confirm-approve'] as const
+export const CREATE_TAB_STEPS = ['vault-data', 'user-data', 'confirm-create'] as const
 
 export const CREATE_INFO_STEPS = [
   {
@@ -16,9 +16,9 @@ export const CREATE_INFO_STEPS = [
     description: 'Locked',
   },
   {
-    value: 'confirm-approve',
+    value: 'confirm-create',
     step: 'Step 3',
-    label: 'Confirm & Approve',
+    label: 'Confirm & Create',
     icon: 'lock',
     description: 'Locked',
   },

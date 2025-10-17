@@ -1,4 +1,4 @@
-import type { VaultCreateFormType } from '@/modules/create/schemas/VaultCreateFormSchema'
+import type { VaultCreateFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '../types'
 
 export function abreviateAddress(address: string | null | undefined) {

@@ -1,12 +1,28 @@
 import { Divider, Icon, Input, TextArea } from '@/ui/components'
-import type { CreateFormProps } from '../types'
+import { Button } from '@/ui/components/Button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from '@tanstack/react-router'
+import { useAtom } from 'jotai'
+import { useForm } from 'react-hook-form'
+import { vaultFormAtom } from '../atoms'
+import type { VaultDataFormType } from '../schemas/VaultDataFormSchema'
+import { vaultDataFormSchema } from '../schemas/VaultDataFormSchema'
+import { initialVaultForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
 
-interface VaultDataFormProps extends CreateFormProps {
+interface VaultDataFormProps {
   className?: string
 }
 
-export function VaultDataForm({ register, setVaultData, formState }: VaultDataFormProps) {
+export function VaultDataForm() {
+  const [, setVaultData] = useAtom(vaultFormAtom)
+
+  const { register, handleSubmit, reset, formState } = useForm<VaultDataFormType>({
+    resolver: zodResolver(vaultDataFormSchema),
+    defaultValues: initialVaultForm,
+  })
+  const navigate = useNavigate({ from: '/create-vault' })
+
   const networError = formState.errors.network
 
   return (
@@ -163,23 +179,27 @@ export function VaultDataForm({ register, setVaultData, formState }: VaultDataFo
       <Divider />
 
       <div className="flex col-span-full gap-3">
-        <button
-          className="h-10 w-[10rem] flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-500 rounded-4xl cursor-pointer"
-          // onClick={() => {
-          //   setVaultData(initialVaultForm)
-          //   reset()
-          // }}
+        <Button
+          className="max-w-[10rem]"
+          variant={'secondary'}
+          size={'md'}
+          iconLeft={<Icon>backspace</Icon>}
+          onClick={() => {
+            setVaultData(initialVaultForm)
+            reset()
+          }}
         >
-          <Icon>backspace</Icon>
           Reset fields
-        </button>
-        <button
-          className="h-10 w-[15rem] flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-4xl cursor-pointer"
-          // onClick={handleSubmit(onSubmit)}
+        </Button>
+        <Button
+          className="max-w-[15rem]"
+          variant={'primary'}
+          size={'md'}
+          iconRight={<Icon>arrow_right_alt</Icon>}
+          onClick={handleSubmit(() => navigate({ search: { tab: 'user-data' } }))}
         >
           Move to user data
-          <Icon>arrow_right_alt</Icon>
-        </button>
+        </Button>
       </div>
     </div>
   )

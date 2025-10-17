@@ -7,7 +7,7 @@ import type { Abi, Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useAccount, useChainId, useWriteContract } from 'wagmi'
 import { simulateContract, waitForTransactionReceipt } from 'wagmi/actions'
-import type { VaultCreateFormType } from '../schemas/VaultCreateFormSchema'
+import type { VaultCreateFormType } from '../schemas/VaultDataFormSchema'
 
 export type ContractParams = {
   abi: Abi

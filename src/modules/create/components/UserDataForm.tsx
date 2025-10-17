@@ -1,12 +1,28 @@
 import { Divider, Icon, Input } from '@/ui/components'
-import type { CreateFormProps } from '../types'
+import { Button } from '@/ui/components/Button'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from '@tanstack/react-router'
+import { useAtom } from 'jotai'
+import { useForm } from 'react-hook-form'
+import { userFormAtom } from '../atoms'
+import type { UserDataFormType } from '../schemas/UserDataFormSchema'
+import { userDataFormSchema } from '../schemas/UserDataFormSchema'
+import { initialUserForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
 
-interface UserDataFormProps extends CreateFormProps {
+interface UserDataFormProps {
   className?: string
 }
 
-export function UserDataForm({ register, setVaultData, formState }: UserDataFormProps) {
+export function UserDataForm() {
+  const [, setUserData] = useAtom(userFormAtom)
+
+  const { register, handleSubmit, reset, formState } = useForm<UserDataFormType>({
+    resolver: zodResolver(userDataFormSchema),
+    defaultValues: initialUserForm,
+  })
+  const navigate = useNavigate({ from: '/create-vault' })
+
   return (
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
       <Divider />
@@ -19,7 +35,7 @@ export function UserDataForm({ register, setVaultData, formState }: UserDataForm
         placeholder="Your discord url"
         {...register('discord', {
           onChange(event) {
-            setVaultData((prev) => ({ ...prev, discord: event.target.value }))
+            setUserData((prev) => ({ ...prev, discord: event.target.value }))
           },
         })}
         error={formState.errors.discord?.message}
@@ -30,7 +46,7 @@ export function UserDataForm({ register, setVaultData, formState }: UserDataForm
         className="max-md:col-span-full"
         {...register('telegram', {
           onChange(event) {
-            setVaultData((prev) => ({ ...prev, telegram: event.target.value }))
+            setUserData((prev) => ({ ...prev, telegram: event.target.value }))
           },
         })}
         error={formState.errors.telegram?.message}
@@ -41,7 +57,7 @@ export function UserDataForm({ register, setVaultData, formState }: UserDataForm
         className="max-md:col-span-full"
         {...register('twitter', {
           onChange(event) {
-            setVaultData((prev) => ({ ...prev, twitter: event.target.value }))
+            setUserData((prev) => ({ ...prev, twitter: event.target.value }))
           },
         })}
         error={formState.errors.twitter?.message}
@@ -50,9 +66,9 @@ export function UserDataForm({ register, setVaultData, formState }: UserDataForm
         label="Tag (optional)"
         placeholder="Add your tag"
         className="max-md:col-span-full"
-        {...register('twitter', {
+        {...register('tag', {
           onChange(event) {
-            setVaultData((prev) => ({ ...prev, twitter: event.target.value }))
+            setUserData((prev) => ({ ...prev, tag: event.target.value }))
           },
         })}
         error={formState.errors.twitter?.message}
@@ -60,23 +76,27 @@ export function UserDataForm({ register, setVaultData, formState }: UserDataForm
       <Divider />
 
       <div className="flex col-span-full gap-3">
-        <button
-          className="h-10 w-[10rem] flex items-center justify-center gap-2 bg-gray-600 hover:bg-gray-500 rounded-4xl cursor-pointer"
-          // onClick={() => {
-          //   setVaultData(initialVaultForm)
-          //   reset()
-          // }}
+        <Button
+          className="max-w-[10rem]"
+          variant={'secondary'}
+          size={'md'}
+          iconLeft={<Icon>backspace</Icon>}
+          onClick={() => {
+            setUserData(initialUserForm)
+            reset()
+          }}
         >
-          <Icon>backspace</Icon>
           Reset fields
-        </button>
-        <button
-          className="h-10 w-[15rem] flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-500 rounded-4xl cursor-pointer"
-          // onClick={handleSubmit(onSubmit)}
+        </Button>
+        <Button
+          className="max-w-[15rem]"
+          variant={'primary'}
+          size={'md'}
+          iconRight={<Icon>arrow_right_alt</Icon>}
+          onClick={handleSubmit(() => navigate({ search: { tab: 'confirm-create' } }))}
         >
           Move to confirm
-          <Icon>arrow_right_alt</Icon>
-        </button>
+        </Button>
       </div>
     </div>
   )

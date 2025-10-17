@@ -1,4 +1,4 @@
-import type { VaultCreateFormType } from '@/modules/create/schemas/VaultCreateFormSchema'
+import type { VaultCreateFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
 import { Button } from '@/ui/components/Button'
 

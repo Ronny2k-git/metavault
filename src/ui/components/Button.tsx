@@ -8,7 +8,8 @@ const buttonStyle = cva('w-full flex items-center justify-center cursor-pointer'
     size: {
       xs: 'p-1.5 rounded-full text-xs',
       sm: 'p-1.5 rounded-full text-sm',
-      base: 'p-2 rounded-md',
+      md: 'p-2 rounded-full text-md',
+      base: 'p-2 rounded-md text-md',
       xl: 'p-4 rounded-full text-xl',
     },
     variant: {
