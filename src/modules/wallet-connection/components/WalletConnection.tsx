@@ -2,7 +2,8 @@
 
 import { ECOSYSTEMS } from '@/modules/global/constants'
 import { abreviateAddress } from '@/modules/global/utils'
-import { Modal } from '@/ui/components'
+import { Icon, Modal } from '@/ui/components'
+import { Button } from '@/ui/components/Button'
 import { Tabs } from 'radix-ui'
 import { FaWallet } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
@@ -17,20 +18,13 @@ export default function WalletConnection() {
       title="Ecosystem"
       trigger={
         <div>
-          <button
-            className={`hidden sm:flex p-2 px-4 md:mx-8 items-center gap-2 
-              ${connectedWallet ? 'bg-sky-600 hover:bg-sky-500' : 'bg-gray-600 hover:bg-gray-500'}  rounded-lg cursor-pointer`}
-            type="button"
-          >
-            <FaWallet />
+          <Button className="w-42 hidden sm:flex" variant={'secondary'} iconLeft={<Icon>wallet</Icon>}>
             {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
-          </button>
-          <button className="sm:hidden">
-            <FaWallet
-              className="size-5 cursor-pointer hover:bg-gray-400 rounded-sm"
-              color={connectedWallet ? 'cyan' : 'gray'}
-            />
-          </button>
+          </Button>
+          <FaWallet
+            className="sm:hidden size-5 cursor-pointer hover:bg-gray-400 rounded-sm"
+            color={connectedWallet ? 'cyan' : 'gray'}
+          />
         </div>
       }
     >

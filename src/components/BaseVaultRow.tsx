@@ -1,5 +1,6 @@
 import type { VaultCreateFormType } from '@/modules/create/schemas/VaultCreateFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
+import { Button } from '@/ui/components/Button'
 
 interface BaseVaultRowProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
   description: string
@@ -32,9 +33,9 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
       <td align="center">{data.endDate}</td>
       <td align="center">
         <a href={`https://sepolia.etherscan.io/tx/${data.tx}`}>
-          <div className="h-7 w-16 bg-sky-500 hover:bg-sky-600 rounded-full flex text-xs items-center justify-center">
-            View
-          </div>
+          <Button className="max-w-16 mx-2" size="xs">
+            view
+          </Button>
         </a>
       </td>
     </tr>

@@ -26,7 +26,7 @@ const tabTrigger = cva(`w-full h-full flex flex-col items-center justify-center 
     },
     size: {
       default: 'py-4 ',
-      md: 'py-6 min-w-[13.5rem] text-xl rounded-t-xl',
+      md: 'py-6 min-w-[13.5rem] text-xl rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
       lg: 'py-8 min-w-[15rem] max-sm:text-lg md:text-xl lg:text-2xl rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
     },
   },

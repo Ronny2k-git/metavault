@@ -1,6 +1,7 @@
 'use client'
 
 import { abreviateAddress } from '@/modules/global/utils'
+import { Button } from '@/ui/components/Button'
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 
 export function EthereumConnectors() {
@@ -20,43 +21,38 @@ export function EthereumConnectors() {
     <div className="flex flex-col gap-2.5">
       <div className="flex max-sm:flex-col gap-2 sm:gap-6 mb-2 justify-between sm:items-center">
         <h1 className="text-md">Ethereum Connectors</h1>
-        <div className="text-sm flex items-center justify-center text-black bg-white rounded-full px-2">
+        <Button className="max-h-6 max-w-36" size="sm" variant={'secondary'}>
           {!isConnected ? 'Not connected' : `${abreviateAddress(address)}`}
-        </div>
+        </Button>
       </div>
       {isConnected ? (
         <div className="flex bg-sky-600 p-2 gap-2 justify-between items-center rounded-2xl">
           {conn && (
-            <img
-              src={connectorIcons[conn.id.toLowerCase()]}
-              alt={`${conn.name}`}
-              className="rounded-full size-8"
-            />
+            <img src={connectorIcons[conn.id.toLowerCase()]} alt={`${conn.name}`} className="rounded-full size-8" />
           )}
-          <button
-            className="h-8 w-24 rounded-full text-sm text-black bg-gray-100 hover:bg-gray-300 cursor-pointer"
-            onClick={() => disconnect()}
-          >
+
+          <Button className="max-w-24 h-8 mx-2" size="xs" variant={'white'} onClick={() => disconnect()}>
             disconnect
-          </button>
+          </Button>
         </div>
       ) : (
         connectors.map((connector) => (
-          <button
-            className="flex p-2 gap-2 items-center bg-sky-600 hover:bg-sky-500 rounded-xl cursor-pointer"
-            key={connector.id}
+          <Button
+            className=""
+            size="base"
+            variant={'primary'}
             onClick={() => connect({ connector })}
+            key={connector.id}
+            iconLeft={
+              <img
+                alt="connector icon"
+                className="rounded-full size-7"
+                src={connectorIcons[connector.id.toLowerCase()] ?? '/icons/default.png'}
+              />
+            }
           >
-            <img
-              alt="connector icon"
-              className="rounded-full size-7"
-              src={
-                connectorIcons[connector.id.toLowerCase()] ??
-                '/icons/default.png'
-              }
-            />
             {connector.name}
-          </button>
+          </Button>
         ))
       )}
     </div>
