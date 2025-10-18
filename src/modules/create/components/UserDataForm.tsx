@@ -10,10 +10,6 @@ import { userDataFormSchema } from '../schemas/UserDataFormSchema'
 import { initialUserForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
 
-interface UserDataFormProps {
-  className?: string
-}
-
 export function UserDataForm() {
   const [, setUserData] = useAtom(userFormAtom)
 

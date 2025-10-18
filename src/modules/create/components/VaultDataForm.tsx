@@ -10,10 +10,6 @@ import { vaultDataFormSchema } from '../schemas/VaultDataFormSchema'
 import { initialVaultForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
 
-interface VaultDataFormProps {
-  className?: string
-}
-
 export function VaultDataForm() {
   const [, setVaultData] = useAtom(vaultFormAtom)
 

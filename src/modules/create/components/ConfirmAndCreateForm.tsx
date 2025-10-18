@@ -14,10 +14,6 @@ import type { VaultContractData } from '../schemas/VaultContractSchema'
 import { initialConfirmForm } from '../utils'
 import { CardPreview, CreateFormHeading } from './subcomponents'
 
-interface ConfirmAndCreateFormProps {
-  className?: string
-}
-
 export function ConfirmAndCreateForm() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [, setConfirmData] = useAtom(confirmFormAtom)

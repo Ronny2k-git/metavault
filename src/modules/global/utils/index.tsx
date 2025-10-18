@@ -1,4 +1,4 @@
-import type { VaultCreateFormType } from '@/modules/create/schemas/VaultDataFormSchema'
+import type { ConfirmAndCreateFormType } from '@/modules/create/schemas/ConfirmAndCreateFormSchema'
 import type { vaultStatus } from '../types'
 
 export function abreviateAddress(address: string | null | undefined) {
@@ -10,7 +10,7 @@ export const convertTimestamp = (value: Date) => {
   return Math.floor(value.getTime() / 1000)
 }
 
-export function getStatus(date: Pick<VaultCreateFormType, 'startDate' | 'endDate'>): vaultStatus {
+export function getStatus(date: Pick<ConfirmAndCreateFormType, 'startDate' | 'endDate'>): vaultStatus {
   if (!date.startDate || !date.endDate) return 'undefined'
 
   const currentDate = new Date()
