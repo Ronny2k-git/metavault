@@ -16,6 +16,7 @@ export function UserDataForm() {
   const { register, handleSubmit, reset, formState } = useForm<UserDataFormType>({
     resolver: zodResolver(userDataFormSchema),
     defaultValues: initialUserForm,
+    mode: 'onChange',
   })
   const navigate = useNavigate({ from: '/create-vault' })
 

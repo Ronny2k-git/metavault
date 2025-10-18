@@ -16,6 +16,7 @@ export function VaultDataForm() {
   const { register, handleSubmit, reset, formState } = useForm<VaultDataFormType>({
     resolver: zodResolver(vaultDataFormSchema),
     defaultValues: initialVaultForm,
+    mode: 'onChange',
   })
   const navigate = useNavigate({ from: '/create-vault' })
 

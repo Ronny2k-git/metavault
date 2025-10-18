@@ -6,6 +6,7 @@ export const CREATE_INFO_STEPS = [
     step: 'Step 1',
     label: 'Vault Data',
     icon: 'lock_open',
+    disabled: false,
     description: 'Unlocked',
   },
   {
@@ -13,6 +14,7 @@ export const CREATE_INFO_STEPS = [
     step: 'Step 2',
     label: 'User Data',
     icon: 'lock',
+    disabled: true,
     description: 'Locked',
   },
   {
@@ -20,6 +22,7 @@ export const CREATE_INFO_STEPS = [
     step: 'Step 3',
     label: 'Confirm & Create',
     icon: 'lock',
+    disabled: true,
     description: 'Locked',
   },
 ] as const

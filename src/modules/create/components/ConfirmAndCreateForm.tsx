@@ -50,7 +50,7 @@ export function ConfirmAndCreateForm() {
     const saveOnDB = 'test'
     console.log(saveOnDB)
     // setTimeout(() => navigate({ to: '/profile' }), 2500)
-    toast.success('Vault created successfully')
+    // toast.success('Vault created successfully')
   }
 
   return (

@@ -2,6 +2,7 @@ import type { VariantProps } from 'class-variance-authority'
 import { cva } from 'class-variance-authority'
 import { Tabs as PrimitiveTabs } from 'radix-ui'
 import type { ComponentPropsWithRef } from 'react'
+import { twMerge } from 'tailwind-merge'
 import { Icon } from './Icon'
 
 export type TabsProps = ComponentPropsWithRef<'div'> & {
@@ -11,6 +12,7 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
     label: string
     icon?: string
     description: string
+    disabled?: boolean
   }>
   tabContent?: Array<{ value: string; content: React.ReactNode }>
   search: string
@@ -18,16 +20,16 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
   className?: string
 } & VariantProps<typeof tabTrigger>
 
-const tabTrigger = cva(`w-full h-full flex flex-col items-center justify-center cursor-pointer`, {
+const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justify-center cursor-pointer`, {
   variants: {
     variant: {
-      blue: 'data-[state=active]:bg-[linear-gradient(0deg,#2960f7,#000d5f)] data-[state=active]:hover:brightness-90',
+      blue: 'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#2960f7,#000d5f)] data-[state=active]:hover:before:brightness-90',
       default: '',
     },
     size: {
       default: 'py-4 ',
-      md: 'py-6 min-w-[13.5rem] text-xl rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
-      lg: 'py-8 min-w-[15rem] max-sm:text-lg md:text-xl lg:text-2xl rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
+      md: 'py-6 min-w-[13.5rem] text-xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
+      lg: 'py-8 min-w-[15rem] max-sm:text-lg md:text-xl lg:text-2xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
     },
   },
   defaultVariants: {
@@ -41,8 +43,16 @@ export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'de
     <PrimitiveTabs.Root value={search} className="w-full max-w-4xl" onValueChange={onValueChange}>
       <PrimitiveTabs.List className="flex gap-0.5">
         {tabList.map((tab) => (
-          <PrimitiveTabs.Trigger key={tab.value} value={tab.value} className={tabTrigger({ variant, size })}>
-            <div className="flex flex-col">
+          <PrimitiveTabs.Trigger
+            key={tab.value}
+            value={tab.value}
+            className={twMerge(
+              tabTrigger({ variant, size }),
+              tab.disabled ? 'flex cursor-not-allowed opacity-50' : 'cursor-pointer',
+            )}
+            disabled={tab.disabled}
+          >
+            <div className="flex flex-col z-10">
               <span className="text-lg text-left">{tab.step}</span>
               <span>{tab.label}</span>
               <div className="flex items-center gap-2 mt-1">

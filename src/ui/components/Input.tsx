@@ -31,7 +31,7 @@ export function Input({ label, className, type = 'text', placeholder = '', error
       >
         {label}
       </div>
-      {error && <span className="absolute top-15.5 pl-2 text-sm text-red-400">{error}</span>}
+      {error && <span className="absolute top-[3.9rem] pl-2 text-sm text-red-400">{error}</span>}
     </label>
   )
 }
