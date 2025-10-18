@@ -57,10 +57,14 @@ export function ConfirmAndCreateForm() {
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
       <Divider />
 
-      <CreateFormHeading className="col-span-full" title="Vault Time" icon={'help'} />
+      <CreateFormHeading
+        className="col-span-full"
+        title="Vault Time"
+        icon={'help'}
+        subTitle="( All fields are required )"
+      />
 
       <Input
-        className=""
         label="Start Date"
         type="date"
         {...register('startDate', {
@@ -83,7 +87,12 @@ export function ConfirmAndCreateForm() {
 
       <Divider />
 
-      <CreateFormHeading className="col-span-full" title="Card Preview" icon={'help'} />
+      <CreateFormHeading
+        className="col-span-full"
+        title="Card Preview"
+        icon={'help'}
+        subTitle="( Your vault will look like )"
+      />
       <CardPreview />
 
       <Divider />

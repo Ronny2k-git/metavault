@@ -21,6 +21,7 @@ export function UserVaults() {
             banner={''}
             logo={''}
             vaultName={'Test'}
+            creatorName="Test"
             network={'sepolia'}
             minDeposit={'1'}
             maxDeposit={'100000000'}

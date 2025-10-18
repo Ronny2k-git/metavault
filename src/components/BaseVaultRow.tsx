@@ -1,10 +1,11 @@
-import type { VaultCreateFormType } from '@/modules/create/schemas/VaultDataFormSchema'
+import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
 import { Button } from '@/ui/components/Button'
 
-interface BaseVaultRowProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
+interface BaseVaultRowProps extends Omit<VaultDataFormType, 'salt' | 'assetToken'> {
   description: string
   status: vaultStatus
+  endDate: string
   tx: string
   children?: React.ReactNode
 }

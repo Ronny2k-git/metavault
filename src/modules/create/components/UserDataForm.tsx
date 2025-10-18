@@ -23,7 +23,12 @@ export function UserDataForm() {
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
       <Divider />
 
-      <CreateFormHeading className="col-span-full" title="User Data" icon={'help'} />
+      <CreateFormHeading
+        className="col-span-full"
+        title="User Data"
+        icon={'help'}
+        subTitle="( At least one social must be provided )"
+      />
 
       <Input
         className="max-md:col-span-full"
@@ -67,7 +72,7 @@ export function UserDataForm() {
             setUserData((prev) => ({ ...prev, tag: event.target.value }))
           },
         })}
-        error={formState.errors.twitter?.message}
+        error={formState.errors.tag?.message}
       />
       <Divider />
 

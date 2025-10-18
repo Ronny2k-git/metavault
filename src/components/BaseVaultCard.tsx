@@ -1,11 +1,13 @@
-import type { VaultCreateFormType } from '@/modules/create/schemas/VaultDataFormSchema'
+import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { StatusChip } from './StatusChip'
 
-interface BaseVaultProps extends Omit<VaultCreateFormType, 'salt' | 'assetToken'> {
+interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> {
   description: string
+  startDate: string
+  endDate: string
   status: vaultStatus
   children?: React.ReactNode
 }
@@ -47,11 +49,11 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <div className="text-gray-300">{data.creatorName || 'unnamed'}</div>
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
-          <h3>Minimum Deposit</h3>
+          <h3>Min dep per wallet</h3>
           <div className="text-gray-300">{data.minDeposit || 0}</div>
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
-          <h3>Max dep.per wallet</h3>
+          <h3>Max dep per wallet</h3>
           <div className="text-gray-300">{data.maxDeposit || 0}</div>
         </div>
         <div className="flex font-SpaceGrotesk justify-between">

@@ -20,9 +20,8 @@ export function EthereumConnectors() {
 
   return (
     <div className="flex flex-col gap-2.5">
-      {/* <div className="flex max-sm:flex-col gap-2 sm:gap-6 mb-2 justify-between sm:items-center"> */}
       <h1 className="text-md mb-2">Ethereum Connectors</h1>
-      {/* </div> */}
+
       {isConnected ? (
         <div className="flex bg-sky-600 p-2 gap-2 justify-between items-center rounded-2xl">
           <div className="flex gap-3 items-center">
@@ -33,7 +32,7 @@ export function EthereumConnectors() {
           </div>
 
           <Tooltip
-            className="text-gray-300"
+            className="text-gray-200"
             trigger={
               <button className="cursor-pointer" onClick={() => disconnect()}>
                 <Icon className="mx-2 !text-2xl text-gray-200">logout</Icon>

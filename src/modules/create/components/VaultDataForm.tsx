@@ -25,7 +25,12 @@ export function VaultDataForm() {
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
       <Divider />
 
-      <CreateFormHeading className="col-span-full" title="Basic Vault Data" icon={'help'} />
+      <CreateFormHeading
+        className="col-span-full"
+        title="Basic Vault Data"
+        icon={'help'}
+        subTitle="( All fields are required )"
+      />
 
       <Input
         className="max-md:col-span-full"
@@ -90,7 +95,7 @@ export function VaultDataForm() {
       <Divider />
 
       <div className="col-span-full w-full flex max-sm:flex-col justify-between gap-4.5">
-        <CreateFormHeading title="Token Data" icon={'help'} />
+        <CreateFormHeading title="Token Data" icon={'help'} subTitle="( All fields are required )" />
 
         <div className="flex flex-col relative">
           <select
