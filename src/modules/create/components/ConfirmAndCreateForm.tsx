@@ -7,7 +7,7 @@ import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { combinedCreateDataAtom, confirmFormAtom } from '../atoms/createAtoms'
+import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '../atoms/createAtoms'
 import { useCreateVault, useResetCreateForm } from '../hooks'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
 import { confirmAndCreateFormSchema } from '../schemas/ConfirmAndCreateFormSchema'
@@ -18,6 +18,7 @@ import { CardPreview, CreateFormHeading } from './subcomponents'
 export function ConfirmAndCreateForm() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [confirmData, setConfirmData] = useAtom(confirmFormAtom)
+  const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
   const navigate = useNavigate()
 
   const { resetAll } = useResetCreateForm()
@@ -46,13 +47,14 @@ export function ConfirmAndCreateForm() {
   })
   const onSubmit = async () => {
     // 1. Create a vault on the blockchain
-
-    // const { description, creatorName, ...vaultData } = data
     const { creatorName, description, discord, telegram, tag, twitter, ...vaultData } = allFormData
     await create.createVault(vaultData as VaultContractData)
 
-    // 2. Save the vault data on the database
-    const saveOnDB = 'test'
+    // 2. Update info tabs
+    setConfirmFormValid(true)
+
+    // 3. Save the vault data on the database
+    const saveOnDB = 'Vault Created Test'
     console.log(saveOnDB)
     // setTimeout(() => navigate({ to: '/profile' }), 2500)
     // toast.success('Vault created successfully')

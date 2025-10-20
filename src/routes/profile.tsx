@@ -22,7 +22,7 @@ function Profile() {
   const tabList = PROFILE_TABS_INFO
 
   return (
-    <div className="background flex flex-col p-4 w-full items-center py-20 text-white">
+    <div className="background min-h-screen flex flex-col p-4 w-full items-center py-20 text-white">
       <div className="w-full max-w-4xl">
         <Tabs
           variant={'blue'}

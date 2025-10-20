@@ -1,3 +1,4 @@
+import { scrollToConteiner } from '@/modules/global/utils'
 import { Divider, Icon, Input, TextArea } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -200,6 +201,7 @@ export function VaultDataForm() {
           iconRight={<Icon>arrow_right_alt</Icon>}
           onClick={handleSubmit(() => {
             setVaultFormValid(true)
+            requestAnimationFrame(() => scrollToConteiner('tab-user-data'))
             navigate({ search: { tab: 'user-data' } })
           })}
         >

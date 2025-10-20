@@ -1,3 +1,4 @@
+import { scrollToConteiner } from '@/modules/global/utils'
 import { Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -98,6 +99,7 @@ export function UserDataForm() {
           iconRight={<Icon>arrow_right_alt</Icon>}
           onClick={handleSubmit(() => {
             setUserFormValid(true)
+            requestAnimationFrame(() => scrollToConteiner('tab-confirm-create'))
             navigate({ search: { tab: 'confirm-create' } })
           })}
         >

@@ -11,7 +11,9 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
     step?: string
     label: string
     icon?: string
+    iconStyle?: string
     description: string
+    descriptionColor?: string
     disabled?: boolean
   }>
   tabContent?: Array<{ value: string; content: React.ReactNode }>
@@ -28,7 +30,7 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
     },
     size: {
       default: 'py-4 ',
-      md: 'py-6 min-w-[13.5rem] text-xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
+      md: 'py-6 min-w-[15rem] text-xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
       lg: 'py-8 text-left min-w-[15rem] text-xl lg:text-2xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
     },
   },
@@ -40,10 +42,11 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
 
 export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'default', size = 'default' }: TabsProps) {
   return (
-    <PrimitiveTabs.Root value={search} className="w-full" onValueChange={onValueChange}>
-      <PrimitiveTabs.List className="flex gap-0.5">
+    <PrimitiveTabs.Root value={search} className="w-full " onValueChange={onValueChange}>
+      <PrimitiveTabs.List className="flex gap-1 overflow-x-auto custom-scrollbar pb-3">
         {tabList.map((tab) => (
           <PrimitiveTabs.Trigger
+            id={`tab-${tab.value}`}
             key={tab.value}
             value={tab.value}
             className={twMerge(
@@ -56,8 +59,8 @@ export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'de
               <span className="sm:text-lg">{tab.step}</span>
               <span>{tab.label}</span>
               <div className="flex items-center gap-2 mt-1">
-                <Icon>{tab.icon}</Icon>
-                <span className="text-base text-gray-300">{tab.description}</span>
+                <Icon className={tab.iconStyle}>{tab.icon}</Icon>
+                <span className={twMerge('text-base', tab.descriptionColor)}>{tab.description}</span>
               </div>
             </div>
           </PrimitiveTabs.Trigger>

@@ -13,6 +13,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+html {
+  ::-webkit-scrollbar {
+    height: 8px;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to right, #0ea5e9, #20adc3);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d438f;
+  }
+}
+
 .page {
   height: calc(100vh - 80px);
   padding-left: 16px;
@@ -38,16 +54,6 @@ code {
 
 .header-background {
   background: linear-gradient(90deg, #041835, #223fb0, #213895);
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-  height: 8px;
-  margin-top: 10px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(to right, #0ea5e9, #22d3ee);
-  border-radius: 9999px;
 }
 
 .card-transaction {
