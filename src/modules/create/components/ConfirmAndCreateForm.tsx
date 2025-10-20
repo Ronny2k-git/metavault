@@ -2,12 +2,13 @@ import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useNavigate } from '@tanstack/react-router'
 import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { combinedCreateDataAtom, confirmFormAtom } from '../atoms/createAtoms'
-import { useCreateVault } from '../hooks'
+import { useCreateVault, useResetCreateForm } from '../hooks'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
 import { confirmAndCreateFormSchema } from '../schemas/ConfirmAndCreateFormSchema'
 import type { VaultContractData } from '../schemas/VaultContractSchema'
@@ -16,13 +17,15 @@ import { CardPreview, CreateFormHeading } from './subcomponents'
 
 export function ConfirmAndCreateForm() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [, setConfirmData] = useAtom(confirmFormAtom)
+  const [confirmData, setConfirmData] = useAtom(confirmFormAtom)
+  const navigate = useNavigate()
 
+  const { resetAll } = useResetCreateForm()
   const allFormData = useAtomValue(combinedCreateDataAtom)
 
   const { register, handleSubmit, reset, formState } = useForm<ConfirmAndCreateFormType>({
     resolver: zodResolver(confirmAndCreateFormSchema),
-    defaultValues: initialConfirmForm,
+    defaultValues: confirmData,
   })
 
   const create = useCreateVault({
@@ -33,6 +36,8 @@ export function ConfirmAndCreateForm() {
 
     onSuccess: () => {
       setIsModalOpen(false)
+      resetAll()
+      navigate({ from: '/profile' })
     },
     onError: () => {
       setIsModalOpen(false)
@@ -105,7 +110,7 @@ export function ConfirmAndCreateForm() {
           iconLeft={<Icon>backspace</Icon>}
           onClick={() => {
             setConfirmData(initialConfirmForm)
-            reset()
+            reset(initialConfirmForm)
           }}
         >
           Reset fields

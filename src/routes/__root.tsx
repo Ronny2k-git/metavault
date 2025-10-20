@@ -1,4 +1,5 @@
 import { Providers } from '@/modules/global/components/Providers'
+import { NotFoundPage } from '@/ui/components'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
@@ -28,6 +29,9 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent() {
+    return <NotFoundPage />
+  },
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {

@@ -3,7 +3,7 @@ import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
-import { useForm, useWatch } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { userFormAtom, userFormValidAtom } from '../atoms/createAtoms'
 import type { UserDataFormType } from '../schemas/UserDataFormSchema'
 import { userDataFormSchema } from '../schemas/UserDataFormSchema'
@@ -11,16 +11,13 @@ import { initialUserForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
 
 export function UserDataForm() {
-  const [, setUserData] = useAtom(userFormAtom)
+  const [userData, setUserData] = useAtom(userFormAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)
 
-  const { register, handleSubmit, reset, formState, control } = useForm<UserDataFormType>({
+  const { register, handleSubmit, reset, formState } = useForm<UserDataFormType>({
     resolver: zodResolver(userDataFormSchema),
-    defaultValues: initialUserForm,
+    defaultValues: userData,
   })
-
-  useWatch({ control })
-  setUserFormValid(formState.isValid)
 
   const navigate = useNavigate({ from: '/create-vault' })
 
@@ -89,7 +86,7 @@ export function UserDataForm() {
           iconLeft={<Icon>backspace</Icon>}
           onClick={() => {
             setUserData(initialUserForm)
-            reset()
+            reset(initialUserForm)
           }}
         >
           Reset fields
@@ -99,7 +96,10 @@ export function UserDataForm() {
           variant={'primary'}
           size={'md'}
           iconRight={<Icon>arrow_right_alt</Icon>}
-          onClick={handleSubmit(() => navigate({ search: { tab: 'confirm-create' } }))}
+          onClick={handleSubmit(() => {
+            setUserFormValid(true)
+            navigate({ search: { tab: 'confirm-create' } })
+          })}
         >
           Move to confirm
         </Button>

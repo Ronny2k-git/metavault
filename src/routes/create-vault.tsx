@@ -11,6 +11,7 @@ import { Tabs } from '@/ui/components/Tabs'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { zodValidator } from '@tanstack/zod-adapter'
 import { useAtomValue } from 'jotai'
+import { useEffect } from 'react'
 import z from 'zod'
 
 export const Route = createFileRoute('/create-vault')({
@@ -31,6 +32,16 @@ function CreateVault() {
   const userFormValid = useAtomValue(userFormValidAtom)
 
   const tabList = getCreateInfoSteps(vaultFormValid, userFormValid)
+
+  // Verification to avoid navigating steps by URL if they are locked.
+  useEffect(() => {
+    if (search.tab === 'user-data' && !vaultFormValid) {
+      navigate({ search: { tab: 'vault-data' } })
+    }
+    if (search.tab === 'confirm-create' && !userFormValid) {
+      navigate({ search: { tab: 'user-data' } })
+    }
+  }, [search.tab, vaultFormValid, userFormValid])
 
   return (
     <div className="min-h-screen background px-4 flex flex-col gap-1 items-center text-white">
