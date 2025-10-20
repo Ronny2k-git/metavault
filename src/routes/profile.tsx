@@ -23,30 +23,32 @@ function Profile() {
 
   return (
     <div className="background flex flex-col p-4 w-full items-center py-20 text-white">
-      <Tabs
-        variant={'blue'}
-        size={'md'}
-        search={search.tab}
-        onValueChange={(value) => {
-          navigate({ search: { tab: value as CreateTabSteps } })
-        }}
-        key={search.tab}
-        tabList={tabList}
-        tabContent={[
-          {
-            value: 'user-vaults',
-            content: <UserVaults />,
-          },
-          {
-            value: 'trades',
-            content: <Trades />,
-          },
-          {
-            value: 'test',
-            content: 'test',
-          },
-        ]}
-      />
+      <div className="w-full max-w-4xl">
+        <Tabs
+          variant={'blue'}
+          size={'md'}
+          search={search.tab}
+          onValueChange={(value) => {
+            navigate({ search: { tab: value as CreateTabSteps } })
+          }}
+          key={search.tab}
+          tabList={tabList}
+          tabContent={[
+            {
+              value: 'user-vaults',
+              content: <UserVaults />,
+            },
+            {
+              value: 'trades',
+              content: <Trades />,
+            },
+            {
+              value: 'test',
+              content: 'test',
+            },
+          ]}
+        />
+      </div>
     </div>
   )
 }

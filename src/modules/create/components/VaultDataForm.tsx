@@ -3,8 +3,8 @@ import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
-import { useForm } from 'react-hook-form'
-import { vaultFormAtom } from '../atoms/createAtoms'
+import { useForm, useWatch } from 'react-hook-form'
+import { vaultFormAtom, vaultFormValidAtom } from '../atoms/createAtoms'
 import type { VaultDataFormType } from '../schemas/VaultDataFormSchema'
 import { vaultDataFormSchema } from '../schemas/VaultDataFormSchema'
 import { initialVaultForm } from '../utils'
@@ -12,13 +12,16 @@ import { CreateFormHeading } from './subcomponents'
 
 export function VaultDataForm() {
   const [, setVaultData] = useAtom(vaultFormAtom)
+  const [, setVaultFormValid] = useAtom(vaultFormValidAtom)
 
-  const { register, handleSubmit, reset, formState } = useForm<VaultDataFormType>({
+  const { register, handleSubmit, reset, formState, control } = useForm<VaultDataFormType>({
     resolver: zodResolver(vaultDataFormSchema),
     defaultValues: initialVaultForm,
-    mode: 'onChange',
   })
   const navigate = useNavigate({ from: '/create-vault' })
+
+  useWatch({ control })
+  setVaultFormValid(formState.isValid)
 
   const networError = formState.errors.network
 

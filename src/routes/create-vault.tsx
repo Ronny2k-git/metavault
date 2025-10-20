@@ -1,13 +1,16 @@
 'use client'
 
+import { userFormValidAtom, vaultFormValidAtom } from '@/modules/create/atoms'
 import { VaultDataForm } from '@/modules/create/components'
 import { ConfirmAndCreateForm } from '@/modules/create/components/ConfirmAndCreateForm'
 import { UserDataForm } from '@/modules/create/components/UserDataForm'
-import { CREATE_INFO_STEPS, CREATE_TAB_STEPS } from '@/modules/create/constants'
+import { CREATE_TAB_STEPS } from '@/modules/create/constants'
 import type { CreateTabSteps } from '@/modules/create/types'
+import { getCreateInfoSteps } from '@/modules/create/utils'
 import { Tabs } from '@/ui/components/Tabs'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { zodValidator } from '@tanstack/zod-adapter'
+import { useAtomValue } from 'jotai'
 import z from 'zod'
 
 export const Route = createFileRoute('/create-vault')({
@@ -24,37 +27,38 @@ function CreateVault() {
   const search = Route.useSearch()
   const navigate = useNavigate({ from: '/create-vault' })
 
-  const tabList = CREATE_INFO_STEPS
+  const vaultFormValid = useAtomValue(vaultFormValidAtom)
+  const userFormValid = useAtomValue(userFormValidAtom)
+
+  const tabList = getCreateInfoSteps(vaultFormValid, userFormValid)
 
   return (
     <div className="min-h-screen background px-4 flex flex-col gap-1 items-center text-white">
       <div className="max-w-4xl my-14 w-full">
-        <div>
-          <Tabs
-            variant={'blue'}
-            size={'lg'}
-            search={search.tab}
-            onValueChange={(value) => {
-              navigate({ search: { tab: value as CreateTabSteps } })
-            }}
-            key={search.tab}
-            tabList={tabList}
-            tabContent={[
-              {
-                value: 'vault-data',
-                content: <VaultDataForm />,
-              },
-              {
-                value: 'user-data',
-                content: <UserDataForm />,
-              },
-              {
-                value: 'confirm-create',
-                content: <ConfirmAndCreateForm />,
-              },
-            ]}
-          />
-        </div>
+        <Tabs
+          variant={'blue'}
+          size={'lg'}
+          search={search.tab}
+          onValueChange={(value) => {
+            navigate({ search: { tab: value as CreateTabSteps } })
+          }}
+          key={search.tab}
+          tabList={tabList}
+          tabContent={[
+            {
+              value: 'vault-data',
+              content: <VaultDataForm />,
+            },
+            {
+              value: 'user-data',
+              content: <UserDataForm />,
+            },
+            {
+              value: 'confirm-create',
+              content: <ConfirmAndCreateForm />,
+            },
+          ]}
+        />
       </div>
     </div>
   )

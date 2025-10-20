@@ -39,3 +39,7 @@ export const combinedCreateDataAtom = atom((get) => {
     ...confirm,
   }
 })
+
+// Atoms used to store the status of the create page steps
+export const vaultFormValidAtom = atom(false)
+export const userFormValidAtom = atom(false)

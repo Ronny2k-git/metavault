@@ -3,8 +3,8 @@ import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
-import { useForm } from 'react-hook-form'
-import { userFormAtom } from '../atoms/createAtoms'
+import { useForm, useWatch } from 'react-hook-form'
+import { userFormAtom, userFormValidAtom } from '../atoms/createAtoms'
 import type { UserDataFormType } from '../schemas/UserDataFormSchema'
 import { userDataFormSchema } from '../schemas/UserDataFormSchema'
 import { initialUserForm } from '../utils'
@@ -12,12 +12,16 @@ import { CreateFormHeading } from './subcomponents'
 
 export function UserDataForm() {
   const [, setUserData] = useAtom(userFormAtom)
+  const [, setUserFormValid] = useAtom(userFormValidAtom)
 
-  const { register, handleSubmit, reset, formState } = useForm<UserDataFormType>({
+  const { register, handleSubmit, reset, formState, control } = useForm<UserDataFormType>({
     resolver: zodResolver(userDataFormSchema),
     defaultValues: initialUserForm,
-    mode: 'onChange',
   })
+
+  useWatch({ control })
+  setUserFormValid(formState.isValid)
+
   const navigate = useNavigate({ from: '/create-vault' })
 
   return (

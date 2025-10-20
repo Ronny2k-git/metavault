@@ -19,7 +19,7 @@ export function Input({ label, className, type = 'text', placeholder = '', error
         placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-gray-300`}
         {...props}
       />
-      <div
+      <span
         className="absolute left-4 top-1.5
         text-blue-300 transition-all
         pointer-events-none
@@ -30,7 +30,7 @@ export function Input({ label, className, type = 'text', placeholder = '', error
         peer-focus:text-blue-300"
       >
         {label}
-      </div>
+      </span>
       {error && <span className="absolute top-[3.9rem] pl-2 text-sm text-red-400">{error}</span>}
     </label>
   )

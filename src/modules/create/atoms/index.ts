@@ -1,1 +1,1 @@
-export * from './atom'
+export * from './createAtoms'

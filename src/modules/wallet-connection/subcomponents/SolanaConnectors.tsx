@@ -7,7 +7,7 @@ export function SolanaConnectors() {
           {'Not connected'}
         </div>
       </div>
-      <span className="text-gray-200">It's still not implemented</span>
+      <span className="text-gray-200 my-[0.8rem]">It's still not implemented</span>
     </div>
   )
 }
