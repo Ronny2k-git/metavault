@@ -18,7 +18,12 @@ export default function WalletConnection() {
       title="Ecosystem"
       trigger={
         <div>
-          <Button className="w-42 hidden sm:flex" size={'base'} variant={'secondary'} iconLeft={<Icon>wallet</Icon>}>
+          <Button
+            className="w-42 hidden sm:flex"
+            size={'base'}
+            variant={connectedWallet ? 'primary' : 'secondary'}
+            iconLeft={<Icon>wallet</Icon>}
+          >
             {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
           </Button>
           <FaWallet

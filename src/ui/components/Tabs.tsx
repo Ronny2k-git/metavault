@@ -10,8 +10,9 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
     value: string
     step?: string
     label: string
-    icon?: string
-    iconStyle?: string
+    labelIcon?: string
+    descriptionIcon?: string
+    descriptionIconStyle?: string
     description: string
     descriptionColor?: string
     disabled?: boolean
@@ -43,7 +44,7 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
 export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'default', size = 'default' }: TabsProps) {
   return (
     <PrimitiveTabs.Root value={search} className="w-full " onValueChange={onValueChange}>
-      <PrimitiveTabs.List className="flex gap-1 overflow-x-auto custom-scrollbar pb-3">
+      <PrimitiveTabs.List className="flex gap-1 overflow-x-auto pb-3">
         {tabList.map((tab) => (
           <PrimitiveTabs.Trigger
             id={`tab-${tab.value}`}
@@ -57,9 +58,12 @@ export function Tabs({ search, onValueChange, tabList, tabContent, variant = 'de
           >
             <div className="flex flex-col z-0">
               <span className="sm:text-lg">{tab.step}</span>
-              <span>{tab.label}</span>
+              <div className={tab.labelIcon && 'flex items-center justify-center gap-2'}>
+                <Icon>{tab.labelIcon}</Icon>
+                <span>{tab.label}</span>
+              </div>
               <div className="flex items-center gap-2 mt-1">
-                <Icon className={tab.iconStyle}>{tab.icon}</Icon>
+                <Icon className={tab.descriptionIconStyle}>{tab.descriptionIcon}</Icon>
                 <span className={twMerge('text-base', tab.descriptionColor)}>{tab.description}</span>
               </div>
             </div>

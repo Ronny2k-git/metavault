@@ -1,5 +1,12 @@
 import { useAtom } from 'jotai'
-import { confirmFormAtom, userFormAtom, userFormValidAtom, vaultFormAtom, vaultFormValidAtom } from '../atoms'
+import {
+  confirmFormAtom,
+  confirmFormValidAtom,
+  userFormAtom,
+  userFormValidAtom,
+  vaultFormAtom,
+  vaultFormValidAtom,
+} from '../atoms'
 import { initialConfirmForm, initialUserForm, initialVaultForm } from '../utils'
 
 export function useResetCreateForm() {
@@ -8,6 +15,7 @@ export function useResetCreateForm() {
   const [, setConfirmData] = useAtom(confirmFormAtom)
   const [, setVaultFormValid] = useAtom(vaultFormValidAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)
+  const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
 
   const resetAll = () => {
     setVaultData(initialVaultForm)
@@ -15,6 +23,7 @@ export function useResetCreateForm() {
     setConfirmData(initialConfirmForm)
     setVaultFormValid(false)
     setUserFormValid(false)
+    setConfirmFormValid(false)
   }
 
   return { resetAll }

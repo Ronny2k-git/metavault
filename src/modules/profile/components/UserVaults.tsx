@@ -1,11 +1,12 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { getStatus } from '@/modules/global/utils'
-import { Icon } from '@/ui/components'
+import { Divider, Icon } from '@/ui/components'
 
 export function UserVaults() {
   return (
     <div className="flex flex-col w-full">
-      <hr className="text-sky-500" />
+      <Divider />
+
       <ProfileHeading
         className="my-12"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
@@ -68,7 +69,6 @@ export function UserVaults() {
                 network={'sepolia'}
                 minDeposit={'1'}
                 maxDeposit={'100000000'}
-                startDate={'2025-10-18'}
                 endDate={'2025-10-24'}
                 tx="0x1896caaf59a5ab0de34af09d79f233683fb70dff818bc5dc87e60220adb22ddb"
                 description={'This is a simple phrase to testing the description field'}

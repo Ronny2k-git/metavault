@@ -2,7 +2,7 @@ import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSc
 import type { vaultStatus } from '@/modules/global/types'
 import { Button } from '@/ui/components/Button'
 
-interface BaseVaultRowProps extends Omit<VaultDataFormType, 'salt' | 'assetToken'> {
+interface BaseVaultRowProps extends Omit<VaultDataFormType, 'salt' | 'assetToken' | 'creatorName'> {
   description: string
   status: vaultStatus
   endDate: string
