@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -11,24 +10,23 @@ datasource db {
 model Vault {
   id                 Int      @id @default(autoincrement())
   address            String
-  name               String
+  vaultName          String
   logo               String
   banner             String
   creatorName        String
   description        String
-  startsDate         DateTime
-  endsDate           DateTime
+  salt               String
+  minDeposit         String
+  maxDeposit         String
+  startDate          DateTime
+  endDate            DateTime
   chainId            Int
   assetTokenAddress  String
   assetTokenDecimals Int
-  assetTokenName     String
-  assetTokenSymbol   String
-  minDeposit         String
 
   // Optional fields
-  maxDeposit         String?
-  discordUrl         String?
-  telegramUrl        String?
-  twitterUrl         String?
+  discord            String?
+  telegram           String?
+  twitter            String?
   tag                String?
 }

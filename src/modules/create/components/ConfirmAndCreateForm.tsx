@@ -1,4 +1,5 @@
 import { TransactionCardDialog } from '@/modules/transactions/components'
+import { createVaultOnDb } from '@/server/createVaultOnDb'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -11,7 +12,6 @@ import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '.
 import { useCreateVault, useResetCreateForm } from '../hooks'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
 import { confirmAndCreateFormSchema } from '../schemas/ConfirmAndCreateFormSchema'
-import type { VaultContractData } from '../schemas/VaultContractSchema'
 import { initialConfirmForm } from '../utils'
 import { CardPreview, CreateFormHeading } from './subcomponents'
 
@@ -50,14 +50,19 @@ export function ConfirmAndCreateForm() {
     setConfirmFormValid(true)
 
     // 2. Create a vault on the blockchain
-    const { creatorName, description, discord, telegram, tag, twitter, ...vaultData } = allFormData
-    await create.createVault(vaultData as VaultContractData)
+    // const { creatorName, description, discord, telegram, tag, twitter, ...vaultData } = allFormData
+    // const tx = await create.createVault(vaultData as VaultContractData)
 
     // 3. Save the vault data on the database
-    const saveOnDB = 'Vault Created Test'
-    console.log(saveOnDB)
+    await createVaultOnDb({
+      data: {
+        data: allFormData,
+        blockchainData: { address: '0x..........' },
+      },
+    })
+    // console.log(saveOnDB)
     // setTimeout(() => navigate({ to: '/profile' }), 2500)
-    // toast.success('Vault created successfully')
+    toast.success('Vault created successfully')
   }
 
   return (
