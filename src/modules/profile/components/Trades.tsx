@@ -7,7 +7,7 @@ export function Trades() {
       <Divider />
       <div className="flex flex-col w-full gap-8 sm:items-center my-5">
         <h1 className="sm:text-4xl text-3xl text-center">
-          Deposit or Remove <br /> <span className="sm:text-3xl text-2xl text-gray-300">(anytime, anywhere)</span>
+          Deposit or Withdraw <br /> <span className="sm:text-3xl text-2xl text-gray-300">(anytime, anywhere)</span>
         </h1>
         <div>
           <div className="w-full card-transaction relative sm:min-w-[30rem] flex flex-col items-center justify-center p-2 gap-1 rounded-3xl ">
