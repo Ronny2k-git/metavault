@@ -1,4 +1,5 @@
 import type { FullVaultType } from '@/modules/create/schemas'
+import { getChainId } from '@/modules/global/utils'
 import { createServerFn } from '@tanstack/react-start'
 import { prisma } from './prisma'
 
@@ -31,7 +32,7 @@ export const createVaultOnDb = createServerFn({
         tag: data.tag ?? null,
         address: blockchainData.address,
         assetTokenDecimals: 18,
-        chainId: Number(data.network) || 0,
+        chainId: Number(getChainId(data.network)),
       },
     })
   })

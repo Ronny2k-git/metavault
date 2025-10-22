@@ -31,3 +31,15 @@ export function scrollToConteiner(id: string) {
     console.warn(`Id not found: "${id}"`)
   }
 }
+
+export function getChainId(chainName: string) {
+  switch (chainName) {
+    case 'Sepolia':
+      return 11155111
+
+    case 'Ethereum':
+      return 1
+    default:
+      11155111
+  }
+}

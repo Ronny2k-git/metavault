@@ -52,33 +52,34 @@ export function Input({
   const effectiveVariant = error ? 'error' : inputVariant
 
   return (
-    <label className={twMerge(`relative flex flex-col`, className)}>
-      {iconLeft && <div className="absolute left-4 top-1/2 -translate-y-1/2">{iconLeft}</div>}
-      <input
-        placeholder={placeholder}
-        type={type}
-        className={twMerge(
-          inputStyle({ variant: effectiveVariant, size: inputSize }),
-          iconLeft && 'pl-14',
-          iconRight && 'pr-14',
-          className,
-        )}
-        {...props}
-      />
-      {iconRight && <div className="absolute right-4 top-1/2 -translate-y-1/2">{iconRight}</div>}
-      <span
-        className={`absolute left-4 top-1/4
+    <label className={twMerge(`flex flex-col`, className)}>
+      <div className="relative flex w-full">
+        {iconLeft && <div className="absolute left-4 top-1/2 -translate-y-1/2">{iconLeft}</div>}
+        <input
+          placeholder={placeholder}
+          type={type}
+          className={twMerge(
+            inputStyle({ variant: effectiveVariant, size: inputSize }),
+            iconLeft && 'pl-14',
+            iconRight && 'pr-14',
+            className,
+          )}
+          {...props}
+        />
+        {iconRight && <div className="absolute right-4 top-1/2 -translate-y-1/2">{iconRight}</div>}
+
+        <span
+          className={`absolute left-4 top-1/4
         text-blue-300 transition-all
         pointer-events-none
         peer-placeholder-shown:top-1/2 -translate-y-1/2
-        peer-placeholder-shown:text-blue-300
-        peer-placeholder-shown:text-base
         peer-focus:top-1/4
         peer-focus:text-blue-300 ${iconLeft ? 'pl-10' : ''}`}
-      >
-        {label}
-      </span>
-      {error && <span className="mt-0.5 pl-2 text-sm text-red-400">{error}</span>}
+        >
+          {label}
+        </span>
+      </div>
+      {error && <span className="mt-1 pl-2 text-sm text-red-400">{error}</span>}
     </label>
   )
 }

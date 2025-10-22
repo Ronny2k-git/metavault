@@ -29,7 +29,7 @@ export function TextArea({ label, className, placeholder = '', error, ...props }
       >
         {label}
       </div>
-      {error && <span className=" pl-2 text-sm text-red-400">{error}</span>}
+      {error && <span className="mt-1 pl-2 text-sm text-red-400">{error}</span>}
     </label>
   )
 }

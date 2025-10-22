@@ -3,7 +3,7 @@ import { prisma } from './prisma'
 
 export const getAllVaultsCreated = createServerFn().handler(async () => {
   try {
-    const vaults = prisma.vault.findMany({
+    const vaults = await prisma.vault.findMany({
       select: {
         vaultName: true,
         logo: true,

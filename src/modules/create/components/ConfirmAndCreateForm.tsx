@@ -1,5 +1,4 @@
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { createVaultOnDb } from '@/server/createVaultOnDb'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -9,7 +8,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '../atoms/createAtoms'
-import { useCreateVault, useResetCreateForm } from '../hooks'
+import { useCreateVault, useCreateVaultOnDb, useResetCreateForm } from '../hooks'
+import type { VaultContractData } from '../schemas'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
 import { confirmAndCreateFormSchema } from '../schemas/ConfirmAndCreateFormSchema'
 import { initialConfirmForm } from '../utils'
@@ -21,6 +21,7 @@ export function ConfirmAndCreateForm() {
   const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
   const navigate = useNavigate()
 
+  const createVaultOnDb = useCreateVaultOnDb()
   const { resetAll } = useResetCreateForm()
   const allFormData = useAtomValue(combinedCreateDataAtom)
 
@@ -37,8 +38,6 @@ export function ConfirmAndCreateForm() {
 
     onSuccess: () => {
       setIsModalOpen(false)
-      resetAll()
-      navigate({ from: '/profile' })
     },
     onError: () => {
       setIsModalOpen(false)
@@ -50,19 +49,21 @@ export function ConfirmAndCreateForm() {
     setConfirmFormValid(true)
 
     // 2. Create a vault on the blockchain
-    // const { creatorName, description, discord, telegram, tag, twitter, ...vaultData } = allFormData
-    // const tx = await create.createVault(vaultData as VaultContractData)
+    const { creatorName, description, discord, telegram, tag, twitter, ...vaultData } = allFormData
+    await create.createVault(vaultData as VaultContractData)
 
     // 3. Save the vault data on the database
-    await createVaultOnDb({
+    await createVaultOnDb.mutateAsync({
       data: {
         data: allFormData,
-        blockchainData: { address: '0x..........' },
+        blockchainData: { address: '0x...............' },
       },
     })
-    // console.log(saveOnDB)
-    // setTimeout(() => navigate({ to: '/profile' }), 2500)
+
+    // 4. Clean the form and all states and redirect for user-vaults
     toast.success('Vault created successfully')
+    resetAll()
+    navigate({ from: '/profile' })
   }
 
   return (

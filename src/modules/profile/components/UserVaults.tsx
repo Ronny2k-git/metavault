@@ -1,8 +1,13 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { getStatus } from '@/modules/global/utils'
 import { Divider, Icon, Input } from '@/ui/components'
+import { useGetAllCreatedVaults } from '../hooks'
 
 export function UserVaults() {
+  const { data: createdVaults } = useGetAllCreatedVaults()
+
+  console.log(createdVaults)
+
   return (
     <div className="flex flex-col w-full">
       <Divider />

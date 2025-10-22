@@ -109,7 +109,7 @@ export function VaultDataForm() {
 
         <div className="flex flex-col relative">
           <select
-            className={`h-12 w-full px-4 sm:px-8  rounded-3xl input-style text-gray-300 outline-none
+            className={`bg-[#0a2278] h-12 w-full sm:px-6  rounded-3xl text-gray-300 outline-none
           ${networError ? 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
             {...register('network', {
               onChange(event) {
@@ -124,7 +124,7 @@ export function VaultDataForm() {
               Sepolia
             </option>
           </select>
-          {networError && <span className="text-sm absolute top-11.5 pl-2 text-red-400">{networError.message}</span>}
+          {networError && <span className="mt-1 pl-2 text-sm text-red-400">{networError.message}</span>}
         </div>
       </div>
 
