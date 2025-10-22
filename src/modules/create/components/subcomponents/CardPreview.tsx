@@ -17,8 +17,8 @@ export function CardPreview() {
       creatorName={vaultData.creatorName}
       minDeposit={vaultData.minDeposit}
       maxDeposit={vaultData.maxDeposit}
-      startDate={confirmData.startDate}
-      endDate={confirmData.endDate}
+      startDate={new Date(confirmData.startDate)}
+      endDate={new Date(confirmData.endDate)}
       description={vaultData.description}
       status={getStatus({
         startDate: confirmData.startDate,

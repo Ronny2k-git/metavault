@@ -6,8 +6,8 @@ import { StatusChip } from './StatusChip'
 
 interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> {
   description: string
-  startDate: string
-  endDate: string
+  startDate?: Date
+  endDate?: Date
   status: vaultStatus
   children?: React.ReactNode
 }
@@ -58,11 +58,11 @@ export function BaseVaultCard(data: BaseVaultProps) {
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
           <h3>Start Date</h3>
-          <div className="text-gray-300">{data.startDate || '00/00/0000'}</div>
+          <div className="text-gray-300">{data.startDate?.toLocaleDateString('en-US') || '00/00/0000'}</div>
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
           <h3>End Date</h3>
-          <div className="text-gray-300">{data.endDate || '00/00/0000'}</div>
+          <div className="text-gray-300">{data.endDate?.toLocaleDateString('en-US') || '00/00/0000'}</div>
         </div>
 
         {data.children}

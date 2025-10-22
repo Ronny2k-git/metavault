@@ -53,20 +53,20 @@ export function Input({
 
   return (
     <label className={twMerge(`flex flex-col`, className)}>
-      <div className="relative flex w-full">
-        {iconLeft && <div className="absolute left-4 top-1/2 -translate-y-1/2">{iconLeft}</div>}
+      <div className="relative flex w-full items-center">
+        {iconLeft && <div className="absolute left-4 pt-1.5">{iconLeft}</div>}
         <input
           placeholder={placeholder}
           type={type}
           className={twMerge(
             inputStyle({ variant: effectiveVariant, size: inputSize }),
-            iconLeft && 'pl-14',
-            iconRight && 'pr-14',
+            iconLeft && 'pl-13',
+            iconRight && 'pr-13',
             className,
           )}
           {...props}
         />
-        {iconRight && <div className="absolute right-4 top-1/2 -translate-y-1/2">{iconRight}</div>}
+        {iconRight && <div className="absolute right-4 pt-1.5">{iconRight}</div>}
 
         <span
           className={`absolute left-4 top-1/4
@@ -74,7 +74,7 @@ export function Input({
         pointer-events-none
         peer-placeholder-shown:top-1/2 -translate-y-1/2
         peer-focus:top-1/4
-        peer-focus:text-blue-300 ${iconLeft ? 'pl-10' : ''}`}
+        peer-focus:text-blue-300 ${iconLeft ? 'pl-9' : ''}`}
         >
           {label}
         </span>

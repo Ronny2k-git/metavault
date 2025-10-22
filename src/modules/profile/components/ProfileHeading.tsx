@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 type ProfileHeadingProps = {
   icon: React.ReactNode
   title: string
-  vaults?: string
+  vaults?: number
   status: vaultStatus
   className?: string
 }

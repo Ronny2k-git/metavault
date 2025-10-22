@@ -6,7 +6,17 @@ import { useGetAllCreatedVaults } from '../hooks'
 export function UserVaults() {
   const { data: createdVaults } = useGetAllCreatedVaults()
 
-  console.log(createdVaults)
+  const createdLiveVaults = createdVaults?.filter((vault) => {
+    const status = getStatus({
+      startDate: String(vault.startDate),
+      endDate: String(vault.endDate),
+    })
+    return ['live', 'coming'].includes(status)
+  })
+
+  const createdCompletedVaults = createdVaults?.filter((vault) => {
+    return getStatus({ startDate: String(vault.startDate), endDate: String(vault.endDate) }) === 'ended'
+  })
 
   return (
     <div className="flex flex-col w-full">
@@ -22,26 +32,26 @@ export function UserVaults() {
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
         status="live"
-        vaults="3"
+        vaults={createdLiveVaults?.length || 0}
       />
 
       <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 mb-20">
-        {Array.from({ length: 3 }, (_, index) => (
+        {createdLiveVaults?.map((vault, index) => (
           <BaseVaultCard
-            key={index}
-            banner={''}
-            logo={''}
-            vaultName={'Test'}
-            creatorName="Test"
-            network={'sepolia'}
-            minDeposit={'1'}
-            maxDeposit={'100000000'}
-            startDate={'2025-10-18'}
-            endDate={'2025-10-24'}
-            description={'This is a simple phrase to testing the description field'}
+            key={`live_vault_${index}`}
+            banner={vault.banner}
+            logo={vault.logo}
+            vaultName={vault.vaultName}
+            creatorName={vault.creatorName}
+            network={'Sepolia'}
+            minDeposit={vault.minDeposit}
+            maxDeposit={vault.maxDeposit}
+            startDate={vault.startDate}
+            endDate={vault.endDate}
+            description={vault.description}
             status={getStatus({
-              startDate: '2025-10-11',
-              endDate: '2025-10-31',
+              startDate: String(vault.startDate),
+              endDate: String(vault.endDate),
             })}
           >
             Countdown will be stay here
@@ -54,7 +64,7 @@ export function UserVaults() {
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}
         title="Completed Vaults"
         status="ended"
-        vaults="10"
+        vaults={createdCompletedVaults?.length || 0}
       />
       <div className="w-full overflow-x-auto custom-scrollbar" style={{ paddingBottom: '8px' }}>
         <table className="w-full min-w-[46rem]">
@@ -70,21 +80,20 @@ export function UserVaults() {
             </tr>
           </thead>
           <tbody>
-            {Array.from({ length: 10 }, (_, index) => (
+            {createdCompletedVaults?.map((vault, index) => (
               <BaseVaultRow
-                key={index}
-                banner={'/default-icon.webp'}
-                logo={'/icon.png'}
-                vaultName={'Test Vault name'}
-                network={'sepolia'}
-                minDeposit={'1'}
-                maxDeposit={'100000000'}
-                endDate={'2025-10-24'}
+                key={`completed_vault_${index}`}
+                banner={vault.banner}
+                logo={vault.logo}
+                vaultName={vault.vaultName}
+                network={'Sepolia'}
+                minDeposit={vault.minDeposit}
+                maxDeposit={vault.maxDeposit}
+                endDate={vault.endDate.toLocaleDateString()}
                 tx="0x1896caaf59a5ab0de34af09d79f233683fb70dff818bc5dc87e60220adb22ddb"
-                description={'This is a simple phrase to testing the description field'}
                 status={getStatus({
-                  startDate: '2025-10-11',
-                  endDate: '2025-10-13',
+                  startDate: String(vault.startDate),
+                  endDate: String(vault.endDate),
                 })}
               />
             ))}
