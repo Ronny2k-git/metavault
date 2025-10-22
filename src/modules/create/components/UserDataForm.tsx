@@ -34,6 +34,8 @@ export function UserDataForm() {
       />
 
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         className="max-md:col-span-full"
         label="Discord Url"
         placeholder="Your discord url"
@@ -45,6 +47,8 @@ export function UserDataForm() {
         error={formState.errors.discord?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Telegram Url"
         placeholder="Your telegram url"
         className="max-md:col-span-full"
@@ -56,6 +60,8 @@ export function UserDataForm() {
         error={formState.errors.telegram?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Twitter Url"
         placeholder="Your Twitter url"
         className="max-md:col-span-full"
@@ -67,6 +73,8 @@ export function UserDataForm() {
         error={formState.errors.twitter?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Tag (optional)"
         placeholder="Add your tag"
         className="max-md:col-span-full"

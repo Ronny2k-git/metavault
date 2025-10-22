@@ -1,11 +1,16 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { getStatus } from '@/modules/global/utils'
-import { Divider, Icon } from '@/ui/components'
+import { Divider, Icon, Input } from '@/ui/components'
 
 export function UserVaults() {
   return (
     <div className="flex flex-col w-full">
       <Divider />
+      <Input
+        label="Test Input"
+        iconLeft={<Icon className="!text-2xl">search</Icon>}
+        iconRight={<Icon className="!text-2xl">search_activity</Icon>}
+      />
 
       <ProfileHeading
         className="my-12"

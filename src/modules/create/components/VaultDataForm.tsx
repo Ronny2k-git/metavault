@@ -35,6 +35,8 @@ export function VaultDataForm() {
       />
 
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         className="max-md:col-span-full"
         label="Vault Name"
         placeholder="Your vault name"
@@ -46,6 +48,8 @@ export function VaultDataForm() {
         error={formState.errors.vaultName?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Logo Url"
         placeholder="Your logo url"
         className="max-md:col-span-full"
@@ -57,6 +61,8 @@ export function VaultDataForm() {
         error={formState.errors.logo?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         placeholder="Your banner url"
         label="Banner Url"
         className="max-md:col-span-full"
@@ -68,6 +74,8 @@ export function VaultDataForm() {
         error={formState.errors.banner?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         className="max-md:col-span-full"
         label="Creator Name"
         placeholder="Creatror Vault Name"
@@ -121,6 +129,8 @@ export function VaultDataForm() {
       </div>
 
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Asset Token"
         placeholder="Your Asset token"
         {...register('assetToken', {
@@ -134,6 +144,8 @@ export function VaultDataForm() {
         error={formState.errors.assetToken?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Salt"
         placeholder="Vault Salt"
         type={'number'}
@@ -149,6 +161,8 @@ export function VaultDataForm() {
         error={formState.errors.salt?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Min Deposit"
         placeholder="Min deposit per wallet"
         type={'number'}
@@ -164,6 +178,8 @@ export function VaultDataForm() {
         error={formState.errors.minDeposit?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Max Deposit"
         placeholder="Max deposit per wallet"
         type={'number'}

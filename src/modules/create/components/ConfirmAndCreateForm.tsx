@@ -77,6 +77,8 @@ export function ConfirmAndCreateForm() {
       />
 
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="Start Date"
         type="date"
         {...register('startDate', {
@@ -87,6 +89,8 @@ export function ConfirmAndCreateForm() {
         error={formState.errors.startDate?.message}
       />
       <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
         label="End Date"
         type="date"
         {...register('endDate', {
