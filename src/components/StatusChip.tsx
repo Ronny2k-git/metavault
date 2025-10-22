@@ -18,7 +18,7 @@ export function StatusChip({ status, className }: StatusChipProps) {
   return (
     <div
       className={twMerge(
-        `w-32 h-5 mt-2 bg-cyan-600 rounded-full border flex items-center justify-center text-sm 
+        `w-32 h-5 bg-cyan-600 rounded-full border flex items-center justify-center text-sm 
          ${mappedStatus.color}`,
         className,
       )}

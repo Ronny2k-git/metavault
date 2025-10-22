@@ -1,5 +1,6 @@
 import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
+import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { StatusChip } from './StatusChip'
@@ -9,6 +10,9 @@ interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> 
   startDate?: Date
   endDate?: Date
   status: vaultStatus
+  discordIcon?: React.ReactNode
+  telegramIcon?: React.ReactNode
+  twitterIcon?: React.ReactNode
   children?: React.ReactNode
 }
 
@@ -32,15 +36,34 @@ export function BaseVaultCard(data: BaseVaultProps) {
         src={isValidUrl(data.banner) ? data.banner : '/default-banner.jpg'}
         onError={(e) => (e.currentTarget.src = '/default-banner.jpg')}
       />
-      <div className="flex gap-2 mx-2">
-        <img
-          className="size-10 rounded-full object-cover"
-          src={isValidUrl(data.logo) ? data.logo : '/default-icon.webp'}
-          onError={(e) => (e.currentTarget.src = '/default-icon.webp')}
-        />
-        <div className="text-white">
-          {data.vaultName || 'Unammed'}
-          <div className="text-xs -mt-0.5">{data.network || 'No chain selected'}</div>
+      <div className="w-full flex justify-between px-2">
+        <div className="flex gap-2 mx-">
+          <img
+            className="size-10 rounded-full object-cover"
+            src={isValidUrl(data.logo) ? data.logo : '/default-icon.webp'}
+            onError={(e) => (e.currentTarget.src = '/default-icon.webp')}
+          />
+          <div className="flex flex-col">
+            {data.vaultName || 'Unammed'}
+            <div className="text-xs -mt-0.5">{data.network || 'No chain selected'}</div>
+          </div>
+        </div>
+        <div className="flex gap-2 items-center">
+          {data.discordIcon && (
+            <a href={String(data.discordIcon)}>
+              <DiscordIcon />
+            </a>
+          )}
+          {data.telegramIcon && (
+            <a href={String(data.telegramIcon)}>
+              <TelegramIcon />
+            </a>
+          )}
+          {data.twitterIcon && (
+            <a href={String(data.twitterIcon)}>
+              <TwitterIcon />
+            </a>
+          )}
         </div>
       </div>
       <div className="flex flex-col my-2 mx-2 gap-0.5">

@@ -1,6 +1,6 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { getStatus } from '@/modules/global/utils'
-import { Divider, Icon, Input } from '@/ui/components'
+import { Divider, Icon } from '@/ui/components'
 import { useGetAllCreatedVaults } from '../hooks'
 
 export function UserVaults() {
@@ -21,11 +21,6 @@ export function UserVaults() {
   return (
     <div className="flex flex-col w-full">
       <Divider />
-      <Input
-        label="Test Input"
-        iconLeft={<Icon className="!text-2xl">search</Icon>}
-        iconRight={<Icon className="!text-2xl">search_activity</Icon>}
-      />
 
       <ProfileHeading
         className="my-12"
@@ -42,6 +37,9 @@ export function UserVaults() {
             banner={vault.banner}
             logo={vault.logo}
             vaultName={vault.vaultName}
+            discordIcon={vault.discord}
+            telegramIcon={vault.telegram}
+            twitterIcon={vault.twitter}
             creatorName={vault.creatorName}
             network={'Sepolia'}
             minDeposit={vault.minDeposit}
