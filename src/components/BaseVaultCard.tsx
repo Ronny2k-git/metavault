@@ -27,7 +27,9 @@ export function BaseVaultCard(data: BaseVaultProps) {
   }
 
   return (
-    <div className="w-full relative lg:max-w-[20rem] background-vault-card border h-auto rounded-md border-cyan-400">
+    <div
+      className={`w-full relative lg:max-w-[20rem] ${data.status === 'live' ? 'background-vault-card' : 'bg-blue-800'}  border h-auto rounded-md border-cyan-400`}
+    >
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
       </div>
@@ -89,7 +91,8 @@ export function BaseVaultCard(data: BaseVaultProps) {
         </div>
 
         {data.children}
-
+      </div>
+      <div className="relative my-2 mx-1">
         <Collapsible.Root>
           <Collapsible.Trigger className="group w-full" asChild>
             <button className="relative p-1 mt-2 text-sm w-full bg-sky-600 hover:bg-sky-500  rounded-full cursor-pointer">
@@ -98,8 +101,8 @@ export function BaseVaultCard(data: BaseVaultProps) {
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1 size-5" />
             </button>
           </Collapsible.Trigger>
-          <Collapsible.Content className="mt-2">
-            <div className="py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300">
+          <Collapsible.Content className="w-full mt-3 absolute z-1">
+            <div className="bg-[#0a2278] py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300">
               <span className="text-gray-300">{data.description}</span>
             </div>
           </Collapsible.Content>

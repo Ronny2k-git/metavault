@@ -1,6 +1,6 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { getStatus } from '@/modules/global/utils'
-import { Divider, Icon } from '@/ui/components'
+import { Divider, Icon, Input } from '@/ui/components'
 import { useGetAllCreatedVaults } from '../hooks'
 
 export function UserVaults() {
@@ -21,14 +21,21 @@ export function UserVaults() {
   return (
     <div className="flex flex-col w-full">
       <Divider />
-
       <ProfileHeading
-        className="my-12"
+        className="mt-12"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
         status="live"
         vaults={createdLiveVaults?.length || 0}
       />
+      <div className="w-full mb-10 mt-4">
+        <Input
+          className="w-full sm:max-w-[25rem]"
+          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          label="Search Vault"
+          placeholder="Search your live vaults by name, creator and chain name."
+        />
+      </div>
 
       <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 mb-20">
         {createdLiveVaults?.map((vault, index) => (
@@ -56,7 +63,6 @@ export function UserVaults() {
           </BaseVaultCard>
         ))}
       </div>
-
       <ProfileHeading
         className="my-12"
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}

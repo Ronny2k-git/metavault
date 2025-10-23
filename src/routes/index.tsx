@@ -3,10 +3,10 @@ import { Link, createFileRoute } from '@tanstack/react-router'
 import logo from '../logo.svg'
 
 export const Route = createFileRoute('/')({
-  component: App,
+  component: HomePage,
 })
 
-function App() {
+function HomePage() {
   return (
     <header className="page background flex flex-col items-center bg-center justify-center text-white">
       <img src={logo} className="h-[40vmin] min-h-52 animate-[spin_20s_linear_infinite]" alt="logo" />
@@ -20,7 +20,7 @@ function App() {
       </div>
       <div className="flex flex-col items-center gap-4">
         <h2 className="text-2xl">Decentralized. Secure. Yours.</h2>
-        <h3 className="text-xl text-gray-200">Create your vault and secure your crypto today.</h3>
+        <h3 className="text-xl text-gray-200 text-center">Create your vault and secure your crypto today.</h3>
       </div>
       <Link className="flex max-w-[28rem] w-full mt-4" to="/create-vault">
         <Button variant={'primary'} size={'xl'}>

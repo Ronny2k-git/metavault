@@ -11,7 +11,7 @@ type ProfileHeadingProps = {
 
 export function ProfileHeading({ icon, title, vaults, status, className }: ProfileHeadingProps) {
   return (
-    <div className={twMerge('w-full flex gap-4 justify-between max-sm:flex-col ', className)}>
+    <div className={twMerge('w-full flex gap-4 justify-between max-sm:flex-col', className)}>
       <div className="flex gap-2">
         {icon}
         <h1 className="text-3xl">{title}</h1>

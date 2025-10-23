@@ -1,6 +1,4 @@
-\*
-
-# TanStack Start + Prisma: Server Functions e React Query
+# TanStack Start + Prisma: Server Functions and React Query
 
 In the **tantack start framework** **it's neither necessary nor possible to create a route.ts inside SRC/API** just create a folder inside src only by **organization** called: server, for example:
 
@@ -62,12 +60,10 @@ export function useCreateTestOnDb() {
 ## 2.2 Get (client)
 
 ```ts
-export function useGetAllTest() {
+export function useGetAllTestsCreated() {
   return useQuery({
     queryKey: ['get-test'],
-    queryFn: getAllVaultsCreated,
+    queryFn: getAllTestsCreated,
   })
 }
 ```
-
-\*

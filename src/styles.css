@@ -46,6 +46,7 @@ html {
 
 .background-vault-card {
   background: linear-gradient(45deg, #0b1e3a, #043afe);
+  box-shadow: 0 0 20px 5px rgba(35, 135, 242, 0.6);
 }
 
 .background-vault-row {
