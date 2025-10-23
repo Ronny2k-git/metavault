@@ -7,6 +7,7 @@ import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useAccount } from 'wagmi'
 import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '../atoms/createAtoms'
 import { useCreateVault, useCreateVaultOnDb, useResetCreateForm } from '../hooks'
 import type { VaultContractData } from '../schemas'
@@ -21,6 +22,7 @@ export function ConfirmAndCreateForm() {
   const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
   const navigate = useNavigate()
 
+  const account = useAccount()
   const createVaultOnDb = useCreateVaultOnDb()
   const { resetAll } = useResetCreateForm()
   const allFormData = useAtomValue(combinedCreateDataAtom)
@@ -45,6 +47,11 @@ export function ConfirmAndCreateForm() {
     },
   })
   const onSubmit = async () => {
+    if (!account.address) {
+      toast.error('Please connect your wallet')
+      return
+    }
+
     // 1. Update info tabs
     setConfirmFormValid(true)
 
@@ -56,11 +63,14 @@ export function ConfirmAndCreateForm() {
     await createVaultOnDb.mutateAsync({
       data: {
         data: allFormData,
-        blockchainData: { address: '0x...............' },
+        blockchainData: {
+          address: '0x...............',
+          userAddress: account.address,
+        },
       },
     })
 
-    // 4. Clean the form and all states and redirect for user-vaults
+    // 4. Clean the form and all states and redirect from profile page.
     toast.success('Vault created successfully')
     resetAll()
     navigate({ from: '/profile' })

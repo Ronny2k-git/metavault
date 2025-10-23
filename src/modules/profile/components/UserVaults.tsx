@@ -1,10 +1,12 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { getStatus } from '@/modules/global/utils'
 import { Divider, Icon, Input } from '@/ui/components'
+import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 
 export function UserVaults() {
-  const { data: createdVaults } = useGetAllCreatedVaults()
+  const { address } = useAccount()
+  const { data: createdVaults } = useGetAllCreatedVaults(address!)
 
   const createdLiveVaults = createdVaults?.filter((vault) => {
     const status = getStatus({
@@ -22,22 +24,22 @@ export function UserVaults() {
     <div className="flex flex-col w-full">
       <Divider />
       <ProfileHeading
-        className="mt-12"
+        className="mt-12 mb-4"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
         status="live"
         vaults={createdLiveVaults?.length || 0}
       />
-      <div className="w-full mb-10 mt-4">
-        <Input
-          className="w-full sm:max-w-[25rem]"
-          iconLeft={<Icon className="text-blue-300">search</Icon>}
-          label="Search Vault"
-          placeholder="Search your live vaults by name, creator and chain name."
-        />
-      </div>
 
-      <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 mb-20">
+      <Input
+        className="w-full sm:max-w-[27rem]"
+        iconLeft={<Icon className="text-blue-300">search</Icon>}
+        inputSize={'sm'}
+        label="Search Vault"
+        placeholder="Search your live vaults by name, creator and chain name."
+      />
+
+      <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
         {createdLiveVaults?.map((vault, index) => (
           <BaseVaultCard
             key={`live_vault_${index}`}
@@ -64,13 +66,22 @@ export function UserVaults() {
         ))}
       </div>
       <ProfileHeading
-        className="my-12"
+        className="mt-24 mb-4"
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}
         title="Completed Vaults"
         status="ended"
         vaults={createdCompletedVaults?.length || 0}
       />
-      <div className="w-full overflow-x-auto custom-scrollbar" style={{ paddingBottom: '8px' }}>
+
+      <Input
+        className="w-full sm:max-w-[27rem]"
+        iconLeft={<Icon className="text-blue-300">search</Icon>}
+        inputSize={'sm'}
+        label="Search Vault"
+        placeholder="Search your completed vaults by name, creator and chain name."
+      />
+
+      <div className="w-full overflow-x-auto custom-scrollbar mt-10" style={{ paddingBottom: '8px' }}>
         <table className="w-full min-w-[46rem]">
           <thead>
             <tr className="[&_td]:text-nowrap">

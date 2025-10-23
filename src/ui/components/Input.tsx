@@ -14,6 +14,7 @@ const inputStyle = cva(
       },
       size: {
         default: 'h-12 px-4 rounded-md',
+        sm: 'h-10 px-4 rounded-full text-sm',
         xl: 'h-16 px-4 rounded-3xl',
       },
     },

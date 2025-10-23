@@ -9,7 +9,7 @@ datasource db {
 
 model Vault {
   id                 Int      @id @default(autoincrement())
-  address            String
+  address       String   
   vaultName          String
   logo               String
   banner             String
@@ -23,6 +23,7 @@ model Vault {
   chainId            Int
   assetTokenAddress  String
   assetTokenDecimals Int
+  userAddress        String?
 
   // Optional fields
   discord            String?
