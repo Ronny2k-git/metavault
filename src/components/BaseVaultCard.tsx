@@ -28,7 +28,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
   return (
     <div
-      className={`w-full relative lg:max-w-[20rem] ${data.status === 'live' ? 'background-vault-card' : 'bg-blue-800'}  border h-auto rounded-md border-cyan-400`}
+      className={`w-full relative lg:max-w-[20rem] ${data.status === 'live' ? 'background-vault-card' : 'bg-[#234adb]'}  border h-auto rounded-md border-cyan-400`}
     >
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
@@ -50,19 +50,20 @@ export function BaseVaultCard(data: BaseVaultProps) {
             <div className="text-xs -mt-0.5">{data.network || 'No chain selected'}</div>
           </div>
         </div>
+
         <div className="flex gap-2 items-center">
           {data.discordIcon && (
-            <a href={String(data.discordIcon)}>
+            <a className="hover:mb-1 hover:border-b-1" href={String(data.discordIcon)}>
               <DiscordIcon />
             </a>
           )}
           {data.telegramIcon && (
-            <a href={String(data.telegramIcon)}>
+            <a className="hover:mb-1 hover:border-b-1" href={String(data.telegramIcon)}>
               <TelegramIcon />
             </a>
           )}
           {data.twitterIcon && (
-            <a href={String(data.twitterIcon)}>
+            <a className="hover:mb-1 hover:border-b-1" href={String(data.twitterIcon)}>
               <TwitterIcon />
             </a>
           )}
@@ -102,7 +103,9 @@ export function BaseVaultCard(data: BaseVaultProps) {
             </button>
           </Collapsible.Trigger>
           <Collapsible.Content className="w-full mt-3 absolute z-1">
-            <div className="bg-[#0a2278] py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300">
+            <div
+              className={`${data.status === 'live' ? 'bg-[#0a2278]' : 'bg-[#234adb]'} py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300`}
+            >
               <span className="text-gray-300">{data.description}</span>
             </div>
           </Collapsible.Content>

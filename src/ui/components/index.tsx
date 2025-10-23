@@ -1,4 +1,5 @@
 export * from './Divider'
+export * from './EmptyBanner'
 export * from './Icon'
 export * from './Input'
 export * from './Modal'
