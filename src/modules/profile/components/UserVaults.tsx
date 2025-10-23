@@ -3,6 +3,7 @@ import { getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
+import { VaultCardSkeleton } from './VaultCardSkeleton'
 
 export function UserVaults() {
   const { address } = useAccount()
@@ -50,28 +51,31 @@ export function UserVaults() {
       ) : (
         <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
           {createdLiveVaults.map((vault, index) => (
-            <BaseVaultCard
-              key={`live_vault_${index}`}
-              banner={vault.banner}
-              logo={vault.logo}
-              vaultName={vault.vaultName}
-              discordIcon={vault.discord}
-              telegramIcon={vault.telegram}
-              twitterIcon={vault.twitter}
-              creatorName={vault.creatorName}
-              network={'Sepolia'}
-              minDeposit={vault.minDeposit}
-              maxDeposit={vault.maxDeposit}
-              startDate={vault.startDate}
-              endDate={vault.endDate}
-              description={vault.description}
-              status={getStatus({
-                startDate: String(vault.startDate),
-                endDate: String(vault.endDate),
-              })}
-            >
-              Countdown will be stay here
-            </BaseVaultCard>
+            <div>
+              <BaseVaultCard
+                key={`live_vault_${index}`}
+                banner={vault.banner}
+                logo={vault.logo}
+                vaultName={vault.vaultName}
+                discordIcon={vault.discord}
+                telegramIcon={vault.telegram}
+                twitterIcon={vault.twitter}
+                creatorName={vault.creatorName}
+                network={'Sepolia'}
+                minDeposit={vault.minDeposit}
+                maxDeposit={vault.maxDeposit}
+                startDate={vault.startDate}
+                endDate={vault.endDate}
+                description={vault.description}
+                status={getStatus({
+                  startDate: String(vault.startDate),
+                  endDate: String(vault.endDate),
+                })}
+              >
+                Countdown will be stay here
+              </BaseVaultCard>
+              <VaultCardSkeleton />
+            </div>
           ))}
         </div>
       )}

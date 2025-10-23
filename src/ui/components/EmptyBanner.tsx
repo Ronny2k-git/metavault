@@ -12,7 +12,10 @@ interface EmptyBannerProps {
 export function EmptyBanner({ message, subMessage, icon, buttonLabel, className }: EmptyBannerProps) {
   return (
     <div
-      className={twMerge(`w-full p-20 flex relative bg-[url('/banner.jpg')] bg-center bg-cove rounded-4xl`, className)}
+      className={twMerge(
+        `w-full shadow-2xl shadow-blue-800 p-20 flex relative bg-[url('/banner.jpg')] bg-center bg-cove rounded-4xl`,
+        className,
+      )}
     >
       <div className="absolute inset-0 bg-black/20 rounded-4xl" />
 
