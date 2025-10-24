@@ -7,7 +7,7 @@ import { VaultCardSkeleton } from './VaultCardSkeleton'
 
 export function UserVaults() {
   const { address } = useAccount()
-  const { data: createdVaults } = useGetAllCreatedVaults(address!)
+  const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
 
   const createdLiveVaults = createdVaults?.filter((vault) => {
     const status = getStatus({
@@ -31,7 +31,6 @@ export function UserVaults() {
         status="live"
         vaults={createdLiveVaults?.length || 0}
       />
-
       <Input
         className="w-full sm:max-w-[27rem]"
         iconLeft={<Icon className="text-blue-300">search</Icon>}
@@ -39,8 +38,7 @@ export function UserVaults() {
         label="Search Vault"
         placeholder="Search your live vaults by name, creator and chain name."
       />
-
-      {!address || !createdLiveVaults?.length ? (
+      {(!address || !createdLiveVaults?.length) && !isLoading && (
         <EmptyBanner
           className="mt-10"
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
@@ -48,38 +46,44 @@ export function UserVaults() {
           subMessage="Please, check your filters or Connect your wallet"
           buttonLabel="Create Your Vault"
         />
+      )}{' '}
+      {
+        // TEST THE LOADING STATE LATER, BECAUSE NOW IS NOT WORKING.
+      }
+      {isLoading ? (
+        <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <VaultCardSkeleton key={index} />
+          ))}
+        </div>
       ) : (
         <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
-          {createdLiveVaults.map((vault, index) => (
-            <div>
-              <BaseVaultCard
-                key={`live_vault_${index}`}
-                banner={vault.banner}
-                logo={vault.logo}
-                vaultName={vault.vaultName}
-                discordIcon={vault.discord}
-                telegramIcon={vault.telegram}
-                twitterIcon={vault.twitter}
-                creatorName={vault.creatorName}
-                network={'Sepolia'}
-                minDeposit={vault.minDeposit}
-                maxDeposit={vault.maxDeposit}
-                startDate={vault.startDate}
-                endDate={vault.endDate}
-                description={vault.description}
-                status={getStatus({
-                  startDate: String(vault.startDate),
-                  endDate: String(vault.endDate),
-                })}
-              >
-                Countdown will be stay here
-              </BaseVaultCard>
-              <VaultCardSkeleton />
-            </div>
+          {createdLiveVaults?.map((vault, index) => (
+            <BaseVaultCard
+              key={`live_vault_${index}`}
+              banner={vault.banner}
+              logo={vault.logo}
+              vaultName={vault.vaultName}
+              discordIcon={vault.discord}
+              telegramIcon={vault.telegram}
+              twitterIcon={vault.twitter}
+              creatorName={vault.creatorName}
+              network={'Sepolia'}
+              minDeposit={vault.minDeposit}
+              maxDeposit={vault.maxDeposit}
+              startDate={vault.startDate}
+              endDate={vault.endDate}
+              description={vault.description}
+              status={getStatus({
+                startDate: String(vault.startDate),
+                endDate: String(vault.endDate),
+              })}
+            >
+              Countdown will be stay here
+            </BaseVaultCard>
           ))}
         </div>
       )}
-
       <ProfileHeading
         className="mt-24 mb-4"
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}
@@ -87,7 +91,6 @@ export function UserVaults() {
         status="ended"
         vaults={createdCompletedVaults?.length || 0}
       />
-
       <Input
         className="w-full sm:max-w-[27rem]"
         iconLeft={<Icon className="text-blue-300">search</Icon>}
@@ -95,8 +98,7 @@ export function UserVaults() {
         label="Search Vault"
         placeholder="Search your completed vaults by name, creator and chain name."
       />
-
-      {!address || !createdCompletedVaults ? (
+      {(!address || !createdCompletedVaults?.length) && !isLoading && (
         <EmptyBanner
           className="mt-10"
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
@@ -104,6 +106,9 @@ export function UserVaults() {
           subMessage="Please, check your filters or Connect your wallet"
           buttonLabel="Create Your Vault"
         />
+      )}
+      {isLoading ? (
+        <div>Loading ...</div>
       ) : (
         <div className="w-full overflow-x-auto custom-scrollbar mt-10" style={{ paddingBottom: '8px' }}>
           <table className="w-full min-w-[46rem]">
@@ -119,7 +124,7 @@ export function UserVaults() {
               </tr>
             </thead>
             <tbody>
-              {createdCompletedVaults.map((vault, index) => (
+              {createdCompletedVaults?.map((vault, index) => (
                 <BaseVaultRow
                   key={`completed_vault_${index}`}
                   banner={vault.banner}
@@ -128,7 +133,7 @@ export function UserVaults() {
                   network={'Sepolia'}
                   minDeposit={vault.minDeposit}
                   maxDeposit={vault.maxDeposit}
-                  endDate={vault.endDate.toLocaleDateString()}
+                  endDate={vault.endDate.toString()}
                   tx="0x1896caaf59a5ab0de34af09d79f233683fb70dff818bc5dc87e60220adb22ddb"
                   status={getStatus({
                     startDate: String(vault.startDate),

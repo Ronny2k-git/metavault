@@ -13,6 +13,7 @@ export const Route = createFileRoute('/profile')({
       tab: z.enum(PROFILE_TABS, 'user-vaults').default('user-vaults'),
     }),
   ),
+  ssr: 'data-only',
 })
 
 function Profile() {
@@ -25,7 +26,7 @@ function Profile() {
     <div className="background min-h-screen flex flex-col p-4 w-full items-center py-20 text-white">
       <div className="w-full max-w-4xl">
         <Tabs
-          variant={'blue'}
+          variant={'default'}
           size={'md'}
           search={search.tab}
           onValueChange={(value) => {
