@@ -46,6 +46,7 @@ export function ConfirmAndCreateForm() {
       toast.error('Error creating vault')
     },
   })
+
   const onSubmit = async () => {
     if (!account.address) {
       toast.error('Please connect your wallet')

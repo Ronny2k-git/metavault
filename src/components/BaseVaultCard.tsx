@@ -1,5 +1,6 @@
 import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
+import { formatDate, formatNumber } from '@/modules/global/utils'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
@@ -80,15 +81,15 @@ export function BaseVaultCard(data: BaseVaultProps) {
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
           <h3>Max dep per wallet</h3>
-          <div className="text-gray-300">{data.maxDeposit || 0}</div>
+          <div className="text-gray-300">{formatNumber(Number(data.maxDeposit)) || 0}</div>
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
           <h3>Start Date</h3>
-          <div className="text-gray-300">{data.startDate?.toLocaleDateString('en-US') || '00/00/0000'}</div>
+          <div className="text-gray-300">{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
         </div>
         <div className="flex font-SpaceGrotesk justify-between">
           <h3>End Date</h3>
-          <div className="text-gray-300">{data.endDate?.toLocaleDateString('en-US') || '00/00/0000'}</div>
+          <div className="text-gray-300">{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
         </div>
 
         {data.children}

@@ -3,7 +3,7 @@ import { Trades, UserVaults } from '@/modules/profile/components'
 import { PROFILE_TABS, PROFILE_TABS_INFO } from '@/modules/profile/constants'
 import { Tabs } from '@/ui/components/Tabs'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { zodValidator } from '@tanstack/zod-adapter'
+import { fallback, zodValidator } from '@tanstack/zod-adapter'
 import z from 'zod'
 
 export const Route = createFileRoute('/profile')({
@@ -11,6 +11,7 @@ export const Route = createFileRoute('/profile')({
   validateSearch: zodValidator(
     z.object({
       tab: z.enum(PROFILE_TABS, 'user-vaults').default('user-vaults'),
+      search: fallback(z.string(), '').default(''),
     }),
   ),
   ssr: 'data-only',
