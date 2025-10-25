@@ -4,7 +4,7 @@ export const PROFILE_TABS_INFO = [
   {
     value: 'user-vaults',
     label: 'Vaults',
-    labelIcon: 'paid',
+    labelIcon: 'account_balance_wallet',
     description: 'All your vaults will be here',
     descriptionColor: 'text-gray-300',
   },
@@ -16,10 +16,10 @@ export const PROFILE_TABS_INFO = [
     descriptionColor: 'text-gray-300',
   },
   {
-    value: 'test',
-    label: 'Test',
-    labelIcon: 'compare',
-    description: 'In progress...Thinking about it',
+    value: 'edit-profile',
+    label: 'Edit Your Profile',
+    labelIcon: 'person_edit',
+    description: 'Edit Your Profile Data',
     descriptionColor: 'text-gray-300',
   },
 ]

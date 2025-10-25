@@ -20,6 +20,7 @@ export const initialUserForm: UserDataFormType = {
   telegram: '',
   twitter: '',
   tag: '',
+  avatarUrl: '',
 }
 
 export const initialConfirmForm: ConfirmAndCreateFormType = {

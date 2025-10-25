@@ -6,6 +6,8 @@ export const userDataFormSchema = z
     telegram: z.string().url('Invalid Telegram URL').or(z.literal('')).optional(),
     twitter: z.string().url('Invalid Twitter URL').or(z.literal('')).optional(),
     tag: z.string().optional(),
+    avatarUrl: z.string().nonempty({ message: 'Avatar url is required' }).url(),
+    userAbout: z.string().min(25, { message: 'Minimum of 25 words ' }).max(120, { message: 'Maximum of 120 words' }),
   })
   .refine((data) => data.discord || data.telegram || data.twitter, {
     message: 'At least one social must be provided',

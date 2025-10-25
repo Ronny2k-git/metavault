@@ -23,7 +23,7 @@ export function EmptyBanner({ message, subMessage, icon, buttonLabel, className 
         {icon}
         <h2 className="text-4xl max-sm:text-2xl text-center">{message}</h2>
         {subMessage && (
-          <p className="text-md sm:px-4 px-8 py-2 sm:py-1 text-sky-300 bg-black/80 rounded-full">{subMessage}</p>
+          <p className="text-md sm:px-4 px-8 py-2 sm:py-1 text-white bg-black/80 rounded-full">{subMessage}</p>
         )}
         {buttonLabel && (
           <a className="w-full flex justify-center" href="/create-vault">

@@ -1,5 +1,5 @@
 import { scrollToConteiner } from '@/modules/global/utils'
-import { Divider, Icon, Input } from '@/ui/components'
+import { Divider, Icon, Input, TextArea } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
@@ -85,6 +85,49 @@ export function UserDataForm() {
         })}
         error={formState.errors.tag?.message}
       />
+
+      <TextArea
+        className="col-span-ful min-h-[10rem] max-h-[10rem]"
+        label="User about (required)"
+        placeholder="Tell us a bit about yourselves"
+        {...register('userAbout', {
+          onChange(event) {
+            setUserData((prev) => ({ ...prev, userAbout: event.target.value }))
+          },
+        })}
+        maxLength={120}
+        error={formState.errors.userAbout?.message}
+      />
+
+      <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
+        label="Avatar Url (required)"
+        placeholder="Add your profile avatar url"
+        className="max-md:col-span-full"
+        {...register('avatarUrl', {
+          onChange(event) {
+            setUserData((prev) => ({ ...prev, avatarUrl: event.target.value }))
+          },
+        })}
+        error={formState.errors.avatarUrl?.message}
+      />
+
+      {/* 
+      <Input
+        inputVariant={'default'}
+        inputSize={'xl'}
+        label="User about (required)"
+        placeholder="Talk a bit about you"
+        className="max-md:col-span-full"
+        {...register('userAbout', {
+          onChange(event) {
+            setUserData((prev) => ({ ...prev, userAbout: event.target.value }))
+          },
+        })}
+        error={formState.errors.userAbout?.message}
+      /> */}
+
       <Divider />
 
       <div className="flex col-span-full gap-3">

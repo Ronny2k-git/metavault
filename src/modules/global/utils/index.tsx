@@ -70,6 +70,8 @@ const defaultDateFormatter = {
 }
 
 export function formatDate(date: Date | number) {
+  if (!date) return '0/00/0000'
+
   return defaultDateFormatter.function.format(date)
 }
 

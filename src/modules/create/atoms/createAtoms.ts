@@ -21,6 +21,8 @@ export const userFormAtom = atom<UserDataFormType>({
   telegram: '',
   twitter: '',
   tag: '',
+  avatarUrl: '',
+  userAbout: '',
 })
 
 export const confirmFormAtom = atom<ConfirmAndCreateFormType>({

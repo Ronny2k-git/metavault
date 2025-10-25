@@ -12,7 +12,7 @@ export function TextArea({ label, className, placeholder = '', error, ...props }
     <label className={twMerge(`relative flex flex-col`, className)}>
       <textarea
         placeholder={placeholder}
-        className={`peer bg-[#0a2278] min-h-[14rem] max-h-[14rem] pt-8 text-m text-gray-200 ${className} w-full px-4 rounded-3xl 
+        className={`peer bg-[#0a2278] w-full pt-8 text-m text-gray-200 ${className} w-full px-4 rounded-3xl 
         border outline-none ${error ? 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}
         placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-gray-300`}
         {...props}
