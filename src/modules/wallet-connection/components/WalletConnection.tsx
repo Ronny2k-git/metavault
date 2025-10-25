@@ -27,6 +27,7 @@ export default function WalletConnection() {
 
   return (
     <Modal
+      className="!min-h-[28rem] h-auto"
       title="Ecosystem"
       isOpen={open}
       onOpenChange={setOpen}

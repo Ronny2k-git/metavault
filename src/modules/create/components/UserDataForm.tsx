@@ -1,23 +1,32 @@
 import { scrollToConteiner } from '@/modules/global/utils'
-import { Divider, Icon, Input, TextArea } from '@/ui/components'
+import { Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
-import { userFormAtom, userFormValidAtom } from '../atoms/createAtoms'
-import type { UserDataFormType } from '../schemas/UserDataFormSchema'
-import { userDataFormSchema } from '../schemas/UserDataFormSchema'
-import { initialUserForm } from '../utils'
+import { reset } from 'viem/actions'
+import { userFormValidAtom, userProfiletFormAtom, userVaultFormAtom } from '../atoms/createAtoms'
+import type { UserProfileDataFormType } from '../schemas/userProfileDataFormSchema'
+import { userProfileDataFormSchema } from '../schemas/userProfileDataFormSchema'
+import type { UserVaultDataFormType } from '../schemas/UserVaultDataFormSchema'
+import { userVaultDataFormSchema } from '../schemas/UserVaultDataFormSchema'
+import { initialVaultUserForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
 
 export function UserDataForm() {
-  const [userData, setUserData] = useAtom(userFormAtom)
+  const [userData, setUserData] = useAtom(userVaultFormAtom)
+  const [userProfileData, setUserProfileData] = useAtom(userProfiletFormAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)
 
-  const { register, handleSubmit, reset, formState } = useForm<UserDataFormType>({
-    resolver: zodResolver(userDataFormSchema),
+  const vaultForm = useForm<UserVaultDataFormType>({
+    resolver: zodResolver(userVaultDataFormSchema),
     defaultValues: userData,
+  })
+
+  const profileForm = useForm<UserProfileDataFormType>({
+    resolver: zodResolver(userProfileDataFormSchema),
+    defaultValues: userProfileData,
   })
 
   const navigate = useNavigate({ from: '/create-vault' })
@@ -39,12 +48,12 @@ export function UserDataForm() {
         className="max-md:col-span-full"
         label="Discord Url"
         placeholder="Your discord url"
-        {...register('discord', {
+        {...vaultForm.register('discord', {
           onChange(event) {
             setUserData((prev) => ({ ...prev, discord: event.target.value }))
           },
         })}
-        error={formState.errors.discord?.message}
+        error={vaultForm.formState.errors.discord?.message}
       />
       <Input
         inputVariant={'default'}
@@ -52,12 +61,12 @@ export function UserDataForm() {
         label="Telegram Url"
         placeholder="Your telegram url"
         className="max-md:col-span-full"
-        {...register('telegram', {
+        {...vaultForm.register('telegram', {
           onChange(event) {
             setUserData((prev) => ({ ...prev, telegram: event.target.value }))
           },
         })}
-        error={formState.errors.telegram?.message}
+        error={vaultForm.formState.errors.telegram?.message}
       />
       <Input
         inputVariant={'default'}
@@ -65,12 +74,12 @@ export function UserDataForm() {
         label="Twitter Url"
         placeholder="Your Twitter url"
         className="max-md:col-span-full"
-        {...register('twitter', {
+        {...vaultForm.register('twitter', {
           onChange(event) {
             setUserData((prev) => ({ ...prev, twitter: event.target.value }))
           },
         })}
-        error={formState.errors.twitter?.message}
+        error={vaultForm.formState.errors.twitter?.message}
       />
       <Input
         inputVariant={'default'}
@@ -78,61 +87,15 @@ export function UserDataForm() {
         label="Tag (optional)"
         placeholder="Add your tag"
         className="max-md:col-span-full"
-        {...register('tag', {
+        {...vaultForm.register('tag', {
           onChange(event) {
             setUserData((prev) => ({ ...prev, tag: event.target.value }))
           },
         })}
-        error={formState.errors.tag?.message}
+        error={vaultForm.formState.errors.tag?.message}
       />
 
-      <div className="grid grid-cols-2 col-span-full gap-4.5">
-        <Divider />
-
-        <CreateFormHeading className="col-span-full" title="User Profile Data" icon={'help'} />
-
-        <TextArea
-          className="max-md:col-span-full min-h-[10rem] max-h-[10rem]"
-          label="User about (required)"
-          placeholder="Tell us a bit about yourselves"
-          {...register('userAbout', {
-            onChange(event) {
-              setUserData((prev) => ({ ...prev, userAbout: event.target.value }))
-            },
-          })}
-          maxLength={120}
-          error={formState.errors.userAbout?.message}
-        />
-
-        <div className="max-md:col-span-full flex justify-center flex-col gap-4.5">
-          <Input
-            inputVariant={'default'}
-            inputSize={'xl'}
-            label="Avatar Url (required)"
-            placeholder="Add your profile avatar url"
-            className="max-md:col-span-full"
-            {...register('avatarUrl', {
-              onChange(event) {
-                setUserData((prev) => ({ ...prev, avatarUrl: event.target.value }))
-              },
-            })}
-            error={formState.errors.avatarUrl?.message}
-          />
-          <Input
-            inputVariant={'default'}
-            inputSize={'xl'}
-            label="Web Site (optional)"
-            placeholder="Add your web site url"
-            className="max-md:col-span-full"
-            {...register('webSite', {
-              onChange(event) {
-                setUserData((prev) => ({ ...prev, webSite: event.target.value }))
-              },
-            })}
-            error={formState.errors.webSite?.message}
-          />
-        </div>
-      </div>
+      {/* <UserProfileForm errors={}  /> */}
 
       <Divider />
 
@@ -143,8 +106,8 @@ export function UserDataForm() {
           size={'md'}
           iconLeft={<Icon>backspace</Icon>}
           onClick={() => {
-            setUserData(initialUserForm)
-            reset(initialUserForm)
+            setUserData(initialVaultUserForm)
+            reset(initialVaultUserForm)
           }}
         >
           Reset fields
@@ -154,7 +117,7 @@ export function UserDataForm() {
           variant={'primary'}
           size={'md'}
           iconRight={<Icon>arrow_right_alt</Icon>}
-          onClick={handleSubmit(() => {
+          onClick={vaultForm.handleSubmit(() => {
             setUserFormValid(true)
             requestAnimationFrame(() => scrollToConteiner('tab-confirm-create'))
             navigate({ search: { tab: 'confirm-create' } })

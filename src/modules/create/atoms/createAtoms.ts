@@ -1,7 +1,8 @@
 import { atom } from 'jotai'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
-import type { UserDataFormType } from '../schemas/UserDataFormSchema'
+import type { UserVaultDataFormType } from '../schemas/UserVaultDataFormSchema'
 import type { VaultDataFormType } from '../schemas/VaultDataFormSchema'
+import type { UserProfileDataFormType } from '../schemas/userProfileDataFormSchema'
 
 export const vaultFormAtom = atom<VaultDataFormType>({
   network: '',
@@ -16,11 +17,14 @@ export const vaultFormAtom = atom<VaultDataFormType>({
   maxDeposit: '',
 })
 
-export const userFormAtom = atom<UserDataFormType>({
+export const userVaultFormAtom = atom<UserVaultDataFormType>({
   discord: '',
   telegram: '',
   twitter: '',
   tag: '',
+})
+
+export const userProfiletFormAtom = atom<UserProfileDataFormType>({
   avatarUrl: '',
   userAbout: '',
   webSite: '',
@@ -33,12 +37,14 @@ export const confirmFormAtom = atom<ConfirmAndCreateFormType>({
 
 export const combinedCreateDataAtom = atom((get) => {
   const vault = get(vaultFormAtom)
-  const user = get(userFormAtom)
+  const userVault = get(userVaultFormAtom)
+  const userProfile = get(userProfiletFormAtom)
   const confirm = get(confirmFormAtom)
 
   return {
     ...vault,
-    ...user,
+    ...userVault,
+    ...userProfile,
     ...confirm,
   }
 })

@@ -39,6 +39,7 @@ function CreateVault() {
     <div className="min-h-screen background px-4 flex flex-col gap-1 items-center text-white overflow-x-auto">
       <div className="max-w-4xl my-14 w-full">
         <WalletConnectionRequired />
+
         <Tabs
           icon={<Icon className="!text-4xl text-sky-300">keyboard_double_arrow_right</Icon>}
           variant={'blue'}

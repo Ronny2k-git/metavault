@@ -1,11 +1,11 @@
 import { BaseVaultCard } from '@/components'
 import { getStatus } from '@/modules/global/utils'
 import { useAtom } from 'jotai'
-import { confirmFormAtom, userFormAtom, vaultFormAtom } from '../../atoms/createAtoms'
+import { confirmFormAtom, userVaultFormAtom, vaultFormAtom } from '../../atoms/createAtoms'
 
 export function CardPreview() {
   const [vaultData] = useAtom(vaultFormAtom)
-  const [userData] = useAtom(userFormAtom)
+  const [userData] = useAtom(userVaultFormAtom)
   const [confirmData] = useAtom(confirmFormAtom)
 
   return (

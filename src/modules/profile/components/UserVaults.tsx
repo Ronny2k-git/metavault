@@ -72,9 +72,7 @@ export function UserVaults() {
           buttonLabel="Create Your Vault"
         />
       )}
-      {
-        //  TEST THE LOADING STATE LATER, BECAUSE NOW IT IS NOT WORKING.
-      }
+
       {isLoading ? (
         <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
           {Array.from({ length: 6 }).map((_, index) => (

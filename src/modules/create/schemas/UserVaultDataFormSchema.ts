@@ -1,18 +1,15 @@
 import z from 'zod'
 
-export const userDataFormSchema = z
+export const userVaultDataFormSchema = z
   .object({
     discord: z.string().url('Invalid Discord URL').or(z.literal('')).optional(),
     telegram: z.string().url('Invalid Telegram URL').or(z.literal('')).optional(),
     twitter: z.string().url('Invalid Twitter URL').or(z.literal('')).optional(),
     tag: z.string().optional(),
-    avatarUrl: z.string().nonempty({ message: 'Avatar url is required' }).url(),
-    userAbout: z.string().min(25, { message: 'Minimum of 25 words ' }).max(120, { message: 'Maximum of 120 words' }),
-    webSite: z.string().url('Invalid URL').or(z.literal('')).optional(),
   })
   .refine((data) => data.discord || data.telegram || data.twitter, {
     message: 'At least one social must be provided: discord, telegram or twitter',
     path: ['discord'],
   })
 
-export type UserDataFormType = z.infer<typeof userDataFormSchema>
+export type UserVaultDataFormType = z.infer<typeof userVaultDataFormSchema>

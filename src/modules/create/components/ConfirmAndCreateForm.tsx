@@ -57,7 +57,7 @@ export function ConfirmAndCreateForm() {
     setConfirmFormValid(true)
 
     // 2. Create a vault on the blockchain
-    const { creatorName, description, discord, telegram, tag, twitter, userAbout, avatarUrl, webSite, ...vaultData } =
+    const { creatorName, description, discord, telegram, tag, twitter, userAbout, webSite, avatarUrl, ...vaultData } =
       allFormData
     await create.createVault(vaultData as VaultContractData)
 

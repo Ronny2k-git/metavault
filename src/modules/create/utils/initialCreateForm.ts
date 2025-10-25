@@ -1,5 +1,6 @@
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
-import type { UserDataFormType } from '../schemas/UserDataFormSchema'
+import type { UserProfileDataFormType } from '../schemas/userProfileDataFormSchema'
+import type { UserVaultDataFormType } from '../schemas/UserVaultDataFormSchema'
 import type { VaultDataFormType } from '../schemas/VaultDataFormSchema'
 
 export const initialVaultForm: VaultDataFormType = {
@@ -15,11 +16,14 @@ export const initialVaultForm: VaultDataFormType = {
   maxDeposit: '',
 }
 
-export const initialUserForm: UserDataFormType = {
+export const initialVaultUserForm: UserVaultDataFormType = {
   discord: '',
   telegram: '',
   twitter: '',
   tag: '',
+}
+
+export const initialProfiletUserForm: UserProfileDataFormType = {
   avatarUrl: '',
   userAbout: '',
   webSite: '',
