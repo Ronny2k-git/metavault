@@ -1,3 +1,4 @@
+import { useGetUserProfileData } from '@/modules/global/hooks'
 import { scrollToConteiner } from '@/modules/global/utils'
 import { Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -5,19 +6,22 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
-import { reset } from 'viem/actions'
+import { useAccount } from 'wagmi'
 import { userFormValidAtom, userProfiletFormAtom, userVaultFormAtom } from '../atoms/createAtoms'
 import type { UserProfileDataFormType } from '../schemas/userProfileDataFormSchema'
 import { userProfileDataFormSchema } from '../schemas/userProfileDataFormSchema'
 import type { UserVaultDataFormType } from '../schemas/UserVaultDataFormSchema'
 import { userVaultDataFormSchema } from '../schemas/UserVaultDataFormSchema'
-import { initialVaultUserForm } from '../utils'
+import { initialProfiletUserForm, initialVaultUserForm } from '../utils'
 import { CreateFormHeading } from './subcomponents'
+import { UserProfileForm } from './subcomponents/UserProfileForm'
 
 export function UserDataForm() {
+  const { address } = useAccount()
   const [userData, setUserData] = useAtom(userVaultFormAtom)
-  const [userProfileData, setUserProfileData] = useAtom(userProfiletFormAtom)
+  const [userProfileDataAtom, setUserProfileDataAtom] = useAtom(userProfiletFormAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)
+  const { data: userProfileData = [] } = useGetUserProfileData(address!)
 
   const vaultForm = useForm<UserVaultDataFormType>({
     resolver: zodResolver(userVaultDataFormSchema),
@@ -26,7 +30,7 @@ export function UserDataForm() {
 
   const profileForm = useForm<UserProfileDataFormType>({
     resolver: zodResolver(userProfileDataFormSchema),
-    defaultValues: userProfileData,
+    defaultValues: userProfileDataAtom,
   })
 
   const navigate = useNavigate({ from: '/create-vault' })
@@ -95,7 +99,13 @@ export function UserDataForm() {
         error={vaultForm.formState.errors.tag?.message}
       />
 
-      {/* <UserProfileForm errors={}  /> */}
+      {!userProfileData[0]?.id && (
+        <UserProfileForm
+          error={profileForm.formState.errors}
+          register={profileForm.register}
+          setUserProfile={setUserProfileDataAtom}
+        />
+      )}
 
       <Divider />
 
@@ -107,7 +117,9 @@ export function UserDataForm() {
           iconLeft={<Icon>backspace</Icon>}
           onClick={() => {
             setUserData(initialVaultUserForm)
-            reset(initialVaultUserForm)
+            setUserProfileDataAtom(initialProfiletUserForm)
+            vaultForm.reset(initialVaultUserForm)
+            profileForm.reset(initialProfiletUserForm)
           }}
         >
           Reset fields
@@ -117,11 +129,17 @@ export function UserDataForm() {
           variant={'primary'}
           size={'md'}
           iconRight={<Icon>arrow_right_alt</Icon>}
-          onClick={vaultForm.handleSubmit(() => {
-            setUserFormValid(true)
-            requestAnimationFrame(() => scrollToConteiner('tab-confirm-create'))
-            navigate({ search: { tab: 'confirm-create' } })
-          })}
+          onClick={async () => {
+            // Verify if the connected wallet is already has an account profile.
+            const isProfileValid = !userProfileData[0]?.id ? await profileForm.trigger() : true
+            const isVaultValid = await vaultForm.trigger()
+
+            if (isProfileValid && isVaultValid) {
+              setUserFormValid(true)
+              requestAnimationFrame(() => scrollToConteiner('tab-confirm-create'))
+              navigate({ search: { tab: 'confirm-create' } })
+            }
+          }}
         >
           Move to confirm
         </Button>

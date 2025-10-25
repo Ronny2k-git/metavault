@@ -5,19 +5,23 @@ import { CreateFormHeading } from './CreateFormHeading'
 
 type UserProfileFormProps = {
   register: ReturnType<typeof useForm<UserProfileDataFormType>>['register']
-  errors: string
+  error: ReturnType<typeof useForm<UserProfileDataFormType>>['formState']['errors']
   setUserProfile: React.Dispatch<React.SetStateAction<UserProfileDataFormType>>
 }
 
-export function UserProfileForm({ register, errors, setUserProfile }: UserProfileFormProps) {
+export function UserProfileForm({ register, error, setUserProfile }: UserProfileFormProps) {
   return (
     <div className="grid grid-cols-2 col-span-full gap-4.5">
       <Divider />
-
-      <CreateFormHeading className="col-span-full" title="User Profile Data" icon={'help'} />
+      <CreateFormHeading
+        className="col-span-full"
+        title="User Profile Data"
+        icon={'help'}
+        subTitle="( Displayed only on your first vault creation )"
+      />
 
       <TextArea
-        className="max-md:col-span-full min-h-[10rem] max-h-[10rem]"
+        className="max-md:col-span-full min-h-[10rem] max-h-[11.5rem] md:max-h-[10rem]"
         label="User about (required)"
         placeholder="Tell us a bit about yourselves"
         {...register('userAbout', {
@@ -26,9 +30,8 @@ export function UserProfileForm({ register, errors, setUserProfile }: UserProfil
           },
         })}
         maxLength={120}
-        error={errors}
+        error={error.userAbout?.message}
       />
-
       <div className="max-md:col-span-full flex justify-center flex-col gap-4.5">
         <Input
           inputVariant={'default'}
@@ -41,7 +44,7 @@ export function UserProfileForm({ register, errors, setUserProfile }: UserProfil
               setUserProfile((prev) => ({ ...prev, avatarUrl: event.target.value }))
             },
           })}
-          error={errors}
+          error={error.avatarUrl?.message}
         />
         <Input
           inputVariant={'default'}
@@ -54,7 +57,7 @@ export function UserProfileForm({ register, errors, setUserProfile }: UserProfil
               setUserProfile((prev) => ({ ...prev, webSite: event.target.value }))
             },
           })}
-          error={errors}
+          error={error.webSite?.message}
         />
       </div>
     </div>

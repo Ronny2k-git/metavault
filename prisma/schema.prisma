@@ -34,9 +34,9 @@ model Vault {
 
 
 model User {
-  id            Int      @id @default(autoincrement())
+  id            Int     @id @default(autoincrement())
   about         String
   avatarUrl     String
-  webSite       String
-  
+  webSite       String?
+  userAddress   String  @unique
 }

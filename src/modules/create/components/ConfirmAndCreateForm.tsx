@@ -1,3 +1,4 @@
+import { useGetUserProfileData } from '@/modules/global/hooks'
 import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -10,6 +11,7 @@ import toast from 'react-hot-toast'
 import { useAccount } from 'wagmi'
 import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '../atoms/createAtoms'
 import { useCreateVault, useCreateVaultOnDb, useResetCreateForm } from '../hooks'
+import { useCreateUserProfileOnDb } from '../hooks/useCreateUserProfileOnDb'
 import type { VaultContractData } from '../schemas'
 import type { ConfirmAndCreateFormType } from '../schemas/ConfirmAndCreateFormSchema'
 import { confirmAndCreateFormSchema } from '../schemas/ConfirmAndCreateFormSchema'
@@ -17,6 +19,7 @@ import { initialConfirmForm } from '../utils'
 import { CardPreview, CreateFormHeading } from './subcomponents'
 
 export function ConfirmAndCreateForm() {
+  const { address } = useAccount()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [confirmData, setConfirmData] = useAtom(confirmFormAtom)
   const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
@@ -24,6 +27,8 @@ export function ConfirmAndCreateForm() {
 
   const account = useAccount()
   const createVaultOnDb = useCreateVaultOnDb()
+  const createUserProfile = useCreateUserProfileOnDb()
+  const { data: userProfileData = [] } = useGetUserProfileData(address!)
   const { resetAll } = useResetCreateForm()
   const allFormData = useAtomValue(combinedCreateDataAtom)
 
@@ -72,7 +77,21 @@ export function ConfirmAndCreateForm() {
       },
     })
 
-    // 4. Clean the form and all states and redirect from profile page.
+    // 4. Create the user profile
+    if (!userProfileData[0]?.id) {
+      await createUserProfile.mutateAsync({
+        data: {
+          data: {
+            avatarUrl,
+            userAbout,
+            webSite,
+          },
+          blockchainData: { userAddress: account.address },
+        },
+      })
+    }
+
+    // 5. Clean the form and all states and redirect from profile page.
     toast.success('Vault created successfully')
     resetAll()
     navigate({ from: '/profile' })
