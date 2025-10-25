@@ -1,4 +1,4 @@
-export const PROFILE_TABS = ['user-vaults', 'trades', 'test']
+export const PROFILE_TABS = ['user-vaults', 'trades', 'edit-profile']
 
 export const PROFILE_TABS_INFO = [
   {

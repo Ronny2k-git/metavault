@@ -5,6 +5,7 @@ import { abreviateAddress } from '@/modules/global/utils'
 import { Icon, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Tabs } from 'radix-ui'
+import { useEffect, useState } from 'react'
 import { FaWallet } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 import { EthereumConnectors, MoveConnectors, SolanaConnectors } from '../subcomponents'
@@ -12,14 +13,27 @@ import { EthereumConnectors, MoveConnectors, SolanaConnectors } from '../subcomp
 export default function WalletConnection() {
   const account = useAccount()
   const connectedWallet = account.address
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    if (connectedWallet) {
+      const timer = setTimeout(() => {
+        setOpen(false)
+      }, 1000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [connectedWallet])
 
   return (
     <Modal
       title="Ecosystem"
+      isOpen={open}
+      onOpenChange={setOpen}
       trigger={
         <div>
           <Button
-            className="w-42 hidden sm:flex"
+            className="w-full px-6 hidden sm:flex"
             size={'base'}
             variant={connectedWallet ? 'primary' : 'secondary'}
             iconLeft={<Icon>wallet</Icon>}

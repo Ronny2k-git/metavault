@@ -28,7 +28,7 @@ export function UserDataForm() {
 
       <CreateFormHeading
         className="col-span-full"
-        title="User Data"
+        title="User Vault Data"
         icon={'help'}
         subTitle="( At least one social must be provided )"
       />
@@ -86,47 +86,53 @@ export function UserDataForm() {
         error={formState.errors.tag?.message}
       />
 
-      <TextArea
-        className="col-span-ful min-h-[10rem] max-h-[10rem]"
-        label="User about (required)"
-        placeholder="Tell us a bit about yourselves"
-        {...register('userAbout', {
-          onChange(event) {
-            setUserData((prev) => ({ ...prev, userAbout: event.target.value }))
-          },
-        })}
-        maxLength={120}
-        error={formState.errors.userAbout?.message}
-      />
+      <div className="grid grid-cols-2 col-span-full gap-4.5">
+        <Divider />
 
-      <Input
-        inputVariant={'default'}
-        inputSize={'xl'}
-        label="Avatar Url (required)"
-        placeholder="Add your profile avatar url"
-        className="max-md:col-span-full"
-        {...register('avatarUrl', {
-          onChange(event) {
-            setUserData((prev) => ({ ...prev, avatarUrl: event.target.value }))
-          },
-        })}
-        error={formState.errors.avatarUrl?.message}
-      />
+        <CreateFormHeading className="col-span-full" title="User Profile Data" icon={'help'} />
 
-      {/* 
-      <Input
-        inputVariant={'default'}
-        inputSize={'xl'}
-        label="User about (required)"
-        placeholder="Talk a bit about you"
-        className="max-md:col-span-full"
-        {...register('userAbout', {
-          onChange(event) {
-            setUserData((prev) => ({ ...prev, userAbout: event.target.value }))
-          },
-        })}
-        error={formState.errors.userAbout?.message}
-      /> */}
+        <TextArea
+          className="max-md:col-span-full min-h-[10rem] max-h-[10rem]"
+          label="User about (required)"
+          placeholder="Tell us a bit about yourselves"
+          {...register('userAbout', {
+            onChange(event) {
+              setUserData((prev) => ({ ...prev, userAbout: event.target.value }))
+            },
+          })}
+          maxLength={120}
+          error={formState.errors.userAbout?.message}
+        />
+
+        <div className="max-md:col-span-full flex justify-center flex-col gap-4.5">
+          <Input
+            inputVariant={'default'}
+            inputSize={'xl'}
+            label="Avatar Url (required)"
+            placeholder="Add your profile avatar url"
+            className="max-md:col-span-full"
+            {...register('avatarUrl', {
+              onChange(event) {
+                setUserData((prev) => ({ ...prev, avatarUrl: event.target.value }))
+              },
+            })}
+            error={formState.errors.avatarUrl?.message}
+          />
+          <Input
+            inputVariant={'default'}
+            inputSize={'xl'}
+            label="Web Site (optional)"
+            placeholder="Add your web site url"
+            className="max-md:col-span-full"
+            {...register('webSite', {
+              onChange(event) {
+                setUserData((prev) => ({ ...prev, webSite: event.target.value }))
+              },
+            })}
+            error={formState.errors.webSite?.message}
+          />
+        </div>
+      </div>
 
       <Divider />
 

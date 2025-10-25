@@ -7,6 +7,7 @@ import { UserDataForm } from '@/modules/create/components/UserDataForm'
 import { CREATE_TAB_STEPS } from '@/modules/create/constants'
 import type { CreateTabSteps } from '@/modules/create/types'
 import { getCreateInfoSteps } from '@/modules/create/utils'
+import { WalletConnectionRequired } from '@/modules/global/components'
 import { Icon } from '@/ui/components'
 import { Tabs } from '@/ui/components/Tabs'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
@@ -37,6 +38,7 @@ function CreateVault() {
   return (
     <div className="min-h-screen background px-4 flex flex-col gap-1 items-center text-white overflow-x-auto">
       <div className="max-w-4xl my-14 w-full">
+        <WalletConnectionRequired />
         <Tabs
           icon={<Icon className="!text-4xl text-sky-300">keyboard_double_arrow_right</Icon>}
           variant={'blue'}

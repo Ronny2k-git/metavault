@@ -21,6 +21,8 @@ export const initialUserForm: UserDataFormType = {
   twitter: '',
   tag: '',
   avatarUrl: '',
+  userAbout: '',
+  webSite: '',
 }
 
 export const initialConfirmForm: ConfirmAndCreateFormType = {

@@ -45,7 +45,7 @@ function Profile() {
               content: <Trades />,
             },
             {
-              value: 'test',
+              value: 'edit-profile',
               content: 'test',
             },
           ]}

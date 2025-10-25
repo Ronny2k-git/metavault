@@ -9,7 +9,7 @@ datasource db {
 
 model Vault {
   id                 Int      @id @default(autoincrement())
-  address       String   
+  address            String   
   vaultName          String
   logo               String
   banner             String
@@ -30,4 +30,13 @@ model Vault {
   telegram           String?
   twitter            String?
   tag                String?
+}
+
+
+model User {
+  id            Int      @id @default(autoincrement())
+  about         String
+  avatarUrl     String
+  webSite       String
+  
 }

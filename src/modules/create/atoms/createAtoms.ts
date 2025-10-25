@@ -23,6 +23,7 @@ export const userFormAtom = atom<UserDataFormType>({
   tag: '',
   avatarUrl: '',
   userAbout: '',
+  webSite: '',
 })
 
 export const confirmFormAtom = atom<ConfirmAndCreateFormType>({

@@ -8,9 +8,10 @@ export const userDataFormSchema = z
     tag: z.string().optional(),
     avatarUrl: z.string().nonempty({ message: 'Avatar url is required' }).url(),
     userAbout: z.string().min(25, { message: 'Minimum of 25 words ' }).max(120, { message: 'Maximum of 120 words' }),
+    webSite: z.string().url('Invalid URL').or(z.literal('')).optional(),
   })
   .refine((data) => data.discord || data.telegram || data.twitter, {
-    message: 'At least one social must be provided',
+    message: 'At least one social must be provided: discord, telegram or twitter',
     path: ['discord'],
   })
 
