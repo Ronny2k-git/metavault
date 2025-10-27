@@ -65,7 +65,7 @@ export function UserVaults() {
       />
       {(!address || !filteredLiveVaults?.length) && !isLoading && (
         <EmptyBanner
-          className="mt-10"
+          className="mt-10 text-center"
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
           message="No Live Vaults found"
           subMessage="Please, check your filters or Connect your wallet"
@@ -124,7 +124,7 @@ export function UserVaults() {
       />
       {(!address || !filteredCompletedVaults?.length) && !isLoading && (
         <EmptyBanner
-          className="mt-10"
+          className="mt-10 text-center"
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
           message="No Completed Vaults found"
           subMessage="Please, check your filters or Connect your wallet"

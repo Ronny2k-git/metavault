@@ -22,7 +22,7 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
         <img
           src={connectorIcons[connector.id.toLowerCase()]}
           alt={`${connector.name}`}
-          className="rounded-full size-6 absolute left-2 bottom-2"
+          className="rounded-full size-7 absolute left-2 bottom-2"
         />
       )}
 

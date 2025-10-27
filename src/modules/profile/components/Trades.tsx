@@ -5,7 +5,7 @@ export function Trades() {
   return (
     <div className="h-full w-full flex flex-col items-center justify-center">
       <Divider />
-      <div className="flex flex-col w-full gap-8 sm:items-center my-5">
+      <div className="flex flex-col w-full gap-8 sm:items-center mb-5 mt-12">
         <h1 className="sm:text-4xl text-3xl text-center">
           Deposit or Withdraw <br /> <span className="sm:text-3xl text-2xl text-gray-300">(anytime, anywhere)</span>
         </h1>

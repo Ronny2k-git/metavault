@@ -1,6 +1,7 @@
 import type { CreateTabSteps } from '@/modules/create/types'
 import { useGetUserProfileData } from '@/modules/global/hooks'
 import { abreviateAddress } from '@/modules/global/utils'
+import { connectorIcons } from '@/modules/global/utils/connectorIcons'
 import { EditProfileForm, Trades, UserVaults } from '@/modules/profile/components'
 import { PROFILE_TABS, PROFILE_TABS_INFO } from '@/modules/profile/constants'
 import { Card, Divider, Icon } from '@/ui/components'
@@ -22,7 +23,7 @@ export const Route = createFileRoute('/profile')({
 })
 
 function Profile() {
-  const { address } = useAccount()
+  const { address, connector } = useAccount()
   const search = Route.useSearch()
   const navigate = useNavigate({ from: '/profile' })
   const { data: userProfileData } = useGetUserProfileData(address!)
@@ -49,7 +50,16 @@ function Profile() {
                 src={profileData?.avatarUrl || 'default-icon.webp'}
               />
               <div className="flex flex-col text-xl">
-                <h2 className="text-sm text-gray-300">Signed in as.</h2>
+                <div className="flex gap-2 items-center">
+                  <h2 className="text-sm text-gray-300">Signed in as.</h2>
+                  {connector && (
+                    <img
+                      src={connectorIcons[connector.id.toLowerCase()]}
+                      alt={`${connector.name}`}
+                      className="rounded-full size-6 left-2 bottom-2"
+                    />
+                  )}
+                </div>
                 {address && abreviateAddress(address)}
                 {!address && <span className="text-[16px]">Connect your wallet to see your profile data</span>}
               </div>
