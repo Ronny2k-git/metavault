@@ -57,7 +57,7 @@ export default function WalletConnection() {
             <Tabs.Trigger
               key={index}
               value={ecosystem}
-              className="data-[state=active]:bg-sky-600 py-2 px-4 rounded-xl hover:bg-sky-600 cursor-pointer"
+              className="data-[state=active]:bg-sky-600 py-2 px-4 rounded-xl hover:opacity-85 cursor-pointer"
             >
               {ecosystem}
             </Tabs.Trigger>
