@@ -1,5 +1,6 @@
 import { Dialog } from 'radix-ui'
 import { RiCloseLine } from 'react-icons/ri'
+import { Card } from './Card'
 
 export type ModalProps = {
   title: React.ReactNode
@@ -28,9 +29,9 @@ export function Modal({
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
         <Dialog.Content className={className} asChild>
-          <div
-            className="background-modal fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col 
-            h-auto w-full max-w-sm py-6 px-4 sm:px-6 rounded-xl text-white"
+          <Card
+            variant={'gradient'}
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm py-6 px-4 sm:px-6 rounded-xl"
           >
             <Dialog.Close>
               <RiCloseLine className="absolute size-6 top-4 right-4 cursor-pointer text-white" />
@@ -39,7 +40,7 @@ export function Modal({
             <Dialog.Title className="text-xl pr-8 mb-6">{title}</Dialog.Title>
             <Dialog.Description className="pr-8">{description}</Dialog.Description>
             {children}
-          </div>
+          </Card>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

@@ -15,6 +15,7 @@ export default function WalletConnection() {
   const connectedWallet = account.address
   const [open, setOpen] = useState(false)
 
+  // Close the modal when the user connects or disconnects their wallet.
   useEffect(() => {
     if (connectedWallet) {
       const timer = setTimeout(() => {
@@ -22,6 +23,8 @@ export default function WalletConnection() {
       }, 1000)
 
       return () => clearTimeout(timer)
+    } else {
+      setOpen(false)
     }
   }, [connectedWallet])
 

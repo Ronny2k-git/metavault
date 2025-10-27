@@ -8,7 +8,7 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   return (
-    <header className="page background flex flex-col items-center bg-center justify-center text-white">
+    <header className="page background py-10 flex flex-col items-center bg-center justify-center text-white">
       <img src={logo} className="h-[40vmin] min-h-52 animate-[spin_20s_linear_infinite]" alt="logo" />
       <div className="flex gap-2 mb-4 items-center">
         <img

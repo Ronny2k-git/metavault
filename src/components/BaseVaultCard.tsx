@@ -1,6 +1,7 @@
 import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
 import { formatDate, formatNumber } from '@/modules/global/utils'
+import { Card } from '@/ui/components'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
@@ -28,9 +29,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
   }
 
   return (
-    <div
-      className={`w-full relative lg:max-w-[20rem] ${data.status === 'live' ? 'background-vault-card' : 'bg-[#234adb]'}  border h-auto rounded-md border-cyan-400`}
-    >
+    <Card variant={`${data.status === 'live' ? 'basic2' : 'basic'}`} className={'relative lg:max-w-[20rem] rounded-md'}>
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
       </div>
@@ -113,6 +112,6 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </Collapsible.Content>
         </Collapsible.Root>
       </div>
-    </div>
+    </Card>
   )
 }
