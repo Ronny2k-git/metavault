@@ -1,10 +1,10 @@
 export function MoveConnectors() {
   return (
     <div className="flex flex-col gap-2.5">
-      <div className="flex max-sm:flex-col gap-2 sm:gap-6 mb-2 justify-between sm:items-center">
+      <div className="flex justify-between items-center mb-3.5">
         <h1 className="text-md">Move Connectors</h1>
-        <div className="text-sm flex items-center justify-center text-black bg-white rounded-full px-2">
-          {'Not connected'}
+        <div className="text-sm font-semibold h-7 w-40 flex items-center justify-center bg-black/15 rounded-full">
+          Balance: <p className="mx-2 text-sky-400">0 sepolia</p>
         </div>
       </div>
       <span className="text-gray-200 my-[0.8rem]">It's still not implemented</span>

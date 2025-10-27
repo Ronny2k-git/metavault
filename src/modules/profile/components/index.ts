@@ -1,3 +1,4 @@
+export * from './EditProfileForm'
 export * from './Trades'
 export * from './UserVaults'
 export * from './VaultCardSkeleton'

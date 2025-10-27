@@ -18,6 +18,14 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
         className,
       )}
     >
+      {connector && (
+        <img
+          src={connectorIcons[connector.id.toLowerCase()]}
+          alt={`${connector.name}`}
+          className="rounded-full size-6 absolute left-2 bottom-2"
+        />
+      )}
+
       <button className="absolute top-3 right-2 cursor-pointer hover:border-b hover:border-white" onClick={disconnect}>
         <Icon>logout</Icon>
       </button>
@@ -27,16 +35,7 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
           <img className="h-10 w-12" src="/chip.png" />
           <Icon className="mt-1">contactless</Icon>
         </div>
-        <span className="flex text-lg items-center gap-2">
-          {connector && (
-            <img
-              src={connectorIcons[connector.id.toLowerCase()]}
-              alt={`${connector.name}`}
-              className="rounded-full size-6"
-            />
-          )}
-          {address}
-        </span>
+        <span className="text-lg">{address}</span>
       </div>
       <div className="flex items-center gap-1 absolute bottom-2 right-2 ">
         <Icon>account_circle</Icon>

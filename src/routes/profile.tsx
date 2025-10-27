@@ -1,7 +1,7 @@
 import type { CreateTabSteps } from '@/modules/create/types'
 import { useGetUserProfileData } from '@/modules/global/hooks'
 import { abreviateAddress } from '@/modules/global/utils'
-import { Trades, UserVaults } from '@/modules/profile/components'
+import { EditProfileForm, Trades, UserVaults } from '@/modules/profile/components'
 import { PROFILE_TABS, PROFILE_TABS_INFO } from '@/modules/profile/constants'
 import { Card, Divider, Icon } from '@/ui/components'
 import { Tabs } from '@/ui/components/Tabs'
@@ -58,6 +58,7 @@ function Profile() {
         </Card>
 
         <Divider className="mb-12" />
+
         <Tabs
           variant={'default'}
           size={'md'}
@@ -78,7 +79,7 @@ function Profile() {
             },
             {
               value: 'edit-profile',
-              content: 'test',
+              content: <EditProfileForm />,
             },
           ]}
         />

@@ -1,24 +1,18 @@
-import { Divider, Input, TextArea } from '@/ui/components'
+import { Input, TextArea } from '@/ui/components'
 import type { useForm } from 'react-hook-form'
 import type { UserProfileDataFormType } from '../../schemas/userProfileDataFormSchema'
-import { CreateFormHeading } from './CreateFormHeading'
 
 type UserProfileFormProps = {
   register: ReturnType<typeof useForm<UserProfileDataFormType>>['register']
   error: ReturnType<typeof useForm<UserProfileDataFormType>>['formState']['errors']
   setUserProfile: React.Dispatch<React.SetStateAction<UserProfileDataFormType>>
+  heading?: React.ReactNode
 }
 
-export function UserProfileForm({ register, error, setUserProfile }: UserProfileFormProps) {
+export function UserProfileForm({ register, error, setUserProfile, heading }: UserProfileFormProps) {
   return (
     <div className="grid grid-cols-2 col-span-full gap-4.5">
-      <Divider />
-      <CreateFormHeading
-        className="col-span-full"
-        title="User Profile Data"
-        icon={'help'}
-        subTitle="( Displayed only on your first vault creation )"
-      />
+      {heading}
 
       <TextArea
         className="max-md:col-span-full min-h-[10rem] max-h-[11.5rem] md:max-h-[10rem]"

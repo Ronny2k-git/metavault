@@ -19,6 +19,7 @@ const buttonStyle = cva('w-full flex items-center justify-center cursor-pointer'
       tertiary: 'bg-gray-400 hover:bg-gray-500',
       white: 'bg-gray-100 hover:bg-gray-200 text-black',
       gradient: 'bg-gradient-to-r from-blue-500 to-cyan-600 shadow-2xs shadow-white  hover:to-cyan-700',
+      disabled: 'bg-sky-600 hover:bg-sky-700 cursor-not-allowed opacity-50 ',
     },
   },
   defaultVariants: {
@@ -31,11 +32,27 @@ interface ButtonProps extends ComponentPropsWithRef<'button'>, VariantProps<type
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
   className?: string
+  disabled?: boolean
 }
 
-export function Button({ size, variant = 'primary', iconLeft, iconRight, children, className, ...props }: ButtonProps) {
+export function Button({
+  size,
+  variant = 'primary',
+  iconLeft,
+  iconRight,
+  disabled,
+  children,
+  className,
+  ...props
+}: ButtonProps) {
+  const effectiveVariant = disabled ? 'disabled' : variant
+
   return (
-    <button className={twMerge(buttonStyle({ variant, size }), className)} {...props}>
+    <button
+      className={twMerge(buttonStyle({ variant: effectiveVariant, size }), className)}
+      disabled={disabled}
+      {...props}
+    >
       {iconLeft && <div className="flex mr-2">{iconLeft}</div>}
       {children}
       {iconRight && <div className="flex ml-2">{iconRight}</div>}

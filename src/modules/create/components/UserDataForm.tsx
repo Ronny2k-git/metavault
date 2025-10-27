@@ -101,6 +101,14 @@ export function UserDataForm() {
 
       {!userProfileData[0]?.id && (
         <UserProfileForm
+          heading={
+            <CreateFormHeading
+              className="col-span-full"
+              title="User Profile Data"
+              icon={'help'}
+              subTitle="( Displayed only on your first vault creation )"
+            />
+          }
           error={profileForm.formState.errors}
           register={profileForm.register}
           setUserProfile={setUserProfileDataAtom}
