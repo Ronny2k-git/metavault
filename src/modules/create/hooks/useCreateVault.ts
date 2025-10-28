@@ -33,10 +33,10 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
   const chainId = useChainId()
   const steps = useSteps(initialCreateSteps)
 
-  const createVault = async (data: VaultContractData) => {
+  const createVault = async (data: VaultContractData): Promise<string | undefined> => {
     const configParams: ContractParams = {
       abi: vaultAbi,
-      address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3',
+      address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3', // Contract address
       functionName: 'createVault',
       args: [
         data.assetToken,
@@ -64,6 +64,7 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
       steps.update({ id: 'simulation', label: 'Simulating Contract', status: 'pending' })
       await new Promise((resolve) => setTimeout(resolve, 2_000))
       const simulation = await simulateContract(wagmiAppConfig, configParams)
+      const newContractAddress = simulation.result
       steps.update({ id: 'simulation', label: 'Simulated Successfully', status: 'success' })
 
       // 2. Wait for user confirm the transaction
@@ -80,6 +81,8 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
       steps.update({ id: 'confirm-create', label: 'Vault Created!', status: 'success' })
       await new Promise((resolve) => setTimeout(resolve, 1_000))
       onSuccess?.()
+
+      return newContractAddress
     } catch (error) {
       await new Promise((resolve) => setTimeout(resolve, 1_000))
       console.error('Error creating:', error)

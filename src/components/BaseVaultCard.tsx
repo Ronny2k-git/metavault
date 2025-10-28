@@ -1,7 +1,7 @@
 import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import type { vaultStatus } from '@/modules/global/types'
 import { formatDate, formatNumber } from '@/modules/global/utils'
-import { Card } from '@/ui/components'
+import { Card, Icon } from '@/ui/components'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
@@ -15,6 +15,7 @@ interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> 
   discordIcon?: React.ReactNode
   telegramIcon?: React.ReactNode
   twitterIcon?: React.ReactNode
+  address?: string
   children?: React.ReactNode
 }
 
@@ -71,26 +72,35 @@ export function BaseVaultCard(data: BaseVaultProps) {
       </div>
 
       <div className="flex flex-col my-4 mx-2 gap-0.5">
-        <div className="flex font-SpaceGrotesk justify-between">
+        <div className="flex justify-between">
           <h3>Creator</h3>
           <div className="text-gray-300">{data.creatorName || 'unnamed'}</div>
         </div>
-        <div className="flex font-SpaceGrotesk justify-between">
+        <div className="flex justify-between">
           <h3>Min dep per wallet</h3>
           <div className="text-gray-300">{data.minDeposit || 0}</div>
         </div>
-        <div className="flex font-SpaceGrotesk justify-between">
+        <div className="flex justify-between">
           <h3>Max dep per wallet</h3>
           <div className="text-gray-300">{formatNumber(Number(data.maxDeposit)) || 0}</div>
         </div>
-        <div className="flex font-SpaceGrotesk justify-between">
+        <div className="flex justify-between">
           <h3>Start Date</h3>
           <div className="text-gray-300">{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
         </div>
-        <div className="flex font-SpaceGrotesk justify-between">
+        <div className="flex justify-between">
           <h3>End Date</h3>
           <div className="text-gray-300">{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
         </div>
+
+        {data.address && (
+          <div className="flex justify-between">
+            <h3>View Vault</h3>
+            <a href={`https://sepolia.etherscan.io/address/${data.address}`}>
+              <Icon className="mt-1 hover:border-b-1 text-gray-300">arrow_circle_right</Icon>
+            </a>
+          </div>
+        )}
 
         {data.children}
       </div>

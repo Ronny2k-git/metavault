@@ -96,7 +96,7 @@ export function EditProfileForm() {
             <Input
               inputVariant={'default'}
               inputSize={'xl'}
-              label="Your wallet address"
+              label="Your wallet address (required)"
               placeholder="Change your wallet address"
               className="max-md:col-span-full"
               error={editProfileForm.formState.errors.address?.message}

@@ -75,14 +75,19 @@ export function ConfirmAndCreateForm() {
       address: userAddress,
       ...vaultData
     } = allFormData
-    await create.createVault(vaultData as VaultContractData)
+    const tx = await create.createVault(vaultData as VaultContractData)
+
+    if (!tx) {
+      console.error('Failed to get contract address')
+      return
+    }
 
     // 3. Save the vault data on the database
     await createVaultOnDb.mutateAsync({
       data: {
         data: allFormData,
         blockchainData: {
-          address: '0x...............',
+          address: tx,
           userAddress: account.address,
         },
       },

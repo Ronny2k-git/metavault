@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
+import { VaulRowSkeleton } from './VaultRowSkeleton'
 
 export function UserVaults() {
   const { address } = useAccount()
@@ -101,9 +102,8 @@ export function UserVaults() {
                 startDate: String(vault.startDate),
                 endDate: String(vault.endDate),
               })}
-            >
-              Countdown will be stay here
-            </BaseVaultCard>
+              address={vault.address}
+            ></BaseVaultCard>
           ))}
         </div>
       )}
@@ -132,7 +132,11 @@ export function UserVaults() {
         />
       )}
       {isLoading ? (
-        <div>Loading ...</div>
+        <div className="flex flex-col gap-2 my-8 overflow-x-auto p-4">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <VaulRowSkeleton key={index} />
+          ))}
+        </div>
       ) : filteredCompletedVaults?.length ? (
         <div className="w-full overflow-x-auto custom-scrollbar mt-10" style={{ paddingBottom: '8px' }}>
           <table className="w-full min-w-[46rem]">
