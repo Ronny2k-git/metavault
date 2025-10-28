@@ -41,14 +41,12 @@ export function EditProfileForm() {
       },
     })
 
-    // 2.Show a message em reload the page after one second.
+    // 2.Show a message and reload the page after one second.
     toast.success('Profile updated successfully')
     setTimeout(() => {
       window.location.reload()
     }, 1000)
   }
-
-  console.log(userProfileData)
 
   return (
     <div className="grid grid-cols-2 col-span-full gap-4.5">

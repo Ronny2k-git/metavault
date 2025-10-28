@@ -1,16 +1,17 @@
 'use client'
 
 import { ECOSYSTEMS } from '@/modules/global/constants'
-import { abreviateAddress } from '@/modules/global/utils'
-import { Icon, Modal } from '@/ui/components'
-import { Button } from '@/ui/components/Button'
+import { Modal } from '@/ui/components'
 import { Tabs } from 'radix-ui'
 import { useEffect, useState } from 'react'
-import { FaWallet } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 import { EthereumConnectors, MoveConnectors, SolanaConnectors } from '../subcomponents'
 
-export default function WalletConnection() {
+type WalletConnectionProps = {
+  trigger?: React.ReactNode
+}
+
+export default function WalletConnection({ trigger }: WalletConnectionProps) {
   const account = useAccount()
   const connectedWallet = account.address
   const [open, setOpen] = useState(false)
@@ -29,35 +30,14 @@ export default function WalletConnection() {
   }, [connectedWallet])
 
   return (
-    <Modal
-      className="min-h-[28rem] h-auto"
-      title="Ecosystem"
-      isOpen={open}
-      onOpenChange={setOpen}
-      trigger={
-        <div>
-          <Button
-            className="w-full px-6 hidden sm:flex"
-            size={'base'}
-            variant={connectedWallet ? 'primary' : 'secondary'}
-            iconLeft={<Icon>wallet</Icon>}
-          >
-            {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
-          </Button>
-          <FaWallet
-            className="sm:hidden size-5 cursor-pointer hover:bg-gray-400 rounded-sm"
-            color={connectedWallet ? 'cyan' : 'gray'}
-          />
-        </div>
-      }
-    >
+    <Modal className="min-h-[28rem] h-auto" title="Ecosystem" isOpen={open} onOpenChange={setOpen} trigger={trigger}>
       <Tabs.Root defaultValue="ethereum">
         <Tabs.List className="flex gap-4">
           {ECOSYSTEMS.map((ecosystem, index) => (
             <Tabs.Trigger
               key={index}
               value={ecosystem}
-              className="data-[state=active]:bg-sky-600 py-2 px-4 rounded-xl hover:opacity-85 cursor-pointer"
+              className="data-[state=active]:bg-sky-600 data-[state=active]:border-b-2 text-sm shadow-white py-2 px-4 rounded-2xl hover:opacity-85 cursor-pointer"
             >
               {ecosystem}
             </Tabs.Trigger>
