@@ -9,7 +9,7 @@ const inputStyle = cva(
   {
     variants: {
       variant: {
-        error: 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0',
+        error: 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0',
         default: 'placeholder:text-gray-300',
       },
       size: {

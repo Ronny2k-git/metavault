@@ -110,7 +110,7 @@ export function VaultDataForm() {
         <div className="flex flex-col relative">
           <select
             className={`bg-[#0a2278] h-12 w-full px-6 rounded-3xl text-gray-300 outline-none
-          ${networError ? 'shadow-[0_0_5px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
+          ${networError ? 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
             {...register('network', {
               onChange(event) {
                 setVaultData((prev) => ({ ...prev, network: event.target.value }))

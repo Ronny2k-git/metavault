@@ -7,7 +7,7 @@ export function WalletConnectionRequired() {
   const account = useAccount()
 
   return (
-    <Modal title="" className="flex flex-col" isOpen={!account.address}>
+    <Modal title="" variant={'gradient'} className="flex flex-col" isOpen={!account.address}>
       {/* Animated icon */}
       <div className="flex items-center justify-center mb-6">
         <div className="bg-sky-500/10 p-6 rounded-full border border-sky-400/30 animate-pulse">
@@ -15,7 +15,7 @@ export function WalletConnectionRequired() {
         </div>
       </div>
       {/* Primary text */}
-      <h2 className="text-xl text-center mb-2">Connect Your Wallet</h2>
+      <h2 className="text-xl text-center mb-2 text-white">Connect Your Wallet</h2>
       <p className="text-gray-300 text-md text-center mb-8">
         To create a new vault, you first need to connect your wallet. This ensures your assets and profile are linked
         securely.

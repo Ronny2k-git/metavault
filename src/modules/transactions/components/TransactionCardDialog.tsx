@@ -15,7 +15,14 @@ export function TransactionCardDialog({
   description,
 }: TransactionCardProps) {
   return (
-    <Modal title={title} isOpen={isOpen} onOpenChange={onOpenChange} className={className} description={description}>
+    <Modal
+      title={title}
+      variant={'gradient'}
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      className={className}
+      description={description}
+    >
       <hr className="text-sky-700 border-1 mb-6" />
       {children}
     </Modal>

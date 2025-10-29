@@ -1,10 +1,15 @@
+import type { VariantProps } from 'class-variance-authority'
 import { Dialog } from 'radix-ui'
 import { RiCloseLine } from 'react-icons/ri'
+import type { cardStyle } from './Card'
 import { Card } from './Card'
+
+type cardVariants = VariantProps<typeof cardStyle>
 
 export type ModalProps = {
   title: React.ReactNode
   description?: React.ReactNode
+  variant?: cardVariants['variant']
   trigger?: React.ReactNode
   className?: string
   children?: React.ReactNode
@@ -19,6 +24,7 @@ export function Modal({
   onOpenChange,
   title,
   description,
+  variant,
   trigger,
   className,
   children,
@@ -30,7 +36,7 @@ export function Modal({
         <Dialog.Overlay className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
         <Dialog.Content className={className} asChild>
           <Card
-            variant={'gradient'}
+            variant={variant}
             className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-sm py-6 px-4 sm:px-6 rounded-xl"
           >
             <Dialog.Close>

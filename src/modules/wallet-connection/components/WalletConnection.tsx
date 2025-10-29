@@ -30,7 +30,14 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
   }, [connectedWallet])
 
   return (
-    <Modal className="min-h-[28rem] h-auto" title="Ecosystem" isOpen={open} onOpenChange={setOpen} trigger={trigger}>
+    <Modal
+      className="min-h-[28rem] h-auto"
+      variant={'gradient'}
+      title="Ecosystem"
+      isOpen={open}
+      onOpenChange={setOpen}
+      trigger={trigger}
+    >
       <Tabs.Root defaultValue="ethereum">
         <Tabs.List className="flex gap-4">
           {ECOSYSTEMS.map((ecosystem, index) => (
