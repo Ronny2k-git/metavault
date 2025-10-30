@@ -43,6 +43,28 @@ html {
   background: linear-gradient(50deg, #0d2240, #054386, #0a2987, #223fb0, #213895);
 }
 
+.background-image {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-image: url('/background.png');
+  background-position: center;
+}
+
+.background-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-image > * {
+  position: relative;
+  z-index: 1;
+}
+
 .background-vault-row {
   background: linear-gradient(45deg, #0b1e3a, hsl(227, 86%, 37%));
 }
