@@ -29,7 +29,7 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
     variant: {
       blue: 'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#2960f7,#000d5f)] data-[state=active]:hover:before:brightness-90',
       default:
-        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0180f4,#000d8f)] data-[state=active]:hover:before:brightness-90',
+        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0180f4,#000d7f)] data-[state=active]:hover:before:brightness-90',
     },
     size: {
       default: 'py-4 before:rounded-t-xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
