@@ -1,6 +1,5 @@
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
-import logo from '../logo.svg'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -9,8 +8,8 @@ export const Route = createFileRoute('/')({
 function HomePage() {
   return (
     <header className="page background-image opacity- bg-center py-10 flex flex-col items-center justify-center text-white">
-      <img src={logo} className="h-[40vmin] min-h-52 animate-[spin_20s_linear_infinite]" alt="logo" />
-      <div className="flex gap-2 mb-4 items-center">
+      <img src={'/logo5122.png'} className="h-[36vmin] min-h-52 animate-[spin_20s_linear_infinite]" alt="logo" />
+      <div className="flex gap-2 mb-4 mt-4 items-center">
         <img
           className="size-12 bg-cover bg-center rounded-full animate-[spin_10s_linear_infinite]"
           src={'/icon.png'}
