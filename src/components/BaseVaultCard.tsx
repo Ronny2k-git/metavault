@@ -34,6 +34,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
       </div>
+
       <img
         className="rounded-md mb-2 h-[17rem] w-full object-cover"
         src={isValidUrl(data.banner) ? data.banner : '/default-banner.jpg'}
@@ -97,7 +98,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <div className="flex justify-between">
             <h3>View Vault</h3>
             <a href={`https://sepolia.etherscan.io/address/${data.address}`}>
-              <Icon className="mt-1 hover:border-b-1 text-gray-300">arrow_circle_right</Icon>
+              <Icon className="mt-1 hover:border-b-1 text-sky-300">eye_tracking</Icon>
             </a>
           </div>
         )}
@@ -108,14 +109,14 @@ export function BaseVaultCard(data: BaseVaultProps) {
         <Collapsible.Root>
           <Collapsible.Trigger className="group w-full" asChild>
             <button className="relative p-1 mt-2 text-sm w-full bg-sky-600 hover:bg-sky-500  rounded-full cursor-pointer">
-              <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 right-4 top-1 size-5" />
+              <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1/2 -translate-y-1/2 size-5" />
               Description
-              <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1 size-5" />
+              <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 right-4 top-1/2 -translate-y-1/2 size-5" />
             </button>
           </Collapsible.Trigger>
           <Collapsible.Content className="w-full mt-3 absolute z-1">
             <div
-              className={`${data.status === 'live' ? 'bg-[#0a2278]' : 'bg-[#234adb]'} py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300`}
+              className={`${data.status === 'live' ? 'bg-[#0e3ad8]' : 'bg-[#234adb]'} py-2 px-3 min-h-16 text-md break-all rounded-md text-gray-300 border border-cyan-300`}
             >
               <span className="text-gray-300">{data.description}</span>
             </div>

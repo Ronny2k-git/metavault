@@ -162,7 +162,7 @@ export function UserVaults() {
                   minDeposit={vault.minDeposit}
                   maxDeposit={formatNumber(Number(vault.maxDeposit))}
                   endDate={formatDate(Number(vault.endDate))}
-                  tx="0x1896caaf59a5ab0de34af09d79f233683fb70dff818bc5dc87e60220adb22ddb"
+                  tx={vault.address}
                   status={getStatus({
                     startDate: String(vault.startDate),
                     endDate: String(vault.endDate),

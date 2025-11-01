@@ -3,7 +3,7 @@ import {
   confirmFormAtom,
   confirmFormValidAtom,
   userFormValidAtom,
-  userProfiletFormAtom,
+  userProfileFormAtom,
   userVaultFormAtom,
   vaultFormAtom,
   vaultFormValidAtom,
@@ -13,7 +13,7 @@ import { initialConfirmForm, initialProfiletUserForm, initialVaultForm, initialV
 export function useResetCreateForm() {
   const [, setVaultData] = useAtom(vaultFormAtom)
   const [, setVaultUserData] = useAtom(userVaultFormAtom)
-  const [, setProfileUserData] = useAtom(userProfiletFormAtom)
+  const [, setProfileUserData] = useAtom(userProfileFormAtom)
   const [, setConfirmData] = useAtom(confirmFormAtom)
   const [, setVaultFormValid] = useAtom(vaultFormValidAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)

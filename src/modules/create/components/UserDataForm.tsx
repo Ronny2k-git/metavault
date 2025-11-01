@@ -7,7 +7,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
-import { userFormValidAtom, userProfiletFormAtom, userVaultFormAtom } from '../atoms/createAtoms'
+import { userFormValidAtom, userProfileFormAtom, userVaultFormAtom } from '../atoms/createAtoms'
 import type { UserProfileDataFormType } from '../schemas/userProfileDataFormSchema'
 import { userProfileDataFormSchema } from '../schemas/userProfileDataFormSchema'
 import type { UserVaultDataFormType } from '../schemas/UserVaultDataFormSchema'
@@ -19,7 +19,7 @@ import { UserProfileForm } from './subcomponents/UserProfileForm'
 export function UserDataForm() {
   const { address } = useAccount()
   const [userData, setUserData] = useAtom(userVaultFormAtom)
-  const [userProfileDataAtom, setUserProfileDataAtom] = useAtom(userProfiletFormAtom)
+  const [userProfileDataAtom, setUserProfileDataAtom] = useAtom(userProfileFormAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)
   const { data: userProfileData = [] } = useGetUserProfileData(address!)
 

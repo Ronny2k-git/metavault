@@ -32,7 +32,7 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
       <td align="center">{data.maxDeposit}</td>
       <td align="center">{data.endDate}</td>
       <td align="center">
-        <a href={`https://sepolia.etherscan.io/tx/${data.tx}`}>
+        <a href={`https://sepolia.etherscan.io/address/${data.tx}`}>
           <Button className="max-w-16 mx-4" size="xs">
             view
           </Button>

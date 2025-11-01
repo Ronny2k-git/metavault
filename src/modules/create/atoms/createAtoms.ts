@@ -24,10 +24,11 @@ export const userVaultFormAtom = atom<UserVaultDataFormType>({
   tag: '',
 })
 
-export const userProfiletFormAtom = atom<UserProfileDataFormType>({
+export const userProfileFormAtom = atom<UserProfileDataFormType>({
   avatarUrl: '',
   userAbout: '',
   webSite: '',
+  address: '',
 })
 
 export const confirmFormAtom = atom<ConfirmAndCreateFormType>({
@@ -38,7 +39,7 @@ export const confirmFormAtom = atom<ConfirmAndCreateFormType>({
 export const combinedCreateDataAtom = atom((get) => {
   const vault = get(vaultFormAtom)
   const userVault = get(userVaultFormAtom)
-  const userProfile = get(userProfiletFormAtom)
+  const userProfile = get(userProfileFormAtom)
   const confirm = get(confirmFormAtom)
 
   return {

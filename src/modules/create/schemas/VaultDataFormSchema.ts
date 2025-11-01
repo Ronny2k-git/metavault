@@ -7,7 +7,10 @@ export const vaultDataFormSchema = z.object({
   banner: z.string().nonempty({ message: 'Banner is required' }),
   creatorName: z.string().nonempty({ message: 'Creator name is required' }),
   description: z.string().min(50, { message: 'Minimum of 50 words ' }).max(120, { message: 'Maximum of 120 words' }),
-  assetToken: z.string().nonempty({ message: 'Asset token is required' }),
+  assetToken: z
+    .string()
+    .nonempty({ message: 'Asset token is required' })
+    .regex(/^0x[a-fA-F0-9]{40}$/, { message: 'Invalid Ethereum address format' }),
   salt: z
     .string()
     .nonempty({ message: 'Salt is required' })
