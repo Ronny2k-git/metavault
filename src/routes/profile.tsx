@@ -46,7 +46,7 @@ function Profile() {
             </div>
             <div className="bg-black/30 flex max-md:w-full items-center px-4 py-2 gap-4 rounded-3xl">
               <img
-                className="min-h-13 min-w-13 max-h-13 max-w-13 rounded-full"
+                className="min-h-13 min-w-13 object-cover max-h-13 max-w-13 rounded-full"
                 src={profileData?.avatarUrl || 'default-icon.webp'}
               />
               <div className="flex flex-col text-xl">

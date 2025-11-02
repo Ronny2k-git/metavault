@@ -30,7 +30,7 @@ export function UserVaults() {
 
   const filteredLiveVaults = createdLiveVaults?.filter((vault) => {
     return (
-      vault.address.toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase()) ||
+      vault.address.toLocaleLowerCase() === searchLiveDebounce.trim().toLocaleLowerCase() ||
       vault.vaultName.toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase()) ||
       vault.creatorName.toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase()) ||
       getChainName(vault.chainId).toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase())
@@ -39,7 +39,7 @@ export function UserVaults() {
 
   const filteredCompletedVaults = createdCompletedVaults?.filter((vault) => {
     return (
-      vault.address.toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase()) ||
+      vault.address.toLocaleLowerCase() === searchCompletedDebounce.trim().toLocaleLowerCase() ||
       vault.vaultName.toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase()) ||
       vault.creatorName.toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase()) ||
       getChainName(vault.chainId).toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase())
