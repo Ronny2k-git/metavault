@@ -38,30 +38,31 @@ function Profile() {
         <Card className="h-auto border-0 shadow-2xs rounded-3xl my-10 px-4 py-4" variant={'basic2'}>
           <div className={'w-full flex gap-4 md:gap-8 max-md:flex-col justify-between '}>
             <div className="flex items-center gap-4 ml-2">
-              <Icon className="!text-[3.5rem]">account_circle</Icon>
+              <img
+                className="min-h-13 min-w-13 border-2 border-blue-700 object-cover max-h-13 max-w-13 rounded-full"
+                src={profileData?.avatarUrl || 'default-icon.webp'}
+              />
               <div className="flex flex-col">
                 <h1 className="text-3xl">Your Profile</h1>
                 <h2 className="text-sm text-gray-300">Explore your vaults, make trades and edit your profile.</h2>
               </div>
             </div>
-            <div className="bg-black/30 flex max-md:w-full items-center px-4 py-2 gap-4 rounded-3xl">
-              <img
-                className="min-h-13 min-w-13 object-cover max-h-13 max-w-13 rounded-full"
-                src={profileData?.avatarUrl || 'default-icon.webp'}
-              />
-              <div className="flex flex-col text-xl">
+            <div className="bg-black/30 flex max-md:w-full items-center px-4 py-2 gap-2 rounded-3xl">
+              {address && connector ? (
+                <img
+                  src={connectorIcons[connector.id.toLowerCase()]}
+                  alt={`${connector.name}`}
+                  className="rounded-full size-10"
+                />
+              ) : (
+                <Icon className="!text-4xl">wallet</Icon>
+              )}
+              <div className="flex flex-col text-lg">
                 <div className="flex gap-2 items-center">
-                  <h2 className="text-sm text-gray-300">Signed in as.</h2>
-                  {connector && (
-                    <img
-                      src={connectorIcons[connector.id.toLowerCase()]}
-                      alt={`${connector.name}`}
-                      className="rounded-full size-6 left-2 bottom-2"
-                    />
-                  )}
+                  <h2 className="text-sm text-gray-300">{!address ? 'Connect wallet' : 'Signed in as'}</h2>
                 </div>
                 {address && abreviateAddress(address)}
-                {!address && <span className="text-[16px]">Connect your wallet to see your profile data</span>}
+                {!address && <span className="text-sm">Connect your wallet to see your profile data</span>}
               </div>
             </div>
           </div>

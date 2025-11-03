@@ -8,6 +8,15 @@ interface CreateVaultOnDbProps {
   blockchainData: { address: string; userAddress: string }
 }
 
+{
+  /*
+  * Tanstack-start uses an internal fetch to make the calls. In this case, it's not necessary
+  to manually create routes, for example: src/api/createVaultOnDb. You just create the function with
+  createServerFn and call this function on the client with userServerFn or with useMutation or useQuery,
+  somenthing like that.
+  */
+}
+
 export const createVaultOnDb = createServerFn({
   method: 'POST',
 })

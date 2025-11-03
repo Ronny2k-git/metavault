@@ -18,7 +18,7 @@ function HomePage() {
         <h1 className="text-5xl">Meta Vault</h1>
       </div>
       <div className="flex flex-col items-center gap-4">
-        <h2 className="text-2xl">Decentralized. Secure. Yours.</h2>
+        <h2 className="text-2xl text-center">Decentralized. Secure. Yours.</h2>
         <h3 className="text-xl text-gray-200 text-center">Create your vault and secure your crypto today.</h3>
       </div>
       <Link className="flex max-w-[28rem] w-full mt-4" to="/create-vault">
