@@ -70,3 +70,16 @@ html {
 .background-vault-row {
   background: linear-gradient(45deg, #0b1e3a, hsl(227, 86%, 37%));
 }
+
+@layer utilities {
+  .no-spinner::-webkit-inner-spin-button,
+  .no-spinner::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .no-spinner {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+}

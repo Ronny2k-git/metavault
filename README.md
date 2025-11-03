@@ -2,7 +2,7 @@
 
 ### In the **tantack start framework** **it's neither necessary nor possible to create a route.ts inside SRC/API** just create a folder inside src only by **organization** called: server, for example:
 
-Tanstack-start uses an internal fetch to make the calls. In this case, it's not necessary to manually create routes, for example: src/api/createVaultOnDb. You just create the function with `createServerFn` and call this function on the client with `userServerFn`, `useMutation`, `useQuery` or somenthing like that.
+Tanstack-start uses an internal fetch to make the calls. In this case, it's not necessary to manually create routes, for example: src/api/createVaultOnDb. You can just create the function with `createServerFn` and call this function on the client with `userServerFn`, `useMutation`, `useQuery` or somenthing like that.
 
 ## 1. Create data on the database
 

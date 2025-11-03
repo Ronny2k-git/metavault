@@ -5,7 +5,7 @@ import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const inputStyle = cva(
-  'peer w-full bg-[#0a2278] pt-4 border outline-none border-transparent placeholder:opacity-0 focus:placeholder:opacity-100',
+  'peer no-spinner w-full bg-[#0a2278] pt-4 border outline-none border-transparent placeholder:opacity-0 focus:placeholder:opacity-100',
   {
     variants: {
       variant: {

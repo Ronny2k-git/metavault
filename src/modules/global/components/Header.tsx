@@ -25,7 +25,7 @@ export default function Header() {
                 className: 'border-b-2 border-white',
               }}
             >
-              <div className="hover:bg-blue-900 flex px-4 h-full items-center gap-1">
+              <div className="hover:bg-blue-800/70 flex px-4 h-full items-center gap-1">
                 <Icon>{route.icon}</Icon>
                 {currentPath === route.path && <span className="sm:hidden">{route.label}</span>}
                 <span className="max-sm:hidden">{route.label}</span>
