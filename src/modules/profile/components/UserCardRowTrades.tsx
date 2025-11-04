@@ -12,7 +12,7 @@ export function UserCardRowTrades() {
 
   return (
     <Card className="w-full flex flex-col gap-4 p-4 min-h-80 rounded-2xl shadow-2xs" variant={'gradient'}>
-      <h3 className="text-lg font-semibold text-white">Recent Transactions</h3>
+      <h3 className="text-lg font-semibold text-white">Your Recent Transactions</h3>
 
       <div className="flex flex-col gap-2">
         {/* Card row */}
@@ -34,7 +34,7 @@ export function UserCardRowTrades() {
                 <span className="text-gray-300 text-sm">{tx.date}</span>
               </div>
             </div>
-            <span className={`font-bold ${tx.type === 'Deposit' ? 'text-green-400' : 'text-red-400'}`}>
+            <span className={`font-semibold ${tx.type === 'Deposit' ? 'text-green-400' : 'text-red-400'}`}>
               {tx.amount} {tx.token}
             </span>
           </div>
