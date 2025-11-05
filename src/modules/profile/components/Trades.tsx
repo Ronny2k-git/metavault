@@ -23,10 +23,10 @@ export function Trades() {
         <div className="w-full flex flex-col items-center gap-8">
           <Card
             variant={'gradient'}
-            className="relative w-full max-w-[30rem] min-h-81 flex flex-col items-center p-2 gap-1 rounded-3xl "
+            className="relative w-full max-w-[30rem] min-h-81 flex flex-col items-center p-2 gap-2 rounded-3xl "
           >
             <button
-              className="absolute top-31 h-10 w-10 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
+              className="absolute top-39 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
             cursor-pointer border-2 border-blue-900"
               onClick={() => setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')}
             >

@@ -1,3 +1,4 @@
+import { formatNumber } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
@@ -24,6 +25,7 @@ export function WithdrawCard({ title, variant, trigger, disabled }: WithdrawCard
         trigger={trigger}
       >
         <div className="max-h-[70vh] overflow-y-auto mb-4">
+          {/* Heading */}
           <h2 className="text-lg text-gray-300 mb-4">Deposited Vaults</h2>
           <Divider />
 
@@ -64,19 +66,28 @@ export function WithdrawCard({ title, variant, trigger, disabled }: WithdrawCard
       <div className="flex flex-col gap-2">
         <Input
           label=""
-          className={`-pt-2 bg-transparent -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
+          className={`-pt-0.5 bg-transparent my-0.5 -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
           type="number"
           placeholder="0"
           disabled={disabled}
         />
 
         {!disabled && (
-          <div className="flex w-full justify-between">
-            <p className="text-sm">- Token Balance</p>
+          <div className="flex w-full justify-between gap-4">
+            <div className="flex flex-col text-sm text-gray-300">
+              <p className="text-white">Balance:</p>
+              {formatNumber(100)} {'USDCt'}
+            </div>
 
             <div className="flex flex-col text-sm">
-              Vault: Test Vault Name
-              <span className="">Deposited:</span>
+              <div className="flex gap-2 text-gray-300">
+                <span className="text-white">Vault:</span>
+                Test Vault Name
+              </div>
+              <div className="flex items-center gap-2 ">
+                Deposited:
+                <span className="text-[18px] text-green-500 font-semibold">{formatNumber(10000000)}</span>
+              </div>
             </div>
           </div>
         )}

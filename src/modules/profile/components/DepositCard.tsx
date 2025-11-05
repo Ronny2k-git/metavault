@@ -1,4 +1,4 @@
-import { formatDate, getStatus } from '@/modules/global/utils'
+import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
@@ -33,6 +33,7 @@ export function DepositCard({ title, variant, trigger, disabled = false }: Depos
         trigger={trigger}
       >
         <div className="max-h-[70vh] overflow-y-auto mb-4">
+          {/* Heading */}
           <h2 className="text-lg text-gray-300 mb-4">Active Vaults to deposit</h2>
           <Divider />
 
@@ -47,6 +48,7 @@ export function DepositCard({ title, variant, trigger, disabled = false }: Depos
             activeVaults?.map((vault, index) => (
               <VaultCardTradeSelect
                 key={index}
+                vaultLogo={vault.logo}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
                 tokenName={'USDCt'}
@@ -76,17 +78,28 @@ export function DepositCard({ title, variant, trigger, disabled = false }: Depos
       <div className="flex flex-col gap-2">
         <Input
           label=""
-          className={`-pt-2 bg-transparent -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
+          className={`-pt-0.5 bg-transparent -ml-2 my-0.5 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
           type="number"
           placeholder="0"
           disabled={disabled}
         />
 
         {!disabled && (
-          <div className="flex w-full justify-between">
-            <p className="text-sm">- Token Balance</p>
-            <div className="text-sm flex gap-2">
-              Vault: <span className="text-gray-300">selected vault name</span>
+          <div className="flex w-full justify-between gap-4">
+            <div className="flex flex-col text-sm text-gray-300">
+              <p className="text-white">Balance:</p>
+              {formatNumber(100000000)} {'USDC'}
+            </div>
+
+            <div className="flex flex-col text-sm">
+              <div className="flex gap-2 text-gray-300">
+                <span className="text-white">Vault:</span>
+                Test Vault Name
+              </div>
+              <div className="flex items-center gap-2 ">
+                Deposited:
+                <span className="text-[18px] text-green-500 font-semibold">{formatNumber(10000000)}</span>
+              </div>
             </div>
           </div>
         )}
