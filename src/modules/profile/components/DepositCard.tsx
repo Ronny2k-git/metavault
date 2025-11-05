@@ -1,5 +1,9 @@
-import { Divider, Input, Modal } from '@/ui/components'
+import { formatDate, getStatus } from '@/modules/global/utils'
+import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
+import { useState } from 'react'
+import { useAccount } from 'wagmi'
+import { useGetAllCreatedVaults } from '../hooks'
 import type { BaseCardTradeProps } from './BaseCardTrade'
 import { BaseCardTrade } from './BaseCardTrade'
 import { VaultCardTradeSelect } from './VaultCardTradeSelect'
@@ -10,6 +14,16 @@ interface DepositCardProps extends Omit<BaseCardTradeProps, 'children'> {
 }
 
 export function DepositCard({ title, variant, trigger, disabled = false }: DepositCardProps) {
+  const [selectedVault, setSelectedVault] = useState<number | null>(null)
+  const { address } = useAccount()
+  const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
+
+  const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
+    const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
+
+    return status === 'live'
+  })
+
   return (
     <BaseCardTrade title={title} variant={disabled ? 'disabled' : variant}>
       <Modal
@@ -19,20 +33,39 @@ export function DepositCard({ title, variant, trigger, disabled = false }: Depos
         trigger={trigger}
       >
         <div className="max-h-[70vh] overflow-y-auto mb-4">
-          <h2 className="text-lg text-gray-300 mb-4">Vault to deposit</h2>
+          <h2 className="text-lg text-gray-300 mb-4">Active Vaults to deposit</h2>
           <Divider />
 
-          {Array.from({ length: 3 }).map((_, index) => (
-            <VaultCardTradeSelect
-              key={index}
-              vaultName="Test Vault Name"
-              vaultDate="10/12/2025"
-              tokenName="USDC"
-              amount={100}
+          {isLoading || !address ? (
+            <EmptyBanner
+              className="h-40 p-4 text-center"
+              subMessage="No active vaults to deposit, please create a vault or connect your wallet"
+              message=""
+              icon={<Icon className="!text-5xl">sentiment_dissatisfied</Icon>}
             />
-          ))}
+          ) : (
+            activeVaults?.map((vault, index) => (
+              <VaultCardTradeSelect
+                key={index}
+                vaultName={vault.vaultName}
+                vaultDate={formatDate(vault.startDate)}
+                tokenName={'USDCt'}
+                amount={0}
+                checked={selectedVault === index}
+                selected={() => setSelectedVault(index)}
+              />
+            ))
+          )}
 
           <Divider />
+
+          <div className="flex gap-2 text-[14.5px]">
+            <Icon className="mt-1 text-yellow-500">error</Icon>
+            <span className="text-gray-300">
+              The token used to deposit in the vault will be the one you provided on the creation page for specific
+              vault.
+            </span>
+          </div>
         </div>
 
         <Button className="absolut h-12 border border-blue-200" variant={'primary'} size={'md'}>

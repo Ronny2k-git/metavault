@@ -16,6 +16,10 @@ export function Trades() {
         <h1 className="sm:text-4xl text-3xl text-center">
           Deposit or Withdraw <br /> <span className="sm:text-3xl text-2xl text-gray-300">(anytime, anywhere)</span>
         </h1>
+        <h2 className="flex items-center justify-center gap-2 text-gray-300 ">
+          <Icon className="text-yellow-500 ">error</Icon>
+          Deposits are only allowed in live vaults
+        </h2>
         <div className="w-full flex flex-col items-center gap-8">
           <Card
             variant={'gradient'}

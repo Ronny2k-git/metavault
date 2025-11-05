@@ -1,4 +1,5 @@
 export * from './Card'
+export * from './CheckBox'
 export * from './Divider'
 export * from './EmptyBanner'
 export * from './Icon'
