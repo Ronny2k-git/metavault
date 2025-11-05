@@ -50,12 +50,15 @@ export function UserVaults() {
     <div className="flex flex-col w-full">
       <Divider />
       <ProfileHeading
-        className="mt-12 mb-4"
+        className="mt-12 max-sm:mb-4"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
         status="live"
         vaults={createdLiveVaults?.length || 0}
       />
+
+      <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
+
       <Input
         className="w-full sm:max-w-[27rem]"
         iconLeft={<Icon className="text-blue-300">search</Icon>}
@@ -102,8 +105,9 @@ export function UserVaults() {
                 startDate: String(vault.startDate),
                 endDate: String(vault.endDate),
               })}
+              deposited={100}
               address={vault.address}
-            ></BaseVaultCard>
+            />
           ))}
         </div>
       )}

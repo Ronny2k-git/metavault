@@ -31,7 +31,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
 
   return (
     <Modal
-      className="min-h-[28rem] h-auto"
+      className="min-h-[28rem] h-auto !max-w-sm"
       variant={'gradient'}
       title="Ecosystem"
       isOpen={open}

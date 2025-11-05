@@ -48,7 +48,15 @@ export function DepositCard({ title, variant, trigger, disabled = false }: Depos
           placeholder="0"
           disabled={disabled}
         />
-        <p>- Balance Here</p>
+
+        {!disabled && (
+          <div className="flex w-full justify-between">
+            <p className="text-sm">- Token Balance</p>
+            <div className="text-sm flex gap-2">
+              Vault: <span className="text-gray-300">selected vault name</span>
+            </div>
+          </div>
+        )}
       </div>
     </BaseCardTrade>
   )

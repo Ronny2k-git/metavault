@@ -27,6 +27,7 @@ export function CardPreview() {
         startDate: confirmData.startDate,
         endDate: confirmData.endDate,
       })}
+      deposited={0}
     />
   )
 }
