@@ -1,3 +1,5 @@
 export * from './useDebounce'
+export * from './useGetTokenDecimals'
+export * from './useGetTokenName'
 export * from './useGetUserProfileData'
 export * from './useSteps'

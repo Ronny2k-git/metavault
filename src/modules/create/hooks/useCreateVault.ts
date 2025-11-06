@@ -1,9 +1,10 @@
-import { useSteps } from '@/modules/global/hooks'
+import { useGetTokenDecimals, useSteps } from '@/modules/global/hooks'
 import { convertTimestamp } from '@/modules/global/utils'
-import { vaultAbi } from '@/modules/global/utils/vaultAbi'
+import { vaultCreateAbi } from '@/modules/global/utils/vaultCreateAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import toast from 'react-hot-toast'
 import type { Abi, Address } from 'viem'
+import { parseUnits } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useAccount, useChainId, useWriteContract } from 'wagmi'
 import { simulateContract, waitForTransactionReceipt } from 'wagmi/actions'
@@ -32,18 +33,24 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
   const { isConnected } = useAccount()
   const chainId = useChainId()
   const steps = useSteps(initialCreateSteps)
+  const { getTokenDecimal } = useGetTokenDecimals()
 
   const createVault = async (data: VaultContractData): Promise<string | undefined> => {
+    const decimals = await getTokenDecimal(data.assetToken as Address)
+
+    const minDeposit = parseUnits(data.minDeposit, Number(decimals))
+    const maxDeposit = parseUnits(data.maxDeposit, Number(decimals))
+
     const configParams: ContractParams = {
-      abi: vaultAbi,
+      abi: vaultCreateAbi,
       address: '0x3f78066D1E2184f912F7815e30F9C0a02d3a87D3', // Contract address
       functionName: 'createVault',
       args: [
         data.assetToken,
         convertTimestamp(new Date(data.startDate)),
         convertTimestamp(new Date(data.endDate)),
-        data.minDeposit,
-        data.maxDeposit,
+        String(minDeposit),
+        String(maxDeposit),
         data.salt,
       ],
     }

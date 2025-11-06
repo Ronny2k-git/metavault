@@ -1,3 +1,4 @@
+import { useGetTokenName } from '@/modules/global/hooks/useGetTokenName'
 import { formatNumber } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -19,6 +20,7 @@ interface WithdrawCardProps extends Omit<BaseCardTradeProps, 'children'> {
 export function WithdrawCard({ title, variant, trigger, error, register, disabled }: WithdrawCardProps) {
   const [selectedVault, setSelectedVault] = useState<number | null>(null)
   const { address } = useAccount()
+  const { getTokenName } = useGetTokenName()
 
   return (
     <BaseCardTrade title={title} variant={disabled ? 'disabled' : variant}>
@@ -74,7 +76,7 @@ export function WithdrawCard({ title, variant, trigger, error, register, disable
           type="number"
           placeholder="0"
           disabled={disabled}
-          {...register('amount', { valueAsNumber: true })}
+          {...register('amount')}
           error={error?.errors.amount?.message}
           showErrorStyle={false}
         />

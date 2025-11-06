@@ -1,3 +1,4 @@
+import { useGetTokenName } from '@/modules/global/hooks/useGetTokenName'
 import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -21,6 +22,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
   const [selectedVault, setSelectedVault] = useState<number | null>(null)
   const { address } = useAccount()
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
+  const { getTokenName } = useGetTokenName()
 
   const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
     const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
@@ -79,8 +81,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
       <div className="flex flex-col gap-2">
         <Input
           label=""
-          className={`-pt-0.5 bg-transparent -ml-2 my-0.5 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}
-          `}
+          className={`-pt-0.5 bg-transparent -ml-2 my-0.5 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
           type="number"
           placeholder="0"
           disabled={disabled}

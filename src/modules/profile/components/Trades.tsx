@@ -1,8 +1,13 @@
+import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
+import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import { Card, Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { formatUnits, parseUnits } from 'viem'
+import { readContract } from 'wagmi/actions'
+import { useDeposit } from '../hooks'
 import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/TradesSchemas'
 import { DepositSchema, WithdrawSchema } from '../schemas/TradesSchemas'
 import { DepositCard } from './DepositCard'
@@ -24,12 +29,34 @@ export function Trades() {
     defaultValues: { amount: 0 },
   })
 
-  const handleDeposit = (data: DepositSchemaType) => {
+  useEffect(() => {
+    ;(async () => {
+      const test2 = await readContract(wagmiAppConfig, {
+        abi: vaultInteractionAbi,
+        address: '0xD53A14fa0Ad1Bde25eC18DB6feEAc7845D0B82e7',
+        functionName: 'maxDepositPerWallet',
+      })
+
+      console.log(test2)
+
+      console.log('maxDeposit (formatted):', formatUnits(test2, 8))
+    })()
+  }, [])
+
+  const handleDeposit = async (data: DepositSchemaType) => {
+    const { deposit } = useDeposit({
+      tokenAddress: '0x97Eb657A63C2e33835137eDD57D0dD113057C83d',
+      amount: parseUnits(data.amount.toString(), 8),
+      spenderAddress: '0xD53A14fa0Ad1Bde25eC18DB6feEAc7845D0B82e7',
+    })
+
+    await deposit()
+
     console.log('Deposit', data)
   }
 
-  const handleWithdraw = (data: WithdrawSchemaType) => {
-    console.log('Withdraw', data)
+  const handleWithdraw = async (data: WithdrawSchemaType) => {
+    await console.log('Withdraw', data)
   }
 
   return (

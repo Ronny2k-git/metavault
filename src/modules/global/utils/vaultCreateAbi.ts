@@ -1,4 +1,4 @@
-export const vaultAbi = [
+export const vaultCreateAbi = [
   { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
   {
     anonymous: false,
