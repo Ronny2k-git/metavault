@@ -2,7 +2,9 @@ import { formatNumber } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
+import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
 import { useAccount } from 'wagmi'
+import type { WithdrawSchemaType } from '../schemas/TradesSchemas'
 import type { BaseCardTradeProps } from './BaseCardTrade'
 import { BaseCardTrade } from './BaseCardTrade'
 import { VaultCardTradeSelect } from './VaultCardTradeSelect'
@@ -10,9 +12,11 @@ import { VaultCardTradeSelect } from './VaultCardTradeSelect'
 interface WithdrawCardProps extends Omit<BaseCardTradeProps, 'children'> {
   trigger?: React.ReactNode
   disabled?: boolean
+  register: UseFormRegister<WithdrawSchemaType>
+  error?: UseFormStateReturn<WithdrawSchemaType>
 }
 
-export function WithdrawCard({ title, variant, trigger, disabled }: WithdrawCardProps) {
+export function WithdrawCard({ title, variant, trigger, error, register, disabled }: WithdrawCardProps) {
   const [selectedVault, setSelectedVault] = useState<number | null>(null)
   const { address } = useAccount()
 
@@ -32,7 +36,7 @@ export function WithdrawCard({ title, variant, trigger, disabled }: WithdrawCard
           {!address ? (
             <EmptyBanner
               className="h-40 p-4 text-center"
-              subMessage="No active vaults to withdraw, please deposit in an vault or connect your wallet"
+              subMessage="No vaults found. Try connecting your wallet or depositing into one."
               message=""
               icon={<Icon className="!text-5xl">sentiment_dissatisfied</Icon>}
             />
@@ -58,7 +62,7 @@ export function WithdrawCard({ title, variant, trigger, disabled }: WithdrawCard
           </div>
         </div>
 
-        <Button className="absolut h-12 border border-blue-200" variant={'primary'} size={'md'}>
+        <Button className="h-12 mt-4 border border-blue-300" variant={'primary'} size={'md'}>
           Proceed with withdraw
         </Button>
       </Modal>
@@ -70,8 +74,10 @@ export function WithdrawCard({ title, variant, trigger, disabled }: WithdrawCard
           type="number"
           placeholder="0"
           disabled={disabled}
+          {...register('amount', { valueAsNumber: true })}
+          error={error?.errors.amount?.message}
+          showErrorStyle={false}
         />
-
         {!disabled && (
           <div className="flex w-full justify-between gap-4">
             <div className="flex flex-col text-sm text-gray-300">

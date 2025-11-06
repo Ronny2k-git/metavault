@@ -9,7 +9,7 @@ const inputStyle = cva(
   {
     variants: {
       variant: {
-        error: 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0',
+        error: 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0 !text-white',
         default: 'placeholder:text-gray-300',
       },
       size: {
@@ -36,6 +36,7 @@ interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
   iconRight?: React.ReactNode
   className?: string
   error?: string
+  showErrorStyle?: boolean
 }
 
 export function Input({
@@ -48,9 +49,10 @@ export function Input({
   type = 'text',
   placeholder = '',
   error,
+  showErrorStyle = true,
   ...props
 }: InputProps) {
-  const effectiveVariant = error ? 'error' : inputVariant
+  const effectiveVariant = error && showErrorStyle ? 'error' : inputVariant
 
   return (
     <label className={twMerge(`flex flex-col`, className)}>
@@ -61,6 +63,7 @@ export function Input({
           type={type}
           className={twMerge(
             inputStyle({ variant: effectiveVariant, size: inputSize }),
+            error && 'text-red-400',
             iconLeft && 'pl-13',
             iconRight && 'pr-13',
             className,

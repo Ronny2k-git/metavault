@@ -11,9 +11,9 @@ export type BaseCardTradeProps = {
 
 export function BaseCardTrade({ children, variant, title, className }: BaseCardTradeProps) {
   return (
-    <Card variant={variant} className={twMerge('h-42 p-4 rounded-3xl', className)}>
+    <Card variant={variant} className={twMerge('h-fit p-6 rounded-3xl', className)}>
       <div className="flex w-full items-center justify-between">
-        <p className="text-gray-300 text-lg font-semibold mb-1">{title}</p>
+        <p className="text-gray-300 text-lg font-semibold mb-">{title}</p>
       </div>
       {children}
     </Card>

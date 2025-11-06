@@ -22,8 +22,8 @@ export function VaultCardTradeSelect({
 }: VaultCardTradeSelectProps) {
   return (
     <CheckBox
-      className="flex gap-4 w-full justify-between p-3 my-2 rounded-xl bg-black/30 hover:bg-black/50 data-[state=checked]:bg-sky-600/20 
-        data-[state=checked]:border data-[state=checked]:border-blue-300"
+      className="flex gap-4 w-full justify-between p-3 my-2 rounded-xl bg-black/30 hover:bg-black/50 data-[state=checked]:bg-blue-700/20 
+        data-[state=checked]:border data-[state=checked]:border-blue-400 transition"
       checked={checked}
       onCheckedChange={(value) => selected(!!value)}
     >

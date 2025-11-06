@@ -105,7 +105,7 @@ export function UserVaults() {
                 startDate: String(vault.startDate),
                 endDate: String(vault.endDate),
               })}
-              deposited={100}
+              deposited={1000}
               address={vault.address}
             />
           ))}

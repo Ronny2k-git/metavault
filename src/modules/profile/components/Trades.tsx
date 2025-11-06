@@ -1,12 +1,36 @@
 import { Card, Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/TradesSchemas'
+import { DepositSchema, WithdrawSchema } from '../schemas/TradesSchemas'
 import { DepositCard } from './DepositCard'
 import { UserCardRowTrades } from './UserCardRowTrades'
 import { WithdrawCard } from './WithdrawCard'
 
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
+
+  // Deposit Form
+  const depositForm = useForm<DepositSchemaType>({
+    resolver: zodResolver(DepositSchema),
+    defaultValues: { amount: 0 },
+  })
+
+  // Withdraw Form
+  const withdrawForm = useForm<WithdrawSchemaType>({
+    resolver: zodResolver(WithdrawSchema),
+    defaultValues: { amount: 0 },
+  })
+
+  const handleDeposit = (data: DepositSchemaType) => {
+    console.log('Deposit', data)
+  }
+
+  const handleWithdraw = (data: WithdrawSchemaType) => {
+    console.log('Withdraw', data)
+  }
 
   return (
     <div className="h-full w-full flex flex-col relative">
@@ -26,9 +50,13 @@ export function Trades() {
             className="relative w-full max-w-[30rem] min-h-81 flex flex-col items-center p-2 gap-2 rounded-3xl "
           >
             <button
-              className="absolute top-39 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
+              className="absolute top-37 z-1 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
             cursor-pointer border-2 border-blue-900"
-              onClick={() => setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')}
+              onClick={() => {
+                setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')
+                depositForm.reset()
+                withdrawForm.reset()
+              }}
             >
               <Icon>Arrow_Downward</Icon>
             </button>
@@ -43,6 +71,8 @@ export function Trades() {
                   <Button className={`absolute right-6 h-7 max-w-32 rounded-3xl text-sm`}>Select Vault</Button>
                 )
               }
+              register={depositForm.register}
+              error={depositForm.formState}
             />
 
             {/* Withdraw in a vault */}
@@ -55,8 +85,21 @@ export function Trades() {
                   <Button className={`absolute right-6 h-7 max-w-32 rounded-3xl text-sm`}>Select Vault</Button>
                 )
               }
+              register={withdrawForm.register}
+              error={withdrawForm.formState}
             />
-            <Button className="text-lg" variant={'primary'} size={'xl'}>
+            <Button
+              className="text-lg"
+              variant={'primary'}
+              size={'xl'}
+              onClick={() => {
+                if (activeCard === 'Deposit') {
+                  depositForm.handleSubmit(handleDeposit)()
+                } else {
+                  withdrawForm.handleSubmit(handleWithdraw)()
+                }
+              }}
+            >
               {activeCard}
             </Button>
           </Card>
