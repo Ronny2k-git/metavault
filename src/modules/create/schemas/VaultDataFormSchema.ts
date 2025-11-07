@@ -18,7 +18,7 @@ export const vaultDataFormSchema = z.object({
   minDeposit: z
     .string()
     .nonempty({ message: 'Minimum deposit is required ' })
-    .refine((v) => Number(v) >= 1, 'Value must be greater than or equal to 1'),
+    .refine((v) => Number(v) >= 0, 'Value must be greater than 0'),
   maxDeposit: z
     .string()
     .nonempty({ message: 'Maximum deposit is required ' })

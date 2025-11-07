@@ -14,7 +14,7 @@ export type ContractParams = {
   abi: Abi
   address: Address
   functionName: string
-  args: [assetToken: string, startDate: number, endDate: number, minDeposit: string, maxDeposit: string, salt: string]
+  args: [assetToken: string, startDate: number, endDate: number, minDeposit: bigint, maxDeposit: bigint, salt: string]
 }
 
 export type useCreateVaultArgs = {
@@ -37,7 +37,6 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
 
   const createVault = async (data: VaultContractData): Promise<string | undefined> => {
     const decimals = await getTokenDecimal(data.assetToken as Address)
-
     const minDeposit = parseUnits(data.minDeposit, Number(decimals))
     const maxDeposit = parseUnits(data.maxDeposit, Number(decimals))
 
@@ -49,8 +48,8 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
         data.assetToken,
         convertTimestamp(new Date(data.startDate)),
         convertTimestamp(new Date(data.endDate)),
-        String(minDeposit),
-        String(maxDeposit),
+        minDeposit,
+        maxDeposit,
         data.salt,
       ],
     }
@@ -82,7 +81,7 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
       steps.update({ id: 'confirm-create', label: 'Waiting For Tx Receipt', status: 'pending' })
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: tx,
-        chainId: sepolia.id,
+        chainId: sepolia.id, // 1000000000000000000000000n
       })
 
       steps.update({ id: 'confirm-create', label: 'Vault Created!', status: 'success' })

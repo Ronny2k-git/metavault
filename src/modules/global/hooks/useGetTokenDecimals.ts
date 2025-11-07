@@ -5,13 +5,13 @@ import { readContract } from 'wagmi/actions'
 
 export function useGetTokenDecimals() {
   const getTokenDecimal = async (tokenAddress: Address) => {
-    const name = await readContract(wagmiAppConfig, {
+    const decimals = await readContract(wagmiAppConfig, {
       abi: erc20Abi,
       address: tokenAddress,
-      functionName: 'name',
+      functionName: 'decimals',
     })
 
-    return name
+    return decimals
   }
 
   return { getTokenDecimal }
