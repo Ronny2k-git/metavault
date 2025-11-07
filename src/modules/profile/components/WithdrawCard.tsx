@@ -72,11 +72,11 @@ export function WithdrawCard({ title, variant, trigger, error, register, disable
       <div className="flex flex-col gap-2">
         <Input
           label=""
-          className={`-pt-0.5 bg-transparent my-0.5 -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
+          className={`-pt-0.5 bg-transparent my-0.5 -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed text-gray-300' : ''}`}
           type="number"
           placeholder="0"
           disabled={disabled}
-          {...register('amount')}
+          {...register('amount', { valueAsNumber: true })}
           error={error?.errors.amount?.message}
           showErrorStyle={false}
         />

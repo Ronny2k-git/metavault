@@ -1,27 +1,22 @@
+import { useApproveToken } from '@/modules/global/hooks'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import type { Address } from 'viem'
-import { erc20Abi } from 'viem'
 import { sepolia } from 'viem/chains'
-import { simulateContract, waitForTransactionReceipt, writeContract } from 'wagmi/actions'
+import { useWriteContract } from 'wagmi'
+import { simulateContract, waitForTransactionReceipt } from 'wagmi/actions'
 
-type approveProps = {
+export type useDepositProps = {
   amount: bigint
   tokenAddress: Address
   spenderAddress: Address
 }
 
-export function useDeposit({ amount, tokenAddress, spenderAddress }: approveProps) {
-  const approveToken = async () =>
-    await writeContract(wagmiAppConfig, {
-      abi: erc20Abi,
-      address: tokenAddress,
-      functionName: 'approve',
-      chainId: sepolia.id,
-      args: [spenderAddress, amount],
-    })
+export function useDeposit() {
+  const { writeContractAsync } = useWriteContract()
+  const { approve } = useApproveToken()
 
-  const deposit = async () => {
+  const deposit = async ({ amount, tokenAddress, spenderAddress }: useDepositProps) => {
     const configParams = {
       abi: vaultInteractionAbi,
       address: spenderAddress, // Vault address
@@ -29,8 +24,9 @@ export function useDeposit({ amount, tokenAddress, spenderAddress }: approveProp
     }
 
     try {
+      // 1. Approve token hash to spend with the vault contract
       console.log('⏳ Approving token...')
-      const approveHash = await approveToken()
+      const approveHash = await approve({ amount, spenderAddress, tokenAddress })
 
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: approveHash,
@@ -44,6 +40,13 @@ export function useDeposit({ amount, tokenAddress, spenderAddress }: approveProp
         functionName: 'deposit',
         args: [amount],
       })
+
+      // const tx = await writeContractAsync(simulation.request)
+
+      // await waitForTransactionReceipt(wagmiAppConfig, {
+      //   hash: tx,
+      //   chainId: sepolia.id,
+      // })
 
       console.log('✅ Vault Deposit simulated successfully!')
       console.log('Result:', simulation.result)

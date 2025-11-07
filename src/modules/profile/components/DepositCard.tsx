@@ -40,7 +40,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
       >
         <div className="max-h-[70vh] overflow-y-auto mb-4">
           {/* Heading */}
-          <h2 className="text-lg text-gray-300 mb-4">Available Vaults</h2>
+          <h2 className="text-lg text-gray-300 mb-4">Available Vaults ( Live )</h2>
           <Divider />
 
           {isLoading || !address ? (
@@ -81,7 +81,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
       <div className="flex flex-col gap-2">
         <Input
           label=""
-          className={`-pt-0.5 bg-transparent -ml-2 my-0.5 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed' : ''}`}
+          className={`-pt-0.5 bg-transparent -ml-2 my-0.5 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed text-gray-300' : ''}`}
           type="number"
           placeholder="0"
           disabled={disabled}

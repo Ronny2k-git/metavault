@@ -1,3 +1,4 @@
+import { useGetTokenDecimals } from '@/modules/global/hooks'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import { Card, Divider, Icon, Input } from '@/ui/components'
@@ -16,47 +17,72 @@ import { WithdrawCard } from './WithdrawCard'
 
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
+  const { deposit } = useDeposit()
+  const { getTokenDecimal } = useGetTokenDecimals()
 
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
     resolver: zodResolver(DepositSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { amount: undefined },
   })
 
   // Withdraw Form
   const withdrawForm = useForm<WithdrawSchemaType>({
     resolver: zodResolver(WithdrawSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { amount: undefined },
   })
 
   useEffect(() => {
     ;(async () => {
-      const test2 = await readContract(wagmiAppConfig, {
+      const maxTest = await readContract(wagmiAppConfig, {
         abi: vaultInteractionAbi,
-        address: '0xD53A14fa0Ad1Bde25eC18DB6feEAc7845D0B82e7',
+        address: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
         functionName: 'maxDepositPerWallet',
       })
+      const minTest = await readContract(wagmiAppConfig, {
+        abi: vaultInteractionAbi,
+        address: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
+        functionName: 'minDeposit',
+      })
 
-      console.log(test2)
+      console.log(minTest)
+      console.log(maxTest)
 
-      console.log('maxDeposit (formatted):', formatUnits(test2, 8))
+      console.log('minDeposit (formatted):', formatUnits(minTest, 8))
+      console.log('maxDeposit (formatted):', formatUnits(maxTest, 8))
     })()
   }, [])
 
   const handleDeposit = async (data: DepositSchemaType) => {
-    const { deposit } = useDeposit({
-      tokenAddress: '0x97Eb657A63C2e33835137eDD57D0dD113057C83d',
-      amount: parseUnits(data.amount.toString(), 8),
-      spenderAddress: '0xD53A14fa0Ad1Bde25eC18DB6feEAc7845D0B82e7',
+    // get token decimals
+    const decimals = await getTokenDecimal('0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650')
+
+    // 1. Deposit in the vault
+    await deposit({
+      tokenAddress: '0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650',
+      amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
+      spenderAddress: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
     })
 
-    await deposit()
+    // 2. Save the transaction in the database
+    const saveOnDb = ''
+
+    // TO DO LATER =>>>>>>
+    // 1 CREATE A HOOK TO GET THE USER BALANCE, (USE WITH USEEFFECT)
+    // 2 CREATE A HOOK FOR WITHDRAW FUNCTIONALITY (DONE)
+    // 3 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
+    // CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
+    // SMALLER THAN DEPOSITED VAULT VALUE.
+    // 4 CREATE A HOOK TO GET THE TOKEN SYMBOL, I THINK I CAN GET THE NAME, SYMBOL,
+    // AND DECIMALS IN THE SAME HOOK.
 
     console.log('Deposit', data)
   }
 
   const handleWithdraw = async (data: WithdrawSchemaType) => {
-    await console.log('Withdraw', data)
+    const decimals = await getTokenDecimal('0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650')
+
+    console.log('Withdraw', data)
   }
 
   return (

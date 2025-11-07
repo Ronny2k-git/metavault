@@ -75,13 +75,13 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
 
       // 2. Wait for user confirm the transaction
       steps.update({ id: 'confirm-create', label: 'Confirm in your wallet', status: 'pending' })
-      const tx = await writeContractAsync((await simulation).request)
+      const tx = await writeContractAsync(simulation.request)
 
       // 3. Wait transaction to be confirmed
       steps.update({ id: 'confirm-create', label: 'Waiting For Tx Receipt', status: 'pending' })
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: tx,
-        chainId: sepolia.id, // 1000000000000000000000000n
+        chainId: sepolia.id,
       })
 
       steps.update({ id: 'confirm-create', label: 'Vault Created!', status: 'success' })
