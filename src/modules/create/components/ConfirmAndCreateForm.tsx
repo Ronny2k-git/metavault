@@ -1,4 +1,4 @@
-import { useGetUserProfileData } from '@/modules/global/hooks'
+import { useGetTokenDecimals, useGetUserProfileData } from '@/modules/global/hooks'
 import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -8,6 +8,7 @@ import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import type { Address } from 'viem'
 import { useAccount } from 'wagmi'
 import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '../atoms/createAtoms'
 import { useCreateVault, useCreateVaultOnDb, useResetCreateForm } from '../hooks'
@@ -29,6 +30,7 @@ export function ConfirmAndCreateForm() {
   const createVaultOnDb = useCreateVaultOnDb()
   const createUserProfile = useCreateUserProfileOnDb()
   const { data: userProfileData = [] } = useGetUserProfileData(address!)
+  const { getTokenDecimal } = useGetTokenDecimals()
   const { resetAll } = useResetCreateForm()
   const allFormData = useAtomValue(combinedCreateDataAtom)
 
@@ -57,6 +59,7 @@ export function ConfirmAndCreateForm() {
       toast.error('Please connect your wallet')
       return
     }
+    const tokenDecimals = await getTokenDecimal(allFormData.assetToken as Address)
 
     // 1. Update info tabs
     setConfirmFormValid(true)
@@ -89,6 +92,7 @@ export function ConfirmAndCreateForm() {
         blockchainData: {
           address: tx,
           userAddress: account.address,
+          tokenDecimals,
         },
       },
     })

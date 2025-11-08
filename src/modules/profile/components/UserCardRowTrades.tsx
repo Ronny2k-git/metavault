@@ -1,6 +1,6 @@
 import { Card } from '@/ui/components'
 
-export function UserCardRowTrades() {
+export function UserCardRowTrades({ id }: { id: string }) {
   const mockData = [
     { type: 'Deposit', token: 'ETH', amount: 0.2, date: '2025-11-03 10:30' },
     { type: 'Withdraw', token: 'USDC', amount: 150, date: '2025-11-02 18:45' },
@@ -11,7 +11,7 @@ export function UserCardRowTrades() {
   ]
 
   return (
-    <Card className="w-full flex flex-col gap-4 p-4 min-h-80 rounded-2xl shadow-2xs" variant={'gradient'}>
+    <Card id={id} className="w-full flex flex-col gap-4 p-4 min-h-80 rounded-2xl shadow-2xs" variant={'gradient'}>
       <h3 className="text-lg font-semibold text-white">Your Recent Transactions</h3>
 
       <div className="flex flex-col gap-2">

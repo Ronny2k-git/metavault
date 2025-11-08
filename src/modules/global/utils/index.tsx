@@ -84,6 +84,6 @@ const defaultNumberFormatter = new Intl.NumberFormat('en', {
   maximumSignificantDigits: 4,
 })
 
-export function formatNumber(value: number) {
+export function formatNumber(value: number | bigint) {
   return defaultNumberFormatter.format(value)
 }

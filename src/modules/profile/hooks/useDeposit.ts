@@ -13,8 +13,8 @@ export type useDepositProps = {
 }
 
 export function useDeposit() {
-  const { writeContractAsync } = useWriteContract()
   const { approve } = useApproveToken()
+  const { writeContractAsync } = useWriteContract()
 
   const deposit = async ({ amount, tokenAddress, spenderAddress }: useDepositProps) => {
     const configParams = {
@@ -40,17 +40,17 @@ export function useDeposit() {
         functionName: 'deposit',
         args: [amount],
       })
-
-      // const tx = await writeContractAsync(simulation.request)
-
-      // await waitForTransactionReceipt(wagmiAppConfig, {
-      //   hash: tx,
-      //   chainId: sepolia.id,
-      // })
-
       console.log('✅ Vault Deposit simulated successfully!')
-      console.log('Result:', simulation.result)
-      console.log('Request:', simulation.request)
+
+      console.log('🧪 Depositing...')
+      const tx = await writeContractAsync(simulation.request)
+
+      await waitForTransactionReceipt(wagmiAppConfig, {
+        hash: tx,
+        chainId: sepolia.id,
+      })
+      console.log('✅ Deposit made succcesfully:')
+      console.log('Result:', tx)
     } catch (error) {
       console.error('❌ Error Depositing:', error)
     }

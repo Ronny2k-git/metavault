@@ -5,7 +5,7 @@ import { prisma } from './prisma'
 
 interface CreateVaultOnDbProps {
   data: FullVaultType
-  blockchainData: { address: string; userAddress: string }
+  blockchainData: { address: string; userAddress: string; tokenDecimals: number }
 }
 
 {
@@ -40,7 +40,7 @@ export const createVaultOnDb = createServerFn({
         twitter: data.twitter ?? null,
         tag: data.tag ?? null,
         address: blockchainData.address,
-        assetTokenDecimals: 18,
+        assetTokenDecimals: blockchainData.tokenDecimals,
         chainId: Number(getChainId(data.network)),
         userAddress: blockchainData.userAddress,
       },

@@ -1,4 +1,5 @@
 import { useGetTokenDecimals } from '@/modules/global/hooks'
+import { scrollToConteiner } from '@/modules/global/utils'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import { Card, Divider, Icon, Input } from '@/ui/components'
@@ -8,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { formatUnits, parseUnits } from 'viem'
 import { readContract } from 'wagmi/actions'
-import { useDeposit } from '../hooks'
+import { useDeposit, useWithdraw } from '../hooks'
 import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/TradesSchemas'
 import { DepositSchema, WithdrawSchema } from '../schemas/TradesSchemas'
 import { DepositCard } from './DepositCard'
@@ -18,18 +19,19 @@ import { WithdrawCard } from './WithdrawCard'
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const { deposit } = useDeposit()
+  const { withdraw } = useWithdraw()
   const { getTokenDecimal } = useGetTokenDecimals()
 
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
     resolver: zodResolver(DepositSchema),
-    defaultValues: { amount: undefined },
+    defaultValues: { amount: 0 },
   })
 
   // Withdraw Form
   const withdrawForm = useForm<WithdrawSchemaType>({
     resolver: zodResolver(WithdrawSchema),
-    defaultValues: { amount: undefined },
+    defaultValues: { amount: 0 },
   })
 
   useEffect(() => {
@@ -67,22 +69,33 @@ export function Trades() {
     // 2. Save the transaction in the database
     const saveOnDb = ''
 
-    // TO DO LATER =>>>>>>
-    // 1 CREATE A HOOK TO GET THE USER BALANCE, (USE WITH USEEFFECT)
-    // 2 CREATE A HOOK FOR WITHDRAW FUNCTIONALITY (DONE)
+    // TO DO LATER
+
+    // 2 TEST THE WITHDRAW FUNCTIONALITY (DONE)
+
     // 3 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
-    // CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
-    // SMALLER THAN DEPOSITED VAULT VALUE.
-    // 4 CREATE A HOOK TO GET THE TOKEN SYMBOL, I THINK I CAN GET THE NAME, SYMBOL,
-    // AND DECIMALS IN THE SAME HOOK.
+    //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
+    //   SMALLER THAN DEPOSITED VAULT VALUE.
+
+    // 4 CREATE A HOOK TO GET THE TOKEN SYMBOL.
 
     console.log('Deposit', data)
+    // 4. Move to the recent transactions table
+    scrollToConteiner('user-recent-transactions')
   }
 
   const handleWithdraw = async (data: WithdrawSchemaType) => {
     const decimals = await getTokenDecimal('0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650')
 
+    await withdraw({
+      tokenAddress: '0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650',
+      amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
+      spenderAddress: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
+    })
+
     console.log('Withdraw', data)
+    // Move to the recent transactions table
+    scrollToConteiner('user-recent-transactions')
   }
 
   return (
@@ -171,7 +184,7 @@ export function Trades() {
           placeholder="Search your transactions by tx hash"
         />
 
-        <UserCardRowTrades />
+        <UserCardRowTrades id={'user-recent-transactions'} />
       </div>
     </div>
   )

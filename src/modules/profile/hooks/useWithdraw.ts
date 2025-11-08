@@ -3,6 +3,7 @@ import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
 import type { Address } from 'viem'
 import { sepolia } from 'viem/chains'
+import { useWriteContract } from 'wagmi'
 import { simulateContract, waitForTransactionReceipt } from 'wagmi/actions'
 
 type useWithdrawProps = {
@@ -13,6 +14,7 @@ type useWithdrawProps = {
 
 export function useWithdraw() {
   const { approve } = useApproveToken()
+  const { writeContractAsync } = useWriteContract()
 
   const withdraw = async ({ amount, tokenAddress, spenderAddress }: useWithdrawProps) => {
     const configParams = {
