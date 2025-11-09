@@ -1,4 +1,4 @@
-import { useGetTokenDecimals, useGetUserProfileData } from '@/modules/global/hooks'
+import { useGetTokenDecimals, useGetTokenName, useGetTokenSymbol, useGetUserProfileData } from '@/modules/global/hooks'
 import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -31,6 +31,8 @@ export function ConfirmAndCreateForm() {
   const createUserProfile = useCreateUserProfileOnDb()
   const { data: userProfileData = [] } = useGetUserProfileData(address!)
   const { getTokenDecimal } = useGetTokenDecimals()
+  const { getTokenName } = useGetTokenName()
+  const { getTokenSymbol } = useGetTokenSymbol()
   const { resetAll } = useResetCreateForm()
   const allFormData = useAtomValue(combinedCreateDataAtom)
 
@@ -59,7 +61,13 @@ export function ConfirmAndCreateForm() {
       toast.error('Please connect your wallet')
       return
     }
-    const tokenDecimals = await getTokenDecimal(allFormData.assetToken as Address)
+    // Get token data
+    const tokenAddress = allFormData.assetToken as Address
+    const [tokenDecimals, tokenName, tokenSymbol] = await Promise.all([
+      getTokenDecimal(tokenAddress),
+      getTokenName(tokenAddress),
+      getTokenSymbol(tokenAddress),
+    ])
 
     // 1. Update info tabs
     setConfirmFormValid(true)
@@ -90,9 +98,11 @@ export function ConfirmAndCreateForm() {
       data: {
         data: allFormData,
         blockchainData: {
-          address: tx,
+          address: '0x...',
           userAddress: account.address,
           tokenDecimals,
+          tokenName,
+          tokenSymbol,
         },
       },
     })

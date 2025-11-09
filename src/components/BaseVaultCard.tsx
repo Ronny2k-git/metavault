@@ -9,6 +9,7 @@ import { StatusChip } from './StatusChip'
 
 interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> {
   description: string
+  tokenName?: string
   startDate?: Date
   endDate?: Date
   status: vaultStatus

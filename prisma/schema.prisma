@@ -7,6 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Swap {
+  id        Int      @id @default(autoincrement())
+  amount    String   
+  type      String   
+  txHash    String   @unique
+  sender    String
+  vaultId   Int
+  createdAt DateTime @default(now())
+
+  // Relationship
+  vault     Vault    @relation(fields: [vaultId], references: [id], onDelete: Cascade)
+
+  @@index([vaultId])
+}
+
+// onDelete: If a vault is removed all the swaps related to it will also be removed
+
 model Vault {
   id                 Int      @id @default(autoincrement())
   address            String   
@@ -23,6 +40,8 @@ model Vault {
   chainId            Int
   assetTokenAddress  String
   assetTokenDecimals Int
+  assetTokenName     String?
+  assetTokenSymbol   String?
   userAddress        String?
 
   // Optional fields
@@ -30,6 +49,9 @@ model Vault {
   telegram           String?
   twitter            String?
   tag                String?
+
+  // Relationship
+  swaps              Swap[]
 }
 
 

@@ -1,9 +1,11 @@
+import { useGetVaultBalance } from '@/modules/global/hooks'
 import { useGetTokenName } from '@/modules/global/hooks/useGetTokenName'
 import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
+import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 import type { DepositSchemaType } from '../schemas/TradesSchemas'
@@ -19,10 +21,11 @@ interface DepositCardProps extends Omit<BaseCardTradeProps, 'children'> {
 }
 
 export function DepositCard({ title, variant, trigger, register, error, disabled = false }: DepositCardProps) {
-  const [selectedVault, setSelectedVault] = useState<number | null>(null)
   const { address } = useAccount()
+  const [selectedVault, setSelectedVault] = useState<number | null>(null)
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
   const { getTokenName } = useGetTokenName()
+  const { data: vaultBalance } = useGetVaultBalance('0x4ba18Ee6545def9B40BB3C8469FA8638aF693735')
 
   const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
     const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
@@ -30,14 +33,22 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
     return status === 'live'
   })
 
+  const tokenDecimals = activeVaults?.find((vault) => vault.assetTokenDecimals)
+
+  // TO DO LATER:
+
+  // 1 REPLACE THE DEPOSIT AND WITHDRAW CARD DATA (for modal also) FOR THE CORRECT
+  //   VALUES (balance, vaultName, token symbol and deposited).
+
+  // 2
+
+  // 3
+
+  // 4
+
   return (
     <BaseCardTrade className="relative" title={title} variant={disabled ? 'disabled' : variant}>
-      <Modal
-        className="relative shadow-2xs flex flex-col"
-        title="Select a Vault to Deposit"
-        variant={'gradient'}
-        trigger={trigger}
-      >
+      <Modal className="relative shadow-2xs " title="Select a Vault to Deposit" variant={'gradient'} trigger={trigger}>
         <div className="max-h-[70vh] overflow-y-auto mb-4">
           {/* Heading */}
           <h2 className="text-lg text-gray-300 mb-4">Available Vaults ( Live )</h2>
@@ -100,11 +111,13 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
             <div className="flex flex-col text-sm">
               <div className="flex gap-2 text-gray-300">
                 <span className="text-white">Vault:</span>
-                Test Vault Name
+                Test Vault 10
               </div>
               <div className="flex items-center gap-2 ">
                 Deposited:
-                <span className="text-[18px] text-green-500 font-semibold">{formatNumber(10000000)}</span>
+                <span className="text-[18px] text-green-500 font-semibold">
+                  {formatNumber(+formatUnits(BigInt(vaultBalance || 0), tokenDecimals))}
+                </span>
               </div>
             </div>
           </div>

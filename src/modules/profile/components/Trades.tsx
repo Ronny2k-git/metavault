@@ -77,8 +77,6 @@ export function Trades() {
     //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
     //   SMALLER THAN DEPOSITED VAULT VALUE.
 
-    // 4 CREATE A HOOK TO GET THE TOKEN SYMBOL.
-
     console.log('Deposit', data)
     // 4. Move to the recent transactions table
     scrollToConteiner('user-recent-transactions')

@@ -42,13 +42,13 @@ export function useWithdraw() {
       })
 
       // 3. Wait transaction to be confirmed
-      // console.log('🧪 Waiting user confirmation...')
-      // const tx = await writeContractAsync(simulation.request)
+      console.log('🧪 Waiting user confirmation...')
+      const tx = await writeContractAsync(simulation.request)
 
-      // await waitForTransactionReceipt(wagmiAppConfig, {
-      //   hash: tx,
-      //   chainId: sepolia.id,
-      // })
+      await waitForTransactionReceipt(wagmiAppConfig, {
+        hash: tx,
+        chainId: sepolia.id,
+      })
 
       console.log('✅ Vault Withdraw simulated successfully!')
       console.log('Result:', simulation.result)
