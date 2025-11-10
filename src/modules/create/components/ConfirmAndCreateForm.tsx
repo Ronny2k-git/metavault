@@ -98,7 +98,7 @@ export function ConfirmAndCreateForm() {
       data: {
         data: allFormData,
         blockchainData: {
-          address: '0x...',
+          address: tx,
           userAddress: account.address,
           tokenDecimals,
           tokenName,
@@ -198,7 +198,12 @@ export function ConfirmAndCreateForm() {
           Create a vault
         </Button>
       </div>
-      <TransactionCardDialog title="Create your vault" isOpen={isModalOpen} onOpenChange={setIsModalOpen}>
+      <TransactionCardDialog
+        className="min-h-64"
+        title="Create your vault"
+        isOpen={isModalOpen}
+        onOpenChange={setIsModalOpen}
+      >
         {create.steps && <Stepper steps={create.steps} />}
       </TransactionCardDialog>
     </div>

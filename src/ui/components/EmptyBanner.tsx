@@ -27,7 +27,7 @@ export function EmptyBanner({ message, subMessage, icon, buttonLabel, className 
         )}
         {buttonLabel && (
           <a className="w-full flex justify-center" href="/create-vault">
-            <Button className="max-w-[25rem]" variant={'gradient'} size={'lg'}>
+            <Button className="max-w-[25rem] border-0 border-b-2 border-blue-300" variant={'gradient'} size={'lg'}>
               {buttonLabel}
             </Button>
           </a>

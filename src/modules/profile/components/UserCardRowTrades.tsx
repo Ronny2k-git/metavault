@@ -19,7 +19,7 @@ export function UserCardRowTrades({ id }: { id: string }) {
         {mockData.map((tx, idx) => (
           <div
             key={idx}
-            className="flex justify-between items-center p-2 rounded-xl bg-black/20 hover:bg-black/30 transition"
+            className="flex justify-between items-center p-2 rounded-xl bg-black/30 hover:bg-black/50 transition cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <div

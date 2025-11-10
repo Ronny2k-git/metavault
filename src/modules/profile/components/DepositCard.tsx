@@ -1,11 +1,9 @@
 import { useGetVaultBalance } from '@/modules/global/hooks'
-import { useGetTokenName } from '@/modules/global/hooks/useGetTokenName'
 import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
-import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 import type { DepositSchemaType } from '../schemas/TradesSchemas'
@@ -24,8 +22,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
   const { address } = useAccount()
   const [selectedVault, setSelectedVault] = useState<number | null>(null)
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
-  const { getTokenName } = useGetTokenName()
-  const { data: vaultBalance } = useGetVaultBalance('0x4ba18Ee6545def9B40BB3C8469FA8638aF693735')
+  const { data: vaultBalance } = useGetVaultBalance('0xd13196932EEcA5FafB1D9348859b3E1151cC7BAc')
 
   const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
     const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
@@ -33,18 +30,12 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
     return status === 'live'
   })
 
-  const tokenDecimals = activeVaults?.find((vault) => vault.assetTokenDecimals)
+  console.log('vault balance:', vaultBalance)
 
   // TO DO LATER:
 
   // 1 REPLACE THE DEPOSIT AND WITHDRAW CARD DATA (for modal also) FOR THE CORRECT
-  //   VALUES (balance, vaultName, token symbol and deposited).
-
-  // 2
-
-  // 3
-
-  // 4
+  //   VALUES (balance, vaultName, token symbol and deposited)
 
   return (
     <BaseCardTrade className="relative" title={title} variant={disabled ? 'disabled' : variant}>
@@ -68,7 +59,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
                 vaultLogo={vault.logo}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
-                tokenName={'USDCt'}
+                tokenName={vault.assetTokenName || 'Unknown'}
                 amount={0}
                 checked={selectedVault === index}
                 selected={() => setSelectedVault(index)}
@@ -84,7 +75,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
           </div>
         </div>
 
-        <Button className="h-12 border mt-4 border-blue-300" variant={'primary'} size={'md'}>
+        <Button className="h-12 mt-4" variant={'primary'} size={'md'}>
           Proceed with deposit
         </Button>
       </Modal>
@@ -116,7 +107,7 @@ export function DepositCard({ title, variant, trigger, register, error, disabled
               <div className="flex items-center gap-2 ">
                 Deposited:
                 <span className="text-[18px] text-green-500 font-semibold">
-                  {formatNumber(+formatUnits(BigInt(vaultBalance || 0), tokenDecimals))}
+                  {/* {formatNumber(+formatUnits(BigInt(vaultBalance || 0), tokenDecimals))} */}
                 </span>
               </div>
             </div>

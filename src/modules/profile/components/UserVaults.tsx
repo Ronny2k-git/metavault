@@ -98,6 +98,7 @@ export function UserVaults() {
               network={'Sepolia'}
               minDeposit={vault.minDeposit}
               maxDeposit={vault.maxDeposit}
+              tokenName={vault.assetTokenName!}
               startDate={vault.startDate}
               endDate={vault.endDate}
               description={vault.description}

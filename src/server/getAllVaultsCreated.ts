@@ -10,6 +10,7 @@ export const getAllVaultsCreated = createServerFn({ method: 'POST' })
           userAddress: data.userAddress,
         },
         select: {
+          id: true,
           vaultName: true,
           logo: true,
           banner: true,
@@ -26,8 +27,23 @@ export const getAllVaultsCreated = createServerFn({ method: 'POST' })
           tag: true,
           address: true,
           assetTokenDecimals: true,
+          assetTokenName: true,
+          assetTokenSymbol: true,
           chainId: true,
           userAddress: true,
+          swaps: {
+            select: {
+              id: true,
+              amount: true,
+              type: true,
+              txHash: true,
+              sender: true,
+              createdAt: true,
+            },
+            orderBy: {
+              createdAt: 'desc',
+            },
+          },
         },
       })
 

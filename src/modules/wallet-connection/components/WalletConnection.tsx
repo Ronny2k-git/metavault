@@ -44,7 +44,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
             <Tabs.Trigger
               key={index}
               value={ecosystem}
-              className="data-[state=active]:bg-sky-600 data-[state=active]:border-b-2 text-sm shadow-white py-2 px-4 rounded-2xl hover:opacity-85 cursor-pointer"
+              className="data-[state=active]:bg-sky-700 data-[state=active]:border-b-2 text-sm shadow-white py-2 px-4 rounded-2xl data-[state=inactive]:hover:opacity-85 cursor-pointer"
             >
               {ecosystem}
             </Tabs.Trigger>

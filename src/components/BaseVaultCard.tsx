@@ -91,6 +91,12 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
         <div className="h-0.5 my-2 w-full bg-gradient-to-r via-sky-500" />
 
+        {data.tokenName && (
+          <div className="flex justify-between">
+            <h3 className="text-gray-300">TokenName</h3>
+            <div>{data.tokenName || 'Unknown'}</div>
+          </div>
+        )}
         <div className="flex justify-between">
           <h3 className="text-gray-300">Start Date</h3>
           <div>{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
@@ -128,7 +134,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </Collapsible.Trigger>
           <Collapsible.Content className="w-full mt-3 absolute z-1">
             <div
-              className={`${data.status === 'live' ? 'bg-[#0e3ad8]' : 'bg-[#234adb]'} py-2 px-3 min-h-16 break-all rounded-md text-gray-300 border border-cyan-300`}
+              className={`${data.status === 'live' ? 'bg-[#023dbc]' : 'bg-[#234adb]'} py-2 px-3 min-h-16 break-all rounded-md text-gray-300 border border-cyan-300`}
             >
               <span>{data.description}</span>
             </div>
