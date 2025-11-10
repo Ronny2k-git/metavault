@@ -1,5 +1,6 @@
 export * from './useDeposit'
 export * from './useEditUserProfile'
-export * from './useGetAllCreatedValts'
+export * from './useGetAllCreatedVaults'
+export * from './useSaveUserSwap'
 export * from './useVaultSearch'
 export * from './useWithdraw'

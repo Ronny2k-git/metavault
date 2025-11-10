@@ -43,14 +43,17 @@ export function useDeposit() {
       console.log('✅ Vault Deposit simulated successfully!')
 
       console.log('🧪 Depositing...')
-      const tx = await writeContractAsync(simulation.request)
+      const txHash = await writeContractAsync(simulation.request)
 
       await waitForTransactionReceipt(wagmiAppConfig, {
-        hash: tx,
+        hash: txHash,
         chainId: sepolia.id,
       })
+
       console.log('✅ Deposit made succcesfully:')
-      console.log('Result:', tx)
+      console.log('Result:', txHash)
+
+      return { hash: txHash }
     } catch (error) {
       console.error('❌ Error Depositing:', error)
     }

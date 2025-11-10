@@ -1,5 +1,6 @@
 export * from './useApproveToken'
 export * from './useDebounce'
+export * from './useGetTokenBalance'
 export * from './useGetTokenDecimals'
 export * from './useGetTokenName'
 export * from './useGetTokenSymbol'

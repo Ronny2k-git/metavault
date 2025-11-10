@@ -81,7 +81,7 @@ const defaultNumberFormatter = new Intl.NumberFormat('en', {
   compactDisplay: 'short',
   unitDisplay: 'narrow',
   minimumSignificantDigits: 2,
-  maximumSignificantDigits: 4,
+  maximumSignificantDigits: 3,
 })
 
 export function formatNumber(value: number | bigint) {

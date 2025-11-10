@@ -1,4 +1,4 @@
-import { useGetTokenDecimals } from '@/modules/global/hooks'
+import { useGetTokenDecimals, useGetVaultBalance } from '@/modules/global/hooks'
 import { scrollToConteiner } from '@/modules/global/utils'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
@@ -8,8 +8,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { formatUnits, parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
 import { readContract } from 'wagmi/actions'
-import { useDeposit, useWithdraw } from '../hooks'
+import { useDeposit, useSaveUserSwap, useWithdraw } from '../hooks'
 import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/TradesSchemas'
 import { DepositSchema, WithdrawSchema } from '../schemas/TradesSchemas'
 import { DepositCard } from './DepositCard'
@@ -20,7 +21,10 @@ export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const { deposit } = useDeposit()
   const { withdraw } = useWithdraw()
+  const saveSwap = useSaveUserSwap()
   const { getTokenDecimal } = useGetTokenDecimals()
+  const account = useAccount()
+  const { data: vaultBalance } = useGetVaultBalance('0x46743403477492c68e1372C83326Aa479DE6Fc62')
 
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
@@ -38,20 +42,20 @@ export function Trades() {
     ;(async () => {
       const maxTest = await readContract(wagmiAppConfig, {
         abi: vaultInteractionAbi,
-        address: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
+        address: '0x46743403477492c68e1372C83326Aa479DE6Fc62',
         functionName: 'maxDepositPerWallet',
       })
       const minTest = await readContract(wagmiAppConfig, {
         abi: vaultInteractionAbi,
-        address: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
+        address: '0x46743403477492c68e1372C83326Aa479DE6Fc62',
         functionName: 'minDeposit',
       })
 
       console.log(minTest)
       console.log(maxTest)
 
-      console.log('minDeposit (formatted):', formatUnits(minTest, 8))
-      console.log('maxDeposit (formatted):', formatUnits(maxTest, 8))
+      console.log('minDeposit (formatted):', formatUnits(minTest, 18))
+      console.log('maxDeposit (formatted):', formatUnits(maxTest, 18))
     })()
   }, [])
 
@@ -60,20 +64,30 @@ export function Trades() {
     const decimals = await getTokenDecimal('0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650')
 
     // 1. Deposit in the vault
-    await deposit({
+    const depositTx = await deposit({
       tokenAddress: '0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650',
       amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
-      spenderAddress: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
+      spenderAddress: '0x46743403477492c68e1372C83326Aa479DE6Fc62',
     })
 
+    console.log('Deposit tx', depositTx)
+
     // 2. Save the transaction in the database
-    const saveOnDb = ''
+    await saveSwap.mutateAsync({
+      data: {
+        amount: String(parseUnits(data.amount.toString(), Number(decimals))),
+        sender: String(account.address),
+        txHash: String(depositTx?.hash),
+        type: 'deposit',
+        vaultId: 34,
+      },
+    })
+
+    console.log('✅ Deposit saved successfully!')
 
     // TO DO LATER
 
-    // 2 TEST THE WITHDRAW FUNCTIONALITY (DONE)
-
-    // 3 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
+    // 1 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
     //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
     //   SMALLER THAN DEPOSITED VAULT VALUE.
 
@@ -83,12 +97,12 @@ export function Trades() {
   }
 
   const handleWithdraw = async (data: WithdrawSchemaType) => {
-    const decimals = await getTokenDecimal('0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650')
+    const decimals = await getTokenDecimal('0xfAb19e8992B0564ab99F7c0098979595124f0Bc3')
 
     await withdraw({
-      tokenAddress: '0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650',
+      tokenAddress: '0xfAb19e8992B0564ab99F7c0098979595124f0Bc3',
       amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
-      spenderAddress: '0x4ba18Ee6545def9B40BB3C8469FA8638aF693735',
+      spenderAddress: '0xd13196932EEcA5FafB1D9348859b3E1151cC7BAc',
     })
 
     console.log('Withdraw', data)
@@ -114,8 +128,8 @@ export function Trades() {
             className="relative w-full max-w-[30rem] min-h-81 flex flex-col items-center p-2 gap-2 rounded-3xl "
           >
             <button
-              className="absolute top-37 z-1 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
-            cursor-pointer border-2 border-blue-900"
+              className={`absolute ${activeCard === 'Deposit' ? 'top-44' : 'top-31'} z-1 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
+            cursor-pointer border-2 border-blue-900`}
               onClick={() => {
                 setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')
                 depositForm.reset()

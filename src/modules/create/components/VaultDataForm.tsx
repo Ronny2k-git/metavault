@@ -132,7 +132,7 @@ export function VaultDataForm() {
         inputVariant={'default'}
         inputSize={'xl'}
         label="Asset Token"
-        placeholder="Your Asset token"
+        placeholder="Your asset token to deposit in the vault"
         {...register('assetToken', {
           onChange(event) {
             setVaultData((prev) => ({
