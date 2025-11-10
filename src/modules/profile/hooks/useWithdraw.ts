@@ -32,6 +32,7 @@ export function useWithdraw() {
         hash: approveHash,
         chainId: sepolia.id,
       })
+      console.log('✅ Token approved!')
 
       // 2. Simulate transaction to verify errors
       console.log('🧪 Simulating deposit...')
@@ -43,16 +44,16 @@ export function useWithdraw() {
 
       // 3. Wait transaction to be confirmed
       console.log('🧪 Waiting user confirmation...')
-      const tx = await writeContractAsync(simulation.request)
+      const txHash = await writeContractAsync(simulation.request)
 
       await waitForTransactionReceipt(wagmiAppConfig, {
-        hash: tx,
+        hash: txHash,
         chainId: sepolia.id,
       })
 
-      console.log('✅ Vault Withdraw simulated successfully!')
-      console.log('Result:', simulation.result)
-      console.log('Request:', simulation.request)
+      console.log('✅ Vault Withdraw created successfully!')
+      console.log('Result:', txHash)
+      return { hash: txHash }
     } catch (error) {
       console.error('Errow withdraw...', error)
     }
