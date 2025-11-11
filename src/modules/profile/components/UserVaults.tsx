@@ -5,6 +5,7 @@ import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
+import { getTotalVaultAmount } from '../utils'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
 import { VaulRowSkeleton } from './VaultRowSkeleton'
 
@@ -106,7 +107,7 @@ export function UserVaults() {
                 startDate: String(vault.startDate),
                 endDate: String(vault.endDate),
               })}
-              deposited={1000}
+              deposited={getTotalVaultAmount(vault, vault.swaps) || 0}
               address={vault.address}
             />
           ))}
