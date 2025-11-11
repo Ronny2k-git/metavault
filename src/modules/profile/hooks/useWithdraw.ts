@@ -12,7 +12,12 @@ type useWithdrawProps = {
   amount: bigint
 }
 
-export function useWithdraw() {
+type useWithdrawStateProps = {
+  onError?: VoidFunction
+  onSuccess?: VoidFunction
+}
+
+export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
   const { approve } = useApproveToken()
   const { writeContractAsync } = useWriteContract()
 
@@ -38,7 +43,7 @@ export function useWithdraw() {
       console.log('🧪 Simulating deposit...')
       const simulation = await simulateContract(wagmiAppConfig, {
         ...configParams,
-        functionName: 'deposit',
+        functionName: 'withdraw',
         args: [amount],
       })
 
@@ -53,9 +58,12 @@ export function useWithdraw() {
 
       console.log('✅ Vault Withdraw created successfully!')
       console.log('Result:', txHash)
+      onSuccess?.()
+
       return { hash: txHash }
     } catch (error) {
       console.error('Errow withdraw...', error)
+      onError?.()
     }
   }
 

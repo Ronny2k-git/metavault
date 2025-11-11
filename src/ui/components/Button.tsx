@@ -19,7 +19,6 @@ const buttonStyle = cva('w-full flex items-center justify-center cursor-pointer'
       tertiary: 'bg-gray-400 hover:bg-gray-500',
       white: 'bg-gray-100 hover:bg-gray-200 text-black',
       gradient: 'bg-gradient-to-r from-blue-700 to-sky-600 hover:to-sky-700 shadow-2xs shadow-blue-300  ',
-      disabled: 'bg-sky-600 hover:bg-sky-700 cursor-not-allowed opacity-50 ',
     },
   },
   defaultVariants: {
@@ -45,11 +44,13 @@ export function Button({
   className,
   ...props
 }: ButtonProps) {
-  const effectiveVariant = disabled ? 'disabled' : variant
-
   return (
     <button
-      className={twMerge(buttonStyle({ variant: effectiveVariant, size }), className)}
+      className={twMerge(
+        `${disabled ? '!cursor-not-allowed opacity-50' : ''}`,
+        buttonStyle({ variant: variant, size }),
+        className,
+      )}
       disabled={disabled}
       {...props}
     >

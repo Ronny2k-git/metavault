@@ -9,6 +9,7 @@ import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 import type { DepositSchemaType } from '../schemas/TradesSchemas'
+import { getTotalVaultAmount } from '../utils'
 import type { BaseCardTradeProps } from './BaseCardTrade'
 import { BaseCardTrade } from './BaseCardTrade'
 import { VaultCardTradeSelect } from './VaultCardTradeSelect'
@@ -37,21 +38,17 @@ export function DepositCard({
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
-  const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
-  const { data: tokenBalance } = useGetTokenBalance(selectedVault?.assetTokenAddress as Address)
+  const { data: vaultBalance, refetch: refetchVaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
+  const { data: tokenBalance, refetch: refetchTokenBalance } = useGetTokenBalance(
+    selectedVault?.assetTokenAddress as Address,
+  )
 
+  // Filter the live vaults
   const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
     const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
 
     return status === 'live'
   })
-
-  // TO DO LATER:
-
-  // 4 TEST DEPOSIT AND WITHDRAW LATER
-
-  // 5 REPLACE WITHDRAW CARD DATA (for modal also) BY THE CORRECT
-  //   VALUES (balance, vaultName, token symbol and deposited)
 
   return (
     <BaseCardTrade className="relative" title={title} variant={disabled ? 'disabled' : variant}>
@@ -77,10 +74,6 @@ export function DepositCard({
             />
           ) : (
             activeVaults?.map((vault, index) => {
-              const totalDeposited = vault.swaps
-                .filter((swap) => swap.type === 'deposit')
-                .reduce((acc, swap) => acc + Number(formatUnits(BigInt(swap.amount), vault.assetTokenDecimals)), 0)
-
               return (
                 <VaultCardTradeSelect
                   key={index}
@@ -88,7 +81,7 @@ export function DepositCard({
                   vaultName={vault.vaultName}
                   vaultDate={formatDate(vault.startDate)}
                   tokenName={vault.assetTokenSymbol || 'Unknown'}
-                  amount={totalDeposited || 0}
+                  amount={getTotalVaultAmount(vault, vault.swaps) || 0}
                   checked={selectedVault?.id === vault.id}
                   selected={() => setSelectedVault(vault)}
                 />

@@ -9,6 +9,7 @@ import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 import type { WithdrawSchemaType } from '../schemas/TradesSchemas'
+import { getTotalVaultAmount } from '../utils'
 import type { BaseCardTradeProps } from './BaseCardTrade'
 import { BaseCardTrade } from './BaseCardTrade'
 import type { baseVaultType } from './DepositCard'
@@ -36,17 +37,16 @@ export function WithdrawCard({
   const [openModal, setOpenModal] = useState(false)
   const { address } = useAccount()
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
-  const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
-  const { data: tokenBalance } = useGetTokenBalance(selectedVault?.assetTokenAddress as Address)
+  const { data: vaultBalance, refetch: refetchVaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
+  const { data: tokenBalance, refetch: refetchTokenBalance } = useGetTokenBalance(
+    selectedVault?.assetTokenAddress as Address,
+  )
 
+  // Filter the vaults that have at least some value deposited to withdraw
   const activeVaultsToWithdraw = createdVaults
     ?.map((vault) => {
-      const userDeposits = vault.swaps.filter((swap) => swap.type === 'deposit')
+      const totalDeposited = getTotalVaultAmount(vault, vault.swaps)
 
-      const totalDeposited = userDeposits.reduce(
-        (acc, swap) => acc + Number(formatUnits(BigInt(swap.amount), vault.assetTokenDecimals)),
-        0,
-      )
       return { ...vault, totalDeposited }
     })
     .filter((vault) => vault.totalDeposited > 0)

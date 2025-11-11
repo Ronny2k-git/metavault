@@ -1,10 +1,11 @@
-import { useGetTokenDecimals } from '@/modules/global/hooks'
+import { useGetTokenDecimals, useGetVaultBalance } from '@/modules/global/hooks'
 import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import type { Address } from 'viem'
 import { parseUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useDeposit, useSaveUserSwap, useWithdraw } from '../hooks'
@@ -18,43 +19,52 @@ import { WithdrawCard } from './WithdrawCard'
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
-  const { deposit } = useDeposit()
-  const { withdraw } = useWithdraw()
+  const { deposit } = useDeposit({})
+  const { withdraw } = useWithdraw({})
   const saveSwap = useSaveUserSwap()
   const { getTokenDecimal } = useGetTokenDecimals()
   const account = useAccount()
+  const { data: vaultBalance } = useGetVaultBalance('0xd13196932EEcA5FafB1D9348859b3E1151cC7BAc')
 
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
     resolver: zodResolver(DepositSchema),
     defaultValues: { amount: 0 },
   })
-
   // Withdraw Form
   const withdrawForm = useForm<WithdrawSchemaType>({
     resolver: zodResolver(WithdrawSchema),
     defaultValues: { amount: 0 },
   })
 
-  console.log(selectedVault)
+  const tokenAddress = selectedVault?.assetTokenAddress as Address
+  const spenderAddress = selectedVault?.address as Address
+  const tokenDecimals = async () => getTokenDecimal(tokenAddress)
+
+  //   TO DO LATER >>>>>>>>>>>>>
+
+  // 1 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
+  //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
+  //   SMALLER THAN DEPOSITED VAULT VALUE.
+
+  // 2 PASS THE CORRECT DEPOSITED VALUES FOR THE VAULTS ON THE USER VAULTS TAB.
+
+  // 3 FIND A WAY TO REFETCH THE "useGetVaultBalance" AND "useGetTokenBalance"
+  //   HOOKS AFTER MAKING A TRADE.
 
   const handleDeposit = async (data: DepositSchemaType) => {
     if (!selectedVault) {
       console.error('No vault selected')
       return
     }
-
-    // get token decimals
-    const decimals = await getTokenDecimal('0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650')
+    const decimals = await tokenDecimals()
 
     // 1. Deposit in the vault
     const depositTx = await deposit({
-      tokenAddress: '0xc08385eC8C8cC3fdE37C7E9CC3022e069a965650',
+      tokenAddress,
       amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
-      spenderAddress: '0x46743403477492c68e1372C83326Aa479DE6Fc62',
+      spenderAddress,
     })
-
-    console.log('Deposit tx', depositTx)
 
     // 2. Save the transaction in the database
     await saveSwap.mutateAsync({
@@ -69,13 +79,6 @@ export function Trades() {
 
     console.log('✅ Deposit saved successfully!')
 
-    // TO DO LATER
-
-    // 1 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
-    //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
-    //   SMALLER THAN DEPOSITED VAULT VALUE.
-
-    console.log('Deposit', data)
     // 4. Move to the recent transactions table
     scrollToConteiner('user-recent-transactions')
   }
@@ -85,14 +88,13 @@ export function Trades() {
       console.error('No vault selected')
       return
     }
-
-    const decimals = await getTokenDecimal('0xfAb19e8992B0564ab99F7c0098979595124f0Bc3')
+    const decimals = await tokenDecimals()
 
     // 1. Withdraw of a vault
     const withdrawTx = await withdraw({
-      tokenAddress: '0xfAb19e8992B0564ab99F7c0098979595124f0Bc3',
+      tokenAddress,
       amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
-      spenderAddress: '0xd13196932EEcA5FafB1D9348859b3E1151cC7BAc',
+      spenderAddress,
     })
 
     // 2. Save the transaction in the database
@@ -101,13 +103,14 @@ export function Trades() {
         amount: String(parseUnits(data.amount.toString(), Number(decimals))),
         sender: String(account.address),
         txHash: String(withdrawTx?.hash),
-        type: 'deposit',
+        type: 'withdraw',
         vaultId: selectedVault.id,
       },
     })
 
     console.log('Withdraw', data)
-    // Move to the recent transactions table
+
+    // 3. Move to the recent transactions table
     scrollToConteiner('user-recent-transactions')
   }
 
@@ -183,8 +186,9 @@ export function Trades() {
                   withdrawForm.handleSubmit(handleWithdraw)()
                 }
               }}
+              disabled={!selectedVault}
             >
-              {activeCard}
+              {!selectedVault ? 'Select a vault' : activeCard}
             </Button>
           </Card>
           <p className="text-center max-sm:text-base text- max-w-[30rem] text-gray-300 mb-4">

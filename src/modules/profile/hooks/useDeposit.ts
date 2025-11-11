@@ -12,7 +12,12 @@ export type useDepositProps = {
   spenderAddress: Address
 }
 
-export function useDeposit() {
+type useDepositStateProps = {
+  onError?: VoidFunction
+  onSuccess?: VoidFunction
+}
+
+export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
   const { approve } = useApproveToken()
   const { writeContractAsync } = useWriteContract()
 
@@ -52,10 +57,12 @@ export function useDeposit() {
 
       console.log('✅ Deposit made succcesfully:')
       console.log('Result:', txHash)
+      onSuccess?.()
 
       return { hash: txHash }
     } catch (error) {
       console.error('❌ Error Depositing:', error)
+      onError?.()
     }
   }
 
