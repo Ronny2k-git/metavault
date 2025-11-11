@@ -6,6 +6,7 @@ const skeletonVariants = cva('animate-pulse', {
     variant: {
       accent: '[&_div]:bg-blue-500/50 bg-blue-800',
       dimmed: '[&_div]:bg-sky-500/50 bg-blue-500/80',
+      black: '[&_div]:bg-[#0a2268] bg-black/30',
     },
   },
   defaultVariants: {
