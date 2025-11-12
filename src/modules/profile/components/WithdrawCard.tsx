@@ -1,10 +1,8 @@
-import { useGetTokenBalance, useGetVaultBalance } from '@/modules/global/hooks'
 import { formatDate, formatNumber } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
-import type { Address } from 'viem'
 import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
@@ -20,6 +18,8 @@ interface WithdrawCardProps extends Omit<BaseCardTradeProps, 'children'> {
   disabled?: boolean
   register: UseFormRegister<WithdrawSchemaType>
   error?: UseFormStateReturn<WithdrawSchemaType>
+  vaultBalance: bigint
+  tokenBalance: bigint
   selectedVault: baseVaultType | null
   setSelectedVault: React.Dispatch<React.SetStateAction<baseVaultType | null>>
 }
@@ -30,6 +30,8 @@ export function WithdrawCard({
   trigger,
   error,
   register,
+  vaultBalance,
+  tokenBalance,
   selectedVault,
   setSelectedVault,
   disabled,
@@ -37,10 +39,6 @@ export function WithdrawCard({
   const [openModal, setOpenModal] = useState(false)
   const { address } = useAccount()
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
-  const { data: vaultBalance, refetch: refetchVaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
-  const { data: tokenBalance, refetch: refetchTokenBalance } = useGetTokenBalance(
-    selectedVault?.assetTokenAddress as Address,
-  )
 
   // Filter the vaults that have at least some value deposited to withdraw
   const activeVaultsToWithdraw = createdVaults
@@ -124,7 +122,7 @@ export function WithdrawCard({
             <div className="flex flex-col text-sm text-gray-300">
               <p className="text-white">Balance:</p>
               <div className="flex gap-2 items-center text-green-500 font-semibold text-[17px]">
-                {formatNumber(Number(formatUnits(tokenBalance ?? 0n, selectedVault?.assetTokenDecimals || 0)))}
+                {formatNumber(Number(formatUnits(tokenBalance, selectedVault?.assetTokenDecimals || 0)))}
                 <span className="text-gray-300 font-normal text-sm">{selectedVault?.assetTokenSymbol || ''}</span>
               </div>
             </div>
@@ -137,7 +135,7 @@ export function WithdrawCard({
               <div className="flex items-center gap-2 ">
                 Deposited:
                 <span className="text-[17px] text-green-500 font-semibold">
-                  {formatNumber(Number(formatUnits(vaultBalance ?? 0n, selectedVault?.assetTokenDecimals || 0)))}
+                  {formatNumber(Number(formatUnits(vaultBalance, selectedVault?.assetTokenDecimals || 0)))}
                 </span>
               </div>
             </div>

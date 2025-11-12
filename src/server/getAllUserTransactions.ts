@@ -17,5 +17,8 @@ export const getAllUserTransactions = createServerFn({ method: 'POST' })
         type: true,
         vault: true,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     })
   })

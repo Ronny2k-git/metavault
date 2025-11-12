@@ -1,11 +1,8 @@
-import { useGetTokenBalance, useGetVaultBalance } from '@/modules/global/hooks'
-import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
+import { formatBigIntToNumber, formatDate, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
-import type { Address } from 'viem'
-import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults } from '../hooks'
 import type { DepositSchemaType } from '../schemas/TradesSchemas'
@@ -19,6 +16,8 @@ interface DepositCardProps extends Omit<BaseCardTradeProps, 'children'> {
   disabled?: boolean
   register: UseFormRegister<DepositSchemaType>
   error?: UseFormStateReturn<DepositSchemaType>
+  vaultBalance: bigint
+  tokenBalance: bigint
   selectedVault: baseVaultType | null
   setSelectedVault: React.Dispatch<React.SetStateAction<baseVaultType | null>>
 }
@@ -31,6 +30,8 @@ export function DepositCard({
   trigger,
   register,
   error,
+  vaultBalance,
+  tokenBalance,
   selectedVault,
   setSelectedVault,
   disabled = false,
@@ -38,10 +39,6 @@ export function DepositCard({
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
-  const { data: vaultBalance, refetch: refetchVaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
-  const { data: tokenBalance, refetch: refetchTokenBalance } = useGetTokenBalance(
-    selectedVault?.assetTokenAddress as Address,
-  )
 
   // Filter the live vaults
   const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
@@ -127,7 +124,7 @@ export function DepositCard({
             <div className="flex flex-col text-sm text-gray-300">
               <p className="text-white">Balance:</p>
               <div className="flex gap-2 items-center text-green-500 font-semibold text-[17px]">
-                {formatNumber(Number(formatUnits(tokenBalance ?? 0n, selectedVault?.assetTokenDecimals || 0)))}
+                {formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0)}
                 <span className="text-gray-300 font-normal text-sm">{selectedVault?.assetTokenSymbol || ''}</span>
               </div>
             </div>
@@ -140,7 +137,7 @@ export function DepositCard({
               <div className="flex items-center gap-2 ">
                 Deposited:
                 <span className="text-[17px] text-green-500 font-semibold">
-                  {formatNumber(Number(formatUnits(vaultBalance ?? 0n, selectedVault?.assetTokenDecimals || 0)))}
+                  {formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0)}
                 </span>
               </div>
             </div>

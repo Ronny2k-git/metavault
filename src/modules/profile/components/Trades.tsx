@@ -1,4 +1,4 @@
-import { useGetTokenDecimals, useGetVaultBalance } from '@/modules/global/hooks'
+import { useGetTokenBalance, useGetTokenDecimals, useGetVaultBalance } from '@/modules/global/hooks'
 import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -19,12 +19,30 @@ import { WithdrawCard } from './WithdrawCard'
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
-  const { deposit } = useDeposit({})
-  const { withdraw } = useWithdraw({})
-  const saveSwap = useSaveUserSwap()
-  const { getTokenDecimal } = useGetTokenDecimals()
   const account = useAccount()
-  const { data: vaultBalance } = useGetVaultBalance('0xd13196932EEcA5FafB1D9348859b3E1151cC7BAc')
+
+  // Hooks used to get the token and vault values
+  const { getTokenDecimal } = useGetTokenDecimals()
+  const { data: vaultBalance, refetch: refetchVaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
+  const { data: tokenBalance, refetch: refetchTokenBalance } = useGetTokenBalance(
+    selectedVault?.assetTokenAddress as Address,
+  )
+
+  const saveSwap = useSaveUserSwap()
+  const { deposit } = useDeposit({
+    onSuccess: () => {
+      refetchVaultBalance()
+      refetchTokenBalance()
+      depositForm.reset()
+    },
+  })
+  const { withdraw } = useWithdraw({
+    onSuccess: () => {
+      refetchVaultBalance()
+      refetchTokenBalance()
+      withdrawForm.reset()
+    },
+  })
 
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
@@ -41,16 +59,20 @@ export function Trades() {
   const spenderAddress = selectedVault?.address as Address
   const tokenDecimals = async () => getTokenDecimal(tokenAddress)
 
-  //   TO DO LATER >>>>>>>>>>>>>
+  // TO DO LATER >>>>>>>>>>>>>
 
   // 1 VALIDATE ALL ERRORS, BALANCE, MIN,(DEPOSIT), MAX,(DEPOSIT),
   //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
   //   SMALLER THAN DEPOSITED VAULT VALUE.
 
-  // 2 PASS THE CORRECT DEPOSITED VALUES FOR THE VAULTS ON THE USER VAULTS TAB.
-
-  // 3 FIND A WAY TO REFETCH THE "useGetVaultBalance" AND "useGetTokenBalance"
+  // 2 FIND A WAY TO REFETCH THE "useGetVaultBalance" AND "useGetTokenBalance"
   //   HOOKS AFTER MAKING A TRADE.
+
+  // 3 REFETCH THE USER RECENT TRANSACTIONS AFTER MAKING A TRADE
+
+  // 4 IMPLEMENT THE SEARCH TRANSACTION FILTER BY TX HASH
+
+  // 5 MANIPULATE ALL TRANSACTION STATES INSIDE THE SUBMIT TRANSACTION BUTTON
 
   const handleDeposit = async (data: DepositSchemaType) => {
     if (!selectedVault) {
@@ -156,6 +178,8 @@ export function Trades() {
               }
               register={depositForm.register}
               error={depositForm.formState}
+              tokenBalance={tokenBalance || 0n}
+              vaultBalance={vaultBalance || 0n}
               selectedVault={selectedVault}
               setSelectedVault={setSelectedVault}
             />
@@ -172,6 +196,8 @@ export function Trades() {
               }
               register={withdrawForm.register}
               error={withdrawForm.formState}
+              tokenBalance={tokenBalance || 0n}
+              vaultBalance={vaultBalance || 0n}
               selectedVault={selectedVault}
               setSelectedVault={setSelectedVault}
             />

@@ -13,10 +13,10 @@ export function UserCardRowTrades({ id }: { id: string }) {
       <h3 className="text-lg font-semibold text-white">Your Recent Transactions</h3>
 
       {!address && !isLoading && (
-        <div className="flex flex-1 w-full h-full flex-col items-center justify-center gap-4 text-sky-600 mb-6 ">
+        <div className="flex flex-1 w-full h-full flex-col items-center justify-center gap-4 mb-6 bg-gradient-to-t from-blue-700 to-sky-500 bg-clip-text text-transparent ">
           <Icon className="!text-6xl">sentiment_dissatisfied</Icon>
           <h2 className="text-4xl max-sm:text-2xl text-center">No transactions found</h2>
-          <p className="text-md text-center sm:px-4 py-2 break-words sm:py-1 text-blue-300 rounded-full">
+          <p className="text-md text-center sm:px-4 break-words sm:py-1 text-blue-300 rounded-full">
             Deposit or withdraw in a vault or connect you wallet
           </p>
         </div>
@@ -30,7 +30,7 @@ export function UserCardRowTrades({ id }: { id: string }) {
               <a href={`https://sepolia.etherscan.io/tx/${tx.txHash}`} title="View your transaction on the blockchain">
                 <div
                   key={`tx_${tx.txHash}_${index}`}
-                  className="flex justify-between items-center px-4 py-2 rounded-xl bg-black/30 hover:bg-black/50 transition cursor-pointer"
+                  className="flex justify-between items-center max-[460px]:flex-col gap-4 px-4 py-2 rounded-xl bg-black/30 hover:bg-black/50 transition cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <div
@@ -42,17 +42,12 @@ export function UserCardRowTrades({ id }: { id: string }) {
                     </div>
                     <div className="flex flex-col">
                       <span className="font-semibold text-white">{toUpperCaseFirst(tx.type)}</span>
-                      <span className="text-gray-300 text-sm">{formatDate(tx.createdAt)}</span>
+                      <span className="text-gray-300 text-sm">{formatDate(tx.createdAt, 'long')}</span>
                     </div>
                   </div>
                   <span className={`font-semibold ${tx.type === 'deposit' ? 'text-green-400' : 'text-red-400'}`}>
                     {formatBigIntToNumber(BigInt(tx.amount), tx.vault.assetTokenDecimals)} {tx.vault.assetTokenSymbol}
                   </span>
-                  {/* <a href={`https://sepolia.etherscan.io/tx/${tx.txHash}`}>
-                <Button className="max-w-16 mx-4 px-4 text-white" size="xs">
-                  view
-                </Button>
-              </a> */}
                 </div>
               </a>
             ))}

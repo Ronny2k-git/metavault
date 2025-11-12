@@ -6,19 +6,26 @@ export const convertTimestamp = (value: Date) => {
   return Math.floor(value.getTime() / 1000)
 }
 
-// Function used to format a date.
-const defaultDateFormatter = {
-  function: new Intl.DateTimeFormat('en', {
+// Functions used to format a date.
+const dateFormatters = {
+  short: new Intl.DateTimeFormat('en', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
   }),
+  long: new Intl.DateTimeFormat('en', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+  }),
 }
 
-export function formatDate(date: Date | number) {
+export function formatDate(date: Date | number, type: 'short' | 'long' = 'short') {
   if (!date) return '0/00/0000'
 
-  return defaultDateFormatter.function.format(date)
+  return dateFormatters[type].format(date)
 }
 
 // Function used to return a status based on the provided date.
