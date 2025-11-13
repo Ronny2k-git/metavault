@@ -1,3 +1,4 @@
+export * from './AppFooter'
 export * from './ConnectedWalletCard'
 export * from './Header'
 export * from './Providers'

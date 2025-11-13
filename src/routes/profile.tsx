@@ -68,7 +68,7 @@ function Profile() {
           </div>
         </Card>
 
-        <Divider className="mb-12" />
+        <Divider className="mb-12 h-[2.5px]" />
 
         <Tabs
           variant={'default'}

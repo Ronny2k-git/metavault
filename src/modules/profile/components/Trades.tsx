@@ -146,7 +146,7 @@ export function Trades() {
 
   return (
     <div className="h-full w-full flex flex-col relative">
-      <Divider />
+      <Divider className="h-0.5" />
 
       <div className="flex flex-col w-full gap-8 my-12">
         <h1 className="sm:text-4xl text-3xl text-center">

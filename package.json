@@ -28,6 +28,7 @@
     "@tanstack/router-plugin": "^1.132.0",
     "@tanstack/zod-adapter": "^1.132.47",
     "class-variance-authority": "^0.7.1",
+    "framer-motion": "^12.23.24",
     "jotai": "^2.15.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

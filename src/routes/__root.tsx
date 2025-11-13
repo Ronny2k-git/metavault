@@ -1,3 +1,4 @@
+import { AppFooter } from '@/modules/global/components'
 import { Providers } from '@/modules/global/components/Providers'
 import { NotFoundPage } from '@/ui/components'
 import { TanStackDevtools } from '@tanstack/react-devtools'
@@ -49,6 +50,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <Header />
           {children}
 
+          <AppFooter />
           <TanStackDevtools
             config={{
               position: 'bottom-left',

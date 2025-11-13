@@ -50,7 +50,7 @@ export function EditProfileForm() {
 
   return (
     <div className="grid grid-cols-2 col-span-full gap-4.5">
-      <Divider />
+      <Divider className="h-0.5" />
 
       <div className="col-span-full flex items-center gap-2 my-4 mb-4">
         <Icon className="!text-3xl">person_edit</Icon>

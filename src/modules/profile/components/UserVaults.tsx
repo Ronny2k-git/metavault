@@ -45,7 +45,8 @@ export function UserVaults() {
 
   return (
     <div className="flex flex-col w-full">
-      <Divider />
+      <Divider className="h-0.5" />
+
       <ProfileHeading
         className="mt-12 max-sm:mb-4"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
@@ -61,7 +62,7 @@ export function UserVaults() {
         iconLeft={<Icon className="text-blue-300">search</Icon>}
         inputSize={'sm'}
         label="Search Vault"
-        placeholder="Search your live vaults by name, creator and chain name."
+        placeholder="Search your vaults by address,name, creator and chain name."
         value={searchLiveVaults}
         onChange={(e) => setSearchLiveVaults(e.target.value)}
       />
@@ -122,7 +123,7 @@ export function UserVaults() {
         iconLeft={<Icon className="text-blue-300">search</Icon>}
         inputSize={'sm'}
         label="Search Vault"
-        placeholder="Search your completed vaults by name, creator and chain name."
+        placeholder="Search your vaults by address,name, creator and chain name."
         value={searchCompletedVaults}
         onChange={(e) => setSearchCompletedVaults(e.target.value)}
       />

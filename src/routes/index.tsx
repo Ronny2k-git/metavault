@@ -1,5 +1,8 @@
+import { FEATURES_SECTION, WORKS_SECTION } from '@/modules/global/constants'
+import { Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
+import { motion } from 'framer-motion'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -7,25 +10,84 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   return (
-    <header className="page background-image opacity- bg-center py-10 flex flex-col items-center justify-center text-white">
-      <img src={'/logo5.png'} className="h-[36vmin] min-h-52 animate-[spin_20s_linear_infinite]" alt="logo" />
-      <div className="flex gap-2 mb-4 mt-4 items-center">
-        <img
-          className="size-12 bg-cover bg-center rounded-full animate-[spin_10s_linear_infinite]"
-          src={'/icon.png'}
-          alt="icon"
-        />
-        <h1 className="text-5xl">Meta Vault</h1>
-      </div>
-      <div className="flex flex-col items-center gap-4">
-        <h2 className="text-2xl text-center">Decentralized. Secure. Yours.</h2>
-        <h3 className="text-xl text-gray-200 text-center">Create your vault and secure your crypto today.</h3>
-      </div>
-      <Link className="flex max-w-[28rem] w-full mt-4" to="/create-vault">
-        <Button variant={'primary'} size={'xl'}>
-          Start Now
-        </Button>
-      </Link>
-    </header>
+    <main className="page background-image text-white min-h-screen flex flex-col items-center">
+      <header className="pt-20 pb-12 text-center flex flex-col items-center max-w-4xl px-6">
+        <img src={'/homeImage.png'} className="max-h-[22rem] max-w-[22rem] rounded-full " alt="logo" />
+
+        <div className="flex gap-3 mb-6 items-center">
+          <img
+            className="size-12 bg-cover bg-center rounded-full animate-[spin_10s_linear_infinite]"
+            src={'/icon.png'}
+            alt="icon"
+          />
+          <h1 className="text-6xl max-[465px]:text-4xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
+            Meta Vault
+          </h1>
+        </div>
+
+        <h2 className="text-2xl text-gray-200 mb-2">Decentralized. Secure. Yours.</h2>
+        <h3 className="text-lg text-gray-400 max-w-xl">
+          Create your vault and secure your crypto today — built for transparency and control.
+        </h3>
+
+        <Link className="flex max-w-[15rem] w-full mt-4" to="/create-vault">
+          <Button variant={'primary'} size={'xl'}>
+            Start Now
+          </Button>
+        </Link>
+        <p className="text-gray-400 text-sm mt-2">No wallet? You can explore first.</p>
+      </header>
+
+      <Divider className="h-0.5 mb-8" />
+
+      {/* FEATURES SECTION */}
+      <section className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] max-w-4xl gap-8 px-6 w-full">
+        {FEATURES_SECTION.map(({ icon, title, desc }) => (
+          <div
+            key={title}
+            className="bg-blue-500/20 p-6 flex flex-col items-center rounded-2xl shadow-md hover:bg-blue-500/10 transition backdrop-blur-sm"
+          >
+            <Icon className="text-blue-400 !text-5xl mb-3">{icon}</Icon>
+            <h3 className="text-xl font-semibold mb-1">{title}</h3>
+            <p className="text-gray-300 text-center">{desc}</p>
+          </div>
+        ))}
+      </section>
+
+      {/* HOW IT WORKS SECTION */}
+      <section className="mt-24 text-center px-6 max-w-5xl">
+        <h2 className="text-3xl font-semibold mb-12">How it works</h2>
+        <div className="grid sm:grid-cols-3 gap-12">
+          {WORKS_SECTION.map(({ icon, title, desc }) => (
+            <motion.div
+              key={title}
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 120 }}
+              transition={{ duration: 1 }}
+              className="flex flex-col items-center gap-3 text-white"
+            >
+              <div className="bg-blue-500/30 h-16 w-16 flex items-center justify-center rounded-full">
+                <Icon className="text-blue-400 !text-4xl">{icon}</Icon>
+              </div>
+              <h3 className="text-xl font-semibold">{title}</h3>
+              <p className="text-gray-300 max-w-xs">{desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* FINAL HEADER */}
+      <section className="my-28 flex flex-col items-center text-center gap-4 px-6">
+        <h2 className="text-3xl font-bold">Ready to build your vault?</h2>
+        <p className="text-gray-300 text-lg max-w-md">
+          Start protecting your crypto in minutes with Meta Vault on Sepolia.
+        </p>
+        <Link className="flex max-w-[15rem] w-full mt-4" to="/create-vault">
+          <Button variant={'primary'} size={'xl'}>
+            Create Vault
+          </Button>
+        </Link>
+      </section>
+    </main>
   )
 }
