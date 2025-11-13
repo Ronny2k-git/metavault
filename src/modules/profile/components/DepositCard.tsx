@@ -110,7 +110,7 @@ export function DepositCard({
           onClick={() => handleDepositProceed()}
           disabled={!tempVault}
         >
-          {!selectedVault ? 'Select a vault' : 'Proceed with deposit'}
+          {!tempVault ? 'Select a vault' : 'Proceed with deposit'}
         </Button>
       </Modal>
 

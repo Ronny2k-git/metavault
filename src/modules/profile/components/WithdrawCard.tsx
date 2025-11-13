@@ -109,7 +109,7 @@ export function WithdrawCard({
           onClick={() => handleWithdrawProceed()}
           disabled={!tempVault}
         >
-          {!selectedVault ? 'Select a vault' : 'Proceed with withdraw'}
+          {!tempVault ? 'Select a vault' : 'Proceed with withdraw'}
         </Button>
       </Modal>
 

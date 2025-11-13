@@ -28,7 +28,7 @@ export function UserCardRowTrades({ id, searchTransaction }: UserCardRowTradesPr
 
       {(!address && !isLoading) ||
         (!filteredTransactions?.length && (
-          <div className="flex flex-1 w-full h-full flex-col items-center justify-center gap-4 mb-6 bg-gradient-to-t from-blue-700 to-sky-500 bg-clip-text text-transparent ">
+          <div className="flex flex-1 w-full h-full flex-col items-center justify-center gap-4 mb-6 bg-gradient-to-t from-blue-500 to-sky-400 bg-clip-text text-transparent ">
             <Icon className="!text-6xl">sentiment_dissatisfied</Icon>
             <h2 className="text-4xl max-sm:text-2xl text-center">No transactions found</h2>
             <p className="text-md max-w-[25rem] text-center sm:px-4 break-words sm:py-1 text-blue-300 rounded-full">

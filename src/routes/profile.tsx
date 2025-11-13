@@ -39,7 +39,7 @@ function Profile() {
           <div className={'w-full flex gap-4 md:gap-8 max-md:flex-col justify-between '}>
             <div className="flex items-center gap-4 ml-2">
               <img
-                className="min-h-13 min-w-13 border-2 border-blue-700 object-cover max-h-13 max-w-13 rounded-full"
+                className="min-h-14 min-w-14 max-h-14 max-w-14 border-2 border-blue-700 object-cover  rounded-full"
                 src={profileData?.avatarUrl || 'default-icon.webp'}
               />
               <div className="flex flex-col">
@@ -47,7 +47,7 @@ function Profile() {
                 <h2 className="text-sm text-gray-300">Explore your vaults, make trades and edit your profile.</h2>
               </div>
             </div>
-            <div className="bg-black/30 flex max-md:w-full items-center px-4 py-2 gap-2 rounded-3xl">
+            <div className="bg-black/30 border border-blue-400 flex max-md:w-full items-center px-4 py-2 gap-2 rounded-3xl">
               {address && connector ? (
                 <img
                   src={connectorIcons[connector.id.toLowerCase()]}
@@ -57,18 +57,18 @@ function Profile() {
               ) : (
                 <Icon className="!text-4xl">wallet</Icon>
               )}
-              <div className="flex flex-col text-lg">
+              <div className="flex flex-col">
                 <div className="flex gap-2 items-center">
                   <h2 className="text-sm text-gray-300">{!address ? 'Connect wallet' : 'Signed in as'}</h2>
                 </div>
-                {address && abreviateAddress(address)}
+                <span className="text-lg text-blue-200">{address && abreviateAddress(address)}</span>
                 {!address && <span className="text-sm">Connect your wallet to see your profile data</span>}
               </div>
             </div>
           </div>
         </Card>
 
-        <Divider className="mb-12 h-[2.5px]" />
+        <Divider className="mb-12" />
 
         <Tabs
           variant={'default'}

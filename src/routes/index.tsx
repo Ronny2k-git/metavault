@@ -12,30 +12,37 @@ function HomePage() {
   return (
     <main className="page background-image text-white min-h-screen flex flex-col items-center">
       <header className="pt-20 pb-12 text-center flex flex-col items-center max-w-4xl px-6">
-        <img src={'/homeImage.png'} className="max-h-[22rem] max-w-[22rem] rounded-full " alt="logo" />
+        <motion.img
+          src={'/homeImage.png'}
+          className="max-h-[22rem] max-w-[22rem] rounded-full "
+          alt="logo"
+          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60 }}
+          transition={{ duration: 1 }}
+        />
 
         <div className="flex gap-3 mb-6 items-center">
-          <img
-            className="size-12 bg-cover bg-center rounded-full animate-[spin_10s_linear_infinite]"
-            src={'/icon.png'}
-            alt="icon"
-          />
-          <h1 className="text-6xl max-[465px]:text-4xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">
+          <motion.h1
+            className="text-6xl max-[465px]:text-4xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-lg"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
             Meta Vault
-          </h1>
+          </motion.h1>
         </div>
 
         <h2 className="text-2xl text-gray-200 mb-2">Decentralized. Secure. Yours.</h2>
-        <h3 className="text-lg text-gray-400 max-w-xl">
+        <h3 className="text-lg text-gray-300 max-w-xl">
           Create your vault and secure your crypto today — built for transparency and control.
         </h3>
 
-        <Link className="flex max-w-[15rem] w-full mt-4" to="/create-vault">
+        <Link className="flex max-w-[15rem] w-full mt-8" to="/create-vault">
           <Button variant={'primary'} size={'xl'}>
             Start Now
           </Button>
         </Link>
-        <p className="text-gray-400 text-sm mt-2">No wallet? You can explore first.</p>
+        <p className="text-gray-300 text-sm mt-2">No wallet? You can explore first.</p>
       </header>
 
       <Divider className="h-0.5 mb-8" />
@@ -45,7 +52,7 @@ function HomePage() {
         {FEATURES_SECTION.map(({ icon, title, desc }) => (
           <div
             key={title}
-            className="bg-blue-500/20 p-6 flex flex-col items-center rounded-2xl shadow-md hover:bg-blue-500/10 transition backdrop-blur-sm"
+            className="bg-blue-500/20 p-6 flex flex-col items-center rounded-2xl shadow-md hover:bg-blue-500/10 hover:scale-105 transition"
           >
             <Icon className="text-blue-400 !text-5xl mb-3">{icon}</Icon>
             <h3 className="text-xl font-semibold mb-1">{title}</h3>

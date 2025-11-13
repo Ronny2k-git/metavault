@@ -45,7 +45,7 @@ export function UserVaults() {
 
   return (
     <div className="flex flex-col w-full">
-      <Divider className="h-0.5" />
+      <Divider />
 
       <ProfileHeading
         className="mt-12 max-sm:mb-4"
