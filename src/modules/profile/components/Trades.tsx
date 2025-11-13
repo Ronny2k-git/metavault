@@ -3,6 +3,7 @@ import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { Address } from 'viem'
@@ -19,7 +20,9 @@ import { WithdrawCard } from './WithdrawCard'
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
+  const [searchTransaction, setSearchTransaction] = useState('')
   const account = useAccount()
+  const queryClient = useQueryClient()
 
   // Hooks used to get the token and vault values
   const { getTokenDecimal } = useGetTokenDecimals()
@@ -65,15 +68,11 @@ export function Trades() {
   //   CONNECT WALLET, AND FOR WITHDRAW VERIFY IF THE AMOUNT IS EQUAL OR
   //   SMALLER THAN DEPOSITED VAULT VALUE.
 
-  // 2 FIND A WAY TO REFETCH THE "useGetVaultBalance" AND "useGetTokenBalance"
-  //   HOOKS AFTER MAKING A TRADE.
+  // 2 MANIPULATE ALL TRANSACTION STATES INSIDE THE SUBMIT TRANSACTION BUTTON
 
-  // 3 REFETCH THE USER RECENT TRANSACTIONS AFTER MAKING A TRADE
+  // 3 IMPLEMENT THE PAGINATION FOR VAULTS AND SWAPS IN THE BACKEND AND FRONTEND
 
-  // 4 IMPLEMENT THE SEARCH TRANSACTION FILTER BY TX HASH
-
-  // 5 MANIPULATE ALL TRANSACTION STATES INSIDE THE SUBMIT TRANSACTION BUTTON
-
+  // Deposit functionality
   const handleDeposit = async (data: DepositSchemaType) => {
     if (!selectedVault) {
       console.error('No vault selected')
@@ -99,12 +98,17 @@ export function Trades() {
       },
     })
 
-    console.log('✅ Deposit saved successfully!')
+    // 3. Refetch the vaults and user transactions
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['get-user-transactions', account.address] }),
+      queryClient.invalidateQueries({ queryKey: ['get-vaults', account.address] }),
+    ])
 
     // 4. Move to the recent transactions table
     scrollToConteiner('user-recent-transactions')
   }
 
+  // Withdraw functionality
   const handleWithdraw = async (data: WithdrawSchemaType) => {
     if (!selectedVault) {
       console.error('No vault selected')
@@ -130,9 +134,13 @@ export function Trades() {
       },
     })
 
-    console.log('Withdraw', data)
+    // 3. Refetch the vaults and user transactions
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['get-user-transactions', account.address] }),
+      queryClient.invalidateQueries({ queryKey: ['get-vaults', account.address] }),
+    ])
 
-    // 3. Move to the recent transactions table
+    // 4. Move to the recent transactions table
     scrollToConteiner('user-recent-transactions')
   }
 
@@ -229,10 +237,12 @@ export function Trades() {
           iconLeft={<Icon className="text-blue-300">search</Icon>}
           inputSize={'sm'}
           label="Search transaction"
-          placeholder="Search your transactions by tx hash"
+          placeholder="Search your transactions by type and tx hash"
+          value={searchTransaction}
+          onChange={(e) => setSearchTransaction(e.target.value)}
         />
 
-        <UserCardRowTrades id={'user-recent-transactions'} />
+        <UserCardRowTrades id={'user-recent-transactions'} searchTransaction={searchTransaction} />
       </div>
     </div>
   )

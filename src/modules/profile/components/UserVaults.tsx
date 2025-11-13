@@ -1,10 +1,8 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
-import { useDebounce } from '@/modules/global/hooks'
-import { formatDate, formatNumber, getChainName, getStatus } from '@/modules/global/utils'
+import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
-import { useState } from 'react'
 import { useAccount } from 'wagmi'
-import { useGetAllCreatedVaults } from '../hooks'
+import { useGetAllCreatedVaults, useVaultSearch } from '../hooks'
 import { getTotalVaultAmount } from '../utils'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
 import { VaulRowSkeleton } from './VaultRowSkeleton'
@@ -12,11 +10,8 @@ import { VaulRowSkeleton } from './VaultRowSkeleton'
 export function UserVaults() {
   const { address } = useAccount()
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
-  const [searchLive, setSearchLive] = useState('')
-  const [searchCompleted, setSearchCompleted] = useState('')
-  const searchLiveDebounce = useDebounce(searchLive, 200)
-  const searchCompletedDebounce = useDebounce(searchCompleted, 200)
 
+  // FIlter the live and completed vaultd by start date
   const createdLiveVaults = createdVaults?.filter((vault) => {
     const status = getStatus({
       startDate: String(vault.startDate),
@@ -29,22 +24,23 @@ export function UserVaults() {
     return getStatus({ startDate: String(vault.startDate), endDate: String(vault.endDate) }) === 'ended'
   })
 
-  const filteredLiveVaults = createdLiveVaults?.filter((vault) => {
-    return (
-      vault.address.toLocaleLowerCase() === searchLiveDebounce.trim().toLocaleLowerCase() ||
-      vault.vaultName.toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase()) ||
-      vault.creatorName.toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase()) ||
-      getChainName(vault.chainId).toLocaleLowerCase().includes(searchLiveDebounce.toLocaleLowerCase())
-    )
+  // Filter the live and completed vaults by search value
+  const {
+    value: filteredLiveVaults,
+    search: searchLiveVaults,
+    setValue: setSearchLiveVaults,
+  } = useVaultSearch({
+    fields: createdLiveVaults,
+    initialQuery: '',
   })
 
-  const filteredCompletedVaults = createdCompletedVaults?.filter((vault) => {
-    return (
-      vault.address.toLocaleLowerCase() === searchCompletedDebounce.trim().toLocaleLowerCase() ||
-      vault.vaultName.toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase()) ||
-      vault.creatorName.toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase()) ||
-      getChainName(vault.chainId).toLocaleLowerCase().includes(searchCompletedDebounce.toLocaleLowerCase())
-    )
+  const {
+    value: filteredCompletedVaults,
+    search: searchCompletedVaults,
+    setValue: setSearchCompletedVaults,
+  } = useVaultSearch({
+    fields: createdCompletedVaults,
+    initialQuery: '',
   })
 
   return (
@@ -66,7 +62,8 @@ export function UserVaults() {
         inputSize={'sm'}
         label="Search Vault"
         placeholder="Search your live vaults by name, creator and chain name."
-        onChange={(e) => setSearchLive(e.target.value)}
+        value={searchLiveVaults}
+        onChange={(e) => setSearchLiveVaults(e.target.value)}
       />
       {(!address || !filteredLiveVaults?.length) && !isLoading && (
         <EmptyBanner
@@ -126,7 +123,8 @@ export function UserVaults() {
         inputSize={'sm'}
         label="Search Vault"
         placeholder="Search your completed vaults by name, creator and chain name."
-        onChange={(e) => setSearchCompleted(e.target.value)}
+        value={searchCompletedVaults}
+        onChange={(e) => setSearchCompletedVaults(e.target.value)}
       />
       {(!address || !filteredCompletedVaults?.length) && !isLoading && (
         <EmptyBanner

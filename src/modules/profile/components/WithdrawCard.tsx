@@ -37,6 +37,7 @@ export function WithdrawCard({
   disabled,
 }: WithdrawCardProps) {
   const [openModal, setOpenModal] = useState(false)
+  const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
 
@@ -48,6 +49,14 @@ export function WithdrawCard({
       return { ...vault, totalDeposited }
     })
     .filter((vault) => vault.totalDeposited > 0)
+
+  // Only pass the selected vault data when the submit button is pressed.
+  const handleWithdrawProceed = () => {
+    if (tempVault) {
+      setSelectedVault(tempVault)
+      setOpenModal(false)
+    }
+  }
 
   return (
     <BaseCardTrade title={title} variant={disabled ? 'disabled' : variant}>
@@ -79,8 +88,8 @@ export function WithdrawCard({
                 vaultDate={formatDate(vault.startDate)}
                 tokenName={vault.assetTokenSymbol!}
                 amount={vault.totalDeposited}
-                checked={selectedVault?.id === vault.id}
-                selected={() => setSelectedVault(vault)}
+                checked={tempVault?.id === vault.id}
+                selected={() => setTempVault(vault)}
               />
             ))
           )}
@@ -97,8 +106,8 @@ export function WithdrawCard({
           className="h-12 mt-4"
           variant={'primary'}
           size={'md'}
-          onClick={() => setOpenModal(!openModal)}
-          disabled={!selectedVault}
+          onClick={() => handleWithdrawProceed()}
+          disabled={!tempVault}
         >
           {!selectedVault ? 'Select a vault' : 'Proceed with withdraw'}
         </Button>

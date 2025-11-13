@@ -1,6 +1,7 @@
 import type { VariantProps } from 'class-variance-authority'
 import { Dialog } from 'radix-ui'
 import { RiCloseLine } from 'react-icons/ri'
+import { twMerge } from 'tailwind-merge'
 import type { cardStyle } from './Card'
 import { Card } from './Card'
 
@@ -34,10 +35,10 @@ export function Modal({
       {trigger && <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>}
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/30 backdrop-blur-sm z-20" />
-        <Dialog.Content className={className} asChild>
+        <Dialog.Content className={twMerge('', className)} asChild>
           <Card
             variant={variant}
-            className="fixed top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-[26rem] py-6 px-6 rounded-xl"
+            className="fixed top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-[26rem] w-[calc(100%-1.5rem)] py-6 px-6 rounded-xl"
           >
             <Dialog.Close>
               <RiCloseLine className="absolute size-6 top-4 right-4 cursor-pointer text-white" />

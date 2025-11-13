@@ -38,6 +38,7 @@ export function DepositCard({
 }: DepositCardProps) {
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
+  const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
 
   // Filter the live vaults
@@ -46,6 +47,14 @@ export function DepositCard({
 
     return status === 'live'
   })
+
+  // Only pass the selected vault data when the submit button is pressed.
+  const handleDepositProceed = () => {
+    if (tempVault) {
+      setSelectedVault(tempVault)
+      setOpenModal(false)
+    }
+  }
 
   return (
     <BaseCardTrade className="relative" title={title} variant={disabled ? 'disabled' : variant}>
@@ -79,8 +88,8 @@ export function DepositCard({
                   vaultDate={formatDate(vault.startDate)}
                   tokenName={vault.assetTokenSymbol || 'Unknown'}
                   amount={getTotalVaultAmount(vault, vault.swaps) || 0}
-                  checked={selectedVault?.id === vault.id}
-                  selected={() => setSelectedVault(vault)}
+                  checked={tempVault?.id === vault.id}
+                  selected={() => setTempVault(vault)}
                 />
               )
             })
@@ -98,8 +107,8 @@ export function DepositCard({
           className="h-12 mt-4"
           variant={'primary'}
           size={'md'}
-          onClick={() => setOpenModal(!openModal)}
-          disabled={!selectedVault}
+          onClick={() => handleDepositProceed()}
+          disabled={!tempVault}
         >
           {!selectedVault ? 'Select a vault' : 'Proceed with deposit'}
         </Button>
