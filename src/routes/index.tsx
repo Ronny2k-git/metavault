@@ -1,4 +1,5 @@
 import { FEATURES_SECTION, WORKS_SECTION } from '@/modules/global/constants'
+import { scrollToConteiner } from '@/modules/global/utils'
 import { Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
@@ -14,13 +15,12 @@ function HomePage() {
       <header className="pt-20 pb-12 text-center flex flex-col items-center max-w-4xl px-6">
         <motion.img
           src={'/homeImage.png'}
-          className="max-h-[22rem] max-w-[22rem] rounded-full "
+          className="max-h-[17rem] max-w-[17rem] mb-4 rounded-full "
           alt="logo"
           whileInView={{ opacity: 1, y: 0 }}
           initial={{ opacity: 0, y: 60 }}
           transition={{ duration: 1 }}
         />
-
         <div className="flex gap-3 mb-6 items-center">
           <motion.h1
             className="text-6xl max-[465px]:text-4xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-lg"
@@ -37,28 +37,35 @@ function HomePage() {
           Create your vault and secure your crypto today — built for transparency and control.
         </h3>
 
-        <Link className="flex max-w-[15rem] w-full mt-8" to="/create-vault">
-          <Button variant={'primary'} size={'xl'}>
-            Start Now
-          </Button>
-        </Link>
+        <Button
+          className="flex max-w-[15rem] w-full mt-8"
+          variant={'primary'}
+          size={'xl'}
+          onClick={() => requestAnimationFrame(() => scrollToConteiner('features-section'))}
+        >
+          Get Started Guide
+        </Button>
+
         <p className="text-gray-300 text-sm mt-2">No wallet? You can explore first.</p>
       </header>
 
       <Divider className="h-0.5 mb-8" />
 
       {/* FEATURES SECTION */}
-      <section className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] max-w-4xl gap-8 px-6 w-full">
-        {FEATURES_SECTION.map(({ icon, title, desc }) => (
-          <div
-            key={title}
-            className="bg-blue-500/20 p-6 flex flex-col items-center rounded-2xl shadow-md hover:bg-blue-500/10 hover:scale-105 transition"
-          >
-            <Icon className="text-blue-400 !text-5xl mb-3">{icon}</Icon>
-            <h3 className="text-xl font-semibold mb-1">{title}</h3>
-            <p className="text-gray-300 text-center">{desc}</p>
-          </div>
-        ))}
+      <section id="features-section" className=" max-w-4xl px-6 w-full">
+        <h2 className="flex flex-col text-3xl font-semibold items-center mb-12">Why Use MetaVault?</h2>
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8">
+          {FEATURES_SECTION.map(({ icon, title, desc }) => (
+            <div
+              key={title}
+              className="bg-blue-500/20 p-6 flex flex-col items-center rounded-2xl shadow-md hover:bg-blue-500/10 hover:scale-110 transition"
+            >
+              <Icon className="text-blue-400 !text-5xl mb-3">{icon}</Icon>
+              <h3 className="text-xl font-semibold mb-1">{title}</h3>
+              <p className="text-gray-300 text-center">{desc}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* HOW IT WORKS SECTION */}
@@ -84,7 +91,7 @@ function HomePage() {
       </section>
 
       {/* FINAL HEADER */}
-      <section className="my-28 flex flex-col items-center text-center gap-4 px-6">
+      <section id="final-header" className="my-28 flex flex-col items-center text-center gap-4 px-6">
         <h2 className="text-3xl font-bold">Ready to build your vault?</h2>
         <p className="text-gray-300 text-lg max-w-md">
           Start protecting your crypto in minutes with Meta Vault on Sepolia.

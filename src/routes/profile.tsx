@@ -40,7 +40,7 @@ function Profile() {
             <div className="flex items-center gap-4 ml-2">
               <img
                 className="min-h-14 min-w-14 max-h-14 max-w-14 border-2 border-blue-700 object-cover  rounded-full"
-                src={profileData?.avatarUrl || 'default-icon.webp'}
+                src={profileData?.avatarUrl || '/homeImage.png'}
               />
               <div className="flex flex-col">
                 <h1 className="text-3xl">Your Profile</h1>

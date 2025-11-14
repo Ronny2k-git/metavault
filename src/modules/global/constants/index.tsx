@@ -50,6 +50,6 @@ export const WORKS_SECTION = [
   {
     icon: 'savings',
     title: '3. Deposit & Track',
-    desc: 'Deposit tokens and monitor vault performance in real time.',
+    desc: 'Deposit tokens into profile page and monitor vault performance in real time.',
   },
 ]
