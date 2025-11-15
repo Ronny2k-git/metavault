@@ -1,4 +1,5 @@
 import { useGetTokenDecimals, useGetTokenName, useGetTokenSymbol, useGetUserProfileData } from '@/modules/global/hooks'
+import { getChainName } from '@/modules/global/utils'
 import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, Icon, Input, Stepper } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -9,6 +10,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { Address } from 'viem'
+import { sepolia } from 'viem/chains'
 import { useAccount } from 'wagmi'
 import { combinedCreateDataAtom, confirmFormAtom, confirmFormValidAtom } from '../atoms/createAtoms'
 import { useCreateVault, useCreateVaultOnDb, useResetCreateForm } from '../hooks'
@@ -200,7 +202,11 @@ export function ConfirmAndCreateForm() {
       </div>
       <TransactionCardDialog
         className="min-h-64"
-        title="Create your vault"
+        title="Confirm your Creation"
+        subtitle="You Create"
+        chainName={getChainName(sepolia.id)}
+        info={allFormData.vaultName}
+        logo={allFormData.logo}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
       >

@@ -39,11 +39,11 @@ export function WithdrawCard({
   const [openModal, setOpenModal] = useState(false)
   const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
-  const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
+  const { data: createdVaults, isLoading } = useGetAllCreatedVaults({ userAddress: address! })
 
   // Filter the vaults that have at least some value deposited to withdraw
-  const activeVaultsToWithdraw = createdVaults
-    ?.map((vault) => {
+  const activeVaultsToWithdraw = createdVaults?.items
+    .map((vault) => {
       const totalDeposited = getTotalVaultAmount(vault, vault.swaps)
 
       return { ...vault, totalDeposited }

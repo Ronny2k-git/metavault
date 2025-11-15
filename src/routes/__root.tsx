@@ -2,7 +2,7 @@ import { AppFooter } from '@/modules/global/components'
 import { Providers } from '@/modules/global/components/Providers'
 import { NotFoundPage } from '@/ui/components'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { HeadContent, Scripts, createRootRoute, useRouterState } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import Header from '../modules/global/components/Header'
 import appCss from '../styles.css?url'
@@ -36,8 +36,6 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const { isLoading } = useRouterState()
-
   return (
     <html lang="en">
       <head>
@@ -50,16 +48,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <Providers>
           <Header />
+
           {children}
-          {/* Loading Overlay */}
-          {isLoading && (
-            <div
-              className="fixed inset-0 flex items-center justify-center
-                        bg-black/70 backdrop-blur-sm z-[9999]"
-            >
-              <div className="animate-spin h-12 w-12 border-4 border-blue-400 border-t-transparent rounded-full"></div>
-            </div>
-          )}
+
           <AppFooter />
           <TanStackDevtools
             config={{

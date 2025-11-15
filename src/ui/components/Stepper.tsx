@@ -38,7 +38,7 @@ export function Stepper({ steps, ...props }: StepperProps) {
               <div>{step.label}</div>
             </div>
             {/* Divider */}
-            {index + 1 < steps.length && <div className="h-2 bg-sky-500 w-[1px] mx-2.5" />}
+            {index + 1 < steps.length && <div className="h-2 bg-sky-600 w-[2px] mx-2.5" />}
           </div>
         </Fragment>
       ))}

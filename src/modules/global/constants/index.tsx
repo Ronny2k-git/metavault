@@ -20,19 +20,22 @@ export const ECOSYSTEMS = ['ethereum', 'solana', 'move']
 
 export const FEATURES_SECTION = [
   {
+    srcVideo: '/videos/',
     icon: 'encrypted_add_circle',
     title: 'Secure by Design',
-    desc: 'Your assets stay fully under your control, always verified on-chain.',
+    desc: 'Your vault runs on immutable smart contracts. No custodians, no intermediaries — only verifiable on-chain security. Your assets stay 100% under your control.',
   },
   {
+    srcVideo: '/videos/fastEdited.mp4',
     icon: 'rocket_launch',
     title: 'Fast Transactions',
-    desc: 'Deposits and withdrawals confirmed within seconds on Sepolia.',
+    desc: 'Built on the Sepolia network for near-instant confirmations. Deposits and withdrawals settle in seconds, ensuring a smooth and responsive experience.',
   },
   {
+    srcVideo: '/videos/transparent.mp4',
     icon: 'fact_check',
     title: 'Transparent Vaults',
-    desc: 'Monitor your vaults and balances in real-time, anytime, anywhere.',
+    desc: 'Monitor balances and activity in real time with data pulled directly from the blockchain. Full visibility into every action, whenever you need it.',
   },
 ]
 
@@ -45,11 +48,11 @@ export const WORKS_SECTION = [
   {
     icon: 'create',
     title: '2. Create a Vault',
-    desc: 'Set parameters and deploy your secure vault in minutes.',
+    desc: 'Set parameters and deploy your secure vault into the blockchain in minutes.',
   },
   {
     icon: 'savings',
     title: '3. Deposit & Track',
-    desc: 'Deposit tokens into profile page and monitor vault performance in real time.',
+    desc: 'Deposit tokens and monitor vault performance in real time.',
   },
 ]

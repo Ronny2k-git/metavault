@@ -1,6 +1,6 @@
 import { FEATURES_SECTION, WORKS_SECTION } from '@/modules/global/constants'
 import { scrollToConteiner } from '@/modules/global/utils'
-import { Divider, Icon } from '@/ui/components'
+import { Card, Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
@@ -37,41 +37,64 @@ function HomePage() {
           Create your vault and secure your crypto today — built for transparency and control.
         </h3>
 
-        <Button
-          className="flex max-w-[15rem] w-full mt-8"
-          variant={'primary'}
-          size={'xl'}
-          onClick={() => requestAnimationFrame(() => scrollToConteiner('features-section'))}
-        >
-          Get Started Guide
-        </Button>
+        <div className="flex w-full justify-center max-[500px]:flex-col gap-2 mt-8">
+          <Button
+            className="flex sm:max-w-[13rem] w-full "
+            variant={'secondary'}
+            size={'xl'}
+            onClick={() => requestAnimationFrame(() => scrollToConteiner('features-section'))}
+          >
+            Get Started Guide
+          </Button>
 
-        <p className="text-gray-300 text-sm mt-2">No wallet? You can explore first.</p>
+          <Button className="flex sm:max-w-[13rem] w-full " variant={'primary'} size={'xl'}>
+            Create Vault
+          </Button>
+        </div>
+
+        <p className="text-gray-300 text-sm mt-4">Explore freely — no wallet required.</p>
       </header>
 
       <Divider className="h-0.5 mb-8" />
 
       {/* FEATURES SECTION */}
-      <section id="features-section" className=" max-w-4xl px-6 w-full">
+      <section id="features-section" className=" max-w-4xl w-full">
         <h2 className="flex flex-col text-3xl font-semibold items-center mb-12">Why Use MetaVault?</h2>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-8">
-          {FEATURES_SECTION.map(({ icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-blue-500/20 p-6 flex flex-col items-center rounded-2xl shadow-md hover:bg-blue-500/10 hover:scale-110 transition"
-            >
-              <Icon className="text-blue-400 !text-5xl mb-3">{icon}</Icon>
-              <h3 className="text-xl font-semibold mb-1">{title}</h3>
-              <p className="text-gray-300 text-center">{desc}</p>
-            </div>
-          ))}
+        <div className="flex flex-col gap-8">
+          {FEATURES_SECTION.map(({ icon, title, desc, srcVideo }, index) => {
+            const isEven = index % 2 === 0
+
+            return (
+              <div
+                className={`flex gap-8 md::gap-16 items-center max-md:flex-col ${isEven ? 'flex-row' : 'flex-row-reverse'}`}
+              >
+                <Card
+                  key={title}
+                  className="md:max-h-[15rem] md:max-w-[25rem] max-w-[35rem] items-center justify-center rounded-2xl hover:scale-110"
+                  variant={'ghost'}
+                >
+                  <video autoPlay loop muted playsInline className="rounded-2xl p-3 w-full h-full object-cover">
+                    <source src={srcVideo} />
+                  </video>
+                </Card>
+                <div className="flex flex-col w-full max-md:items-center max-md:max-w-[25rem] gap-2">
+                  <h3 className="flex gap-2 items-center text-2xl font-semibold mb-1  ">
+                    <Icon className="text-blue-400 !text-5xl">{icon}</Icon>
+                    {title}
+                  </h3>
+
+                  <p className="text-base text-gray-300">{desc}</p>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 
       {/* HOW IT WORKS SECTION */}
-      <section className="mt-24 text-center px-6 max-w-5xl">
+      <section className="mt-24 w-full text-center px-6 max-w-5xl">
         <h2 className="text-3xl font-semibold mb-12">How it works</h2>
-        <div className="grid sm:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {WORKS_SECTION.map(({ icon, title, desc }) => (
             <motion.div
               key={title}
@@ -80,11 +103,16 @@ function HomePage() {
               transition={{ duration: 1 }}
               className="flex flex-col items-center gap-3 text-white"
             >
-              <div className="bg-blue-500/30 h-16 w-16 flex items-center justify-center rounded-full">
-                <Icon className="text-blue-400 !text-4xl">{icon}</Icon>
-              </div>
-              <h3 className="text-xl font-semibold">{title}</h3>
-              <p className="text-gray-300 max-w-xs">{desc}</p>
+              <Card
+                className="flex w-full min-h-[15rem] items-center justify-center p-4 rounded-2xl "
+                variant={'ghost'}
+              >
+                <div className="bg-blue-500/30 h-16 w-16 mb-4 flex items-center justify-center rounded-full">
+                  <Icon className="text-blue-400 !text-4xl">{icon}</Icon>
+                </div>
+                <h3 className="text-xl font-semibold">{title}</h3>
+                <p className="text-gray-300 max-w-xs">{desc}</p>
+              </Card>
             </motion.div>
           ))}
         </div>
@@ -98,7 +126,7 @@ function HomePage() {
         </p>
         <Link className="flex max-w-[15rem] w-full mt-4" to="/create-vault">
           <Button variant={'primary'} size={'xl'}>
-            Create Vault
+            Get Started
           </Button>
         </Link>
       </section>

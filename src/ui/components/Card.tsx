@@ -14,6 +14,7 @@ export const cardStyle = cva('w-full flex flex-col h-auto', {
       glow: 'text-white shadow-[0_0_15px_5px_rgba(37,139,255,0.4)]',
       secondary: 'bg-black/15 border border-blue-800',
       tertiary: 'bg-black/20 hover:bg-black/30',
+      ghost: 'bg-blue-500/20 shadow-md hover:bg-blue-500/10',
       disabled: 'bg-blue-700/20 cursor-not-allowed border border-blue-800',
     },
   },

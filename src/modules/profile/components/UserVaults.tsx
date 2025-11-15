@@ -1,6 +1,8 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
 import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
+import { Button } from '@/ui/components/Button'
+import { useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useGetAllCreatedVaults, useVaultSearch } from '../hooks'
 import { getTotalVaultAmount } from '../utils'
@@ -8,11 +10,16 @@ import { VaultCardSkeleton } from './VaultCardSkeleton'
 import { VaulRowSkeleton } from './VaultRowSkeleton'
 
 export function UserVaults() {
+  const [livePage, setLivePage] = useState(1)
   const { address } = useAccount()
-  const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
+  const { data: createdVaults, isLoading } = useGetAllCreatedVaults({
+    userAddress: address!,
+    page: livePage,
+    limit: 1,
+  })
 
-  // FIlter the live and completed vaultd by start date
-  const createdLiveVaults = createdVaults?.filter((vault) => {
+  // Filter the live and completed vaultd by start date
+  const createdLiveVaults = createdVaults?.items.filter((vault) => {
     const status = getStatus({
       startDate: String(vault.startDate),
       endDate: String(vault.endDate),
@@ -20,7 +27,7 @@ export function UserVaults() {
     return ['live', 'coming'].includes(status)
   })
 
-  const createdCompletedVaults = createdVaults?.filter((vault) => {
+  const createdCompletedVaults = createdVaults?.items.filter((vault) => {
     return getStatus({ startDate: String(vault.startDate), endDate: String(vault.endDate) }) === 'ended'
   })
 
@@ -46,7 +53,6 @@ export function UserVaults() {
   return (
     <div className="flex flex-col w-full">
       <Divider />
-
       <ProfileHeading
         className="mt-12 max-sm:mb-4"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
@@ -54,9 +60,7 @@ export function UserVaults() {
         status="live"
         vaults={createdLiveVaults?.length || 0}
       />
-
       <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
-
       <Input
         className="w-full sm:max-w-[27rem]"
         iconLeft={<Icon className="text-blue-300">search</Icon>}
@@ -75,7 +79,6 @@ export function UserVaults() {
           buttonLabel="Create Your Vault"
         />
       )}
-
       {isLoading ? (
         <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
           {Array.from({ length: 6 }).map((_, index) => (
@@ -111,6 +114,23 @@ export function UserVaults() {
           ))}
         </div>
       )}
+      <div className="flex gap-2 w-full items-center justify-center">
+        <Button
+          className="max-w-12 h-8 rounded-l-full"
+          disabled={livePage === 1}
+          onClick={() => setLivePage((p) => p - 1)}
+        >
+          {'<'}
+        </Button>
+        <Button className="max-w-12 h-8">{livePage}</Button>
+        <Button
+          className="max-w-12 h-8 rounded-r-full"
+          onClick={() => setLivePage((p) => p + 1)}
+          disabled={livePage > createdLiveVaults?.length!}
+        >
+          {'>'}
+        </Button>
+      </div>
       <ProfileHeading
         className="mt-24 mb-4"
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}

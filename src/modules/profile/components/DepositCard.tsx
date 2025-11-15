@@ -22,7 +22,7 @@ interface DepositCardProps extends Omit<BaseCardTradeProps, 'children'> {
   setSelectedVault: React.Dispatch<React.SetStateAction<baseVaultType | null>>
 }
 
-export type baseVaultType = NonNullable<Awaited<ReturnType<typeof useGetAllCreatedVaults>>['data']>[number]
+export type baseVaultType = NonNullable<Awaited<ReturnType<typeof useGetAllCreatedVaults>>['data']>['items'][number]
 
 export function DepositCard({
   title,
@@ -39,10 +39,10 @@ export function DepositCard({
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
   const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
-  const { data: createdVaults, isLoading } = useGetAllCreatedVaults(address!)
+  const { data: createdVaults, isLoading } = useGetAllCreatedVaults({ userAddress: address! })
 
   // Filter the live vaults
-  const activeVaults = createdVaults?.filter(({ startDate, endDate }) => {
+  const activeVaults = createdVaults?.items.filter(({ startDate, endDate }) => {
     const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
 
     return status === 'live'
