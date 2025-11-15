@@ -45,6 +45,7 @@ export function Modal({
             </Dialog.Close>
 
             <Dialog.Title className="text-xl pr-8 mb-6">{title}</Dialog.Title>
+
             <Dialog.Description className="pr-8">{description}</Dialog.Description>
             {children}
           </Card>

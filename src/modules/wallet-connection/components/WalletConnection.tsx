@@ -31,7 +31,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
 
   return (
     <Modal
-      className="flex w-full min-h-[28rem] h-auto max-sm:max-w-[23rem] sm:max-w-[45rem]"
+      className="flex w-full min-h-[28rem] h-auto max-sm:max-w-[20rem] sm:max-w-[45rem]"
       variant={'gradient'}
       title="Ecosystem"
       isOpen={open}
@@ -57,7 +57,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
             Wallets
             <div className="w-1/2 h-px  bg-sky-300" />
           </div>
-          <Tabs.Content className="w-full" value="ethereum">
+          <Tabs.Content value="ethereum">
             <EthereumConnectors />
           </Tabs.Content>
           <Tabs.Content value="solana">
@@ -67,13 +67,17 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
             <MoveConnectors />
           </Tabs.Content>
         </Tabs.Root>
-        <section className="hidden sm:flex">
+        <section className="max-sm:hidden sm:flex -mt-10">
           {/*Vertical divider */}
-          <div className="min-h-[30rem] mx-8 -mt-20 w-0.5 bg-gradient-to-t via-sky-500 " />
+          <div className="min-h-[26rem] mx-8 -mt-1 w-0.5 bg-gradient-to-t via-sky-500 " />
 
           {/*Right section  */}
-          <div className="flex flex-col gap-6 items-center">
-            <p className="text-xs uppercase tracking-widest text-blue-300">Learn</p>
+          <div className="flex flex-col md:gap-6 max-md:gap-4 items-center">
+            <div className=" w-60 bottom-[24rem] text-sm font-semibold h-8 flex items-center justify-center bg-black/15 rounded-full">
+              Balance: <p className="mx-2 text-sky-400">0 sepolia</p>
+            </div>
+
+            <p className="text-xs uppercase tracking-widest= text-blue-300">Learn</p>
 
             <h2 className="text-2xl font-semibold text-white mb-4">What Is a Wallet?</h2>
 
@@ -93,7 +97,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
               <div className="text-white max-w-[15rem] text-sm mb-4 leading-relaxed">
                 <p>A new way to log in</p>
                 <h3 className="text-gray-400">
-                  Send, receive, and manage everything you own on the blockchain, always under your full control.
+                  Send, receive, and manage everything you own on the blockchain, fully under your control.
                 </h3>
               </div>
             </div>

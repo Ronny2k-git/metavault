@@ -18,7 +18,6 @@ function HomePage() {
           className="max-h-[17rem] max-w-[17rem] mb-4 rounded-full "
           alt="logo"
           whileInView={{ opacity: 1, y: 0 }}
-          appear-from-bottom
           initial={{ opacity: 0, y: 60 }}
           transition={{ duration: 1 }}
         />
