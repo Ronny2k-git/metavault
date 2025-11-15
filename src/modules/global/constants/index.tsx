@@ -20,7 +20,7 @@ export const ECOSYSTEMS = ['ethereum', 'solana', 'move']
 
 export const FEATURES_SECTION = [
   {
-    srcVideo: '/videos/',
+    srcVideo: '/videos/security.mp4',
     icon: 'encrypted_add_circle',
     title: 'Secure by Design',
     desc: 'Your vault runs on immutable smart contracts. No custodians, no intermediaries — only verifiable on-chain security. Your assets stay 100% under your control.',

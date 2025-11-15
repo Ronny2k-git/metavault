@@ -9,10 +9,7 @@ interface CheckBoxProps extends React.ComponentPropsWithoutRef<typeof Checkbox.R
 
 export function CheckBox({ children, className, ...props }: CheckBoxProps) {
   return (
-    <PrimitiveCheckBox.Root
-      {...props}
-      className={twMerge('flex w-full items-center cursor-pointer transition ', className)}
-    >
+    <PrimitiveCheckBox.Root {...props} className={twMerge('flex w-full cursor-pointer transition ', className)}>
       {children}
     </PrimitiveCheckBox.Root>
   )

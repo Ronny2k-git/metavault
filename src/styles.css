@@ -29,6 +29,10 @@ html {
   }
 }
 
+@theme {
+  --animate-appear: appear-from-bottom 500ms ease-out;
+}
+
 .page {
   min-height: calc(100vh - 80px);
   padding-left: 16px;
@@ -81,5 +85,15 @@ html {
   .no-spinner {
     -moz-appearance: textfield;
     appearance: textfield;
+  }
+}
+
+@keyframes appear-from-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
   }
 }

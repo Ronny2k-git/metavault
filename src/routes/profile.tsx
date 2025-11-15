@@ -35,7 +35,7 @@ function Profile() {
   return (
     <div className="background-image min-h-screen flex flex-col p-4 w-full items-center pb-10 text-white">
       <div className="w-full max-w-4xl">
-        <Card className="h-auto border-0 shadow-2xs rounded-3xl my-10 px-4 py-4" variant={'basic2'}>
+        <Card className="h-auto border-1 border-blue-800 shadow-2xs rounded-3xl my-10 px-4 py-4" variant={'basic2'}>
           <div className={'w-full flex gap-4 md:gap-8 max-md:flex-col justify-between '}>
             <div className="flex items-center gap-4 ml-2">
               <img

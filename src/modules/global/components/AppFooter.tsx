@@ -10,9 +10,11 @@ export function AppFooter() {
           <div className="flex flex-col items-center sm:items-start">
             <div className="flex items-center gap-2 mb-2">
               <img src="/homeImage.png" alt="Meta Vault" className="size-8 rounded-full border border-blue-500/40" />
-              <h2 className="text-lg font-semibold text-white">Meta Vault</h2>
+              <h2 className="text-lg font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                Meta Vault
+              </h2>
             </div>
-            <p className="text-gray-400 max-w-xs max-sm:text-center">
+            <p className="text-gray-300 max-w-xs max-sm:text-center">
               Decentralized crypto vaults — secure, transparent, and built for you.
             </p>
           </div>

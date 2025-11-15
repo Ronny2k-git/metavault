@@ -18,6 +18,7 @@ function HomePage() {
           className="max-h-[17rem] max-w-[17rem] mb-4 rounded-full "
           alt="logo"
           whileInView={{ opacity: 1, y: 0 }}
+          appear-from-bottom
           initial={{ opacity: 0, y: 60 }}
           transition={{ duration: 1 }}
         />
@@ -47,19 +48,21 @@ function HomePage() {
             Get Started Guide
           </Button>
 
-          <Button className="flex sm:max-w-[13rem] w-full " variant={'primary'} size={'xl'}>
-            Create Vault
-          </Button>
+          <Link className="sm:max-w-[13rem] w-full" to={'/create-vault'}>
+            <Button variant={'primary'} size={'xl'}>
+              Create Vault
+            </Button>
+          </Link>
         </div>
 
         <p className="text-gray-300 text-sm mt-4">Explore freely — no wallet required.</p>
       </header>
 
-      <Divider className="h-0.5 mb-8" />
+      <Divider className="h-0.5 mb-12" />
 
       {/* FEATURES SECTION */}
       <section id="features-section" className=" max-w-4xl w-full">
-        <h2 className="flex flex-col text-3xl font-semibold items-center mb-12">Why Use MetaVault?</h2>
+        <h2 className="flex flex-col text-3xl font-semibold items-center mb-12">Why Use Meta Vault?</h2>
         <div className="flex flex-col gap-8">
           {FEATURES_SECTION.map(({ icon, title, desc, srcVideo }, index) => {
             const isEven = index % 2 === 0
@@ -70,7 +73,7 @@ function HomePage() {
               >
                 <Card
                   key={title}
-                  className="md:max-h-[15rem] md:max-w-[25rem] max-w-[35rem] items-center justify-center rounded-2xl hover:scale-110"
+                  className="md:max-h-[15rem] md:max-w-[25rem] max-w-[35rem] items-center justify-center rounded-2xl"
                   variant={'ghost'}
                 >
                   <video autoPlay loop muted playsInline className="rounded-2xl p-3 w-full h-full object-cover">
@@ -83,7 +86,7 @@ function HomePage() {
                     {title}
                   </h3>
 
-                  <p className="text-base text-gray-300">{desc}</p>
+                  <p className="text-base text-gray-300 max-sm:text-center">{desc}</p>
                 </div>
               </div>
             )
