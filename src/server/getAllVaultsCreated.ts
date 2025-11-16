@@ -8,10 +8,6 @@ export const getAllVaultsCreated = createServerFn({ method: 'POST' })
     const limit = data.limit ?? 10
     const skip = (page - 1) * limit
 
-    // TO DO LATER >>>>>>>>>>>>>
-
-    // IMPLEMENT A FILTER TO RETURN THE LIVE AND COMPLETED VAULTS SEPARETED
-
     try {
       const [items, total] = await Promise.all([
         prisma.vault.findMany({

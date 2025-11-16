@@ -94,9 +94,9 @@ function HomePage() {
       </section>
 
       {/* HOW IT WORKS SECTION */}
-      <section className="mt-24 w-full text-center px-6 max-w-5xl">
+      <section className="mt-24 w-full text-center max-w-5xl">
         <h2 className="text-3xl font-semibold mb-12">How it works</h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8 ">
           {WORKS_SECTION.map(({ icon, title, desc }) => (
             <motion.div
               key={title}

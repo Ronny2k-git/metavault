@@ -1,10 +1,12 @@
 'use client'
 
 import { ECOSYSTEMS } from '@/modules/global/constants'
+import { formatNumber } from '@/modules/global/utils'
 import { Icon, Modal } from '@/ui/components'
 import { Tabs } from 'radix-ui'
 import { useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
+import { sepolia } from 'viem/chains'
+import { useAccount, useBalance } from 'wagmi'
 import { EthereumConnectors, MoveConnectors, SolanaConnectors } from '../subcomponents'
 
 type WalletConnectionProps = {
@@ -12,13 +14,19 @@ type WalletConnectionProps = {
 }
 
 export default function WalletConnection({ trigger }: WalletConnectionProps) {
-  const account = useAccount()
-  const connectedWallet = account.address
   const [open, setOpen] = useState(false)
+  const account = useAccount()
+  const userAddress = account.address
+
+  const { data: sepoliaBalance } = useBalance({
+    address: userAddress,
+    chainId: sepolia.id,
+    query: { enabled: !!userAddress },
+  })
 
   // Close the modal when the user connects or disconnects their wallet.
   useEffect(() => {
-    if (connectedWallet) {
+    if (userAddress) {
       const timer = setTimeout(() => {
         setOpen(false)
       }, 1000)
@@ -27,7 +35,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
     } else {
       setOpen(false)
     }
-  }, [connectedWallet])
+  }, [userAddress])
 
   return (
     <Modal
@@ -73,8 +81,9 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
 
           {/*Right section  */}
           <div className="flex flex-col md:gap-6 max-md:gap-4 items-center">
-            <div className=" w-60 bottom-[24rem] text-sm font-semibold h-8 flex items-center justify-center bg-black/15 rounded-full">
-              Balance: <p className="mx-2 text-sky-400">0 sepolia</p>
+            <div className=" w-60 bottom-[24rem] mb-4 text-sm font-semibold h-8 flex items-center justify-center bg-black/15 rounded-full">
+              Balance:
+              <p className="mx-2 text-sky-400">{formatNumber(Number(sepoliaBalance?.formatted || 0))} sepolia</p>
             </div>
 
             <p className="text-xs uppercase tracking-widest= text-blue-300">Learn</p>
@@ -112,19 +121,19 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
 //         <div className="flex transition-shadow duration-300">
 //           <button
 //             className={`hidden sm:flex p-2 px-4 md:mx-8 items-center gap-2
-//               ${connectedWallet ? 'bg-sky-600 hover:bg-sky-500' : 'bg-gray-600 hover:bg-gray-500'}  rounded-lg cursor-pointer`}
+//               ${userAddress ? 'bg-sky-600 hover:bg-sky-500' : 'bg-gray-600 hover:bg-gray-500'}  rounded-lg cursor-pointer`}
 //             type="button"
 //             onClick={() => setMenuOpen(!menuOpen)}
 //           >
 //             <FaWallet />
-//             {connectedWallet
+//             {userAddress
 //               ? `${abreviateAddress(account.address)}`
 //               : 'Connect Wallet'}
 //           </button>
 //           <button className="sm:hidden" onClick={() => setMenuOpen(!menuOpen)}>
 //             <FaWallet
 //               className="size-5 cursor-pointer hover:bg-gray-400 rounded-sm"
-//               color={connectedWallet ? 'cyan' : 'gray'}
+//               color={userAddress ? 'cyan' : 'gray'}
 //             />
 //           </button>
 //         </div>

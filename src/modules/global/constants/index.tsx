@@ -46,13 +46,18 @@ export const WORKS_SECTION = [
     desc: 'Use MetaMask or WalletConnect to get started instantly.',
   },
   {
+    icon: 'credit_score',
+    title: '2. Verify sepolia balance',
+    desc: 'It will be necessary to create your vault and make trades.',
+  },
+  {
     icon: 'create',
-    title: '2. Create a Vault',
+    title: '3. Create a Vault',
     desc: 'Set parameters and deploy your secure vault into the blockchain in minutes.',
   },
   {
     icon: 'savings',
-    title: '3. Deposit & Track',
+    title: '4. Deposit & Track',
     desc: 'Deposit tokens and monitor vault performance in real time.',
   },
 ]
