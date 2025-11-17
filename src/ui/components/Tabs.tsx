@@ -80,9 +80,7 @@ export function Tabs({
               </div>
             </PrimitiveTabs.Trigger>
             {icon && index < tabList.length - 1 && (
-              <span className="absolute right-0 top-1/2 pt-4 -translate-y-1/2 translate-x-10 text-gray-400 pointer-events-none select-none">
-                {icon}
-              </span>
+              <span className="absolute right-0 top-1/2 pt-4 -translate-y-1/2 translate-x-10">{icon}</span>
             )}
           </div>
         ))}

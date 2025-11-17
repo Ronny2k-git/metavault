@@ -20,7 +20,7 @@ html {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to right, #0ea5e9, #20adc3);
+    background: linear-gradient(to left, #0963eb, #1e8bf1);
     border-radius: 9999px;
   }
 
@@ -43,10 +43,6 @@ html {
   background: linear-gradient(90deg, #00193a, #0238b7, #0242b1);
 }
 
-/* .background {
-  background: linear-gradient(50deg, #0d2240, #054386, #0a2987, #223fb0, #213895);
-} */
-
 .background-image {
   position: relative;
   height: 100%;
@@ -54,8 +50,6 @@ html {
   background: linear-gradient(to right, #002561, #0232a1);
   overflow: hidden;
 }
-
-/*  background: linear-gradient(50deg, #0d2240, #054386, #0a2987, #223fb0, #213895) */
 
 .background-image::before {
   content: '';
@@ -72,7 +66,7 @@ html {
 }
 
 .background-vault-row {
-  background: linear-gradient(45deg, #0b1e3a, hsl(227, 86%, 37%));
+  background: linear-gradient(90deg, #00193a, #033cc2, #0447bc);
 }
 
 @layer utilities {

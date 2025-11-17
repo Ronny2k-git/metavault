@@ -2,6 +2,7 @@ import type { vaultStatus } from '@/modules/global/types'
 import { twMerge } from 'tailwind-merge'
 
 type ProfileHeadingProps = {
+  id?: string
   icon: React.ReactNode
   title: string
   vaults?: number
@@ -9,9 +10,9 @@ type ProfileHeadingProps = {
   className?: string
 }
 
-export function ProfileHeading({ icon, title, vaults, status, className }: ProfileHeadingProps) {
+export function ProfileHeading({ id, icon, title, vaults, status, className }: ProfileHeadingProps) {
   return (
-    <div className={twMerge('w-full flex gap-4 justify-between max-sm:flex-col', className)}>
+    <div id={id} className={twMerge('w-full flex gap-4 justify-between max-sm:flex-col', className)}>
       <div className="flex gap-2">
         {icon}
         <h1 className="text-3xl">{title}</h1>

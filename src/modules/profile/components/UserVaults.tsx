@@ -1,5 +1,5 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
-import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
+import { formatDate, formatNumber, getStatus, scrollToConteiner } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
@@ -15,7 +15,7 @@ export function UserVaults() {
   const { data: createdVaults, isLoading } = useGetAllCreatedVaults({
     userAddress: address!,
     page: livePage,
-    limit: 1,
+    limit: 10,
   })
 
   // Filter the live and completed vaultd by start date
@@ -54,6 +54,7 @@ export function UserVaults() {
     <div className="flex flex-col w-full">
       <Divider />
       <ProfileHeading
+        id="user-live-vaults"
         className="mt-12 max-sm:mb-4"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
@@ -118,14 +119,20 @@ export function UserVaults() {
         <Button
           className="max-w-12 h-8 rounded-l-full"
           disabled={livePage === 1}
-          onClick={() => setLivePage((p) => p - 1)}
+          onClick={() => {
+            setLivePage((p) => p - 1)
+            requestAnimationFrame(() => scrollToConteiner('user-live-vaults'))
+          }}
         >
           {'<'}
         </Button>
         <Button className="max-w-12 h-8">{livePage}</Button>
         <Button
           className="max-w-12 h-8 rounded-r-full"
-          onClick={() => setLivePage((p) => p + 1)}
+          onClick={() => {
+            setLivePage((p) => p + 1)
+            requestAnimationFrame(() => scrollToConteiner('user-live-vaults'))
+          }}
           disabled={livePage > createdLiveVaults?.length!}
         >
           {'>'}
@@ -164,16 +171,18 @@ export function UserVaults() {
         </div>
       ) : filteredCompletedVaults?.length ? (
         <div className="w-full overflow-x-auto custom-scrollbar mt-10" style={{ paddingBottom: '8px' }}>
-          <table className="w-full min-w-[46rem]">
+          <table className="w-full min-w-[48rem] border-separate border-spacing-y-2 border-spacing-x-0">
             <thead>
-              <tr className="[&_td]:text-nowrap">
-                <td align="center" className="pr-16">
-                  Project Name
+              <tr className="[&_td]:text-nowrap ">
+                <td colSpan={5} className="p-0">
+                  <div className="flex items-center h-10 px-2">
+                    <div className="flex-1 pl-30">Project Name</div>
+                    <div className="w-32 text-center">Min deposit</div>
+                    <div className="w-32 text-center">Max deposit</div>
+                    <div className="w-32 text-center">End Date</div>
+                    <div className="w-24 text-center">View</div>
+                  </div>
                 </td>
-                <td align="center">Min deposit</td>
-                <td align="center">Max deposit</td>
-                <td align="center">End Date</td>
-                <td align="center">View</td>
               </tr>
             </thead>
             <tbody>

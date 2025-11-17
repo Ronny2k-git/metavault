@@ -41,7 +41,7 @@ function CreateVault() {
         <WalletConnectionRequired />
 
         <Tabs
-          icon={<Icon className="!text-4xl text-sky-300">keyboard_double_arrow_right</Icon>}
+          icon={<Icon className="!text-4xl text-blue-400">keyboard_double_arrow_right</Icon>}
           variant={'blue'}
           size={'lg'}
           search={search.tab}

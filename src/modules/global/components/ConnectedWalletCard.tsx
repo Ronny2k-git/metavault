@@ -14,9 +14,10 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
   return (
     <Card
       className={twMerge(
-        'h-[16rem] bg-[url(/card6.webp)] bg-right bg-cover relative justify-center px-8 rounded-lg border-blue-900',
+        'h-[16rem] bg-right bg-cover relative justify-center px-8 rounded-lg border-blue-800 cursor-auto',
         className,
       )}
+      variant={'disabled'}
     >
       {connector && (
         <img

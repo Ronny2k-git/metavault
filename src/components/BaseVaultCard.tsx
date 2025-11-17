@@ -32,7 +32,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
   }
 
   return (
-    <Card variant={`${data.status === 'live' ? 'basic2' : 'basic'}`} className={'relative lg:max-w-[20rem] rounded-lg'}>
+    <Card variant={`${data.status === 'live' ? 'basic2' : 'basic'}`} className={'relative lg:max-w-[23rem] rounded-lg'}>
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
       </div>
@@ -74,40 +74,50 @@ export function BaseVaultCard(data: BaseVaultProps) {
         </div>
       </div>
 
-      <div className="flex flex-col mt-4 mb-2 mx-2 gap-0.5 text-[15px]">
+      <section className="flex flex-col mt-4 mb-2 mx-2 gap-0.5 text-[15px]">
         <div className="flex justify-between">
           <h3 className="text-gray-300">Creator</h3>
           <div>{data.creatorName || 'unnamed'}</div>
         </div>
-        <div className="flex justify-between">
-          <h3 className="text-gray-300">Min dep per wallet</h3>
-          <div>{data.minDeposit || 0}</div>
-        </div>
-
-        <div className="flex justify-between">
-          <h3 className="text-gray-300">Max dep per wallet</h3>
-          <div>{formatNumber(Number(data.maxDeposit)) || 0}</div>
-        </div>
-
-        <div className="h-0.5 my-2 w-full bg-gradient-to-r via-sky-500" />
 
         {data.tokenName && (
           <div className="flex justify-between">
-            <h3 className="text-gray-300">TokenName</h3>
+            <h3 className="text-gray-300">TokenName:</h3>
             <div>{data.tokenName || 'Unknown'}</div>
           </div>
         )}
         <div className="flex justify-between">
-          <h3 className="text-gray-300">Start Date</h3>
+          <h3 className="text-gray-300">Min dep:</h3>
+          <div>{data.minDeposit || 0}</div>
+        </div>
+
+        <div className="flex justify-between">
+          <h3 className="text-gray-300">Max dep:</h3>
+          <div>{formatNumber(Number(data.maxDeposit)) || 0}</div>
+        </div>
+
+        <div className="flex justify-between">
+          <h3 className="text-gray-300">Start Date:</h3>
           <div>{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
         </div>
         <div className="flex justify-between">
-          <h3 className="text-gray-300">End Date</h3>
+          <h3 className="text-gray-300">End Date:</h3>
           <div>{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
         </div>
 
+        <div className="flex justify-between">
+          <h3 className="text-gray-300">{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
+          <div className="flex items-center h-7 px-4 bg-black/15 border border-blue-500 rounded-lg">
+            {'1D / 05:41:17'}
+          </div>
+        </div>
+      </section>
+
+      <div className="h-0.5 my-2 w-full bg-gradient-to-r via-sky-500" />
+
+      <section className="flex flex-col px-2">
         {data.deposited != null && (
-          <div className="text-center mt-3 mb-2 bg-blue-900/50 border border-blue-500 py-2 rounded-lg">
+          <div className="text-center mt-3 mb-2 bg-black/15 border border-blue-500 py-2 rounded-lg">
             <p className="text-sm text-gray-300">Total Deposited</p>
             <p className="text-xl font-bold text-white">{formatNumber(data.deposited)}</p>
           </div>
@@ -122,11 +132,12 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         )}
         {data.children}
-      </div>
+      </section>
+
       <div className="relative mb-2 mx-1">
         <Collapsible.Root>
           <Collapsible.Trigger className="group w-full" asChild>
-            <button className="relative p-1 mt-2 text-sm w-full bg-sky-600 hover:bg-sky-500  rounded-full cursor-pointer">
+            <button className="relative p-1 mt-2 text-sm w-full bg-black/20 hover:bg-black/30  rounded-full cursor-pointer">
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1/2 -translate-y-1/2 size-5" />
               Description
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 right-4 top-1/2 -translate-y-1/2 size-5" />
