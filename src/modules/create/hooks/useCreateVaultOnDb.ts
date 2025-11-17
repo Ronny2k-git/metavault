@@ -6,6 +6,6 @@ export function useCreateVaultOnDb() {
 
   return useMutation({
     mutationFn: createVaultOnDb,
-    onSuccess: () => query.invalidateQueries({ queryKey: ['get-vaults'] }),
+    onSuccess: () => query.invalidateQueries({ queryKey: ['vaults'] }),
   })
 }

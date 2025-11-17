@@ -3,7 +3,6 @@ import WalletConnection from '@/modules/wallet-connection/components/WalletConne
 import { Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { ClientOnly, Link, useRouter } from '@tanstack/react-router'
-import { FaWallet } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 import { abreviateAddress } from '../utils'
 
@@ -45,10 +44,13 @@ export default function Header() {
                 >
                   {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
                 </Button>
-                <FaWallet
-                  className="sm:hidden size-5 cursor-pointer hover:bg-gray-400 rounded-sm"
-                  color={connectedWallet ? 'cyan' : 'gray'}
-                />
+                <div className="sm:hidden">
+                  <Icon
+                    className={` !text-3xl mt-2 ${connectedWallet ? 'text-sky-300 hover:text-sky-400' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
+                  >
+                    wallet
+                  </Icon>
+                </div>
               </div>
             }
           />

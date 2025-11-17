@@ -107,7 +107,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
         <div className="flex justify-between">
           <h3 className="text-gray-300">{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
-          <div className="flex items-center h-7 px-4 bg-black/15 border border-blue-500 rounded-lg">
+          <div className="flex items-center h-7 px-4 bg-black/20 border border-blue-500 rounded-lg">
             {'1D / 05:41:17'}
           </div>
         </div>
@@ -117,7 +117,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
       <section className="flex flex-col px-2">
         {data.deposited != null && (
-          <div className="text-center mt-3 mb-2 bg-black/15 border border-blue-500 py-2 rounded-lg">
+          <div className="text-center mt-3 mb-2 bg-black/20 border border-blue-500 py-2 rounded-lg">
             <p className="text-sm text-gray-300">Total Deposited</p>
             <p className="text-xl font-bold text-white">{formatNumber(data.deposited)}</p>
           </div>

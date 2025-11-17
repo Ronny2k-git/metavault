@@ -4,31 +4,28 @@ import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
-import { useGetAllCreatedVaults, useVaultSearch } from '../hooks'
+import { useGetAllVaultsCreated, useVaultSearch } from '../hooks'
 import { getTotalVaultAmount } from '../utils'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
 import { VaulRowSkeleton } from './VaultRowSkeleton'
 
 export function UserVaults() {
   const [livePage, setLivePage] = useState(1)
+  const [completedPage, setcompletedPage] = useState(1)
   const { address } = useAccount()
-  const { data: createdVaults, isLoading } = useGetAllCreatedVaults({
+
+  // Get live, coming and completed vaults.
+  const { data: liveVaults, isLoading: isLoadingLive } = useGetAllVaultsCreated({
     userAddress: address!,
     page: livePage,
     limit: 10,
+    live: true,
   })
-
-  // Filter the live and completed vaultd by start date
-  const createdLiveVaults = createdVaults?.items.filter((vault) => {
-    const status = getStatus({
-      startDate: String(vault.startDate),
-      endDate: String(vault.endDate),
-    })
-    return ['live', 'coming'].includes(status)
-  })
-
-  const createdCompletedVaults = createdVaults?.items.filter((vault) => {
-    return getStatus({ startDate: String(vault.startDate), endDate: String(vault.endDate) }) === 'ended'
+  const { data: completedVaults, isLoading: isLoadingCompleted } = useGetAllVaultsCreated({
+    userAddress: address!,
+    page: completedPage,
+    limit: 10,
+    live: false,
   })
 
   // Filter the live and completed vaults by search value
@@ -37,7 +34,7 @@ export function UserVaults() {
     search: searchLiveVaults,
     setValue: setSearchLiveVaults,
   } = useVaultSearch({
-    fields: createdLiveVaults,
+    fields: liveVaults?.items,
     initialQuery: '',
   })
 
@@ -46,7 +43,7 @@ export function UserVaults() {
     search: searchCompletedVaults,
     setValue: setSearchCompletedVaults,
   } = useVaultSearch({
-    fields: createdCompletedVaults,
+    fields: completedVaults?.items,
     initialQuery: '',
   })
 
@@ -59,7 +56,7 @@ export function UserVaults() {
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
         status="live"
-        vaults={createdLiveVaults?.length || 0}
+        vaults={liveVaults?.items.length || 0}
       />
       <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
       <Input
@@ -71,7 +68,7 @@ export function UserVaults() {
         value={searchLiveVaults}
         onChange={(e) => setSearchLiveVaults(e.target.value)}
       />
-      {(!address || !filteredLiveVaults?.length) && !isLoading && (
+      {(!address || !filteredLiveVaults?.length) && !isLoadingLive && (
         <EmptyBanner
           className="mt-10 text-center"
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
@@ -80,7 +77,7 @@ export function UserVaults() {
           buttonLabel="Create Your Vault"
         />
       )}
-      {isLoading ? (
+      {isLoadingLive ? (
         <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
           {Array.from({ length: 6 }).map((_, index) => (
             <VaultCardSkeleton key={index} />
@@ -133,7 +130,7 @@ export function UserVaults() {
             setLivePage((p) => p + 1)
             requestAnimationFrame(() => scrollToConteiner('user-live-vaults'))
           }}
-          disabled={livePage > createdLiveVaults?.length!}
+          disabled={livePage > liveVaults?.items.length!}
         >
           {'>'}
         </Button>
@@ -143,7 +140,7 @@ export function UserVaults() {
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}
         title="Completed Vaults"
         status="ended"
-        vaults={createdCompletedVaults?.length || 0}
+        vaults={completedVaults?.items.length || 0}
       />
       <Input
         className="w-full sm:max-w-[27rem]"
@@ -154,7 +151,7 @@ export function UserVaults() {
         value={searchCompletedVaults}
         onChange={(e) => setSearchCompletedVaults(e.target.value)}
       />
-      {(!address || !filteredCompletedVaults?.length) && !isLoading && (
+      {(!address || !filteredCompletedVaults?.length) && !isLoadingCompleted && (
         <EmptyBanner
           className="mt-10 text-center"
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
@@ -163,7 +160,7 @@ export function UserVaults() {
           buttonLabel="Create Your Vault"
         />
       )}
-      {isLoading ? (
+      {isLoadingCompleted ? (
         <div className="flex flex-col gap-2 my-8 overflow-x-auto p-4">
           {Array.from({ length: 10 }).map((_, index) => (
             <VaulRowSkeleton key={index} />

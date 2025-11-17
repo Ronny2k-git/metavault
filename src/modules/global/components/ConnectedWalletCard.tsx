@@ -14,36 +14,35 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
   return (
     <Card
       className={twMerge(
-        'h-[16rem] bg-right bg-cover relative justify-center px-8 rounded-lg border-blue-800 cursor-auto',
+        'relative bg-black/10 h-[16rem] min-w-[17rem] px-8 py-6 flex flex-col items-center justify-center gap-4 rounded-2xl border border-blue-900/50 cursor-auto',
         className,
       )}
-      variant={'disabled'}
+      variant="disabled"
     >
+      {/* Logout */}
+      <button onClick={disconnect} className="absolute top-3 right-3 text-gray-300 hover:text-white cursor-pointer">
+        <Icon className="!text-2xl">logout</Icon>
+      </button>
+
+      {/* Wallet icon */}
       {connector && (
         <img
           src={connectorIcons[connector.id.toLowerCase()]}
-          alt={`${connector.name}`}
-          className="rounded-full size-7 absolute left-2 bottom-2"
+          alt={connector.name}
+          className="size-16 rounded-full border-2 p-2 border-blue-900/50 shadow"
         />
       )}
 
-      <button className="absolute top-3 right-2 cursor-pointer hover:border-b hover:border-white" onClick={disconnect}>
-        <Icon>logout</Icon>
-      </button>
+      {/* Wallet address */}
+      <span className="text-white font-bold text-xl tracking-wide text-center break-all max-w-[14rem]">{address}</span>
 
-      <div className="flex flex-col">
-        <div className="flex items-center gap-1">
-          <img className="h-10 w-12" src="/chip.png" />
-          <Icon className="mt-1">contactless</Icon>
-        </div>
-        <span className="text-lg">{address}</span>
-      </div>
-      <div className="flex items-center gap-1 absolute bottom-2 right-2 ">
-        <Icon>account_circle</Icon>
-        <a href="/profile">
-          <span className="hover:underline cursor-pointer">{'profile'}</span>
-        </a>
-      </div>
+      <a
+        href="/profile"
+        className="px-3 py-1 rounded-full bg-blue-700/40 hover:bg-blue-700/60 transition text-white text-sm flex items-center gap-1"
+      >
+        <Icon className="!text-base">account_circle</Icon>
+        Profile
+      </a>
     </Card>
   )
 }

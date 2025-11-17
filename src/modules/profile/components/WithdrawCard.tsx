@@ -5,7 +5,7 @@ import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
 import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
-import { useGetAllCreatedVaults } from '../hooks'
+import { useGetAllVaultsCreated } from '../hooks'
 import type { WithdrawSchemaType } from '../schemas/TradesSchemas'
 import { getTotalVaultAmount } from '../utils'
 import type { BaseCardTradeProps } from './BaseCardTrade'
@@ -39,10 +39,10 @@ export function WithdrawCard({
   const [openModal, setOpenModal] = useState(false)
   const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
-  const { data: createdVaults, isLoading } = useGetAllCreatedVaults({ userAddress: address! })
+  const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
 
-  // Filter the vaults that have at least some value deposited to withdraw
-  const activeVaultsToWithdraw = createdVaults?.items
+  // Filter the live vaults that have at least some value deposited to withdraw
+  const activeVaultsToWithdraw = availableVaults?.items
     .map((vault) => {
       const totalDeposited = getTotalVaultAmount(vault, vault.swaps)
 
@@ -107,7 +107,7 @@ export function WithdrawCard({
           variant={'primary'}
           size={'md'}
           onClick={() => handleWithdrawProceed()}
-          disabled={!tempVault}
+          disabled={!tempVault || !activeVaultsToWithdraw}
         >
           {!tempVault ? 'Select a vault' : 'Proceed with withdraw'}
         </Button>

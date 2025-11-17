@@ -1,10 +1,10 @@
-import { formatBigIntToNumber, formatDate, getStatus } from '@/modules/global/utils'
+import { formatBigIntToNumber, formatDate } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
 import { useAccount } from 'wagmi'
-import { useGetAllCreatedVaults } from '../hooks'
+import { useGetAllVaultsCreated } from '../hooks'
 import type { DepositSchemaType } from '../schemas/TradesSchemas'
 import { getTotalVaultAmount } from '../utils'
 import type { BaseCardTradeProps } from './BaseCardTrade'
@@ -22,7 +22,7 @@ interface DepositCardProps extends Omit<BaseCardTradeProps, 'children'> {
   setSelectedVault: React.Dispatch<React.SetStateAction<baseVaultType | null>>
 }
 
-export type baseVaultType = NonNullable<Awaited<ReturnType<typeof useGetAllCreatedVaults>>['data']>['items'][number]
+export type baseVaultType = NonNullable<Awaited<ReturnType<typeof useGetAllVaultsCreated>>['data']>['items'][number]
 
 export function DepositCard({
   title,
@@ -39,14 +39,7 @@ export function DepositCard({
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
   const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
-  const { data: createdVaults, isLoading } = useGetAllCreatedVaults({ userAddress: address! })
-
-  // Filter the live vaults
-  const activeVaults = createdVaults?.items.filter(({ startDate, endDate }) => {
-    const status = getStatus({ startDate: String(startDate), endDate: String(endDate) })
-
-    return status === 'live'
-  })
+  const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
 
   // Only pass the selected vault data when the submit button is pressed.
   const handleDepositProceed = () => {
@@ -79,7 +72,7 @@ export function DepositCard({
               icon={<Icon className="!text-5xl">sentiment_dissatisfied</Icon>}
             />
           ) : (
-            activeVaults?.map((vault, index) => {
+            availableVaults?.items.map((vault, index) => {
               return (
                 <VaultCardTradeSelect
                   key={index}
@@ -108,7 +101,7 @@ export function DepositCard({
           variant={'primary'}
           size={'md'}
           onClick={() => handleDepositProceed()}
-          disabled={!tempVault}
+          disabled={!tempVault || !availableVaults}
         >
           {!tempVault ? 'Select a vault' : 'Proceed with deposit'}
         </Button>
