@@ -77,7 +77,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
         </Tabs.Root>
         <section className="max-sm:hidden sm:flex -mt-10">
           {/*Vertical divider */}
-          <div className="min-h-[26rem] mx-8 -mt-1 w-0.5 bg-gradient-to-t via-sky-500 " />
+          <div className="min-h-[26rem] mx-8 -mt-1 w-0.5 bg-gradient-to-b via-sky-500 " />
 
           {/*Right section  */}
           <div className="flex flex-col md:gap-6 max-md:gap-4 items-center">

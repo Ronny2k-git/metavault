@@ -12,7 +12,7 @@ export function EthereumConnectors() {
   const { disconnect } = useDisconnect()
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 max-h-[18rem] overflow-y-auto">
       <h1 className="text-md mb-3.5">{isConnected ? 'Your User Data' : 'Ethereum Connectors'}</h1>
 
       {isConnected ? (
@@ -24,7 +24,7 @@ export function EthereumConnectors() {
 
           return (
             <Button
-              className={`flex w-full justify-start ${isFirst ? 'rounded-t-2xl' : ''} ${isLast ? 'rounded-b-2xl' : ''}`}
+              className={`flex w-full justify-start ${isFirst ? 'rounded-t-xl' : ''} ${isLast ? 'rounded-b-xl' : ''}`}
               size="base"
               variant={'primary'}
               onClick={() => connect({ connector })}

@@ -1,6 +1,8 @@
 import { useApproveToken } from '@/modules/global/hooks'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
+import console from 'console'
+import { useState } from 'react'
 import type { Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useWriteContract } from 'wagmi'
@@ -18,6 +20,7 @@ type useDepositStateProps = {
 }
 
 export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
+  const [status, setStatus] = useState('')
   const { approve } = useApproveToken()
   const { writeContractAsync } = useWriteContract()
 
@@ -30,24 +33,22 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
 
     try {
       // 1. Approve token hash to spend with the vault contract
-      console.log('⏳ Approving token...')
+      setStatus('Approving token...')
       const approveHash = await approve({ amount, spenderAddress, tokenAddress })
 
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: approveHash,
         chainId: sepolia.id,
       })
-      console.log('✅ Token approved!')
 
-      console.log('🧪 Simulating deposit...')
+      setStatus('Simulating Deposit...')
       const simulation = await simulateContract(wagmiAppConfig, {
         ...configParams,
         functionName: 'deposit',
         args: [amount],
       })
-      console.log('✅ Vault Deposit simulated successfully!')
 
-      console.log('🧪 Depositing...')
+      setStatus('Depositing...')
       const txHash = await writeContractAsync(simulation.request)
 
       await waitForTransactionReceipt(wagmiAppConfig, {
@@ -55,10 +56,11 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
         chainId: sepolia.id,
       })
 
-      console.log('✅ Deposit made succcesfully:')
-      console.log('Result:', txHash)
+      setStatus('Deposit made successfully')
       onSuccess?.()
-
+      setTimeout(() => {
+        setStatus('')
+      }, 1500)
       return { hash: txHash }
     } catch (error) {
       console.error('❌ Error Depositing:', error)
@@ -66,5 +68,5 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
     }
   }
 
-  return { deposit }
+  return { deposit, status }
 }

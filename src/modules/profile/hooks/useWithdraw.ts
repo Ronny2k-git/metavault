@@ -1,6 +1,7 @@
 import { useApproveToken } from '@/modules/global/hooks'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
+import { useState } from 'react'
 import type { Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useWriteContract } from 'wagmi'
@@ -18,6 +19,7 @@ type useWithdrawStateProps = {
 }
 
 export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
+  const [status, setStatus] = useState('')
   const { approve } = useApproveToken()
   const { writeContractAsync } = useWriteContract()
 
@@ -30,17 +32,17 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
 
     try {
       // 1. Approve token hash to spend with the vault contract
-      console.log('⏳ Approving token...')
+      setStatus('Approving token...')
+
       const approveHash = await approve({ amount, tokenAddress, spenderAddress })
 
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: approveHash,
         chainId: sepolia.id,
       })
-      console.log('✅ Token approved!')
 
       // 2. Simulate transaction to verify errors
-      console.log('🧪 Simulating deposit...')
+      setStatus('Simulating Withdraw...')
       const simulation = await simulateContract(wagmiAppConfig, {
         ...configParams,
         functionName: 'withdraw',
@@ -48,7 +50,7 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
       })
 
       // 3. Wait transaction to be confirmed
-      console.log('🧪 Waiting user confirmation...')
+      setStatus('Withdrawing...')
       const txHash = await writeContractAsync(simulation.request)
 
       await waitForTransactionReceipt(wagmiAppConfig, {
@@ -56,10 +58,11 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
         chainId: sepolia.id,
       })
 
-      console.log('✅ Vault Withdraw created successfully!')
-      console.log('Result:', txHash)
+      setStatus('Withdraw made successfully')
       onSuccess?.()
-
+      setTimeout(() => {
+        setStatus('')
+      }, 1500)
       return { hash: txHash }
     } catch (error) {
       console.error('Errow withdraw...', error)
@@ -67,5 +70,5 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
     }
   }
 
-  return { withdraw }
+  return { withdraw, status }
 }

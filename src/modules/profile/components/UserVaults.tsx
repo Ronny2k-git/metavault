@@ -1,7 +1,7 @@
 import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
-import { formatDate, formatNumber, getStatus, scrollToConteiner } from '@/modules/global/utils'
+import { Pagination } from '@/modules/global/components/Pagination'
+import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
-import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated, useVaultSearch } from '../hooks'
@@ -11,14 +11,14 @@ import { VaulRowSkeleton } from './VaultRowSkeleton'
 
 export function UserVaults() {
   const [livePage, setLivePage] = useState(1)
-  const [completedPage, setcompletedPage] = useState(1)
+  const [completedPage, setCompletedPage] = useState(1)
   const { address } = useAccount()
 
   // Get live, coming and completed vaults.
   const { data: liveVaults, isLoading: isLoadingLive } = useGetAllVaultsCreated({
     userAddress: address!,
     page: livePage,
-    limit: 10,
+    limit: 6,
     live: true,
   })
   const { data: completedVaults, isLoading: isLoadingCompleted } = useGetAllVaultsCreated({
@@ -55,8 +55,8 @@ export function UserVaults() {
         className="mt-12 max-sm:mb-4"
         icon={<Icon className="!text-4xl">live_tv</Icon>}
         title="Live Vaults"
-        status="live"
-        vaults={liveVaults?.items.length || 0}
+        subtitle="Total Live Vaults"
+        value={liveVaults?.total || 0}
       />
       <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
       <Input
@@ -112,35 +112,24 @@ export function UserVaults() {
           ))}
         </div>
       )}
-      <div className="flex gap-2 w-full items-center justify-center">
-        <Button
-          className="max-w-12 h-8 rounded-l-full"
-          disabled={livePage === 1}
-          onClick={() => {
-            setLivePage((p) => p - 1)
-            requestAnimationFrame(() => scrollToConteiner('user-live-vaults'))
-          }}
-        >
-          {'<'}
-        </Button>
-        <Button className="max-w-12 h-8">{livePage}</Button>
-        <Button
-          className="max-w-12 h-8 rounded-r-full"
-          onClick={() => {
-            setLivePage((p) => p + 1)
-            requestAnimationFrame(() => scrollToConteiner('user-live-vaults'))
-          }}
-          disabled={livePage > liveVaults?.items.length!}
-        >
-          {'>'}
-        </Button>
+      <div className="flex gap-2 w-full justify-center">
+        {liveVaults && liveVaults?.totalPages > 1 && (
+          <Pagination
+            key={livePage}
+            page={livePage}
+            totalPages={liveVaults?.totalPages!}
+            onChange={setLivePage}
+            scrollId="user-live-vaults"
+          />
+        )}
       </div>
       <ProfileHeading
+        id="user-completed-vaults"
         className="mt-24 mb-4"
         icon={<Icon className="!text-4xl">bookmark_check</Icon>}
         title="Completed Vaults"
-        status="ended"
-        vaults={completedVaults?.items.length || 0}
+        subtitle="Total Completed Vaults"
+        value={completedVaults?.total || 0}
       />
       <Input
         className="w-full sm:max-w-[27rem]"
@@ -167,7 +156,7 @@ export function UserVaults() {
           ))}
         </div>
       ) : filteredCompletedVaults?.length ? (
-        <div className="w-full overflow-x-auto custom-scrollbar mt-10" style={{ paddingBottom: '8px' }}>
+        <div className="w-full flex flex-col overflow-x-auto mt-10">
           <table className="w-full min-w-[48rem] border-separate border-spacing-y-2 border-spacing-x-0">
             <thead>
               <tr className="[&_td]:text-nowrap ">
@@ -202,6 +191,15 @@ export function UserVaults() {
               ))}
             </tbody>
           </table>
+          {completedVaults && completedVaults?.totalPages > 1 && (
+            <Pagination
+              key={completedPage}
+              page={completedPage}
+              totalPages={completedVaults?.totalPages!}
+              onChange={setCompletedPage}
+              scrollId="user-completed-vaults"
+            />
+          )}
         </div>
       ) : null}
     </div>

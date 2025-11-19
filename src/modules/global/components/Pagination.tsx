@@ -1,24 +1,52 @@
+import { Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
+import { scrollToConteiner } from '../utils'
 
 export type PaginationProps = {
-  value: number
-  setValue: () => void
-  fields: [number]
+  page: number
+  totalPages: number
+  onChange: (page: number) => void
+  scrollId: string
 }
 
-export function Pagination({ value, setValue, fields }: PaginationProps) {
+export function Pagination({ page, totalPages, onChange, scrollId }: PaginationProps) {
+  const navigate = (p: number) => {
+    onChange(p)
+    requestAnimationFrame(() => scrollToConteiner(scrollId))
+  }
+
   return (
-    <div className="flex gap-2">
-      <Button className="max-w-12 h-8 rounded-l-full" disabled={value === 1} onClick={() => setValue((p) => p - 1)}>
-        {'<'}
+    <div className="flex gap-2 items-center">
+      {/* Left arrow */}
+      <Button className="max-w-12 h-9 rounded-l-full" onClick={() => navigate(page - 1)} disabled={page === 1}>
+        <Icon>keyboard_double_arrow_left</Icon>
       </Button>
-      <Button className="max-w-12 h-8">{value}</Button>
-      <Button
-        className="max-w-12 h-8 rounded-r-full"
-        onClick={() => setValue((p) => p + 1)}
-        disabled={value > fields.length}
-      >
-        {'>'}
+
+      {/*First page */}
+      <Button className={'w-14 h-9'} variant={page == 1 ? 'black' : 'primary'} onClick={() => navigate(1)}>
+        1
+      </Button>
+
+      {/* Current page, only show if the current page is larger than one */}
+      {page !== 1 && (
+        <Button className={'w-14 h-9'} variant={page ? 'black' : 'primary'}>
+          {page}
+        </Button>
+      )}
+
+      {/* Last Page */}
+      {totalPages > 1 && page !== totalPages && (
+        <Button
+          className={'w-14 h-9'}
+          variant={page === totalPages ? 'black' : 'primary'}
+          onClick={() => navigate(totalPages)}
+        >
+          {totalPages}
+        </Button>
+      )}
+      {/* Right arrow */}
+      <Button className="max-w-12 h-9 rounded-r-full" onClick={() => navigate(page + 1)} disabled={page === totalPages}>
+        <Icon>keyboard_double_arrow_right</Icon>
       </Button>
     </div>
   )
