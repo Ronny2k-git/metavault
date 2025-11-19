@@ -72,8 +72,6 @@ export function Trades() {
 
   // 2 CREATE A COUNTDOWN CLOCK LATER TO IMPLEMENT INTO USER VAULT LIVE CARDS
 
-  // 3 UPDATE THE COUNTODWN DESIGN, PROBABLY THE SIZE WILL BE THE ENTIRE CARD
-
   // Deposit functionality
   const handleDeposit = async (data: DepositSchemaType) => {
     if (!selectedVault) {
@@ -244,7 +242,7 @@ export function Trades() {
           icon={<Icon className="!text-4xl">live_tv</Icon>}
           title="User Transactions"
           subtitle="Total User Transactions"
-          value={userTransactions?.total}
+          value={userTransactions?.total || 0}
         />
 
         <Input

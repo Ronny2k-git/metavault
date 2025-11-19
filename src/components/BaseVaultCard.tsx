@@ -105,11 +105,11 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <div>{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex flex-col items-center">
           <h3 className="text-gray-300">{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
-          <div className="flex items-center h-7 px-4 bg-black/20 border border-blue-500 rounded-lg">
-            {'1D / 05:41:17'}
-          </div>
+          <Card variant={'tertiary'} className="items-center justify-center h-8 px-4 rounded-lg">
+            <p className="text-lg font-semibold">{'1D / 05:41:17'}</p>
+          </Card>
         </div>
       </section>
 
@@ -117,10 +117,10 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
       <section className="flex flex-col px-2">
         {data.deposited != null && (
-          <div className="text-center mt-3 mb-2 bg-black/20 border border-blue-500 py-2 rounded-lg">
+          <Card variant={'tertiary'} className="items-center mt-3 mb-2 py-2 rounded-lg">
             <p className="text-sm text-gray-300">Total Deposited</p>
             <p className="text-xl font-bold text-white">{formatNumber(data.deposited)}</p>
-          </div>
+          </Card>
         )}
 
         {data.address && (
