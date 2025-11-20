@@ -13,11 +13,11 @@ export function EmptyBanner({ message, subMessage, icon, buttonLabel, className 
   return (
     <div
       className={twMerge(
-        `w-full shadow-[0_0_10px_4px_rgba(255_1_1)] shadow-blue-500/50 p-16 flex relative bg-[url('/blockchain.jpg')] bg-center bg-cover rounded-4xl`,
+        `w-full shadow-[0_0_10px_4px_rgba(255_1_1)] shadow-blue-600/50 p-16 flex relative bg-[url('/blockchain.jpg')] bg-center bg-cover rounded-4xl`,
         className,
       )}
     >
-      <div className="absolute inset-0 bg-black/20 rounded-4xl" />
+      <div className="absolute inset-0 bg-black/10 rounded-4xl" />
 
       <div className="w-full flex flex-col items-center z-0 gap-4">
         {icon}

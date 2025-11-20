@@ -1,9 +1,17 @@
+import { ConnectedWalletCard } from '@/modules/global/components'
+import { useConnect } from 'wagmi'
+
 export function SolanaConnectors() {
+  const { connectors } = useConnect()
+
+  const connector = connectors.find((c) => c.id === 'injected'.toLowerCase())
+
   return (
-    <div className="flex flex-col gap-2.5">
+    <div className="flex flex-col gap-4">
       <h1 className="text-md">Solana Connectors</h1>
 
-      <span className="text-gray-200 my-[0.8rem]">It's still not implemented</span>
+      {/*Mock */}
+      <ConnectedWalletCard address="Not implemented" connector={connector} />
     </div>
   )
 }

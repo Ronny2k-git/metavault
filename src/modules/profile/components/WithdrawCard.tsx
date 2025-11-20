@@ -73,7 +73,7 @@ export function WithdrawCard({
           <h2 className="text-lg text-gray-300 mb-4">Deposited Vaults</h2>
           <Divider />
 
-          {isLoading || !address ? (
+          {isLoading || !address || !activeVaultsToWithdraw?.length ? (
             <EmptyBanner
               className="h-40 p-4 text-center"
               subMessage="No vaults found. Try connecting your wallet or depositing into one."

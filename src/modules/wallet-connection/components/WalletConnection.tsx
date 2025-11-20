@@ -105,9 +105,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
 
               <div className="text-white max-w-[15rem] text-sm mb-4 leading-relaxed">
                 <p>A new way to log in</p>
-                <h3 className="text-gray-400">
-                  Send, receive, and manage everything you own on the blockchain, fully under your control.
-                </h3>
+                <h3 className="text-gray-400">Send, receive, and manage everything you own on the blockchain.</h3>
               </div>
             </div>
           </div>

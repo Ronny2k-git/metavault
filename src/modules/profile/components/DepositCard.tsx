@@ -64,7 +64,7 @@ export function DepositCard({
           <h2 className="text-lg text-gray-300 mb-4">Available Vaults ( Live )</h2>
           <Divider />
 
-          {isLoading || !address ? (
+          {isLoading || !address || !availableVaults?.items.length ? (
             <EmptyBanner
               className="h-40 p-4 text-center"
               subMessage="No vaults found. Try connecting your wallet or creating one"

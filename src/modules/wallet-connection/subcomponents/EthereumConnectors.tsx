@@ -13,7 +13,7 @@ export function EthereumConnectors() {
 
   return (
     <div className="flex flex-col gap-2 max-h-[18rem] overflow-y-auto">
-      <h1 className="text-md mb-3.5">{isConnected ? 'Your User Data' : 'Ethereum Connectors'}</h1>
+      <h1 className="text-md mb-2">{isConnected ? 'Your User Data' : 'Ethereum Connectors'}</h1>
 
       {isConnected ? (
         <ConnectedWalletCard address={abreviateAddress(address)} disconnect={() => disconnect()} connector={conn} />

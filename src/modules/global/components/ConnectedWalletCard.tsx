@@ -5,7 +5,7 @@ import { connectorIcons } from '../utils/connectorIcons'
 
 interface ConnectedWalletCardProps {
   address?: string
-  disconnect: () => void
+  disconnect?: () => void
   connector?: Connector
   className?: string
 }
@@ -14,15 +14,17 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
   return (
     <Card
       className={twMerge(
-        'relative bg-black/10 h-[16rem] min-w-[17rem] px-8 py-6 flex flex-col items-center justify-center gap-4 rounded-2xl border border-blue-900/50 cursor-auto',
+        'relative bg-black/10 h-[14rem] min-w-[14rem] px-8 py-6 flex flex-col items-center justify-center gap-4 rounded-2xl border border-blue-900/50 cursor-auto',
         className,
       )}
       variant="disabled"
     >
       {/* Logout */}
-      <button onClick={disconnect} className="absolute top-3 right-3 text-gray-300 hover:text-white cursor-pointer">
-        <Icon className="!text-2xl">logout</Icon>
-      </button>
+      {disconnect && (
+        <button onClick={disconnect} className="absolute top-3 right-3 text-gray-300 hover:text-white cursor-pointer">
+          <Icon className="!text-2xl">logout</Icon>
+        </button>
+      )}
 
       {/* Wallet icon */}
       {connector && (

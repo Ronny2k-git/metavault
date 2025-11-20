@@ -1,4 +1,5 @@
 import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
+import { CountDownClock } from '@/modules/global/components'
 import type { vaultStatus } from '@/modules/global/types'
 import { formatDate, formatNumber } from '@/modules/global/utils'
 import { Card, Icon } from '@/ui/components'
@@ -10,8 +11,8 @@ import { StatusChip } from './StatusChip'
 interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> {
   description: string
   tokenName?: string
-  startDate?: Date
-  endDate?: Date
+  startDate: Date
+  endDate: Date
   status: vaultStatus
   discordIcon?: React.ReactNode
   telegramIcon?: React.ReactNode
@@ -107,9 +108,8 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
         <div className="flex flex-col items-center">
           <h3 className="text-gray-300">{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
-          <Card variant={'tertiary'} className="items-center justify-center h-8 px-4 rounded-lg">
-            <p className="text-lg font-semibold">{'1D / 05:41:17'}</p>
-          </Card>
+
+          <CountDownClock startDate={data.startDate} endDate={data.endDate} />
         </div>
       </section>
 
