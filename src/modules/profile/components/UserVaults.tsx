@@ -50,158 +50,187 @@ export function UserVaults() {
   return (
     <div className="flex flex-col w-full">
       <Divider />
-      <ProfileHeading
-        id="user-live-vaults"
-        className="mt-12 max-sm:mb-4"
-        icon={<Icon className="!text-4xl">live_tv</Icon>}
-        title="Live Vaults"
-        subtitle="Total Live Vaults"
-        value={liveVaults?.total || 0}
-      />
-      <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
-      <Input
-        className="w-full sm:max-w-[27rem]"
-        iconLeft={<Icon className="text-blue-300">search</Icon>}
-        inputSize={'sm'}
-        label="Search Vault"
-        placeholder="Search your vaults by address,name, creator and chain name."
-        value={searchLiveVaults}
-        onChange={(e) => setSearchLiveVaults(e.target.value)}
-      />
-      {(!address || !filteredLiveVaults?.length) && !isLoadingLive && (
-        <EmptyBanner
-          className="mt-10 text-center"
-          icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-          message="No Live Vaults found"
-          subMessage="Please, check your filters or Connect your wallet"
-          buttonLabel="Create Your Vault"
+
+      {/* User live vaults */}
+      <section>
+        <ProfileHeading
+          id="user-live-vaults"
+          className="mt-12 max-sm:mb-4"
+          icon={<Icon className="!text-4xl">live_tv</Icon>}
+          title="Live Vaults"
+          subtitle="Total Live Vaults"
+          value={liveVaults?.total || 0}
         />
-      )}
-      {isLoadingLive ? (
-        <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <VaultCardSkeleton key={index} />
-          ))}
-        </div>
-      ) : (
-        <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
-          {filteredLiveVaults?.map((vault, index) => (
-            <BaseVaultCard
-              key={`live_vault_${index}`}
-              banner={vault.banner}
-              logo={vault.logo}
-              vaultName={vault.vaultName}
-              discordIcon={vault.discord}
-              telegramIcon={vault.telegram}
-              twitterIcon={vault.twitter}
-              creatorName={vault.creatorName}
-              network={'Sepolia'}
-              minDeposit={vault.minDeposit}
-              maxDeposit={vault.maxDeposit}
-              tokenName={vault.assetTokenName!}
-              startDate={vault.startDate}
-              endDate={vault.endDate}
-              description={vault.description}
-              status={getStatus({
-                startDate: String(vault.startDate),
-                endDate: String(vault.endDate),
-              })}
-              deposited={getTotalVaultAmount(vault, vault.swaps) || 0}
-              address={vault.address}
-            />
-          ))}
-        </div>
-      )}
-      <div className="flex gap-2 w-full justify-center">
-        {liveVaults && liveVaults?.totalPages > 1 && (
-          <Pagination
-            key={livePage}
-            page={livePage}
-            totalPages={liveVaults?.totalPages!}
-            onChange={setLivePage}
-            scrollId="user-live-vaults"
+        <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
+        <Input
+          className="w-full sm:max-w-[27rem]"
+          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          inputSize={'sm'}
+          label="Search Vault"
+          placeholder="Search your vaults by address,name, creator and chain name."
+          value={searchLiveVaults}
+          onChange={(e) => setSearchLiveVaults(e.target.value)}
+        />
+        {(!address || !filteredLiveVaults?.length) && !isLoadingLive && (
+          <EmptyBanner
+            className="mt-10 text-center"
+            icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
+            message="No Live Vaults found"
+            subMessage="Please, check your filters or Connect your wallet"
+            buttonLabel="Create Your Vault"
           />
         )}
-      </div>
-      <ProfileHeading
-        id="user-completed-vaults"
-        className="mt-24 mb-4"
-        icon={<Icon className="!text-4xl">bookmark_check</Icon>}
-        title="Completed Vaults"
-        subtitle="Total Completed Vaults"
-        value={completedVaults?.total || 0}
-      />
-      <Input
-        className="w-full sm:max-w-[27rem]"
-        iconLeft={<Icon className="text-blue-300">search</Icon>}
-        inputSize={'sm'}
-        label="Search Vault"
-        placeholder="Search your vaults by address,name, creator and chain name."
-        value={searchCompletedVaults}
-        onChange={(e) => setSearchCompletedVaults(e.target.value)}
-      />
-      {(!address || !filteredCompletedVaults?.length) && !isLoadingCompleted && (
-        <EmptyBanner
-          className="mt-10 text-center"
-          icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-          message="No Completed Vaults found"
-          subMessage="Please, check your filters or Connect your wallet"
-          buttonLabel="Create Your Vault"
-        />
-      )}
-      {isLoadingCompleted ? (
-        <div className="flex flex-col gap-2 my-8 overflow-x-auto p-4">
-          {Array.from({ length: 10 }).map((_, index) => (
-            <VaulRowSkeleton key={index} />
-          ))}
-        </div>
-      ) : filteredCompletedVaults?.length ? (
-        <div className="w-full flex flex-col overflow-x-auto mt-10">
-          <table className="w-full min-w-[48rem] border-separate border-spacing-y-2 border-spacing-x-0">
-            <thead>
-              <tr className="[&_td]:text-nowrap ">
-                <td colSpan={5} className="p-0">
-                  <div className="flex items-center h-10 px-2">
-                    <div className="flex-1 pl-30">Project Name</div>
-                    <div className="w-32 text-center">Min deposit</div>
-                    <div className="w-32 text-center">Max deposit</div>
-                    <div className="w-32 text-center">End Date</div>
-                    <div className="w-24 text-center">View</div>
-                  </div>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredCompletedVaults.map((vault, index) => (
-                <BaseVaultRow
-                  key={`completed_vault_${index}`}
-                  banner={vault.banner}
-                  logo={vault.logo}
-                  vaultName={vault.vaultName}
-                  network={'Sepolia'}
-                  minDeposit={vault.minDeposit}
-                  maxDeposit={formatNumber(Number(vault.maxDeposit))}
-                  endDate={formatDate(Number(vault.endDate))}
-                  tx={vault.address}
-                  status={getStatus({
-                    startDate: String(vault.startDate),
-                    endDate: String(vault.endDate),
-                  })}
-                />
-              ))}
-            </tbody>
-          </table>
-          {completedVaults && completedVaults?.totalPages > 1 && (
+        {isLoadingLive ? (
+          <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <VaultCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
+            {filteredLiveVaults?.map((vault, index) => (
+              <BaseVaultCard
+                key={`live_vault_${index}`}
+                banner={vault.banner}
+                logo={vault.logo}
+                vaultName={vault.vaultName}
+                discordIcon={vault.discord}
+                telegramIcon={vault.telegram}
+                twitterIcon={vault.twitter}
+                creatorName={vault.creatorName}
+                network={'Sepolia'}
+                minDeposit={vault.minDeposit}
+                maxDeposit={vault.maxDeposit}
+                tokenName={vault.assetTokenName!}
+                startDate={vault.startDate}
+                endDate={vault.endDate}
+                description={vault.description}
+                status={getStatus({
+                  startDate: String(vault.startDate),
+                  endDate: String(vault.endDate),
+                })}
+                deposited={getTotalVaultAmount(vault, vault.swaps) || 0}
+                address={vault.address}
+              />
+            ))}
+          </div>
+        )}
+        <div className="flex gap-2 w-full justify-center">
+          {liveVaults && liveVaults?.totalPages > 1 && (
             <Pagination
-              key={completedPage}
-              page={completedPage}
-              totalPages={completedVaults?.totalPages!}
-              onChange={setCompletedPage}
-              scrollId="user-completed-vaults"
+              key={livePage}
+              page={livePage}
+              totalPages={liveVaults?.totalPages!}
+              onChange={setLivePage}
+              scrollId="user-live-vaults"
             />
           )}
         </div>
-      ) : null}
+      </section>
+
+      {/* User completed vaults to withdraw*/}
+      <section>
+        {/* {
+      FINISH THIS SECTION LATER: 
+
+      TO DO: 
+      1 FILTER THE COMPLETED VAULTS THAT HAVE "ANY DEPOSITED VALUE" TO WITHDRAW.
+      2 PROBABLY I WILL USE THE BASE VAULT CARD, MAKE THE NECESSARY CHANGES.
+        
+        } */}
+        <ProfileHeading
+          id="user-completed-vaults-to-withdraw"
+          className="mt-24 mb-4"
+          icon={<Icon className="!text-4xl">bookmark_check</Icon>}
+          title="Vaults to Withdraw"
+          subtitle="Total Vaults To Withdraw"
+          value={1 || 0}
+        />
+        ef
+      </section>
+
+      {/* User completed vaults */}
+      <section>
+        <ProfileHeading
+          id="user-completed-vaults"
+          className="mt-24 mb-4"
+          icon={<Icon className="!text-4xl">bookmark_check</Icon>}
+          title="Completed Vaults"
+          subtitle="Total Completed Vaults"
+          value={completedVaults?.total || 0}
+        />
+        <Input
+          className="w-full sm:max-w-[27rem]"
+          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          inputSize={'sm'}
+          label="Search Vault"
+          placeholder="Search your vaults by address,name, creator and chain name."
+          value={searchCompletedVaults}
+          onChange={(e) => setSearchCompletedVaults(e.target.value)}
+        />
+        {(!address || !filteredCompletedVaults?.length) && !isLoadingCompleted && (
+          <EmptyBanner
+            className="mt-10 text-center"
+            icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
+            message="No Completed Vaults found"
+            subMessage="Please, check your filters or Connect your wallet"
+            buttonLabel="Create Your Vault"
+          />
+        )}
+        {isLoadingCompleted ? (
+          <div className="flex flex-col gap-2 my-8 overflow-x-auto p-4">
+            {Array.from({ length: 10 }).map((_, index) => (
+              <VaulRowSkeleton key={index} />
+            ))}
+          </div>
+        ) : filteredCompletedVaults?.length ? (
+          <div className="w-full flex flex-col overflow-x-auto mt-10">
+            <table className="w-full min-w-[48rem] border-separate border-spacing-y-2 border-spacing-x-0">
+              <thead>
+                <tr className="[&_td]:text-nowrap ">
+                  <td colSpan={5} className="p-0">
+                    <div className="flex items-center h-10 px-2">
+                      <div className="flex-1 pl-30">Project Name</div>
+                      <div className="w-32 text-center">Min deposit</div>
+                      <div className="w-32 text-center">Max deposit</div>
+                      <div className="w-32 text-center">End Date</div>
+                      <div className="w-24 text-center">View</div>
+                    </div>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredCompletedVaults.map((vault, index) => (
+                  <BaseVaultRow
+                    key={`completed_vault_${index}`}
+                    banner={vault.banner}
+                    logo={vault.logo}
+                    vaultName={vault.vaultName}
+                    network={'Sepolia'}
+                    minDeposit={vault.minDeposit}
+                    maxDeposit={formatNumber(Number(vault.maxDeposit))}
+                    endDate={formatDate(Number(vault.endDate))}
+                    tx={vault.address}
+                    status={getStatus({
+                      startDate: String(vault.startDate),
+                      endDate: String(vault.endDate),
+                    })}
+                  />
+                ))}
+              </tbody>
+            </table>
+            {completedVaults && completedVaults?.totalPages > 1 && (
+              <Pagination
+                key={completedPage}
+                page={completedPage}
+                totalPages={completedVaults?.totalPages!}
+                onChange={setCompletedPage}
+                scrollId="user-completed-vaults"
+              />
+            )}
+          </div>
+        ) : null}
+      </section>
     </div>
   )
 }

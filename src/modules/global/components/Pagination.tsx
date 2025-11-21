@@ -46,7 +46,7 @@ export function Pagination({ page, totalPages, onChange, scrollId }: PaginationP
       {/* Last Page */}
       {totalPages > 1 && (
         <Button
-          className={'w-12 h-9'}
+          className={'w-14 h-9'}
           variant={page === totalPages ? 'black' : 'primary'}
           onClick={() => navigate(totalPages)}
         >

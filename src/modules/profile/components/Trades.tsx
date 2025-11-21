@@ -72,17 +72,6 @@ export function Trades() {
     defaultValues: { amount: 0 },
   })
 
-  //   TO DO LATER
-
-  // 1 VALIDATE ALL ERRORS: "BALANCE" "MIN-DEPOSIT" "MAX-DEPOSIT"
-  //   AND FOR WITHDRAW VERIFY IF THE AMOUNT IS `EQUAL OR
-  //   SMALLER THAN DEPOSITED VAULT VALUE`.
-
-  // 2 IMPLEMENT A WAY TO USER WITHDRAW YOUR FUNDS WHEN THE VAULTS IS COMPLETED, PROBABLY
-  //   WILL BE SOMETHING LIKE: Show a button inside the vault row card to withdraw the funds
-  //   if the vault has any deposited value. Probably when the user clicks the button will
-  //   open the transaction card component with the total deposited value selected to withdraw.
-
   // Deposit functionality
   const handleDeposit = async (data: DepositSchemaType) => {
     if (!selectedVault) {
@@ -116,7 +105,7 @@ export function Trades() {
       },
     })
 
-    // 3. Refetch the vaults and user transactions
+    // 4. Refetch the vaults and user transactions
     await Promise.all([
       queryClient.invalidateQueries({ queryKey: ['get-user-transactions', account.address] }),
       queryClient.invalidateQueries({ queryKey: ['vaults', account.address] }),
@@ -239,7 +228,7 @@ export function Trades() {
                   withdrawForm.handleSubmit(handleWithdraw)()
                 }
               }}
-              disabled={!selectedVault}
+              disabled={!selectedVault || !!depositStatus || !!withdrawStatus}
             >
               {/*Spinner */}
               {(activeCard === 'Deposit' && depositStatus) || (activeCard === 'Withdraw' && withdrawStatus) ? (

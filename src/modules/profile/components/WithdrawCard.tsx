@@ -84,6 +84,7 @@ export function WithdrawCard({
             activeVaultsToWithdraw?.map((vault, index) => (
               <VaultCardTradeSelect
                 key={index}
+                vaultLogo={vault.logo}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
                 tokenName={vault.assetTokenSymbol!}

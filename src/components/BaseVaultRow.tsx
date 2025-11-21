@@ -31,7 +31,7 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
 
           <div className="w-24 mr-4">
             <a href={`https://sepolia.etherscan.io/address/${data.tx}`}>
-              <Button className="max-w-16 mx-8 text-white" size="xs">
+              <Button className="max-w-20 mx-6" size="xs">
                 view
               </Button>
             </a>
