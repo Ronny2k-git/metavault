@@ -2,11 +2,10 @@ import { formatUnits } from 'viem'
 
 // Function used to format a number based on provided value.
 const defaultNumberFormatter = new Intl.NumberFormat('en', {
-  notation: 'compact',
   compactDisplay: 'short',
   unitDisplay: 'narrow',
   minimumSignificantDigits: 2,
-  maximumSignificantDigits: 3,
+  maximumSignificantDigits: 4,
 })
 
 export function formatNumber(value: number | bigint) {

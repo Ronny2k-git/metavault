@@ -63,6 +63,7 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
       }, 1500)
       return { hash: txHash }
     } catch (error) {
+      setStatus('')
       console.error('❌ Error Depositing:', error)
       onError?.()
     }

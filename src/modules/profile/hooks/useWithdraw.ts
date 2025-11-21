@@ -65,6 +65,7 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
       }, 1500)
       return { hash: txHash }
     } catch (error) {
+      setStatus('')
       console.error('Errow withdraw...', error)
       onError?.()
     }

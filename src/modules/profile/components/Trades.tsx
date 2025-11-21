@@ -6,9 +6,9 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { Address } from 'viem'
-import { parseUnits } from 'viem'
+import { formatUnits, parseUnits } from 'viem'
 import { useAccount } from 'wagmi'
-import { useDeposit, useGetAllUserTransactions, useSaveUserSwap, useWithdraw } from '../hooks'
+import { useDeposit, useGetAllUserTransactions, useSaveUserSwap, useValidateTransactions, useWithdraw } from '../hooks'
 import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/TradesSchemas'
 import { DepositSchema, WithdrawSchema } from '../schemas/TradesSchemas'
 import type { baseVaultType } from './DepositCard'
@@ -32,6 +32,18 @@ export function Trades() {
   const { data: tokenBalance, refetch: refetchTokenBalance } = useGetTokenBalance(
     selectedVault?.assetTokenAddress as Address,
   )
+  const tokenAddress = selectedVault?.assetTokenAddress as Address
+  const spenderAddress = selectedVault?.address as Address
+  const tokenDecimals = async () => getTokenDecimal(tokenAddress)
+
+  // Validate transaction errors
+  const formattedTokenBallance = Number(formatUnits(tokenBalance || 0n, selectedVault?.assetTokenDecimals!))
+  const formattedVaultBallance = Number(formatUnits(vaultBalance || 0n, selectedVault?.assetTokenDecimals!))
+  const error = useValidateTransactions({
+    selectedVault: selectedVault,
+    tokenBalance: formattedTokenBallance || 0,
+    totalDeposited: formattedVaultBallance || 0,
+  })
 
   const saveSwap = useSaveUserSwap()
   const { deposit, status: depositStatus } = useDeposit({
@@ -60,10 +72,6 @@ export function Trades() {
     defaultValues: { amount: 0 },
   })
 
-  const tokenAddress = selectedVault?.assetTokenAddress as Address
-  const spenderAddress = selectedVault?.address as Address
-  const tokenDecimals = async () => getTokenDecimal(tokenAddress)
-
   //   TO DO LATER
 
   // 1 VALIDATE ALL ERRORS: "BALANCE" "MIN-DEPOSIT" "MAX-DEPOSIT"
@@ -83,14 +91,21 @@ export function Trades() {
     }
     const decimals = await tokenDecimals()
 
-    // 1. Deposit in the vault
+    // 1. Validate transaction
+    const validationError = error.validate(data.amount, 'deposit')
+    if (validationError) {
+      depositForm.setError('amount', { message: validationError })
+      return null
+    }
+
+    // 2. Deposit in the vault
     const depositTx = await deposit({
       tokenAddress,
       amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
       spenderAddress,
     })
 
-    // 2. Save the transaction in the database
+    // 3. Save the transaction in the database
     await saveSwap.mutateAsync({
       data: {
         amount: String(parseUnits(data.amount.toString(), Number(decimals))),
@@ -116,14 +131,21 @@ export function Trades() {
     }
     const decimals = await tokenDecimals()
 
-    // 1. Withdraw of a vault
+    // 1. Validate transaction
+    const validationError = error.validate(data.amount, 'withdraw')
+    if (validationError) {
+      withdrawForm.setError('amount', { message: validationError })
+      return null
+    }
+
+    // 2. Withdraw of a vault
     const withdrawTx = await withdraw({
       tokenAddress,
       amount: BigInt(parseUnits(data.amount.toString(), Number(decimals))),
       spenderAddress,
     })
 
-    // 2. Save the transaction in the database
+    // 3. Save the transaction in the database
     await saveSwap.mutateAsync({
       data: {
         amount: String(parseUnits(data.amount.toString(), Number(decimals))),
@@ -134,7 +156,7 @@ export function Trades() {
       },
     })
 
-    // 3. Refetch the vaults and user transactions
+    // 4. Refetch the vaults and user transactions
     await Promise.all([
       queryClient.invalidateQueries({ queryKey: ['get-user-transactions', account.address] }),
       queryClient.invalidateQueries({ queryKey: ['vaults', account.address] }),
