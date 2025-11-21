@@ -29,7 +29,6 @@ function Profile() {
   const { data: userProfileData } = useGetUserProfileData(address!)
 
   const tabList = PROFILE_TABS_INFO
-
   const profileData = userProfileData?.[0]
 
   return (

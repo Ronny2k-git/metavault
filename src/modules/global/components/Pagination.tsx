@@ -27,17 +27,26 @@ export function Pagination({ page, totalPages, onChange, scrollId }: PaginationP
         1
       </Button>
 
-      {/* Current page, only show if the current page is larger than one */}
-      {page !== 1 && (
-        <Button className={'w-14 h-9'} variant={page ? 'black' : 'primary'}>
+      {/*Second page */}
+      {page > 2 && page - 1 && (
+        <Button className={'w-14 h-9'} variant={page == 2 ? 'black' : 'primary'} onClick={() => navigate(page - 1)}>
+          {page - 1}
+        </Button>
+      )}
+
+      {/* Current page, only show if the current page is greather than one */}
+      {page > 1 && page < totalPages && (
+        <Button className={'w-14 h-9'} variant={'black'}>
           {page}
         </Button>
       )}
 
+      <p className="text-blue-300 text-2xl">...</p>
+
       {/* Last Page */}
-      {totalPages > 1 && page !== totalPages && (
+      {totalPages > 1 && (
         <Button
-          className={'w-14 h-9'}
+          className={'w-12 h-9'}
           variant={page === totalPages ? 'black' : 'primary'}
           onClick={() => navigate(totalPages)}
         >

@@ -43,34 +43,39 @@ export function CountDownClock({ startDate, endDate }: CountDownClockProps) {
   }, [startDate, endDate])
 
   return (
-    <Card variant={'tertiary'} className="items-center p-4 rounded-lg">
-      <div className="flex text-base gap-3">
+    <Card variant={'tertiary'} className="items-center p-3 rounded-lg">
+      <div className="flex text-lg gap-3">
+        {/*Days */}
         {days > 0 && (
           <div className="flex gap-3">
             <div className="flex flex-col items-center gap-1">
-              <Card variant={'basic'} className="px-2 rounded-sm font-semibold">
+              <Card variant={'basic'} className="px-2 rounded-sm font-semibold text-blue-300">
                 {twoDigits(days)}
               </Card>
               <span className="text-gray-200 text-xs uppercase">{days <= 1 ? 'day' : 'days'}</span>
             </div>
 
-            <span className="opacity-50">/</span>
+            <span className="opacity-40">/</span>
           </div>
         )}
 
+        {/*Hours */}
         <div className="flex flex-col items-center gap-1">
-          <Card className="px-2 rounded-sm font-semibold">{twoDigits(hours)}</Card>
+          <Card className="px-2 rounded-sm font-semibold text-blue-300">{twoDigits(hours)}</Card>
           <span className="text-gray-200 text-xs uppercase">{hours <= 1 ? 'hour' : 'hours'}</span>
         </div>
         <span className="opacity-50">:</span>
+
+        {/*Minutes */}
         <div className="flex flex-col items-center gap-1">
-          <Card className="px-2 rounded-sm font-semibold">{twoDigits(minutes)}</Card>
+          <Card className="px-2 rounded-sm font-semibold text-blue-300">{twoDigits(minutes)}</Card>
           <span className="text-gray-200 text-xs uppercase">min</span>
         </div>
         <span className="opacity-50">:</span>
 
+        {/*Seconds */}
         <div className="flex flex-col items-center gap-1">
-          <Card className="px-2 rounded-sm font-semibold">{twoDigits(seconds)}</Card>
+          <Card className="px-2 rounded-sm font-semibold text-blue-300">{twoDigits(seconds)}</Card>
           <span className="text-gray-200 text-xs uppercase">sec</span>
         </div>
       </div>

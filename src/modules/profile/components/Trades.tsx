@@ -67,10 +67,13 @@ export function Trades() {
   //   TO DO LATER
 
   // 1 VALIDATE ALL ERRORS: "BALANCE" "MIN-DEPOSIT" "MAX-DEPOSIT"
-  //   "CONNECT WALLET" AND FOR WITHDRAW VERIFY IF THE AMOUNT IS `EQUAL OR
+  //   AND FOR WITHDRAW VERIFY IF THE AMOUNT IS `EQUAL OR
   //   SMALLER THAN DEPOSITED VAULT VALUE`.
 
-  // 2 CREATE A COUNTDOWN CLOCK LATER TO IMPLEMENT INTO USER VAULT LIVE CARDS
+  // 2 IMPLEMENT A WAY TO USER WITHDRAW YOUR FUNDS WHEN THE VAULTS IS COMPLETED, PROBABLY
+  //   WILL BE SOMETHING LIKE: Show a button inside the vault row card to withdraw the funds
+  //   if the vault has any deposited value. Probably when the user clicks the button will
+  //   open the transaction card component with the total deposited value selected to withdraw.
 
   // Deposit functionality
   const handleDeposit = async (data: DepositSchemaType) => {
