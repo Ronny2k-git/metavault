@@ -250,33 +250,36 @@ export function Trades() {
         <Divider />
 
         {/* User Transactions */}
-        <ProfileHeading
-          id="user-transactions-heading"
-          className="mt-12 max-sm:mb-4"
-          icon={<Icon className="!text-4xl">live_tv</Icon>}
-          title="User Transactions"
-          subtitle="Total User Transactions"
-          value={userTransactions?.total || 0}
-        />
+        <section>
+          <ProfileHeading
+            id="user-transactions-heading"
+            className="mt-12 max-sm:mb-4"
+            icon={<Icon className="!text-4xl">live_tv</Icon>}
+            title="User Transactions"
+            valueLabel="Total User Transactions"
+            value={userTransactions?.total || 0}
+          />
 
-        <Input
-          className="w-full sm:max-w-[27rem]"
-          iconLeft={<Icon className="text-blue-300">search</Icon>}
-          inputSize={'sm'}
-          label="Search transaction"
-          placeholder="Search your transactions by type and tx hash"
-          value={searchTransaction}
-          onChange={(e) => setSearchTransaction(e.target.value)}
-        />
+          <Input
+            className="w-full sm:max-w-[27rem]"
+            iconLeft={<Icon className="text-blue-300">search</Icon>}
+            inputSize={'sm'}
+            label="Search transaction"
+            placeholder="Search your transactions by type and tx hash"
+            value={searchTransaction}
+            onChange={(e) => setSearchTransaction(e.target.value)}
+          />
 
-        <UserCardRowTrades
-          key={'user-recent-transactions'}
-          searchTransaction={searchTransaction}
-          page={transactionsPage}
-          userTransactions={userTransactions!}
-          onPageChange={setTransactionsPage}
-          isLoading={isLoading}
-        />
+          <UserCardRowTrades
+            className="mt-8"
+            key={'user-recent-transactions'}
+            searchTransaction={searchTransaction}
+            page={transactionsPage}
+            userTransactions={userTransactions!}
+            onPageChange={setTransactionsPage}
+            isLoading={isLoading}
+          />
+        </section>
       </div>
     </div>
   )

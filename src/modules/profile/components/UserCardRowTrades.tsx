@@ -2,6 +2,7 @@ import { Pagination } from '@/modules/global/components/Pagination'
 import { useDebounce } from '@/modules/global/hooks'
 import { formatBigIntToNumber, formatDate, toUpperCaseFirst } from '@/modules/global/utils'
 import { Card, EmptyBanner, Icon } from '@/ui/components'
+import { twMerge } from 'tailwind-merge'
 import { useAccount } from 'wagmi'
 import { useGetAllUserTransactions } from '../hooks'
 import { UserTransactionRowSkeleton } from './UserTransactionRowSkeleton'
@@ -14,6 +15,7 @@ export type UserCardRowTradesProps = {
   page: number
   onPageChange: (page: number) => void
   searchTransaction: string
+  className?: string
 }
 
 export function UserCardRowTrades({
@@ -22,6 +24,7 @@ export function UserCardRowTrades({
   page,
   onPageChange,
   searchTransaction,
+  className,
 }: UserCardRowTradesProps) {
   const { address } = useAccount()
   const debouncedValue = useDebounce(searchTransaction, 300)
@@ -34,7 +37,7 @@ export function UserCardRowTrades({
   })
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className={twMerge('flex flex-col items-center justify-center gap-8', className)}>
       {(!address || !filteredTransactions?.length) && !isLoading ? (
         <EmptyBanner
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}

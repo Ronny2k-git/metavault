@@ -1,4 +1,4 @@
-import { BaseVaultCard, BaseVaultRow, ProfileHeading } from '@/components'
+import { BaseVaultCard, BaseVaultRow } from '@/components'
 import { Pagination } from '@/modules/global/components/Pagination'
 import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated, useVaultSearch } from '../hooks'
 import { getTotalVaultAmount } from '../utils'
+import { ProfileHeading } from './ProfileHeading'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
 import { VaulRowSkeleton } from './VaultRowSkeleton'
 
@@ -47,6 +48,12 @@ export function UserVaults() {
     initialQuery: '',
   })
 
+  // Filter to show only completed vaults that have any deposited value
+  const vaultsToWithdraw = completedVaults?.items.filter(
+    (v) => getTotalVaultAmount({ assetTokenDecimals: 8 }, v.swaps) > 0,
+  )
+
+  console.log(vaultsToWithdraw)
   return (
     <div className="flex flex-col w-full">
       <Divider />
@@ -55,13 +62,13 @@ export function UserVaults() {
       <section>
         <ProfileHeading
           id="user-live-vaults"
-          className="mt-12 max-sm:mb-4"
+          className="mt-12"
           icon={<Icon className="!text-4xl">live_tv</Icon>}
           title="Live Vaults"
-          subtitle="Total Live Vaults"
+          subtitle="To deposit into live vaults, go to the Trades tab."
+          valueLabel="Total Live Vaults"
           value={liveVaults?.total || 0}
         />
-        <h2 className="mb-4 text-base text-gray-300">To deposit into live vaults, go to the Trades tab.</h2>
         <Input
           className="w-full sm:max-w-[27rem]"
           iconLeft={<Icon className="text-blue-300">search</Icon>}
@@ -71,6 +78,7 @@ export function UserVaults() {
           value={searchLiveVaults}
           onChange={(e) => setSearchLiveVaults(e.target.value)}
         />
+
         {(!address || !filteredLiveVaults?.length) && !isLoadingLive && (
           <EmptyBanner
             className="mt-10 text-center"
@@ -134,31 +142,76 @@ export function UserVaults() {
       FINISH THIS SECTION LATER: 
 
       TO DO: 
-      1 FILTER THE COMPLETED VAULTS THAT HAVE "ANY DEPOSITED VALUE" TO WITHDRAW.
       2 PROBABLY I WILL USE THE BASE VAULT CARD, MAKE THE NECESSARY CHANGES.
-        
+      3 ADD A SUBTITLE UNDER THE MAIN TITLE.
         } */}
         <ProfileHeading
           id="user-completed-vaults-to-withdraw"
-          className="mt-24 mb-4"
-          icon={<Icon className="!text-4xl">bookmark_check</Icon>}
+          className="mt-24"
+          icon={<Icon className="!text-4xl">award_star</Icon>}
           title="Vaults to Withdraw"
-          subtitle="Total Vaults To Withdraw"
+          subtitle="Your completed vaults that have any deposited value to withdraw"
+          valueLabel="Total Vaults To Withdraw"
           value={1 || 0}
         />
-        ef
+
+        {!address && !isLoadingCompleted && (
+          <EmptyBanner
+            className="mt-10 text-center"
+            icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
+            message="No Live Vaults found"
+            subMessage="Please, check your filters or Connect your wallet"
+            buttonLabel="Create Your Vault"
+          />
+        )}
+        {isLoadingCompleted ? (
+          <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <VaultCardSkeleton key={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
+            {vaultsToWithdraw?.map((vault, index) => (
+              <BaseVaultCard
+                key={`live_vault_${index}`}
+                banner={vault.banner}
+                logo={vault.logo}
+                vaultName={vault.vaultName}
+                discordIcon={vault.discord}
+                telegramIcon={vault.telegram}
+                twitterIcon={vault.twitter}
+                creatorName={vault.creatorName}
+                network={'Sepolia'}
+                minDeposit={vault.minDeposit}
+                maxDeposit={vault.maxDeposit}
+                tokenName={vault.assetTokenName!}
+                startDate={vault.startDate}
+                endDate={vault.endDate}
+                description={vault.description}
+                status={getStatus({
+                  startDate: String(vault.startDate),
+                  endDate: String(vault.endDate),
+                })}
+                deposited={getTotalVaultAmount(vault, vault.swaps) || 0}
+                address={vault.address}
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* User completed vaults */}
       <section>
         <ProfileHeading
           id="user-completed-vaults"
-          className="mt-24 mb-4"
+          className="mt-24"
           icon={<Icon className="!text-4xl">bookmark_check</Icon>}
           title="Completed Vaults"
-          subtitle="Total Completed Vaults"
+          valueLabel="Total Completed Vaults"
           value={completedVaults?.total || 0}
         />
+
         <Input
           className="w-full sm:max-w-[27rem]"
           iconLeft={<Icon className="text-blue-300">search</Icon>}
@@ -184,7 +237,7 @@ export function UserVaults() {
             ))}
           </div>
         ) : filteredCompletedVaults?.length ? (
-          <div className="w-full flex flex-col overflow-x-auto mt-10">
+          <div className="w-full flex flex-col overflow-x-auto mt-6">
             <table className="w-full min-w-[48rem] border-separate border-spacing-y-2 border-spacing-x-0">
               <thead>
                 <tr className="[&_td]:text-nowrap ">

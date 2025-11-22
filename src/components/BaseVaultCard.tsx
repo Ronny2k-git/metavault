@@ -3,6 +3,7 @@ import { CountDownClock } from '@/modules/global/components'
 import type { vaultStatus } from '@/modules/global/types'
 import { formatDate, formatNumber } from '@/modules/global/utils'
 import { Card, Icon } from '@/ui/components'
+import { Button } from '@/ui/components/Button'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
 import { Collapsible } from 'radix-ui'
 import { MdKeyboardArrowDown } from 'react-icons/md'
@@ -56,6 +57,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         </div>
 
+        {/*User Vault Socials */}
         <div className="flex gap-2 items-center">
           {data.discordIcon && (
             <a className="hover:mb-1 hover:border-b-1" href={String(data.discordIcon)}>
@@ -88,6 +90,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         )}
 
+        {/*Vault data */}
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>Min dep:</h3>
@@ -98,7 +101,6 @@ export function BaseVaultCard(data: BaseVaultProps) {
             <div className="text-gray-300">{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
           </div>
         </div>
-
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>Max dep:</h3>
@@ -111,21 +113,27 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         </div>
 
-        <div className="flex flex-col items-center mt-1">
-          <h3>{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
+        {data.status != 'ended' && (
+          <div className="flex flex-col items-center mt-1">
+            <h3>{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
 
-          <CountDownClock startDate={data.startDate} endDate={data.endDate} />
-        </div>
+            <CountDownClock startDate={data.startDate} endDate={data.endDate} />
+          </div>
+        )}
       </section>
 
       <div className="h-0.5 mt-2 w-full bg-gradient-to-r via-sky-500" />
 
       <section className="flex flex-col px-2">
-        {data.deposited != null && (
+        {data.status != 'ended' && data.deposited != null ? (
           <Card variant={'tertiary'} className="items-center mt-3 py-2 rounded-lg">
             <p className="text-sm text-white">Total Deposited</p>
             <p className="text-xl font-bold text-blue-300">{formatNumber(data.deposited)}</p>
           </Card>
+        ) : (
+          <Button variant={'black'} className="rounded-3xl my-4">
+            Withdraw All
+          </Button>
         )}
 
         {data.address && (

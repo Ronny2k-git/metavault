@@ -1,6 +1,7 @@
 export * from './BaseCardTrade'
 export * from './DepositCard'
 export * from './EditProfileForm'
+export * from './ProfileHeading'
 export * from './Trades'
 export * from './UserCardRowTrades'
 export * from './UserTransactionRowSkeleton'
