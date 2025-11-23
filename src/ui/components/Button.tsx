@@ -48,7 +48,7 @@ export function Button({
   return (
     <button
       className={twMerge(
-        `${disabled ? '!cursor-not-allowed opacity-50' : ''}`,
+        `${disabled ? '!cursor-not-allowed opacity-80' : ''}`,
         buttonStyle({ variant: variant, size }),
         className,
       )}

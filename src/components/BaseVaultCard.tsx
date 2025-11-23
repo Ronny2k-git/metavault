@@ -20,6 +20,7 @@ interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> 
   twitterIcon?: React.ReactNode
   address?: string
   deposited?: number
+  onWithdrawChange?: () => void
   children?: React.ReactNode
 }
 
@@ -113,12 +114,17 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         </div>
 
-        {data.status != 'ended' && (
-          <div className="flex flex-col items-center mt-1">
-            <h3>{data.status === 'coming' ? 'Starts in:' : 'Finish in:'}</h3>
+        {data.status != 'ended' ? (
+          <div className="flex flex-col items-center mt-3">
+            <h3>{data.status === 'coming' ? 'Starts in:' : 'Ends in:'}</h3>
 
             <CountDownClock startDate={data.startDate} endDate={data.endDate} />
           </div>
+        ) : (
+          <Card variant={'tertiary'} className="items-center mt-3 py-2 rounded-lg">
+            <p className="text-base text-white">Finished: </p>
+            <p className="text-lg font-bold text-blue-300">{formatDate(data.endDate, 'long')}</p>
+          </Card>
         )}
       </section>
 
@@ -131,7 +137,12 @@ export function BaseVaultCard(data: BaseVaultProps) {
             <p className="text-xl font-bold text-blue-300">{formatNumber(data.deposited)}</p>
           </Card>
         ) : (
-          <Button variant={'black'} className="rounded-3xl my-4">
+          <Button
+            variant="black"
+            className=" rounded-3xl my-4 py-3 shadow-[0_0_10px_2px_rgba(8,174,251,_0.8)]"
+            onClick={data.onWithdrawChange}
+            iconLeft={<Icon>account_balance_wallet</Icon>}
+          >
             Withdraw All
           </Button>
         )}
@@ -158,7 +169,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </Collapsible.Trigger>
           <Collapsible.Content className="w-full mt-3 absolute z-1">
             <div
-              className={`${data.status === 'live' ? 'bg-[#023dbc]' : 'bg-[#234adb]'} py-2 px-3 min-h-16 break-all rounded-md text-gray-300 border border-cyan-300`}
+              className={`${data.status === 'live' ? 'bg-[#023dbc]' : 'bg-[#0843c3]'} py-2 px-3 min-h-16 break-all rounded-md text-gray-300 border border-cyan-300`}
             >
               <span>{data.description}</span>
             </div>

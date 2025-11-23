@@ -206,7 +206,7 @@ export function ConfirmAndCreateForm() {
         subtitle="You Create"
         chainName={getChainName(sepolia.id)}
         info={allFormData.vaultName}
-        logo={allFormData.logo}
+        vaultLogo={allFormData.logo}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
       >

@@ -1,11 +1,16 @@
 import { BaseVaultCard, BaseVaultRow } from '@/components'
 import { Pagination } from '@/modules/global/components/Pagination'
-import { formatDate, formatNumber, getStatus } from '@/modules/global/utils'
+import { useGetVaultBalance } from '@/modules/global/hooks'
+import { formatBigIntToNumber, formatDate, formatNumber, getChainName, getStatus } from '@/modules/global/utils'
+import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
 import { useState } from 'react'
+import { Address } from 'viem'
+import { sepolia } from 'viem/chains'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated, useVaultSearch } from '../hooks'
 import { getTotalVaultAmount } from '../utils'
+import { baseVaultType } from './DepositCard'
 import { ProfileHeading } from './ProfileHeading'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
 import { VaulRowSkeleton } from './VaultRowSkeleton'
@@ -13,7 +18,10 @@ import { VaulRowSkeleton } from './VaultRowSkeleton'
 export function UserVaults() {
   const [livePage, setLivePage] = useState(1)
   const [completedPage, setCompletedPage] = useState(1)
+  const [withdraw, setWithdraw] = useState(false)
+  const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
+  const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
 
   // Get live, coming and completed vaults.
   const { data: liveVaults, isLoading: isLoadingLive } = useGetAllVaultsCreated({
@@ -29,6 +37,16 @@ export function UserVaults() {
     live: false,
   })
 
+  // Filter to show only completed vaults that have any deposited value
+  const vaultsToWithdraw = completedVaults?.items.filter(
+    (v) => getTotalVaultAmount({ assetTokenDecimals: v.assetTokenDecimals }, v.swaps) > 0,
+  )
+
+  // Filter to show only completed vaults that doesn't have any deposited value to withdraw
+  const filteredCompletedVaults = completedVaults?.items.filter(
+    (v) => getTotalVaultAmount({ assetTokenDecimals: v.assetTokenDecimals }, v.swaps) === 0,
+  )
+
   // Filter the live and completed vaults by search value
   const {
     value: filteredLiveVaults,
@@ -40,20 +58,23 @@ export function UserVaults() {
   })
 
   const {
-    value: filteredCompletedVaults,
+    value: searchfilteredCompletedVaults,
     search: searchCompletedVaults,
     setValue: setSearchCompletedVaults,
   } = useVaultSearch({
-    fields: completedVaults?.items,
+    fields: filteredCompletedVaults,
     initialQuery: '',
   })
 
-  // Filter to show only completed vaults that have any deposited value
-  const vaultsToWithdraw = completedVaults?.items.filter(
-    (v) => getTotalVaultAmount({ assetTokenDecimals: 8 }, v.swaps) > 0,
-  )
+  const handleWithdrawAll = (vault: baseVaultType) => {
+    // 1. Open the card dialog
+    setSelectedVault(vault)
+    setWithdraw(true)
+    // 2. Withdraw vault values
+    // 3. Save transaction on the database
+    // 4. Refetch the vaults and user transactions
+  }
 
-  console.log(vaultsToWithdraw)
   return (
     <div className="flex flex-col w-full">
       <Divider />
@@ -142,8 +163,11 @@ export function UserVaults() {
       FINISH THIS SECTION LATER: 
 
       TO DO: 
-      2 PROBABLY I WILL USE THE BASE VAULT CARD, MAKE THE NECESSARY CHANGES.
-      3 ADD A SUBTITLE UNDER THE MAIN TITLE.
+      1 IMPLEMENT A SEARCH FILTER
+      2 IMPLEMENT THE PAGINATION
+      3 MAKE THE WITHDRAW ALL FUNCTIONALITY, PROBABLY IM GONNA USE THE TRANSACTION CARD
+        DIALOG 
+      4 FINISH THE "withdrawAll" FUNCTION.
         } */}
         <ProfileHeading
           id="user-completed-vaults-to-withdraw"
@@ -152,14 +176,23 @@ export function UserVaults() {
           title="Vaults to Withdraw"
           subtitle="Your completed vaults that have any deposited value to withdraw"
           valueLabel="Total Vaults To Withdraw"
-          value={1 || 0}
+          value={vaultsToWithdraw?.length || 0}
+        />
+        <Input
+          className="w-full sm:max-w-[27rem]"
+          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          inputSize={'sm'}
+          label="Search Vault"
+          placeholder="Search your vaults by address,name, creator and chain name."
+          // value={}
+          onChange={(e) => e.target.value}
         />
 
-        {!address && !isLoadingCompleted && (
+        {(!address || !vaultsToWithdraw?.length) && !isLoadingCompleted && (
           <EmptyBanner
             className="mt-10 text-center"
             icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-            message="No Live Vaults found"
+            message="No Vaults to Withdraw found"
             subMessage="Please, check your filters or Connect your wallet"
             buttonLabel="Create Your Vault"
           />
@@ -195,10 +228,28 @@ export function UserVaults() {
                 })}
                 deposited={getTotalVaultAmount(vault, vault.swaps) || 0}
                 address={vault.address}
+                onWithdrawChange={() => {
+                  handleWithdrawAll(vault)
+                  console.log('test withdraw all functionality')
+                }}
               />
             ))}
           </div>
         )}
+        <TransactionCardDialog
+          className="min-h-64"
+          title="Confirm your Remotion"
+          subtitle="You Withdraw"
+          chainName={getChainName(sepolia.id)}
+          info={selectedVault?.vaultName}
+          vaultLogo={selectedVault?.logo}
+          value={formatBigIntToNumber(vaultBalance || 0n, selectedVault?.assetTokenDecimals || 0)}
+          tokenSymbol={selectedVault?.assetTokenSymbol || ''}
+          isOpen={withdraw}
+          onOpenChange={setWithdraw}
+        >
+          {/* {create.steps && <Stepper steps={create.steps} />} */}
+        </TransactionCardDialog>
       </section>
 
       {/* User completed vaults */}
@@ -209,7 +260,7 @@ export function UserVaults() {
           icon={<Icon className="!text-4xl">bookmark_check</Icon>}
           title="Completed Vaults"
           valueLabel="Total Completed Vaults"
-          value={completedVaults?.total || 0}
+          value={filteredCompletedVaults?.length || 0}
         />
 
         <Input
@@ -221,7 +272,7 @@ export function UserVaults() {
           value={searchCompletedVaults}
           onChange={(e) => setSearchCompletedVaults(e.target.value)}
         />
-        {(!address || !filteredCompletedVaults?.length) && !isLoadingCompleted && (
+        {(!address || !searchfilteredCompletedVaults?.length) && !isLoadingCompleted && (
           <EmptyBanner
             className="mt-10 text-center"
             icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
@@ -236,7 +287,7 @@ export function UserVaults() {
               <VaulRowSkeleton key={index} />
             ))}
           </div>
-        ) : filteredCompletedVaults?.length ? (
+        ) : searchfilteredCompletedVaults?.length ? (
           <div className="w-full flex flex-col overflow-x-auto mt-6">
             <table className="w-full min-w-[48rem] border-separate border-spacing-y-2 border-spacing-x-0">
               <thead>
@@ -253,7 +304,7 @@ export function UserVaults() {
                 </tr>
               </thead>
               <tbody>
-                {filteredCompletedVaults.map((vault, index) => (
+                {searchfilteredCompletedVaults.map((vault, index) => (
                   <BaseVaultRow
                     key={`completed_vault_${index}`}
                     banner={vault.banner}

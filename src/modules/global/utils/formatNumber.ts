@@ -14,5 +14,5 @@ export function formatNumber(value: number | bigint) {
 
 // Function format big int to number
 export function formatBigIntToNumber(value: bigint, decimals: number) {
-  return formatNumber(Number(formatUnits(value, decimals) || 0))
+  return Number(formatUnits(value, decimals) || 0)
 }
