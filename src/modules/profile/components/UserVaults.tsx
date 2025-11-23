@@ -8,8 +8,8 @@ import { useState } from 'react'
 import { Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useAccount } from 'wagmi'
-import { useGetAllVaultsCreated, useVaultSearch } from '../hooks'
-import { getTotalVaultAmount } from '../utils'
+import { useGetAllVaultsCreated, useSaveUserSwap, useVaultSearch, useWithdraw } from '../hooks'
+import { getTotalVaultAmount, getVaultRawAmount } from '../utils'
 import { baseVaultType } from './DepositCard'
 import { ProfileHeading } from './ProfileHeading'
 import { VaultCardSkeleton } from './VaultCardSkeleton'
@@ -18,9 +18,12 @@ import { VaulRowSkeleton } from './VaultRowSkeleton'
 export function UserVaults() {
   const [livePage, setLivePage] = useState(1)
   const [completedPage, setCompletedPage] = useState(1)
-  const [withdraw, setWithdraw] = useState(false)
+  const [withdrawOpen, setWithdrawOpen] = useState(false)
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
+  const saveSwap = useSaveUserSwap()
+
+  // Vault data
   const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
 
   // Get live, coming and completed vaults.
@@ -30,11 +33,26 @@ export function UserVaults() {
     limit: 6,
     live: true,
   })
-  const { data: completedVaults, isLoading: isLoadingCompleted } = useGetAllVaultsCreated({
+  const {
+    data: completedVaults,
+    isLoading: isLoadingCompleted,
+    refetch: refetchCompletedVaults,
+  } = useGetAllVaultsCreated({
     userAddress: address!,
     page: completedPage,
     limit: 10,
     live: false,
+  })
+
+  // Withdraw hook
+  const { withdraw, status: withdrawStatus } = useWithdraw({
+    onSuccess: () => {
+      refetchCompletedVaults()
+      setWithdrawOpen(false)
+    },
+    onError: () => {
+      setWithdrawOpen(false)
+    },
   })
 
   // Filter to show only completed vaults that have any deposited value
@@ -66,13 +84,41 @@ export function UserVaults() {
     initialQuery: '',
   })
 
-  const handleWithdrawAll = (vault: baseVaultType) => {
+  const handleWithdrawAll = async (vault: baseVaultType) => {
     // 1. Open the card dialog
     setSelectedVault(vault)
-    setWithdraw(true)
-    // 2. Withdraw vault values
+    setWithdrawOpen(true)
+
+    // 2. Withdraw all vault value
+    const withdrawTx = await withdraw({
+      amount: getVaultRawAmount(vault.swaps),
+      spenderAddress: vault?.address as Address,
+      tokenAddress: vault?.assetTokenAddress as Address,
+    })
+
     // 3. Save transaction on the database
-    // 4. Refetch the vaults and user transactions
+    await saveSwap.mutateAsync({
+      data: {
+        amount: String(getVaultRawAmount(vault.swaps)),
+        sender: String(address),
+        txHash: String(withdrawTx?.hash),
+        type: 'withdraw',
+        vaultId: vault.id,
+      },
+    })
+
+    // 4. Refetch the completed vaults and user transactions
+
+    {
+      /* {
+      FINISH THIS SECTION LATER: 
+
+      TO DO: 
+      1 IMPLEMENT A SEARCH FILTER
+      2 IMPLEMENT THE PAGINATION
+      3  IMPLEMENT THE REFETCH FOR COMPLETED VAULTS LATER
+        } */
+    }
   }
 
   return (
@@ -159,16 +205,6 @@ export function UserVaults() {
 
       {/* User completed vaults to withdraw*/}
       <section>
-        {/* {
-      FINISH THIS SECTION LATER: 
-
-      TO DO: 
-      1 IMPLEMENT A SEARCH FILTER
-      2 IMPLEMENT THE PAGINATION
-      3 MAKE THE WITHDRAW ALL FUNCTIONALITY, PROBABLY IM GONNA USE THE TRANSACTION CARD
-        DIALOG 
-      4 FINISH THE "withdrawAll" FUNCTION.
-        } */}
         <ProfileHeading
           id="user-completed-vaults-to-withdraw"
           className="mt-24"
@@ -243,12 +279,13 @@ export function UserVaults() {
           chainName={getChainName(sepolia.id)}
           info={selectedVault?.vaultName}
           vaultLogo={selectedVault?.logo}
-          value={formatBigIntToNumber(vaultBalance || 0n, selectedVault?.assetTokenDecimals || 0)}
+          value={formatBigIntToNumber(vaultBalance || 0n, selectedVault?.assetTokenDecimals || 0) || 0}
           tokenSymbol={selectedVault?.assetTokenSymbol || ''}
-          isOpen={withdraw}
-          onOpenChange={setWithdraw}
+          isOpen={withdrawOpen}
+          onOpenChange={setWithdrawOpen}
         >
-          {/* {create.steps && <Stepper steps={create.steps} />} */}
+          <div className="flex gap-2">d</div>
+          {withdrawStatus}
         </TransactionCardDialog>
       </section>
 
