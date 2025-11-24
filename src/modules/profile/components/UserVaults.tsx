@@ -76,6 +76,15 @@ export function UserVaults() {
   })
 
   const {
+    value: filteredVaultsToWithdraw,
+    search: searchVaultsToWithdraw,
+    setValue: setSearchVaultsToWithdraw,
+  } = useVaultSearch({
+    fields: vaultsToWithdraw,
+    initialQuery: '',
+  })
+
+  const {
     value: searchfilteredCompletedVaults,
     search: searchCompletedVaults,
     setValue: setSearchCompletedVaults,
@@ -108,17 +117,7 @@ export function UserVaults() {
     })
 
     // 4. Refetch the completed vaults and user transactions
-
-    {
-      /* {
-      FINISH THIS SECTION LATER: 
-
-      TO DO: 
-      1 IMPLEMENT A SEARCH FILTER
-      2 IMPLEMENT THE PAGINATION
-      3  IMPLEMENT THE REFETCH FOR COMPLETED VAULTS LATER
-        } */
-    }
+    // PROBABLY I WILL CREATE A HOOK TO CONTROL ALL TRASANCTION REFETCH
   }
 
   return (
@@ -220,11 +219,11 @@ export function UserVaults() {
           inputSize={'sm'}
           label="Search Vault"
           placeholder="Search your vaults by address,name, creator and chain name."
-          // value={}
-          onChange={(e) => e.target.value}
+          value={searchVaultsToWithdraw}
+          onChange={(e) => setSearchVaultsToWithdraw(e.target.value)}
         />
 
-        {(!address || !vaultsToWithdraw?.length) && !isLoadingCompleted && (
+        {(!address || !filteredVaultsToWithdraw?.length) && !isLoadingCompleted && (
           <EmptyBanner
             className="mt-10 text-center"
             icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
@@ -241,7 +240,7 @@ export function UserVaults() {
           </div>
         ) : (
           <div className="w-full grid grid-cols-[repeat(auto-fill,minmax(288px,1fr))] gap-4 my-10">
-            {vaultsToWithdraw?.map((vault, index) => (
+            {filteredVaultsToWithdraw?.map((vault, index) => (
               <BaseVaultCard
                 key={`live_vault_${index}`}
                 banner={vault.banner}
