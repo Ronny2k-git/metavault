@@ -3,7 +3,7 @@ import { Pagination } from '@/modules/global/components/Pagination'
 import { useGetVaultBalance } from '@/modules/global/hooks'
 import { formatBigIntToNumber, formatDate, formatNumber, getChainName, getStatus } from '@/modules/global/utils'
 import { TransactionCardDialog } from '@/modules/transactions/components'
-import { Divider, EmptyBanner, Icon, Input } from '@/ui/components'
+import { Divider, EmptyBanner, Icon, Input, Spinner } from '@/ui/components'
 import { useState } from 'react'
 import { Address } from 'viem'
 import { sepolia } from 'viem/chains'
@@ -266,7 +266,6 @@ export function UserVaults() {
                 address={vault.address}
                 onWithdrawChange={() => {
                   handleWithdrawAll(vault)
-                  console.log('test withdraw all functionality')
                 }}
               />
             ))}
@@ -284,8 +283,10 @@ export function UserVaults() {
           isOpen={withdrawOpen}
           onOpenChange={setWithdrawOpen}
         >
-          <div className="flex gap-2">d</div>
-          {withdrawStatus}
+          <div className="flex items-center gap-2">
+            {withdrawStatus && <Spinner />}
+            {withdrawStatus || 'Waiting...'}
+          </div>
         </TransactionCardDialog>
       </section>
 

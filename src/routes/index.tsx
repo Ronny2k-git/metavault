@@ -121,7 +121,7 @@ function HomePage() {
       </section>
 
       {/* FINAL HEADER */}
-      <section id="final-header" className="my-28 flex flex-col items-center text-center gap-4 px-6">
+      <section id="final-header" className="mt-28 flex flex-col items-center text-center gap-4 px-6">
         <h2 className="text-3xl font-bold">Ready to build your vault?</h2>
         <p className="text-gray-300 text-lg max-w-md">
           Start protecting your crypto in minutes with Meta Vault on Sepolia.

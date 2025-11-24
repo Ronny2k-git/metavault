@@ -3,10 +3,20 @@ import { Link } from '@tanstack/react-router'
 
 export function AppFooter() {
   return (
-    <footer className="header-background text-gray-300 text-sm w-full border-t border-white/10">
-      <div className="w-full flex justify-center px-6 py-10">
+    <footer className="header-background relative text-gray-300 text-sm w-full border-t border-white/10">
+      <img
+        className="absolute max-md:hidden max-w-4xl object-cover -top-[13rem] max-h-[32.5rem] left-1/2 -translate-1/2"
+        src="/banners/footer-banner1.2.png"
+      />
+
+      <img
+        className="absolute max-max-w-4xl object-cover -top-[15rem] h-[40rem] max-md:pl-10 md:pr-8 left-1/2 -translate-1/2"
+        src="/banners/mascot.png"
+      />
+
+      <div className="w-full flex justify-center px-6 py-14">
         {/* Brand / Description */}
-        <div className="w-full flex max-w-4xl max-sm:flex-col gap-10 justify-between ">
+        <div className="w-full flex max-w-4xl z-40 max-sm:flex-col gap-10 justify-between ">
           <div className="flex flex-col items-center sm:items-start">
             <div className="flex items-center gap-2 mb-2">
               <img src="/homeImage.png" alt="Meta Vault" className="size-8 rounded-full border border-blue-500/40" />
@@ -49,7 +59,6 @@ export function AppFooter() {
           </div>
         </div>
       </div>
-
       <div className="border-t border-white/10 mt- pt-8 pb-8 text-center text-gray-400 text-sm">
         <p>© 2025 Meta Vault — Built on Sepolia Network</p>
         <p className="mt-1">

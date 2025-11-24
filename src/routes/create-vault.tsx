@@ -36,8 +36,8 @@ function CreateVault() {
   const tabList = getCreateInfoSteps(vaultFormValid, userFormValid, confirmFormValid)
 
   return (
-    <div className="min-h-screen background-image px-4 flex flex-col gap-1 items-center text-white overflow-x-auto">
-      <div className="max-w-4xl my-14 w-full">
+    <div className="page min-h-screen background-image flex flex-col gap-1 items-center text-white overflow-x-auto">
+      <div className="max-w-4xl mt-14 w-full">
         <WalletConnectionRequired />
 
         <Tabs
