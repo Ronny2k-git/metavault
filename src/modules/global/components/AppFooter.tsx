@@ -56,7 +56,7 @@ export function AppFooter() {
         </p>
       </section>
 
-      <div className="text-center px-2 text-[clamp(2rem,15vw,14rem)] max-text-[14rem]">
+      <div className="text-center px-2 text-[clamp(2rem,15vw,14rem)]">
         <h2 className="font-extrabold bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
           Meta Vault
         </h2>

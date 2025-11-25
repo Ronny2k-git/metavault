@@ -4,7 +4,9 @@ import { useGetVaultBalance } from '@/modules/global/hooks'
 import { formatBigIntToNumber, formatDate, formatNumber, getChainName, getStatus } from '@/modules/global/utils'
 import { TransactionCardDialog } from '@/modules/transactions/components'
 import { Divider, EmptyBanner, Icon, Input, Spinner } from '@/ui/components'
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useAccount } from 'wagmi'
@@ -22,6 +24,7 @@ export function UserVaults() {
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
   const saveSwap = useSaveUserSwap()
+  const queryClient = useQueryClient()
 
   // Vault data
   const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
@@ -116,8 +119,13 @@ export function UserVaults() {
       },
     })
 
+    toast.success('Withdraw made successfully', { duration: 4000 })
+
     // 4. Refetch the completed vaults and user transactions
-    // PROBABLY I WILL CREATE A HOOK TO CONTROL ALL TRASANCTION REFETCH
+    await Promise.all([
+      queryClient.invalidateQueries({ queryKey: ['get-user-transactions', address] }),
+      queryClient.invalidateQueries({ queryKey: ['vaults', address] }),
+    ])
   }
 
   return (

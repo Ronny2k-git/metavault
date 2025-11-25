@@ -3,16 +3,13 @@ import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
 function HomePage() {
-  const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 500], [0, 100])
-
   return (
     <div>
       <main className="page background-image text-white min-h-screen flex flex-col items-center">
@@ -129,20 +126,15 @@ function HomePage() {
         </section>
 
         {/* FINAL HEADER */}
-        <section id="final-header" className="mt-28 pb-[26rem] flex flex-col items-center text-center gap-4 px-6">
-          <h2 className="text-3xl font-bold">Ready to build your vault?</h2>
-          <p className="text-gray-300 text-lg max-w-md">
-            Start protecting your crypto in minutes with Meta Vault on Sepolia.
+        <section id="final-header" className="mt-28 pb-[22rem] flex flex-col items-center text-center gap-4 px-6">
+          <p className="uppercase font-extrabold max-sm:text-3xl text-[clamp(2.5rem,2vw,10rem)] mt-16">
+            Nothing more to explore. <br /> Let's start today
           </p>
           <Link className="flex max-w-[15rem] w-full mt-4" to="/create-vault">
             <Button variant={'primary'} size={'xl'}>
               Get Started
             </Button>
           </Link>
-
-          {/* {ADD HERE LATER THE TITLE, SOMENTHING LIKE: NOTHING MORE TO EXPLORE ....
-          IT WILL LOOK LIKE THE DISCORD TITLE.
-          } */}
         </section>
       </main>
       <div className="relative z-[40] w-full flex justify-center">
