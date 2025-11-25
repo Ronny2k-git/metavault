@@ -3,13 +3,16 @@ import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
 function HomePage() {
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 500], [0, 100])
+
   return (
     <div>
       <main className="page background-image text-white min-h-screen flex flex-col items-center">
@@ -22,15 +25,19 @@ function HomePage() {
             initial={{ opacity: 0, y: 60 }}
             transition={{ duration: 1 }}
           />
-          <div className="flex gap-3 mb-6 items-center">
+          <div className="flex flex-col relative gap-8 sm:mb-6 items-center">
             <motion.h1
-              className="text-6xl max-[465px]:text-4xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-lg"
+              className="text-7xl max-[468px]:text-5xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Meta Vault
             </motion.h1>
+            <img
+              className="sm:absolute h-[20rem] animate-pulse max-sm:-m-14 left-[21rem] -bottom-4"
+              src="/banners/mascot2.png"
+            />
           </div>
 
           <h2 className="text-2xl text-gray-200 mb-2">Decentralized. Secure. Yours.</h2>
@@ -132,12 +139,16 @@ function HomePage() {
               Get Started
             </Button>
           </Link>
+
+          {/* {ADD HERE LATER THE TITLE, SOMENTHING LIKE: NOTHING MORE TO EXPLORE ....
+          IT WILL LOOK LIKE THE DISCORD TITLE.
+          } */}
         </section>
       </main>
       <div className="relative z-[40] w-full flex justify-center">
         <img
           className="z-[40] absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
-          src="/banners/footer-banner1.2.png"
+          src="/banners/footer-banner1.png"
         />
 
         <img

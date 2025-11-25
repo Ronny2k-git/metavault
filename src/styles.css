@@ -48,7 +48,7 @@ html {
   position: relative;
   height: 100%;
   width: 100%;
-  background: #002a6d;
+  background: #013a96;
   overflow: hidden;
 }
 
@@ -57,7 +57,7 @@ html {
   position: absolute;
   inset: 0;
   background: url('/banner2.png');
-  opacity: 0.01;
+  opacity: 0.02;
   z-index: 0;
 }
 
