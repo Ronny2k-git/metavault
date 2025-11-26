@@ -79,8 +79,8 @@ export function DepositCard({
                   vaultLogo={vault.logo}
                   vaultName={vault.vaultName}
                   vaultDate={formatDate(vault.startDate)}
-                  tokenName={vault.assetTokenSymbol || 'Unknown'}
                   amount={getTotalVaultAmount(vault, vault.swaps) || 0}
+                  tokenSymbol={vault.assetTokenSymbol!}
                   checked={tempVault?.id === vault.id}
                   selected={() => setTempVault(vault)}
                 />

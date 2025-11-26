@@ -2,8 +2,9 @@ import { formatUnits } from 'viem'
 
 // Function used to format a number based on provided value.
 const defaultNumberFormatter = new Intl.NumberFormat('en', {
-  compactDisplay: 'short',
   unitDisplay: 'narrow',
+  style: 'currency',
+  currency: 'USD',
   minimumSignificantDigits: 2,
   maximumSignificantDigits: 4,
 })

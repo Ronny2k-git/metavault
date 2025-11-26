@@ -87,8 +87,8 @@ export function WithdrawCard({
                 vaultLogo={vault.logo}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
-                tokenName={vault.assetTokenSymbol!}
                 amount={vault.totalDeposited}
+                tokenSymbol={vault.assetTokenSymbol!}
                 checked={tempVault?.id === vault.id}
                 selected={() => setTempVault(vault)}
               />

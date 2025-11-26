@@ -61,7 +61,7 @@ function HomePage() {
           <p className="text-gray-300 text-sm mt-4">Explore freely — no wallet required.</p>
         </header>
 
-        <Divider className="h-0.5 mb-12" />
+        <Divider className="h-px mb-12" />
 
         {/* FEATURES SECTION */}
         <section id="features-section" className=" max-w-4xl w-full">

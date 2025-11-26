@@ -6,7 +6,7 @@ type VaultCardTradeSelectProps = {
   vaultName?: string
   vaultDate?: string
   amount?: number
-  tokenName?: string
+  tokenSymbol?: string
   checked?: boolean
   selected: (checked: boolean) => void
 }
@@ -16,7 +16,7 @@ export function VaultCardTradeSelect({
   vaultName,
   vaultDate,
   amount,
-  tokenName,
+  tokenSymbol,
   checked = false,
   selected,
 }: VaultCardTradeSelectProps) {
@@ -35,17 +35,12 @@ export function VaultCardTradeSelect({
           <span className="text-gray-300 text-sm">{vaultDate}</span>
         </div>
       </div>
-      <div className="flex flex-col gap-2">
-        {tokenName && (
-          <span className={`text-sm flex gap-2 text-white`}>
-            Token: <div className="text-blue-400 font-semibold">{tokenName}</div>
-          </span>
-        )}
-        {amount != null && (
-          <span className={`text-sm flex gap-2 text-white`}>
-            Deposited: <div className="text-blue-400 font-semibold">{formatNumber(amount || 0)}</div>
-          </span>
-        )}
+      <div className="flex flex-col justify-center items-start text-sm">
+        Balance
+        <div className="flex gap-2 text-gray-300">
+          {amount != null && <span className="text-blue-400 font-semibold">{formatNumber(amount || 0)}</span>}
+          {tokenSymbol}
+        </div>
       </div>
     </CheckBox>
   )
