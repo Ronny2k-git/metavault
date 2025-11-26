@@ -32,11 +32,10 @@ function HomePage() {
               Meta Vault
             </motion.h1>
             <img
-              className="sm:absolute h-[20rem] animate-pulse max-sm:-m-14 left-[21rem] -bottom-4"
+              className="animate-gentle-swing sm:absolute h-[20rem] max-sm:-m-14 left-[21rem] -bottom-4"
               src="/banners/mascot2.png"
             />
           </div>
-
           <h2 className="text-2xl text-gray-200 mb-2">Decentralized. Secure. Yours.</h2>
           <h3 className="text-lg text-gray-300 max-w-xl">
             Create your vault and secure your crypto today — built for transparency and control.
@@ -139,14 +138,20 @@ function HomePage() {
       </main>
       <div className="relative z-[40] w-full flex justify-center">
         <img
-          className="z-[40] absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
-          src="/banners/footer-banner1.png"
+          className="absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
+          src="/banners/footer-banner2.png"
         />
 
-        <img
-          className="z-[40] absolute max-max-w-4xl object-cover -top-[15rem] h-[40rem] max-md:pl-10 md:pr-6 left-1/2 -translate-1/2"
-          src="/banners/mascot.png"
-        />
+        <div className="relative w-full">
+          <img
+            className="animate-gentle-swing absolute max-max-w-4xl object-cover -top-[18.5rem] h-[30rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
+            src="/banners/key1.png"
+          />
+          <img
+            className="absolute max-max-w-4xl object-cover -top-[5rem] h-[27rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
+            src="/banners/mascot4.png"
+          />
+        </div>
       </div>
     </div>
   )

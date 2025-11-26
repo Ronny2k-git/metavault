@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router'
 export function AppFooter() {
   return (
     <footer className="z-0 header-background text-gray-300 text-sm w-full border-t border-white/10">
-      <div className="w-full flex justify-center px-6 py-14">
+      <div className="w-full flex justify-center px-6 md:py-16 pt-16 pb-10">
         <div className="w-full flex max-w-4xl z-0 max-sm:flex-col gap-10 justify-between ">
           {/* Brand / Description */}
           <section className="flex flex-col items-center sm:items-start">
@@ -49,7 +49,7 @@ export function AppFooter() {
           </section>
         </div>
       </div>
-      <section className="border-t border-white/10 mt- pt-8 max-sm:pb-8 text-center text-gray-400 text-sm">
+      <section className="border-t border-white/10 pt-8 max-sm:pb-8 text-center text-gray-400 text-sm">
         <p>© 2025 Meta Vault — Built on Sepolia Network</p>
         <p className="mt-1">
           Made with <span className="text-red-400">❤️</span> by Ronny

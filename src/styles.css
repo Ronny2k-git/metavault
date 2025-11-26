@@ -31,6 +31,17 @@ html {
 
 @theme {
   --animate-appear: appear-from-bottom 500ms ease-out;
+  --animate-gentle-swing: gentle-swing 3s ease-in-out infinite;
+}
+
+@keyframes gentle-swing {
+  0%,
+  100% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
 }
 
 .page {
