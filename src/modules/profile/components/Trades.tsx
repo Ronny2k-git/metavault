@@ -20,6 +20,7 @@ import { WithdrawCard } from './WithdrawCard'
 export function Trades() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
+  const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const [searchTransaction, setSearchTransaction] = useState('')
   const [transactionsPage, setTransactionsPage] = useState(1)
   const account = useAccount()
@@ -176,6 +177,7 @@ export function Trades() {
                 setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')
                 depositForm.reset()
                 withdrawForm.reset()
+                setTempVault(null)
                 setSelectedVault(null)
               }}
             >
@@ -196,6 +198,8 @@ export function Trades() {
               error={depositForm.formState}
               tokenBalance={tokenBalance || 0n}
               vaultBalance={vaultBalance || 0n}
+              tempVault={tempVault}
+              setTempVault={setTempVault}
               selectedVault={selectedVault}
               setSelectedVault={setSelectedVault}
             />
@@ -214,6 +218,8 @@ export function Trades() {
               error={withdrawForm.formState}
               tokenBalance={tokenBalance || 0n}
               vaultBalance={vaultBalance || 0n}
+              tempVault={tempVault}
+              setTempVault={setTempVault}
               selectedVault={selectedVault}
               setSelectedVault={setSelectedVault}
             />

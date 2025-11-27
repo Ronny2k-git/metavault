@@ -1,4 +1,4 @@
-import { formatBigIntToNumber, formatDate } from '@/modules/global/utils'
+import { formatBigIntToNumber, formatDate, formatNumber } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
@@ -6,20 +6,16 @@ import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated } from '../hooks'
 import type { DepositSchemaType } from '../schemas/TradesSchemas'
+import { baseVaultCardTradesProps } from '../types'
 import { getTotalVaultAmount } from '../utils'
-import type { BaseCardTradeProps } from './BaseCardTrade'
 import { BaseCardTrade } from './BaseCardTrade'
-import { VaultCardTradeSelect } from './VaultCardTradeSelect'
+import { VaultOption } from './VaultOption'
 
-interface DepositCardProps extends Omit<BaseCardTradeProps, 'children'> {
+interface DepositCardProps extends baseVaultCardTradesProps {
   trigger?: React.ReactNode
   disabled?: boolean
   register: UseFormRegister<DepositSchemaType>
   error?: UseFormStateReturn<DepositSchemaType>
-  vaultBalance: bigint
-  tokenBalance: bigint
-  selectedVault: baseVaultType | null
-  setSelectedVault: React.Dispatch<React.SetStateAction<baseVaultType | null>>
 }
 
 export type baseVaultType = NonNullable<Awaited<ReturnType<typeof useGetAllVaultsCreated>>['data']>['items'][number]
@@ -32,13 +28,14 @@ export function DepositCard({
   error,
   vaultBalance,
   tokenBalance,
+  tempVault,
+  setTempVault,
   selectedVault,
   setSelectedVault,
   disabled = false,
 }: DepositCardProps) {
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
-  const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
 
   // Only pass the selected vault data when the submit button is pressed.
@@ -74,15 +71,14 @@ export function DepositCard({
           ) : (
             availableVaults?.items.map((vault, index) => {
               return (
-                <VaultCardTradeSelect
-                  key={index}
-                  vaultLogo={vault.logo}
+                <VaultOption
+                  key={`${index}_${vault.id}`}
                   vaultName={vault.vaultName}
                   vaultDate={formatDate(vault.startDate)}
-                  amount={getTotalVaultAmount(vault, vault.swaps) || 0}
+                  amount={formatNumber(getTotalVaultAmount(vault, vault.swaps))}
                   tokenSymbol={vault.assetTokenSymbol!}
-                  checked={tempVault?.id === vault.id}
-                  selected={() => setTempVault(vault)}
+                  selected={tempVault?.id === vault.id}
+                  onSelect={() => setTempVault(vault)}
                 />
               )
             })
@@ -126,7 +122,7 @@ export function DepositCard({
             <div className="flex flex-col text-sm text-gray-300">
               <p className="text-white">Balance:</p>
               <div className="flex gap-2 items-center text-green-500 font-semibold text-[17px]">
-                {formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0)}
+                {formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0))}
                 <span className="text-gray-300 font-normal text-sm">{selectedVault?.assetTokenSymbol || ''}</span>
               </div>
             </div>
@@ -139,7 +135,7 @@ export function DepositCard({
               <div className="flex items-center gap-2 ">
                 Deposited:
                 <span className="text-[17px] text-green-500 font-semibold">
-                  {formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0)}
+                  {formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0))}
                 </span>
               </div>
             </div>

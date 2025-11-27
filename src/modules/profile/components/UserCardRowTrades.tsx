@@ -1,6 +1,6 @@
 import { Pagination } from '@/modules/global/components/Pagination'
 import { useDebounce } from '@/modules/global/hooks'
-import { formatBigIntToNumber, formatDate, toUpperCaseFirst } from '@/modules/global/utils'
+import { formatBigIntToNumber, formatDate, formatNumber, toUpperCaseFirst } from '@/modules/global/utils'
 import { Card, EmptyBanner, Icon } from '@/ui/components'
 import { twMerge } from 'tailwind-merge'
 import { useAccount } from 'wagmi'
@@ -80,7 +80,7 @@ export function UserCardRowTrades({
                         </div>
                       </div>
                       <span className={`font-semibold ${tx.type === 'deposit' ? 'text-green-400' : 'text-red-400'}`}>
-                        {formatBigIntToNumber(BigInt(tx.amount), tx.vault.assetTokenDecimals)}{' '}
+                        {formatNumber(formatBigIntToNumber(BigInt(tx.amount), tx.vault.assetTokenDecimals))}{' '}
                         {tx.vault.assetTokenSymbol}
                       </span>
                     </div>

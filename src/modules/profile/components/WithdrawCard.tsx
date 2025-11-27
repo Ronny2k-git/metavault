@@ -1,27 +1,21 @@
-import { formatDate, formatNumber } from '@/modules/global/utils'
+import { formatBigIntToNumber, formatDate, formatNumber } from '@/modules/global/utils'
 import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
-import { formatUnits } from 'viem'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated } from '../hooks'
 import type { WithdrawSchemaType } from '../schemas/TradesSchemas'
+import { baseVaultCardTradesProps } from '../types'
 import { getTotalVaultAmount } from '../utils'
-import type { BaseCardTradeProps } from './BaseCardTrade'
 import { BaseCardTrade } from './BaseCardTrade'
-import type { baseVaultType } from './DepositCard'
-import { VaultCardTradeSelect } from './VaultCardTradeSelect'
+import { VaultOption } from './VaultOption'
 
-interface WithdrawCardProps extends Omit<BaseCardTradeProps, 'children'> {
+interface WithdrawCardProps extends baseVaultCardTradesProps {
   trigger?: React.ReactNode
   disabled?: boolean
   register: UseFormRegister<WithdrawSchemaType>
   error?: UseFormStateReturn<WithdrawSchemaType>
-  vaultBalance: bigint
-  tokenBalance: bigint
-  selectedVault: baseVaultType | null
-  setSelectedVault: React.Dispatch<React.SetStateAction<baseVaultType | null>>
 }
 
 export function WithdrawCard({
@@ -32,12 +26,13 @@ export function WithdrawCard({
   register,
   vaultBalance,
   tokenBalance,
+  tempVault,
+  setTempVault,
   selectedVault,
   setSelectedVault,
   disabled,
 }: WithdrawCardProps) {
   const [openModal, setOpenModal] = useState(false)
-  const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const { address } = useAccount()
   const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
 
@@ -82,15 +77,14 @@ export function WithdrawCard({
             />
           ) : (
             activeVaultsToWithdraw?.map((vault, index) => (
-              <VaultCardTradeSelect
-                key={index}
-                vaultLogo={vault.logo}
+              <VaultOption
+                key={`${index}_${vault.id}`}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
-                amount={vault.totalDeposited}
+                amount={formatNumber(getTotalVaultAmount(vault, vault.swaps))}
                 tokenSymbol={vault.assetTokenSymbol!}
-                checked={tempVault?.id === vault.id}
-                selected={() => setTempVault(vault)}
+                selected={tempVault?.id === vault.id}
+                onSelect={() => setTempVault(vault)}
               />
             ))
           )}
@@ -132,7 +126,7 @@ export function WithdrawCard({
             <div className="flex flex-col text-sm text-gray-300">
               <p className="text-white">Balance:</p>
               <div className="flex gap-2 items-center text-green-500 font-semibold text-[17px]">
-                {formatNumber(Number(formatUnits(tokenBalance, selectedVault?.assetTokenDecimals || 0)))}
+                {formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0))}{' '}
                 <span className="text-gray-300 font-normal text-sm">{selectedVault?.assetTokenSymbol || ''}</span>
               </div>
             </div>
@@ -145,7 +139,7 @@ export function WithdrawCard({
               <div className="flex items-center gap-2 ">
                 Deposited:
                 <span className="text-[17px] text-green-500 font-semibold">
-                  {formatNumber(Number(formatUnits(vaultBalance, selectedVault?.assetTokenDecimals || 0)))}
+                  {formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0))}
                 </span>
               </div>
             </div>
