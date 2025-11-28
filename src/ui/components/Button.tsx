@@ -14,12 +14,12 @@ const buttonStyle = cva('w-full flex items-center justify-center cursor-pointer'
       xl: 'p-4 rounded-full text-xl',
     },
     variant: {
-      primary: ' bg-gradient-to-t from-blue-700 to-sky-700 hover:to-sky-600 border border-blue-400',
-      secondary: 'bg-gradient-to-t from-gray-600 to-gray-700 hover:from-gray-500 border border-gray-400',
-      tertiary: 'bg-gray-400 hover:bg-gray-500',
+      primary: 'bg-gradient-to-t from-purple-950 to-violet-800 hover:to-violet-700 border border-violet-400',
+      secondary: 'bg-gradient-to-t from-gray-700 to-gray-800 hover:from-gray-600 border border-gray-500',
+      tertiary: 'bg-gray-500 hover:bg-gray-600',
       white: 'bg-gray-100 hover:bg-gray-200 text-black',
-      gradient: 'bg-gradient-to-r from-blue-700 to-sky-600 hover:to-sky-700 shadow-2xs shadow-blue-300  ',
-      black: 'bg-black/30 border border-blue-400 hover:bg-black/40',
+      gradient: 'bg-gradient-to-r from-purple-800 to-violet-700 hover:to-violet-800 shadow-2xs shadow-violet-300',
+      black: 'bg-black/30 border border-violet-400 hover:bg-black/40 shadow-[0_0_10px_rgba(139,92,246,0.4)]',
     },
   },
   defaultVariants: {

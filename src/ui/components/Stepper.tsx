@@ -17,7 +17,7 @@ const STATUS_ICON: Record<Step['status'], any> = {
 const iconStyle = cva('size-6', {
   variants: {
     status: {
-      idle: 'text-sky-500',
+      idle: 'text-purple-500',
       error: 'text-black bg-red-700 rounded-full',
       pending: 'animate-spin text-sky-500',
       success: 'text-black bg-green-500 rounded-full',
@@ -38,7 +38,7 @@ export function Stepper({ steps, ...props }: StepperProps) {
               <div>{step.label}</div>
             </div>
             {/* Divider */}
-            {index + 1 < steps.length && <div className="h-2 bg-sky-600 w-[2px] mx-2.5" />}
+            {index + 1 < steps.length && <div className="h-2 bg-purple-600 w-[2px] mx-2.5" />}
           </div>
         </Fragment>
       ))}

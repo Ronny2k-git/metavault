@@ -111,7 +111,7 @@ export function WithdrawCard({
       <div className="flex flex-col gap-2">
         <Input
           label=""
-          className={`-pt-0.5 bg-transparent my-0.5 -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed text-gray-300' : ''}
+          className={`-pt-0.5 bg-transparent border-0 my-0.5 -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed text-gray-300' : ''}
           ${error?.errors.amount?.message ? '-mb-0.5' : ''}
           `}
           type="number"

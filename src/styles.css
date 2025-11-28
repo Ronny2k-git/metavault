@@ -20,12 +20,12 @@ html {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to left, #0963eb, #1e8bf1);
+    background: linear-gradient(to left, #3a1680, #472ea0);
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #0d438f;
+    background: #1d0b3d;
   }
 }
 
@@ -52,14 +52,14 @@ html {
 }
 
 .header-background {
-  background: linear-gradient(90deg, #00193a, #0238b7, #0242b1);
+  background: linear-gradient(90deg, #140726, #1d0b3d, #2a0f56);
 }
 
 .background-image {
   position: relative;
   height: 100%;
   width: 100%;
-  background: #013a96;
+  background: #14082a;
   overflow: hidden;
 }
 
@@ -68,7 +68,7 @@ html {
   position: absolute;
   inset: 0;
   background: url('/banner2.png');
-  opacity: 0.02;
+  opacity: 0.01;
   z-index: 0;
 }
 
@@ -78,7 +78,7 @@ html {
 }
 
 .background-vault-row {
-  background: linear-gradient(90deg, #00193a, #033cc2, #0447bc);
+  background: linear-gradient(90deg, #140726, #2a0f56, #3a1680);
 }
 
 @layer utilities {

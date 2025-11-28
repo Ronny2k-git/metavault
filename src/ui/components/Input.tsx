@@ -5,12 +5,23 @@ import React from 'react'
 import { twMerge } from 'tailwind-merge'
 
 const inputStyle = cva(
-  'peer no-spinner w-full bg-[#0a2278] pt-4 border outline-none border-transparent placeholder:opacity-0 focus:placeholder:opacity-100',
+  `
+  peer no-spinner w-full 
+  bg-gradient-to-l from-purple-950/40 to-violet-800/40
+  pt-4 
+  border 
+  outline-none 
+  border-transparent 
+  placeholder:text-purple-300 
+  placeholder:opacity-0 
+  focus:placeholder:opacity-100 
+  text-purple-100
+  `,
   {
     variants: {
       variant: {
-        error: 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0 !text-white',
-        default: 'placeholder:text-gray-300',
+        error: 'shadow-[0_0_10px_1px_rgba(255,0,0,0.7)] border-0 !text-white',
+        default: 'placeholder:text-purple-300 focus:border-violet-400',
       },
       size: {
         default: 'h-12 px-4 rounded-md',
@@ -58,6 +69,7 @@ export function Input({
     <label className={twMerge(`flex flex-col`, className)}>
       <div className="relative flex w-full items-center">
         {iconLeft && <div className="absolute left-4 pt-1.5">{iconLeft}</div>}
+
         <input
           placeholder={placeholder}
           type={type}
@@ -70,19 +82,24 @@ export function Input({
           )}
           {...props}
         />
+
         {iconRight && <div className="absolute right-4 pt-1.5">{iconRight}</div>}
 
         <span
-          className={`absolute left-4 top-1/4
-        text-blue-300 transition-all
-        pointer-events-none
-        peer-placeholder-shown:top-1/2 -translate-y-1/2
-        peer-focus:top-1/4
-        peer-focus:text-blue-300 ${iconLeft ? 'pl-9' : ''}`}
+          className={`
+            absolute left-4 top-1/4
+            text-purple-300 transition-all
+            pointer-events-none
+            peer-placeholder-shown:top-1/2 -translate-y-1/2
+            peer-focus:top-1/4
+            peer-focus:text-purple-300
+            ${iconLeft ? 'pl-9' : ''}
+          `}
         >
           {label}
         </span>
       </div>
+
       {error && <span className="mt-1 pl-2 text-sm text-red-400">{error}</span>}
     </label>
   )

@@ -24,7 +24,7 @@ export default function Header() {
                 className: 'border-b-2 border-white',
               }}
             >
-              <div className="hover:bg-blue-800/40 flex px-4 h-full items-center gap-2">
+              <div className="hover:bg-purple-950/30 flex px-4 h-full items-center gap-2">
                 <Icon>{route.icon}</Icon>
                 {currentPath === route.path && <span className="sm:hidden">{route.label}</span>}
                 <span className="max-sm:hidden">{route.label}</span>
@@ -46,7 +46,7 @@ export default function Header() {
                 </Button>
                 <div className="sm:hidden">
                   <Icon
-                    className={` !text-3xl mt-2 ${connectedWallet ? 'text-sky-300 hover:text-sky-400' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
+                    className={` !text-3xl mt-2 ${connectedWallet ? 'text-purple-800/50 hover:text-purple-800/80' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
                   >
                     wallet
                   </Icon>

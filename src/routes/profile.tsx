@@ -34,34 +34,43 @@ function Profile() {
   return (
     <div className="background-image page min-h-screen flex flex-col w-full items-center pb-10 text-white">
       <div className="w-full max-w-4xl">
-        <Card className="h-auto border-1 border-blue-800 shadow-2xs rounded-3xl my-10 px-4 py-4" variant={'basic2'}>
+        {/* PROFILE USER CARD INFO */}
+        <Card
+          className="h-auto border-white/10 shadow-lg shadow-black/40 rounded-3xl my-10 px-6 py-6"
+          variant={'basic2'}
+        >
           <div className={'w-full flex gap-4 md:gap-8 max-md:flex-col justify-between '}>
-            <div className="flex items-center gap-4 ml-2">
-              <img
-                className="min-h-14 min-w-14 max-h-14 max-w-14 border-2 border-blue-700 object-cover  rounded-full"
-                src={profileData?.avatarUrl || '/homeImage.png'}
-              />
+            {/* LEFT SIDE — AVATAR + TEXT */}
+            <div className="flex items-center gap-5">
+              <div className="relative">
+                <img
+                  className="min-h-20 min-w-20 max-h-20 max-w-20 rounded-full object-cover border-2 border-blue-500/40 shadow-md"
+                  src={profileData?.avatarUrl || '/homeImage.png'}
+                />
+                <span className=" absolute bottom-0 right-0 size-5  rounded-full   bg-green-500  border-2 border-gray-900 " />
+              </div>
+
               <div className="flex flex-col">
-                <h1 className="text-3xl">Your Profile</h1>
-                <h2 className="text-sm text-gray-300">Explore your vaults, make trades and edit your profile.</h2>
+                <h1 className="text-3xl font-semibold">Your Profile</h1>
+                <h2 className="text-sm text-gray-300 ">Explore your vaults, make trades and edit your profile.</h2>
               </div>
             </div>
+            {/* RIGHT SIDE — WALLET */}
             <div className="bg-black/30 border border-blue-400 flex max-md:w-full items-center px-4 py-2 gap-2 rounded-3xl">
               {address && connector ? (
                 <img
                   src={connectorIcons[connector.id.toLowerCase()]}
                   alt={`${connector.name}`}
-                  className="rounded-full size-10"
+                  className="rounded-full size-12"
                 />
               ) : (
                 <Icon className="!text-4xl">wallet</Icon>
               )}
+
               <div className="flex flex-col">
-                <div className="flex gap-2 items-center">
-                  <h2 className="text-sm text-gray-300">{!address ? 'Connect wallet' : 'Signed in as'}</h2>
-                </div>
-                <span className="text-lg text-blue-200">{address && abreviateAddress(address)}</span>
-                {!address && <span className="text-sm">Connect your wallet to see your profile data</span>}
+                <span className="text-sm text-gray-300">{address ? 'Connected Wallet' : 'Wallet not connected'}</span>
+                <span className="text-lg font-semibold text-blue-300">{address && abreviateAddress(address)}</span>
+                {!address && <span className="text-sm text-red-300">Connect your wallet to see your profile data</span>}
               </div>
             </div>
           </div>

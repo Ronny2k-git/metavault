@@ -5,5 +5,5 @@ type DividerProps = {
 }
 
 export function Divider({ className }: DividerProps) {
-  return <div className={twMerge(`w-full h-[2px] my-4 bg-gradient-to-r via-blue-500 col-span-full`, className)} />
+  return <div className={twMerge(`w-full h-[2.5px] my-4 bg-gradient-to-r via-violet-950 col-span-full`, className)} />
 }

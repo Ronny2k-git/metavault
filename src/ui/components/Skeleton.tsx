@@ -4,9 +4,9 @@ import { cva } from 'class-variance-authority'
 const skeletonVariants = cva('animate-pulse', {
   variants: {
     variant: {
-      accent: '[&_div]:bg-blue-500/50 bg-blue-800',
-      dimmed: '[&_div]:bg-sky-500/50 bg-blue-500/80',
-      black: '[&_div]:bg-[#0a2268] bg-black/30',
+      accent: '[&_div]:bg-purple-500/50 bg-purple-900',
+      dimmed: '[&_div]:bg-violet-500/40 bg-purple-800/70',
+      black: '[&_div]:bg-[#1a0b2e] bg-black/30',
     },
   },
   defaultVariants: {
