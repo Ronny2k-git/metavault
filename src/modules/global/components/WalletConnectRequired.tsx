@@ -7,7 +7,7 @@ export function WalletConnectionRequired() {
   const account = useAccount()
 
   return (
-    <Modal title="" variant={'gradient'} className="flex flex-col" isOpen={!account.address}>
+    <Modal title="" variant={'gradient'} className="flex flex-col max-w-sm" isOpen={!account.address}>
       {/* Animated icon */}
       <div className="flex items-center justify-center mb-6">
         <div className="bg-sky-500/10 p-6 rounded-full border border-sky-400/30 animate-pulse">

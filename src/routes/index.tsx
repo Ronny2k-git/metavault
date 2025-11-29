@@ -1,6 +1,7 @@
+import { AppCardExplore } from '@/home/components'
 import { FEATURES_SECTION, WORKS_SECTION } from '@/modules/global/constants'
 import { scrollToConteiner } from '@/modules/global/utils'
-import { Card, Divider, Icon } from '@/ui/components'
+import { BrandLogo, Card, Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { motion } from 'framer-motion'
@@ -14,50 +15,44 @@ function HomePage() {
     <div className="w-full flex flex-col text-white">
       <div className="w-full bg-[url('/banners/header-banner3.png')] flex justify-center">
         {/* Central containner */}
-        <div className="w-full flex max-w-[80rem] min-h-[45rem] bg-[url('/banners/header-banner3.png')] bg-cover bg-center">
+        <div className="w-full flex pt-20 pb-40 bg-[url('/banners/header-banner3.png')] bg-cover bg-bottom">
           {/* HOME PAGE HEADER */}
-          <header className="w-full flex justify-center items-center pt-10">
-            <div className="p-8 pt-10 flex flex-col max-md:items-center">
-              {/* <motion.img
-              src={'/homeImage.png'}
-              className="max-h-[17rem] max-w-[17rem] mb-4 rounded-full"
-              alt="logo"
-              whileInView={{ opacity: 1, y: 0 }}
-              initial={{ opacity: 0, y: 60 }}
-              transition={{ duration: 1 }}
-            /> */}
-              <motion.h1
-                className="text-7xl max-lg:text-5xl mb-8 font-extrabold bg-gradient-to-r from-purple-900 via-purple-900/70 to-purple-900 bg-clip-text text-transparent drop-shadow-lg"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
-                Meta Vault
-              </motion.h1>
+          <header className="w-full flex justify-center items-center">
+            <div className="p-8 md:pt-24 flex flex-col max-md:items-center">
+              <BrandLogo textStyle="text-7xl max-[810px]:text-6xl max-[460px]:text-5xl mb-8" />
+
+              {/* initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ delay: 0.4, duration: 0.8 }} */}
+
               <h2 className="text-2xl text-gray-200 mb-2">Decentralized. Secure. Yours.</h2>
               <h3 className="text-lg text-gray-300 max-w-xl max-md:text-center">
                 Create your vault and secure your crypto today — built for transparency and control.
               </h3>
-              <div className="flex w-full max-md:justify-center max-lg:flex-col gap-2 mt-8">
+              <div className="flex w-full max-md:justify-center max-[460px]:flex-col gap-2 mt-8">
                 <Button
-                  className="flex lg:max-w-[13rem] w-full"
+                  className="flex md:max-w-[13rem] w-full"
                   variant={'secondary'}
                   size={'xl'}
                   onClick={() => requestAnimationFrame(() => scrollToConteiner('features-section'))}
                 >
-                  Get Started Guide
+                  Start Guide
                 </Button>
 
-                <Link className="lg:max-w-[13rem] w-full" to={'/create-vault'}>
-                  <Button variant={'primary'} size={'xl'}>
-                    Create Vault
-                  </Button>
-                </Link>
+                {/*APP CARD PAGES */}
+                <AppCardExplore
+                  className="max-w-4xl h-auto"
+                  trigger={
+                    <Button className="md:max-w-[13rem] w-full" variant={'primary'} size={'xl'}>
+                      Explore dApps
+                    </Button>
+                  }
+                />
               </div>
               <p className="text-gray-300 text-sm mt-4">Explore freely — no wallet required.</p>
             </div>
             {/**RIGHT IMAGEM */}
-            <img className="max-md:hidden max-h-[22rem] mt-4" src="/banners/vault.png" />
+            <img className="max-md:hidden max-h-[22rem] mt-20" src="/banners/vault.png" />
           </header>
         </div>
       </div>
@@ -133,7 +128,7 @@ function HomePage() {
         </section>
 
         {/* ===== FINAL HEADER ===== */}
-        <section id="final-header" className="mt-28 pb-[22rem] flex flex-col items-center text-center gap-4 px-6">
+        <section id="final-header" className="my-28 pb-[25rem] flex flex-col items-center text-center gap-4 px-6">
           <p className="uppercase font-extrabold max-sm:text-3xl text-[clamp(2.5rem,2vw,10rem)] mt-16">
             Nothing more to explore. <br /> Let's start today
           </p>

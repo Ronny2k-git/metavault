@@ -1,3 +1,4 @@
+export * from './BrandLogo'
 export * from './Card'
 export * from './CheckBox'
 export * from './Divider'

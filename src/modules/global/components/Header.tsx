@@ -12,8 +12,17 @@ export default function Header() {
   const router = useRouter()
   const currentPath = router.state.location.pathname
 
+  //   TO DO LATER:
+
+  // 1 ALL THE BLUE COLORS ON THE SITE
+  // 2 ADD A LOGO INSIDE THE TOPBAR AND CHANGE IT TO USE JUSTIFY BETWEEN
+  // 3 UPDATE THE BANNERS TO PURPLE (Skeleton, EmptyBanner, HomePage,  )
+  // 4 UPDATE COLOR FOR PRIMARY AND SECONDARY CARDS AND BUTTONS
+  // 5 CREATE A COMPONENT FOR THE WEBSITE LOGO, WILL BE USED IN: (Header, Footer and Main Title).
+  // MODIFY THE INPUT TO UPDATE THE USER WALLET ADDRESS IN EDIT PROFILE TAB.
+
   return (
-    <header className="h-20 px-4 flex header-background text-white justify-between">
+    <header className=" w-full h-20 px-4 flex header-background text-white justify-between">
       <nav className="w-full flex items-center justify-between max-w-4xl mx-auto">
         <div className="flex gap- h-full ">
           {PROJECT_ROUTES.map((route) => (

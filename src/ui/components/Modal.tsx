@@ -38,7 +38,7 @@ export function Modal({
         <Dialog.Content className={twMerge('', className)} asChild>
           <Card
             variant={variant}
-            className="fixed top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 max-w-[26rem] w-[calc(100%-1.5rem)] py-6 px-6 rounded-3xl"
+            className="fixed top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-1.5rem)] py-6 px-6 rounded-3xl"
           >
             <Dialog.Close>
               <RiCloseLine className="absolute size-6 top-4 right-4 cursor-pointer text-white" />
