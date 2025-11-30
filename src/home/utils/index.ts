@@ -1,22 +1,23 @@
 export const CARD_ROUTER_INFO = [
   {
-    path: '/',
-    title: 'Trade',
-    desc: '',
-  },
-  {
-    path: '/',
+    path: '/create-vault',
     title: 'Create Vault',
-    desc: '',
+    desc: 'Create and customize a vault in just a few steps.',
   },
+
   {
-    path: '/',
+    tab: 'user-vaults',
     title: 'User Vaults',
-    desc: '',
+    desc: 'View and manage all your vaults in one place.',
   },
   {
-    path: '/',
+    tab: 'trades',
+    title: 'Trade',
+    desc: 'Deposit or Withdraw anytime, anywhere.',
+  },
+  {
+    tab: 'edit-profile',
     title: 'Edit Profile',
-    desc: '',
+    desc: 'Update your profile info and connected wallets.',
   },
 ]

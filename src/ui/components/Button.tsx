@@ -14,7 +14,7 @@ const buttonStyle = cva('w-full flex items-center justify-center cursor-pointer'
       xl: 'p-4 rounded-full text-xl',
     },
     variant: {
-      primary: 'bg-gradient-to-t from-purple-950 to-violet-900 hover:to-violet-800 border border-violet-400',
+      primary: 'bg-gradient-to-t from-purple-950 to-violet-900 hover:to-violet-950 border border-violet-400',
       secondary: 'bg-gradient-to-t from-gray-700 to-gray-800 hover:from-gray-600 border border-gray-500',
       tertiary: 'bg-gray-500 hover:bg-gray-600',
       white: 'bg-gray-100 hover:bg-gray-200 text-black',

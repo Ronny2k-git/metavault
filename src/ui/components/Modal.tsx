@@ -9,6 +9,7 @@ type cardVariants = VariantProps<typeof cardStyle>
 
 export type ModalProps = {
   title: React.ReactNode
+  titleStyle?: string
   description?: React.ReactNode
   variant?: cardVariants['variant']
   trigger?: React.ReactNode
@@ -24,6 +25,7 @@ export function Modal({
   defaultOpen,
   onOpenChange,
   title,
+  titleStyle,
   description,
   variant,
   trigger,
@@ -44,7 +46,7 @@ export function Modal({
               <RiCloseLine className="absolute size-6 top-4 right-4 cursor-pointer text-white" />
             </Dialog.Close>
 
-            <Dialog.Title className="text-xl pr-8 mb-6">{title}</Dialog.Title>
+            <Dialog.Title className={twMerge('text-2xl pr-8 mb-6 font-semibold', titleStyle)}>{title}</Dialog.Title>
 
             <Dialog.Description className="pr-8">{description}</Dialog.Description>
             {children}

@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge'
 export const cardStyle = cva('w-full flex flex-col h-auto', {
   variants: {
     variant: {
-      basic: 'bg-[#120325]/50 border border-[#4c1d75]',
+      basic: 'bg-[#120325]/50 border border-[#4c1d74]',
       basic2:
         'bg-[linear-gradient(180deg,#0b031d,#1d0947)] shadow-[0_0_10px_0px_rgba(109,40,217,0.45)] border border-[#4c1d95]',
       gradient: 'bg-[linear-gradient(45deg,#0b031d,#2d0a6b)] shadow-[0_0_20px_2px_rgba(124,58,237,0.45)] text-white',

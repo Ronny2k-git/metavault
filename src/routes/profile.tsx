@@ -36,7 +36,7 @@ function Profile() {
       <div className="w-full max-w-4xl">
         {/* PROFILE USER CARD INFO */}
         <Card
-          className="h-auto border-white/10 shadow-lg shadow-black/40 rounded-3xl my-10 px-6 py-6"
+          className="h-auto border-purple-900/50 shadow-lg shadow-black/40 rounded-3xl my-10 px-6 py-6"
           variant={'basic2'}
         >
           <div className={'w-full flex gap-4 md:gap-8 max-md:flex-col justify-between '}>
@@ -44,10 +44,10 @@ function Profile() {
             <div className="flex items-center gap-5">
               <div className="relative">
                 <img
-                  className="min-h-20 min-w-20 max-h-20 max-w-20 rounded-full object-cover border-2 border-blue-500/40 shadow-md"
+                  className="min-h-20 min-w-20 max-h-20 max-w-20 rounded-full object-cover border-2 border-purple-900/50 shadow-md"
                   src={profileData?.avatarUrl || '/homeImage.png'}
                 />
-                <span className=" absolute bottom-0 right-0 size-5  rounded-full   bg-green-500  border-2 border-gray-900 " />
+                <span className=" absolute bottom-0 right-0 size-5 rounded-full bg-green-500  border-2 border-gray-900 " />
               </div>
 
               <div className="flex flex-col">
@@ -56,7 +56,7 @@ function Profile() {
               </div>
             </div>
             {/* RIGHT SIDE — WALLET */}
-            <div className="bg-black/30 border border-blue-400 flex max-md:w-full items-center px-4 py-2 gap-2 rounded-3xl">
+            <div className="bg-black/30 border border-purple-900/50 flex max-md:w-full items-center px-4 py-2 gap-2 rounded-3xl">
               {address && connector ? (
                 <img
                   src={connectorIcons[connector.id.toLowerCase()]}

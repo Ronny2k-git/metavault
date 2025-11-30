@@ -3,6 +3,7 @@
 import { ECOSYSTEMS } from '@/modules/global/constants'
 import { formatNumber } from '@/modules/global/utils'
 import { Icon, Modal } from '@/ui/components'
+import { Button } from '@/ui/components/Button'
 import { Tabs } from 'radix-ui'
 import { useEffect, useState } from 'react'
 import { sepolia } from 'viem/chains'
@@ -50,20 +51,23 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
         <Tabs.Root defaultValue="ethereum">
           <Tabs.List className="flex gap-4">
             {ECOSYSTEMS.map((ecosystem, index) => (
-              <Tabs.Trigger
-                key={index}
-                value={ecosystem}
-                className="data-[state=active]:bg-gradient-to-b to-sky-600 from-blue-800 data-[state=active]:border-b-2 text-sm shadow-white py-2 px-4 rounded-2xl data-[state=inactive]:hover:opacity-85 cursor-pointer"
-              >
-                {ecosystem}
+              <Tabs.Trigger className="group" key={index} value={ecosystem}>
+                <Button
+                  className=" text-sm px-4 rounded-2xl bg-transparent shadow-none group-data-[state=active]:bg-purple-950
+                  group-data-[state=active]:border-b-2 border-purple-300/70
+                  "
+                  variant={'gradient'}
+                >
+                  {ecosystem}
+                </Button>
               </Tabs.Trigger>
             ))}
           </Tabs.List>
 
           <div className="flex items-center gap-4 py-4">
-            <div className="w-1/2 h-px bg-sky-300" />
+            <div className="w-1/2 h-0.5 bg-gradient-to-l via-purple-900" />
             Wallets
-            <div className="w-1/2 h-px  bg-sky-300" />
+            <div className="w-1/2 h-0.5  bg-gradient-to-l via-purple-900" />
           </div>
           <Tabs.Content value="ethereum">
             <EthereumConnectors />
@@ -77,21 +81,21 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
         </Tabs.Root>
         <section className="max-sm:hidden sm:flex -mt-10">
           {/*Vertical divider */}
-          <div className="min-h-[26rem] mx-8 -mt-1 w-0.5 bg-gradient-to-b via-sky-500 " />
+          <div className="min-h-[26rem] mx-8 -mt-1 w-[1px] bg-gradient-to-b via-purple-900 " />
 
           {/*Right section  */}
           <div className="flex flex-col md:gap-6 max-md:gap-4 items-center">
             <div className=" w-60 bottom-[24rem] mb-4 text-sm font-semibold h-8 flex items-center justify-center bg-black/15 rounded-full">
               Balance:
-              <p className="mx-2 text-sky-400">{formatNumber(Number(sepoliaBalance?.formatted || 0))} sepolia</p>
+              <p className="mx-2 text-indigo-300">{formatNumber(Number(sepoliaBalance?.formatted || 0))} sepolia</p>
             </div>
 
-            <p className="text-xs uppercase tracking-widest= text-blue-300">Learn</p>
+            <p className="text-xs uppercase tracking-widest= text-indigo-300">Learn</p>
 
             <h2 className="text-2xl font-semibold text-white mb-4">What Is a Wallet?</h2>
 
             <div className="flex gap-4 items-center">
-              <Icon className="!text-4xl p-3.5 -mt-6 bg-blue-500/30 text-blue-300 rounded-full">wifi_home</Icon>
+              <Icon className="!text-4xl p-3.5 -mt-6 bg-indigo-500/30 text-indigo-300 rounded-full">wifi_home</Icon>
               <div className="flex flex-col w-full text-white max-w-[15rem] text-sm mb-4 leading-relaxed">
                 <p>Your digital home</p>
                 <h3 className="text-gray-400">
@@ -101,7 +105,9 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
             </div>
 
             <div className="flex gap-4 items-center">
-              <Icon className="!text-4xl p-3.5 -mt-6 bg-blue-500/30 text-blue-300 rounded-full">captive_portal</Icon>
+              <Icon className="!text-4xl p-3.5 -mt-6 bg-indigo-500/30 text-indigo-300 rounded-full">
+                captive_portal
+              </Icon>
 
               <div className="text-white max-w-[15rem] text-sm mb-4 leading-relaxed">
                 <p>A new way to log in</p>
