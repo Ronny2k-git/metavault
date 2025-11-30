@@ -13,7 +13,7 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
   return (
     <tr>
       <td colSpan={5}>
-        <div className="background-vault-row border border-blue-400 rounded-lg h-20 flex items-center">
+        <div className="background-vault-row border border-purple-800/80 rounded-lg h-20 flex items-center">
           <div className="flex items-center flex-1">
             <img src={data.banner} className="h-18 w-32 object-cover rounded-md" alt="vault-banner" />
             <div className="flex flex-col mx-4">

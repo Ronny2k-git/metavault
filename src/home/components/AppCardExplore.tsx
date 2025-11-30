@@ -26,6 +26,7 @@ export function AppCardExplore({ trigger, className }: AppCardExploreProps) {
             key={index}
             className="hover:border-x-4 hover:border-t-4 hover:scale-98 cursor-pointer"
             title={value.title}
+            img={value.img}
             desc={value.desc}
             path={value.path}
             tab={value.tab!}

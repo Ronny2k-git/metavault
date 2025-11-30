@@ -19,7 +19,7 @@ function HomePage() {
           {/* HOME PAGE HEADER */}
           <header className="w-full flex justify-center items-center">
             <div className="p-8 md:pt-24 flex flex-col max-md:items-center">
-              <BrandLogo textStyle="text-7xl max-[810px]:text-6xl max-[460px]:text-5xl mb-8" />
+              <BrandLogo logoStyle="h-24 max-[460px]:h-13 mb-8" />
 
               {/* initial={{ opacity: 0, y: 30 }}
                  animate={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ function HomePage() {
 
                   <div className="flex flex-col w-full max-md:items-center max-md:max-w-[25rem] gap-2">
                     <h3 className="flex gap-2 items-center text-2xl font-semibold mb-1">
-                      <Icon className="text-blue-400 !text-5xl">{icon}</Icon>
+                      <Icon className="text-indigo-400 !text-5xl">{icon}</Icon>
                       {title}
                     </h3>
 
@@ -115,8 +115,8 @@ function HomePage() {
                   className="flex w-full min-h-[15rem] items-center justify-center p-4 rounded-2xl"
                   variant={'ghost'}
                 >
-                  <div className="bg-blue-500/30 h-16 w-16 mb-4 flex items-center justify-center rounded-full">
-                    <Icon className="text-blue-400 !text-4xl">{icon}</Icon>
+                  <div className="bg-indigo-500/30 h-16 w-16 mb-4 flex items-center justify-center rounded-full">
+                    <Icon className="text-indigo-400 !text-4xl">{icon}</Icon>
                   </div>
 
                   <h3 className="text-xl font-semibold">{title}</h3>

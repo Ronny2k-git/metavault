@@ -30,7 +30,7 @@ export default function Header() {
               to={route.path}
               key={route.path}
               activeProps={{
-                className: 'border-b-2 border-white',
+                className: 'border-b-2 border-indigo-300',
               }}
             >
               <div className="hover:bg-purple-950/30 flex px-4 h-full items-center gap-2">

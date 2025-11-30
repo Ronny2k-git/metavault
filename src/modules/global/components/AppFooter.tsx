@@ -9,10 +9,7 @@ export function AppFooter() {
           {/* Brand / Description */}
           <section className="flex flex-col items-center sm:items-start">
             <div className="flex items-center gap-2 mb-2">
-              <img src="/homeImage.png" alt="Meta Vault" className="size-8 rounded-full border border-blue-500/40" />
-              <h2 className="text-lg font-extrabold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Meta Vault
-              </h2>
+              <img src="/logo.png" alt="Meta Vault" className="h-8" />
             </div>
             <p className="text-gray-300 max-w-xs max-sm:text-center">
               Decentralized crypto vaults — secure, transparent, and built for you.
@@ -22,16 +19,16 @@ export function AppFooter() {
           {/* Web site links */}
           <section className="flex flex-col gap-2 items-center sm:items-start">
             <h3 className="text-white font-semibold mb-1">Explore</h3>
-            <Link to="/" className="hover:text-blue-400 transition ">
+            <Link to="/" className="hover:text-indigo-300 ">
               Home
             </Link>
-            <Link to="/create-vault" className="hover:text-blue-400 transition">
+            <Link to="/create-vault" className="hover:text-indigo-300 transition">
               Create Vault
             </Link>
-            <Link to="/profile" className="hover:text-blue-400 transition">
+            <Link to="/profile" className="hover:text-indigo-300">
               Profile
             </Link>
-            <a href="https://sepolia.etherscan.io/" target="_blank" className="hover:text-blue-400 transition">
+            <a href="https://sepolia.etherscan.io/" target="_blank" className="hover:text-indigo-300">
               Sepolia Explorer
             </a>
           </section>
@@ -42,7 +39,7 @@ export function AppFooter() {
             <a
               href="https://github.com/Ronny2k-git"
               target="_blank"
-              className="flex items-center gap-2 hover:text-blue-400 transition"
+              className="flex items-center gap-2 hover:text-indigo-300"
             >
               <GithubIcon /> GitHub
             </a>
@@ -56,10 +53,11 @@ export function AppFooter() {
         </p>
       </section>
 
-      <div className="text-center px-2 text-[clamp(2rem,15vw,14rem)]">
-        <h2 className="font-extrabold bg-gradient-to-r from-purple-700 via-fuchsia-950 to-purple-700 bg-clip-text text-transparent">
+      <div className="flex items-center justify-center px-2 text-[clamp(2rem,15vw,14rem)]">
+        {/* <h2 className="font-extrabold bg-gradient-to-r from-purple-700 via-fuchsia-950 to-purple-700 bg-clip-text text-transparent">
           Meta Vault
-        </h2>
+        </h2> */}
+        <img className="max-h-40 my-6 px-4" src="/logo.png" />
       </div>
     </footer>
   )

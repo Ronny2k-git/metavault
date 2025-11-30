@@ -145,7 +145,7 @@ export function UserVaults() {
         />
         <Input
           className="w-full sm:max-w-[27rem]"
-          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          iconLeft={<Icon className="text-indigo-300">search</Icon>}
           inputSize={'sm'}
           label="Search Vault"
           placeholder="Search your vaults by address,name, creator and chain name."
@@ -223,7 +223,7 @@ export function UserVaults() {
         />
         <Input
           className="w-full sm:max-w-[27rem]"
-          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          iconLeft={<Icon className="text-indigo-300">search</Icon>}
           inputSize={'sm'}
           label="Search Vault"
           placeholder="Search your vaults by address,name, creator and chain name."
@@ -310,7 +310,7 @@ export function UserVaults() {
 
         <Input
           className="w-full sm:max-w-[27rem]"
-          iconLeft={<Icon className="text-blue-300">search</Icon>}
+          iconLeft={<Icon className="text-indigo-300">search</Icon>}
           inputSize={'sm'}
           label="Search Vault"
           placeholder="Search your vaults by address,name, creator and chain name."

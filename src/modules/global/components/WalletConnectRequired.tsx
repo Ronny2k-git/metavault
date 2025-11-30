@@ -10,8 +10,8 @@ export function WalletConnectionRequired() {
     <Modal title="" variant={'gradient'} className="flex flex-col max-w-sm" isOpen={!account.address}>
       {/* Animated icon */}
       <div className="flex items-center justify-center mb-6">
-        <div className="bg-sky-500/10 p-6 rounded-full border border-sky-400/30 animate-pulse">
-          <Icon className="!text-5xl text-sky-400">wallet</Icon>
+        <div className="bg-sky-500/10 p-6 rounded-full border border-indigo-400/30 animate-pulse">
+          <Icon className="!text-5xl text-indigo-400">wallet</Icon>
         </div>
       </div>
       {/* Primary text */}
@@ -35,7 +35,7 @@ export function WalletConnectionRequired() {
           </Button>
         </a>
 
-        <div className="mt-6 h-px bg-gradient-to-r from-transparent via-sky-600/50 to-transparent w-full" />
+        <div className="mt-6 h-px bg-gradient-to-r from-transparent via-purple-900/90 to-transparent w-full" />
       </div>
     </Modal>
   )
