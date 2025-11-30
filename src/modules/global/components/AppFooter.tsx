@@ -46,7 +46,7 @@ export function AppFooter() {
           </section>
         </div>
       </div>
-      <section className="border-t border-white/10 pt-8 max-sm:pb-8 text-center text-gray-400 text-sm">
+      <section className="border-t border-purple-900/50 pt-8 max-sm:pb-8 text-center text-gray-400 text-sm">
         <p>© 2025 Meta Vault — Built on Sepolia Network</p>
         <p className="mt-1">
           Made with <span className="text-red-400">❤️</span> by Ronny

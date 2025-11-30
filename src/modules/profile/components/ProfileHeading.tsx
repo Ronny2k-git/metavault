@@ -22,7 +22,7 @@ export function ProfileHeading({ id, icon, title, subtitle, valueLabel, value, c
       </div>
       <div className="flex flex-col items-center text-center mx-2 max-sm:mb-8">
         <span className="text-lg">{valueLabel}</span>
-        <div className="text-2xl text-sky-400">{value}</div>
+        <div className="text-2xl text-indigo-300">{value}</div>
       </div>
     </div>
   )

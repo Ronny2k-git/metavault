@@ -51,7 +51,7 @@ export function DepositCard({
       <Modal
         isOpen={openModal}
         onOpenChange={setOpenModal}
-        className="relative shadow-2xs "
+        className="relative shadow-2xs max-w-md "
         title="Select a Vault to Deposit"
         variant={'gradient'}
         trigger={trigger}

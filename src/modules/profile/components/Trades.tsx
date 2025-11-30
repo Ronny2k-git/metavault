@@ -172,7 +172,7 @@ export function Trades() {
           >
             <button
               className={`absolute ${activeCard === 'Deposit' ? 'top-44' : 'top-31'} z-1 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
-            cursor-pointer border-2 border-blue-900`}
+            cursor-pointer border-2 border-purple-900/50`}
               onClick={() => {
                 setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')
                 depositForm.reset()
@@ -268,7 +268,7 @@ export function Trades() {
 
           <Input
             className="w-full sm:max-w-[27rem]"
-            iconLeft={<Icon className="text-blue-300">search</Icon>}
+            iconLeft={<Icon className="text-indigo-300">search</Icon>}
             inputSize={'sm'}
             label="Search transaction"
             placeholder="Search your transactions by type and tx hash"

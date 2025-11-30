@@ -41,7 +41,7 @@ export function Pagination({ page, totalPages, onChange, scrollId }: PaginationP
         </Button>
       )}
 
-      <p className="text-blue-300 text-2xl">...</p>
+      <p className="text-indigo-300 text-2xl">...</p>
 
       {/* Last Page */}
       {totalPages > 1 && (

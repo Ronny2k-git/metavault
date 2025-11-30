@@ -56,7 +56,7 @@ export function WithdrawCard({
   return (
     <BaseCardTrade title={title} variant={disabled ? 'disabled' : variant}>
       <Modal
-        className="relative shadow-2xs flex flex-col"
+        className="relative shadow-2xs max-w-md"
         title="Select Your Vault To Withdraw"
         variant={'gradient'}
         trigger={trigger}

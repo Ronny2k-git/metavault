@@ -69,7 +69,7 @@ function Profile() {
 
               <div className="flex flex-col">
                 <span className="text-sm text-gray-300">{address ? 'Connected Wallet' : 'Wallet not connected'}</span>
-                <span className="text-lg font-semibold text-blue-300">{address && abreviateAddress(address)}</span>
+                <span className="text-lg font-semibold text-indigo-300">{address && abreviateAddress(address)}</span>
                 {!address && <span className="text-sm text-red-300">Connect your wallet to see your profile data</span>}
               </div>
             </div>

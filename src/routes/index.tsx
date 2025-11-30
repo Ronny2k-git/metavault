@@ -61,7 +61,7 @@ function HomePage() {
         <Divider className="h-px mt-12 mb-12" />
 
         {/* ===== FEATURES SECTION ===== */}
-        <section id="features-section" className="max-w-4xl w-full">
+        <section id="features-section" className="max-w-4xl w-full p-4">
           <h2 className="flex flex-col text-3xl font-semibold items-center mb-12">Why Use Meta Vault?</h2>
 
           <div className="flex flex-col gap-8">
@@ -99,7 +99,7 @@ function HomePage() {
         </section>
 
         {/* ===== HOW IT WORKS ===== */}
-        <section className="mt-24 w-full text-center max-w-5xl">
+        <section className="mt-24 w-full text-center max-w-5xl p-4">
           <h2 className="text-3xl font-semibold mb-12">How it works</h2>
 
           <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8">
