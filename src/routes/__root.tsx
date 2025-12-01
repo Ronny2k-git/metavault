@@ -4,6 +4,7 @@ import { NotFoundPage } from '@/ui/components'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import React from 'react'
 import Header from '../modules/global/components/Header'
 import appCss from '../styles.css?url'
 
@@ -23,10 +24,9 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', href: '/homeImage.png' },
+      { rel: 'icon', href: '/icon.png' },
     ],
   }),
-
   shellComponent: RootDocument,
   notFoundComponent() {
     return <NotFoundPage />

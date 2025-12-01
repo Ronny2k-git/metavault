@@ -7,7 +7,10 @@ type SpinnerProps = {
 export function Spinner({ className }: SpinnerProps) {
   return (
     <div
-      className={twMerge('h-5 w-5 border-2 border-purple-500 border-t-gray-900 rounded-full animate-spin', className)}
+      className={twMerge(
+        'h-5 w-5 border-2 border-purple-900/40 border-t-indigo-400/50 rounded-full animate-spin',
+        className,
+      )}
     />
   )
 }

@@ -6,13 +6,12 @@ import { twMerge } from 'tailwind-merge'
 
 const inputStyle = cva(
   `
-  peer no-spinner w-full 
-  bg-gradient-to-l from-purple-950/40 to-violet-800/40
+  peer no-spinner w-full bg-gradient-to-t from-purple-950/50 to-violet-950/80
   pt-4 
   border 
   outline-none 
   border-transparent 
-  placeholder:text-purple-300 
+  placeholder:text-indigo-300 
   placeholder:opacity-0 
   focus:placeholder:opacity-100 
   text-purple-100
@@ -21,7 +20,7 @@ const inputStyle = cva(
     variants: {
       variant: {
         error: 'shadow-[0_0_10px_1px_rgba(255,0,0,0.7)] border-0 !text-white',
-        default: 'placeholder:text-purple-300 focus:border-violet-400',
+        default: 'placeholder:text-indigo-300 focus:border-purple-900',
       },
       size: {
         default: 'h-12 px-4 rounded-md',
@@ -88,11 +87,11 @@ export function Input({
         <span
           className={`
             absolute left-4 top-1/4
-            text-purple-300 transition-all
+            text-indigo-300 transition-all
             pointer-events-none
             peer-placeholder-shown:top-1/2 -translate-y-1/2
             peer-focus:top-1/4
-            peer-focus:text-purple-300
+            peer-focus:text-indigo-300
             ${iconLeft ? 'pl-9' : ''}
           `}
         >

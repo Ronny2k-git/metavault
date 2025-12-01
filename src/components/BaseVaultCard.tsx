@@ -81,13 +81,13 @@ export function BaseVaultCard(data: BaseVaultProps) {
       <section className="flex flex-col mt-4 mb-2 mx-2 gap-0.5 text-[15px]">
         <div className="flex justify-between">
           <h3>Creator</h3>
-          <div className="text-gray-300">{data.creatorName || 'unnamed'}</div>
+          <div className="text-indigo-300">{data.creatorName || 'unnamed'}</div>
         </div>
 
         {data.tokenName && (
           <div className="flex justify-between">
             <h3>TokenName:</h3>
-            <div className="text-gray-300">{data.tokenName || 'Unknown'}</div>
+            <div className="text-indigo-300">{data.tokenName || 'Unknown'}</div>
           </div>
         )}
 
@@ -95,22 +95,22 @@ export function BaseVaultCard(data: BaseVaultProps) {
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>Min dep:</h3>
-            <div className="text-gray-300">{data.minDeposit || 0}</div>
+            <div className="text-indigo-300">{data.minDeposit || 0}</div>
           </div>
           <div className="flex gap-1">
             <h3>Start:</h3>
-            <div className="text-gray-300">{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
+            <div className="text-indigo-300">{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>Max dep:</h3>
-            <div className="text-gray-300">{formatNumber(Number(data.maxDeposit)) || 0}</div>
+            <div className="text-indigo-300">{formatNumber(Number(data.maxDeposit)) || 0}</div>
           </div>
 
           <div className="flex gap-1">
             <h3>End:</h3>
-            <div className="text-gray-300">{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
+            <div className="text-indigo-300">{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
           </div>
         </div>
 
@@ -123,25 +123,25 @@ export function BaseVaultCard(data: BaseVaultProps) {
         ) : (
           <Card variant={'tertiary'} className="items-center mt-3 py-2 rounded-lg">
             <p className="text-base text-white">Finished: </p>
-            <p className="text-lg font-bold text-blue-300">{formatDate(data.endDate, 'long')}</p>
+            <p className="text-lg font-bold text-indigo-300">{formatDate(data.endDate, 'long')}</p>
           </Card>
         )}
       </section>
 
-      <div className="h-0.5 mt-2 w-full bg-gradient-to-r via-sky-500" />
+      <div className="h-0.5 mt-2 w-full bg-gradient-to-r via-purple-900/90" />
 
       <section className="flex flex-col px-2">
         {data.status != 'ended' && data.deposited != null ? (
           <Card variant={'tertiary'} className="items-center mt-3 py-2 rounded-lg">
             <p className="text-sm text-white">Total Deposited</p>
-            <p className="text-xl font-bold text-blue-300">{formatNumber(data.deposited)}</p>
+            <p className="text-xl font-bold text-indigo-300">{formatNumber(data.deposited)}</p>
           </Card>
         ) : (
           <Button
-            variant="black"
-            className=" rounded-3xl my-4 py-3 shadow-[0_0_10px_2px_rgba(8,174,251,_0.8)]"
+            variant="gradient"
+            className=" rounded-3xl my-4 py-3"
             onClick={data.onWithdrawChange}
-            iconLeft={<Icon>account_balance_wallet</Icon>}
+            iconLeft={<Icon className="text-indigo-300">account_balance_wallet</Icon>}
           >
             Withdraw All
           </Button>
@@ -151,7 +151,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <div className="flex items-center justify-between">
             <h3>View Vault</h3>
             <a href={`https://sepolia.etherscan.io/address/${data.address}`}>
-              <Icon className="mt-1 hover:border-b-1 text-sky-300">eye_tracking</Icon>
+              <Icon className="mt-1 hover:border-b-1 text-indigo-300">eye_tracking</Icon>
             </a>
           </div>
         )}
@@ -161,18 +161,19 @@ export function BaseVaultCard(data: BaseVaultProps) {
       <div className="relative mb-2 mx-1">
         <Collapsible.Root>
           <Collapsible.Trigger className="group w-full" asChild>
-            <button className="relative p-1 mt-2 text-sm w-full bg-black/20 hover:bg-black/30  rounded-full cursor-pointer">
+            <Button className="relative p-1 mt-2 text-sm w-ful rounded-full cursor-pointer" variant={'gradient'}>
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1/2 -translate-y-1/2 size-5" />
               Vault Description
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 right-4 top-1/2 -translate-y-1/2 size-5" />
-            </button>
+            </Button>
           </Collapsible.Trigger>
           <Collapsible.Content className="w-full mt-3 absolute z-1">
-            <div
-              className={`${data.status === 'live' ? 'bg-[#023dbc]' : 'bg-[#0843c3]'} py-2 px-3 min-h-16 break-all rounded-md text-gray-300 border border-cyan-300`}
+            <Card
+              className="py-2 px-3 min-h-16 break-all rounded-md"
+              variant={data.status === 'live' ? 'basic2' : 'basic'}
             >
               <span>{data.description}</span>
-            </div>
+            </Card>
           </Collapsible.Content>
         </Collapsible.Root>
       </div>

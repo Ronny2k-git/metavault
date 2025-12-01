@@ -18,7 +18,7 @@ const buttonStyle = cva('w-full flex items-center justify-center cursor-pointer'
       secondary: 'bg-gradient-to-t from-gray-700 to-gray-800 hover:from-gray-600 border border-gray-500',
       tertiary: 'bg-gray-500 hover:bg-gray-600',
       white: 'bg-gray-100 hover:bg-gray-200 text-black',
-      gradient: 'bg-gradient-to-r from-purple-800 to-violet-700 hover:to-violet-800 shadow-2xs shadow-violet-300',
+      gradient: 'bg-gradient-to-r from-purple-900 to-violet-800 hover:to-violet-900 shadow-2xs shadow-indigo-300',
       black: 'bg-black/30 border border-violet-400 hover:bg-black/40 shadow-[0_0_10px_rgba(139,92,246,0.4)]',
     },
   },

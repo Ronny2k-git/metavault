@@ -1,6 +1,7 @@
 export * from './AppFooter'
 export * from './ConnectedWalletCard'
 export * from './CountDownClock'
+export * from './GlobalLoader'
 export * from './Header'
 export * from './Providers'
 export * from './WalletConnectRequired'

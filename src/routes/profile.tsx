@@ -1,4 +1,5 @@
 import type { CreateTabSteps } from '@/modules/create/types'
+import { GlobalLoader } from '@/modules/global/components'
 import { useGetUserProfileData } from '@/modules/global/hooks'
 import { abreviateAddress } from '@/modules/global/utils'
 import { connectorIcons } from '@/modules/global/utils/connectorIcons'
@@ -20,6 +21,7 @@ export const Route = createFileRoute('/profile')({
     }),
   ),
   ssr: 'data-only',
+  pendingComponent: () => <GlobalLoader />,
 })
 
 function Profile() {

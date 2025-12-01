@@ -22,6 +22,7 @@ export function UserVaults() {
   const [completedPage, setCompletedPage] = useState(1)
   const [withdrawOpen, setWithdrawOpen] = useState(false)
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
+  const [isLoadingCompletedTest, setIsisLoadingCompletedTest] = useState(true)
   const { address } = useAccount()
   const saveSwap = useSaveUserSwap()
   const queryClient = useQueryClient()
@@ -326,7 +327,7 @@ export function UserVaults() {
             buttonLabel="Create Your Vault"
           />
         )}
-        {isLoadingCompleted ? (
+        {isLoadingCompletedTest ? (
           <div className="flex flex-col gap-2 my-8 overflow-x-auto p-4">
             {Array.from({ length: 10 }).map((_, index) => (
               <VaulRowSkeleton key={index} />

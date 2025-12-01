@@ -53,8 +53,8 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
             {ECOSYSTEMS.map((ecosystem, index) => (
               <Tabs.Trigger className="group" key={index} value={ecosystem}>
                 <Button
-                  className=" text-sm px-4 rounded-2xl bg-transparent shadow-none group-data-[state=active]:bg-purple-950
-                  group-data-[state=active]:border-b-2 border-purple-300/70
+                  className=" text-sm px-4 rounded-2xl bg-transparent shadow-none group-data-[state=active]:bg-purple-950/60
+                  group-data-[state=active]:border-b-2 border-indigo-300
                   "
                   variant={'gradient'}
                 >

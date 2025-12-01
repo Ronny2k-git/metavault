@@ -109,7 +109,7 @@ export function VaultDataForm() {
 
         <div className="flex flex-col relative">
           <select
-            className={`bg-[#0a2278] h-12 w-full px-6 rounded-3xl text-gray-300 outline-none
+            className={`bg-gradient-to-t from-purple-950/50 to-violet-950/80 h-12 w-full px-6 rounded-3xl text-gray-300 outline-none
           ${networError ? 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
             {...register('network', {
               onChange(event) {
@@ -120,7 +120,7 @@ export function VaultDataForm() {
             <option value="" hidden>
               Select a network
             </option>
-            <option className="bg-blue-900" value="Sepolia">
+            <option className="bg-violet-950" value="Sepolia">
               Sepolia
             </option>
           </select>
