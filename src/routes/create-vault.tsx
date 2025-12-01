@@ -43,7 +43,7 @@ function CreateVault() {
 
         <Tabs
           icon={<Icon className="!text-4xl text-indigo-300">keyboard_double_arrow_right</Icon>}
-          variant={'blue'}
+          variant={'purple'}
           size={'lg'}
           search={search.tab}
           onValueChange={(value) => {

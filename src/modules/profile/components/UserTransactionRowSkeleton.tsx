@@ -2,7 +2,10 @@ import { Skeleton } from '@/ui/components'
 
 export function UserTransactionRowSkeleton() {
   return (
-    <Skeleton className="flex w-full justify-between px-4 py-3 items-center gap-10 rounded-2xl" variant={'black'}>
+    <Skeleton
+      className="flex w-full border border-purple-900/60 justify-between px-4 py-3 items-center gap-10 rounded-2xl"
+      variant={'black'}
+    >
       <span className="flex gap-2 items-center">
         <div className="w-10 h-10 rounded-full" />
         <span className="flex flex-col gap-1">

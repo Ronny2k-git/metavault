@@ -13,7 +13,7 @@ export function EmptyBanner({ message, subMessage, icon, buttonLabel, className 
   return (
     <div
       className={twMerge(
-        `w-full shadow-[0_0_10px_4px_rgba(255_218_255)] shadow-purple-900/40 p-16 flex relative bg-[url('/blockchain.jpg')] bg-center bg-cover rounded-4xl`,
+        `w-full shadow-[0_0_10px_3px_rgba(255_218_255)] shadow-purple-900/40 p-16 flex relative bg-[url('/blockchain.jpg')] bg-center bg-cover rounded-4xl`,
         className,
       )}
     >
@@ -21,7 +21,7 @@ export function EmptyBanner({ message, subMessage, icon, buttonLabel, className 
 
       <div className="w-full flex flex-col items-center z-0 gap-4">
         {icon}
-        <h2 className="text-4xl max-sm:text-2xl text-center">{message}</h2>
+        <h2 className="text-4xl max-sm:text-2xl text-center ">{message}</h2>
         {subMessage && (
           <p className="text-md sm:px-4 py-2 break-words sm:py-1 text-gray-200 rounded-full">{subMessage}</p>
         )}

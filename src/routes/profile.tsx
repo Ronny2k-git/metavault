@@ -81,7 +81,7 @@ function Profile() {
         <Divider className="mb-12" />
 
         <Tabs
-          variant={'default'}
+          variant={'purple'}
           size={'md'}
           search={search.tab}
           onValueChange={(value) => {

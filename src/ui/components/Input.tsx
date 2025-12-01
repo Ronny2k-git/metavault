@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge'
 
 const inputStyle = cva(
   `
-  peer no-spinner w-full bg-gradient-to-t from-purple-950/50 to-violet-950/80
+  peer no-spinner w-full bg-gradient-to-t from-purple-950 to-[#3C1C994D]
   pt-4 
   border 
   outline-none 

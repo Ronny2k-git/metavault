@@ -27,9 +27,10 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
 const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justify-center cursor-pointer`, {
   variants: {
     variant: {
-      blue: 'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#2960f7,#000d5f)] data-[state=active]:hover:before:brightness-90',
+      purple:
+        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0c0924,#5C1D959D)] data-[state=active]:hover:before:brightness-110',
       default:
-        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0180f4,#000d7f)] data-[state=active]:hover:before:brightness-90',
+        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#080126,#4a0f70)] data-[state=active]:hover:before:brightness-110',
     },
     size: {
       default: 'py-4 before:rounded-t-xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
@@ -38,7 +39,7 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
     },
   },
   defaultVariants: {
-    variant: 'blue',
+    variant: 'purple',
     size: 'default',
   },
 })

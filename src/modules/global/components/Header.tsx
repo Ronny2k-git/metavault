@@ -12,32 +12,25 @@ export default function Header() {
   const router = useRouter()
   const currentPath = router.state.location.pathname
 
-  //   TO DO LATER:
-
-  // 1 ALL THE BLUE COLORS ON THE SITE
-  // 2 ADD A LOGO INSIDE THE TOPBAR AND CHANGE IT TO USE JUSTIFY BETWEEN
-  // 3 UPDATE THE BANNERS TO PURPLE (Skeleton, EmptyBanner, HomePage,  )
-  // 4 ADD THE BRANDLOGO IN THE TOP BAR
-  // 5  MODIFY THE INPUT TO UPDATE THE USER WALLET WITH CONECTED ADDRESS IN EDIT PROFILE TAB
-  //    PROBABLY WILL HAVE A BUTTON LIKE "Update Wallet" AND WILL OPEN THE WALLET CONENCTION
-  // 6  MODIFY THE INPUT COMPONENT TO ACCEPT THE UPLOAD IMAGE FUNCTION (A BUTTON)
-
   return (
-    <header className=" w-full h-20 px-4 flex header-background text-white justify-between">
-      <nav className="w-full flex items-center justify-between max-w-4xl mx-auto">
+    <header className=" w-full min-h-20 h-auto max-sm:p-4 px-4 flex header-background text-white justify-between">
+      <nav className="w-full flex max-[460px]:flex-col gap-4 items-center justify-between max-w-4xl mx-auto">
+        {/*Logo */}
+        <img src="/icon.png" className="size-14" />
+
         <div className="flex gap- h-full ">
           {PROJECT_ROUTES.map((route) => (
             <Link
               to={route.path}
               key={route.path}
               activeProps={{
-                className: 'border-b-2 border-indigo-300',
+                className: 'border-b-2 p-6 border-indigo-300',
               }}
             >
               <div className="hover:bg-purple-950/30 flex px-4 h-full items-center gap-2">
                 <Icon>{route.icon}</Icon>
-                {currentPath === route.path && <span className="sm:hidden">{route.label}</span>}
-                <span className="max-sm:hidden">{route.label}</span>
+                {currentPath === route.path && <span className="md:hidden">{route.label}</span>}
+                <span className="max-md:hidden">{route.label}</span>
               </div>
             </Link>
           ))}
@@ -56,7 +49,7 @@ export default function Header() {
                 </Button>
                 <div className="sm:hidden">
                   <Icon
-                    className={` !text-3xl mt-2 ${connectedWallet ? 'text-purple-800/50 hover:text-purple-800/80' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
+                    className={` !text-3xl mt-2 ${connectedWallet ? 'text-purple-800/90 hover:text-purple-700/50' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
                   >
                     wallet
                   </Icon>
