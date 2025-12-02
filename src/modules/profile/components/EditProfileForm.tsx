@@ -1,6 +1,7 @@
 import type { UserProfileDataFormType } from '@/modules/create/schemas/userProfileDataFormSchema'
 import { userProfileDataFormSchema } from '@/modules/create/schemas/userProfileDataFormSchema'
 import { useGetUserProfileData } from '@/modules/global/hooks'
+import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, EmptyBanner, Icon, Input, TextArea } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -30,6 +31,7 @@ export function EditProfileForm() {
         address: profileData.userAddress,
       })
     }
+    requestAnimationFrame(() => scrollToConteiner('edit-user-profile'))
   }, [profileData])
 
   const onSubmit = async (formData: UserProfileDataFormType) => {
@@ -45,12 +47,7 @@ export function EditProfileForm() {
   }
 
   return (
-    <Card
-      className="
-        flex flex-col gap-6 p-8 rounded-2xl shadow-xs border-purple-900/50
-      "
-      variant={'basic2'}
-    >
+    <Card id="edit-user-profile" className=" gap-6 p-8 rounded-2xl shadow-xs border-purple-900/50 " variant={'basic'}>
       {/* HEADER */}
       <div className="flex items-center gap-3">
         <Icon className="!text-4xl text-purple-300">person_edit</Icon>
@@ -78,7 +75,6 @@ export function EditProfileForm() {
             {...editProfileForm.register('userAbout')}
           />
 
-          {/* GRID: INPUTS */}
           <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
             <Input
               inputVariant="default"
