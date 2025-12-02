@@ -76,7 +76,7 @@ export function Input({
             inputStyle({ variant: effectiveVariant, size: inputSize }),
             error && 'text-red-400',
             iconLeft && 'pl-13',
-            iconRight && 'pr-13',
+            iconRight && 'pr-36',
             className,
           )}
           {...props}

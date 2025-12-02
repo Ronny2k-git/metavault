@@ -28,7 +28,7 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
   variants: {
     variant: {
       purple:
-        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0c0924,#5C1D959D)] data-[state=active]:hover:before:brightness-110',
+        'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0c0124,#5C1D959D)] data-[state=active]:hover:before:brightness-110',
       default:
         'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#080126,#4a0f70)] data-[state=active]:hover:before:brightness-110',
     },

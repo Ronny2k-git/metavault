@@ -16,10 +16,8 @@ export const Route = createFileRoute('/')({
 // TO DO LATER:
 
 // 1 UPDATE THE BANNERS TO PURPLE ( EmptyBanner and HomePage )
-// 2 ADD THE BRANDLOGO IN THE HEADER COMPONENT
-// 3  MODIFY THE INPUT TO UPDATE THE USER WALLET WITH CONECTED ADDRESS IN EDIT PROFILE TAB
-//    PROBABLY WILL HAVE A BUTTON LIKE "Update Wallet" AND WILL OPEN THE WALLET CONENCTION
-// 4  MODIFY THE INPUT COMPONENT TO ACCEPT THE UPLOAD IMAGE FUNCTION (A BUTTON)
+
+// 2  MODIFY THE INPUT COMPONENT TO ACCEPT THE UPLOAD IMAGE FUNCTION (A BUTTON)
 //    PROBABLY I'M GONNA CREATE OTHER COMPONENT REUSING THE INPUT COMPONENT BUT WITH A FLOATABLE
 //    BUTTON (IPLOAD IMAGE), SOMETHING LIKE: UploadImageInput
 
@@ -32,7 +30,6 @@ function HomePage() {
           src="/banners/header-banner3.png"
           className="absolute inset-0 w-full h-full -z-10 object-cover object-bottom"
         />
-
         {/* HOME PAGE HEADER */}
         <header className="w-full flex justify-center items-center">
           <div className="p-8 md:pt-24 flex flex-col max-md:items-center">
@@ -167,13 +164,13 @@ function HomePage() {
 
         <div className="relative w-full">
           <img
-            className="animate-gentle-swing absolute max-max-w-4xl object-cover -top-[18.5rem] h-[30rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
-            src="/banners/key1.png"
+            className="h-[6.5rem] animate-gentle-swing absolute max-max-w-4xl object-cover -top-[18.5rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
+            src="/banners/key.png"
           />
 
           <img
             className="absolute max-max-w-4xl object-cover -top-[5rem] h-[27rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
-            src="/banners/mascot4.png"
+            src="/banners/mascot2.png"
           />
         </div>
       </div>
