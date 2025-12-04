@@ -201,7 +201,7 @@ export function ConfirmAndCreateForm() {
         </Button>
       </div>
       <TransactionCardDialog
-        className="min-h-64"
+        className="min-h-64 max-w-sm"
         title="Confirm your Creation"
         subtitle="You Create"
         chainName={getChainName(sepolia.id)}

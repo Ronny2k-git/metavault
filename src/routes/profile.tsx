@@ -46,10 +46,11 @@ function Profile() {
             <div className="flex items-center gap-5">
               <div className="relative">
                 <img
-                  className="min-h-20 min-w-20 max-h-20 max-w-20 rounded-full object-cover border-2 border-purple-900/50 shadow-md"
-                  src={profileData?.avatarUrl || '/homeImage.png'}
+                  className=" min-h-18 min-w-18 max-h-18 max-w-18 my-1 rounded-full object-cover border-2 border-purple-900/50 shadow-md"
+                  src={profileData?.avatarUrl || '/user.png'}
                 />
-                <span className=" absolute bottom-0 right-0 size-5 rounded-full bg-green-500  border-2 border-gray-900 " />
+
+                <span className=" absolute bottom-1 right-0 size-5 rounded-full bg-green-500  border-2 border-gray-900 " />
               </div>
 
               <div className="flex flex-col">

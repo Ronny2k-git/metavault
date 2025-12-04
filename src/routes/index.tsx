@@ -13,7 +13,7 @@ export const Route = createFileRoute('/')({
   pendingComponent: () => <GlobalLoader />,
 })
 
-// TO DO LATER:
+//   TO DO LATER
 
 // 1 UPDATE THE BANNERS TO PURPLE ( EmptyBanner and HomePage )
 
@@ -24,7 +24,6 @@ export const Route = createFileRoute('/')({
 function HomePage() {
   return (
     <div className="w-full flex flex-col text-white">
-      {/* Central containner */}
       <div className="relative w-full flex pt-20 pb-40">
         <img
           src="/banners/header-banner3.png"

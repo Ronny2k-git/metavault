@@ -1,7 +1,6 @@
 import type { UserProfileDataFormType } from '@/modules/create/schemas/userProfileDataFormSchema'
 import { userProfileDataFormSchema } from '@/modules/create/schemas/userProfileDataFormSchema'
 import { useGetUserProfileData } from '@/modules/global/hooks'
-import { scrollToConteiner } from '@/modules/global/utils'
 import { Card, Divider, EmptyBanner, Icon, Input, TextArea } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -31,7 +30,6 @@ export function EditProfileForm() {
         address: profileData.userAddress,
       })
     }
-    requestAnimationFrame(() => scrollToConteiner('edit-user-profile'))
   }, [profileData])
 
   const onSubmit = async (formData: UserProfileDataFormType) => {
@@ -47,94 +45,99 @@ export function EditProfileForm() {
   }
 
   return (
-    <Card id="edit-user-profile" className=" gap-6 p-8 rounded-2xl shadow-xs border-purple-900/50 " variant={'basic'}>
-      {/* HEADER */}
-      <div className="flex items-center gap-3">
-        <Icon className="!text-4xl text-purple-300">person_edit</Icon>
-        <h1 className="text-3xl font-semibold tracking-tight text-purple-100">Edit your profile</h1>
-      </div>
+    <div className="flex flex-col">
+      <Divider className="mb-12" />
 
-      <Divider className="border-purple-900/40" />
+      <Card id="edit-user-profile" className=" gap-6 p-8 rounded-2xl shadow-xs border-purple-900/50 " variant={'basic'}>
+        {/* HEADER */}
+        <div className="flex items-center gap-3">
+          <Icon className="!text-4xl text-purple-300">person_edit</Icon>
+          <h1 className="text-3xl font-semibold tracking-tight text-purple-100">Edit your profile</h1>
+        </div>
 
-      {!userProfileData?.length ? (
-        <EmptyBanner
-          className="text-center"
-          message="No profile data found"
-          subMessage="Create your first vault to show your profile data or connect your wallet"
-          buttonLabel="Create your vault"
-          icon={<Icon className="!text-7xl">sentiment_dissatisfied</Icon>}
-        />
-      ) : (
-        <>
-          {/* ABOUT */}
-          <TextArea
-            className="min-h-[14rem]"
-            label="User about (required)"
-            placeholder="Tell us a bit about yourselves"
-            error={editProfileForm.formState.errors.userAbout?.message}
-            {...editProfileForm.register('userAbout')}
+        <h2 className="text-indigo-300">Update your profile details quickly and easily.</h2>
+
+        <Divider className="border-purple-900/40" />
+        {!userProfileData?.length ? (
+          <EmptyBanner
+            className="text-center"
+            message="No profile data found"
+            subMessage="Create your first vault to show your profile data or connect your wallet"
+            buttonLabel="Create your vault"
+            icon={<Icon className="!text-7xl">sentiment_dissatisfied</Icon>}
           />
-
-          <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
-            <Input
-              inputVariant="default"
-              inputSize="xl"
-              label="Avatar Url (required)"
-              placeholder="Add your profile avatar url"
-              error={editProfileForm.formState.errors.avatarUrl?.message}
-              {...editProfileForm.register('avatarUrl')}
+        ) : (
+          <>
+            {/* ABOUT */}
+            <TextArea
+              className="min-h-[14rem]"
+              label="User about (required)"
+              placeholder="Tell us a bit about yourselves"
+              error={editProfileForm.formState.errors.userAbout?.message}
+              {...editProfileForm.register('userAbout')}
             />
 
-            <Input
-              inputVariant="default"
-              inputSize="xl"
-              label="Web Site (optional)"
-              placeholder="Add your web site url"
-              error={editProfileForm.formState.errors.webSite?.message}
-              {...editProfileForm.register('webSite')}
-            />
+            <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4">
+              <Input
+                inputVariant="default"
+                inputSize="xl"
+                label="Avatar Url (required)"
+                placeholder="Add your profile avatar url"
+                error={editProfileForm.formState.errors.avatarUrl?.message}
+                {...editProfileForm.register('avatarUrl')}
+              />
 
-            <Input
-              inputVariant="default"
-              inputSize="xl"
-              label="Your wallet address (required)"
-              placeholder="Change your wallet address"
-              error={editProfileForm.formState.errors.address?.message}
-              {...editProfileForm.register('address')}
-            />
-          </div>
+              <Input
+                inputVariant="default"
+                inputSize="xl"
+                label="Web Site (optional)"
+                placeholder="Add your web site url"
+                error={editProfileForm.formState.errors.webSite?.message}
+                {...editProfileForm.register('webSite')}
+              />
 
-          {/* WARNING */}
-          <div className="mt-1 flex items-center gap-2 text-red-300/80 bg-red-900/10 px-3 py-2 rounded-lg border border-red-900/30">
-            <Icon className="!text-2xl">warning</Icon>
-            <p className="text-sm">After updating your wallet address, you must connect the changed wallet.</p>
-          </div>
+              <Input
+                inputVariant="default"
+                inputSize="xl"
+                label="Your wallet address (required)"
+                placeholder="Change your wallet address"
+                error={editProfileForm.formState.errors.address?.message}
+                {...editProfileForm.register('address')}
+              />
+            </div>
 
-          <Divider className="border-purple-900/40" />
+            {/* WARNING */}
+            <div className="mt-1 flex items-center gap-2 text-red-300/80 bg-red-900/10 px-3 py-2 rounded-lg border border-red-900/30">
+              <Icon className="!text-2xl">warning</Icon>
+              <p className="text-sm">After updating your wallet address, you must connect the changed wallet.</p>
+            </div>
 
-          {/* BUTTONS */}
-          <div className="flex max-sm:flex-col gap-3">
-            <Button
-              variant="secondary"
-              size="md"
-              iconLeft={<Icon>backspace</Icon>}
-              onClick={() => editProfileForm.reset()}
-            >
-              Reset fields
-            </Button>
+            <Divider className="border-purple-900/40" />
 
-            <Button
-              disabled={!editProfileForm.formState.isDirty}
-              variant="primary"
-              size="md"
-              iconLeft={<Icon>save</Icon>}
-              onClick={editProfileForm.handleSubmit(onSubmit)}
-            >
-              Save changes
-            </Button>
-          </div>
-        </>
-      )}
-    </Card>
+            {/* BUTTONS */}
+            <div className="flex max-sm:flex-col gap-3">
+              <Button
+                variant="secondary"
+                size="md"
+                iconLeft={<Icon>backspace</Icon>}
+                onClick={() => editProfileForm.reset()}
+              >
+                Reset fields
+              </Button>
+
+              <Button
+                disabled={!editProfileForm.formState.isDirty}
+                variant="primary"
+                size="md"
+                iconLeft={<Icon>save</Icon>}
+                onClick={editProfileForm.handleSubmit(onSubmit)}
+              >
+                Save changes
+              </Button>
+            </div>
+          </>
+        )}
+      </Card>
+    </div>
   )
 }

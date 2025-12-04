@@ -130,7 +130,7 @@ export function DepositCard({
             <div className="flex flex-col text-sm">
               <div className="flex gap-2 text-gray-300">
                 <span className="text-white">Vault:</span>
-                {selectedVault?.vaultName || 'No selected'}
+                <p className="text-indigo-300 font-semibold">{selectedVault?.vaultName || 'No selected'}</p>
               </div>
               <div className="flex items-center gap-2 ">
                 Deposited:
