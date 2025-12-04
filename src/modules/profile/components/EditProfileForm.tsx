@@ -13,7 +13,7 @@ import { useEditUserProfile } from '../hooks/useEditUserProfile'
 export function EditProfileForm() {
   const { address } = useAccount()
   const { data: userProfileData } = useGetUserProfileData(address!)
-  const editUserProfile = useEditUserProfile(address!)
+  const editUserProfile = useEditUserProfile()
 
   const profileData = userProfileData?.[0]
 

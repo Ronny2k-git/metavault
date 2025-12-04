@@ -37,11 +37,12 @@ const inputStyle = cva(
 
 type InputVariants = VariantProps<typeof inputStyle>
 
-interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
+export interface InputProps extends Omit<ComponentPropsWithRef<'input'>, 'size'> {
   type?: React.HTMLInputTypeAttribute
   label: string
   inputSize?: InputVariants['size']
   inputVariant?: InputVariants['variant']
+  inputType?: ''
   iconLeft?: React.ReactNode
   iconRight?: React.ReactNode
   className?: string

@@ -6,7 +6,10 @@ export const vaultDataFormSchema = z.object({
   logo: z.string().nonempty({ message: 'Logo is required' }),
   banner: z.string().nonempty({ message: 'Banner is required' }),
   creatorName: z.string().nonempty({ message: 'Creator name is required' }),
-  description: z.string().min(50, { message: 'Minimum of 50 words ' }).max(120, { message: 'Maximum of 120 words' }),
+  description: z
+    .string()
+    .min(50, { message: 'Minimum of 50 characters ' })
+    .max(120, { message: 'Maximum of 120 characters' }),
   assetToken: z
     .string()
     .nonempty({ message: 'Asset token is required' })

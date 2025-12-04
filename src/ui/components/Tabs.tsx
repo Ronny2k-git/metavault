@@ -50,6 +50,7 @@ export function Tabs({
   tabList,
   icon,
   tabContent,
+  className,
   variant = 'default',
   size = 'default',
 }: TabsProps) {
@@ -65,6 +66,7 @@ export function Tabs({
               className={twMerge(
                 tabTrigger({ variant, size }),
                 tab.disabled ? 'flex cursor-not-allowed opacity-50' : 'cursor-pointer opacity-100',
+                className,
               )}
               disabled={tab.disabled}
             >
