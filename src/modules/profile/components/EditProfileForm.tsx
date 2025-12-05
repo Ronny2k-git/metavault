@@ -58,6 +58,7 @@ export function EditProfileForm() {
         <h2 className="text-indigo-300">Update your profile details quickly and easily.</h2>
 
         <Divider className="border-purple-900/40" />
+
         {!userProfileData?.length ? (
           <EmptyBanner
             className="text-center"
@@ -70,7 +71,7 @@ export function EditProfileForm() {
           <>
             {/* ABOUT */}
             <TextArea
-              className="min-h-[14rem]"
+              className="min-h-[14rem] max-h-[14rem]"
               label="User about (required)"
               placeholder="Tell us a bit about yourselves"
               error={editProfileForm.formState.errors.userAbout?.message}
