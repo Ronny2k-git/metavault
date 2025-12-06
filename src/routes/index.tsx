@@ -13,18 +13,10 @@ export const Route = createFileRoute('/')({
   pendingComponent: () => <GlobalLoader />,
 })
 
-//   TO DO LATER
-
-// 1 UPDATE THE BANNERS TO PURPLE ( EmptyBanner and HomePage )
-
-// 2  MODIFY THE INPUT COMPONENT TO ACCEPT THE UPLOAD IMAGE FUNCTION (A BUTTON)
-//    PROBABLY IM GONNA CREATE ANOTHER COMPONENT REUSING THE INPUT COMPONENT BUT WITH A FLOATABLE
-//    BUTTON (IPLOAD IMAGE), PROBABLY SOMETHING LIKE: UploadImageInput
-
 function HomePage() {
   return (
     <div className="w-full flex flex-col text-white">
-      <div className="relative w-full flex pt-20 pb-40">
+      <div className="relative w-full flex pt-20 pb-40 ">
         <img
           src="/banners/header-banner3.png"
           className="absolute inset-0 w-full h-full -z-10 object-cover object-bottom"
@@ -158,7 +150,7 @@ function HomePage() {
       <div className="relative z-[40] w-full flex justify-center">
         <img
           className="absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
-          src="/banners/footer-banner2.png"
+          src="/banners/footer-banner.png"
         />
 
         <div className="relative w-full">
@@ -169,7 +161,7 @@ function HomePage() {
 
           <img
             className="absolute max-max-w-4xl object-cover -top-[5rem] h-[27rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
-            src="/banners/mascot2.png"
+            src="/banners/mascot.png"
           />
         </div>
       </div>

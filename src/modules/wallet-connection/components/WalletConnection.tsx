@@ -3,7 +3,6 @@
 import { ECOSYSTEMS } from '@/modules/global/constants'
 import { formatNumber } from '@/modules/global/utils'
 import { Icon, Modal } from '@/ui/components'
-import { Button } from '@/ui/components/Button'
 import { Tabs } from 'radix-ui'
 import { useEffect, useState } from 'react'
 import { sepolia } from 'viem/chains'
@@ -52,14 +51,13 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
           <Tabs.List className="flex gap-4">
             {ECOSYSTEMS.map((ecosystem, index) => (
               <Tabs.Trigger className="group" key={index} value={ecosystem}>
-                <Button
-                  className=" text-sm px-4 rounded-2xl bg-transparent shadow-none group-data-[state=active]:bg-purple-950/60
+                <div
+                  className=" text-sm px-4 py-2 rounded-2xl bg-transparent shadow-none group-data-[state=active]:bg-purple-950/60
                   group-data-[state=active]:border-b-2 border-indigo-300
                   "
-                  variant={'gradient'}
                 >
                   {ecosystem}
-                </Button>
+                </div>
               </Tabs.Trigger>
             ))}
           </Tabs.List>
