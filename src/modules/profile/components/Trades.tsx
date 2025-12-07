@@ -153,6 +153,10 @@ export function Trades() {
     ])
   }
 
+  // TO DO
+
+  // A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
+
   return (
     <div className="h-full w-full flex flex-col relative">
       <Divider />
