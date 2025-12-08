@@ -130,7 +130,7 @@ export function UserVaults() {
 
   return (
     <div className="flex flex-col w-full">
-      <Divider />
+      <Divider className="mt-12" />
 
       {/* User live vaults */}
       <section>

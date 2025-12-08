@@ -23,3 +23,16 @@ export const PROFILE_TABS_INFO = [
     descriptionColor: 'text-gray-300',
   },
 ]
+
+export const OPERATION_TAB_INFO = [
+  {
+    value: 'deposit',
+    label: 'Deposit',
+    labelIcon: 'account_balance_wallet',
+  },
+  {
+    value: 'withdraw',
+    label: 'Withdraw',
+    labelIcon: 'payments',
+  },
+]

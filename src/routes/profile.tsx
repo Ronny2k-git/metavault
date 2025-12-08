@@ -79,7 +79,7 @@ function Profile() {
           </div>
         </Card>
 
-        <Divider className="mb-12" />
+        <Divider className="mb-12 " />
 
         <Tabs
           variant={'purple'}

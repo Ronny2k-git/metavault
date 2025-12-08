@@ -46,7 +46,7 @@ export function EditProfileForm() {
 
   return (
     <div className="flex flex-col">
-      <Divider className="mb-12" />
+      <Divider className="my-12" />
 
       <Card id="edit-user-profile" className=" gap-6 p-8 rounded-2xl shadow-xs border-purple-900/50 " variant={'basic'}>
         {/* HEADER */}

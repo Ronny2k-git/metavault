@@ -9,11 +9,11 @@ export type TabsProps = ComponentPropsWithRef<'div'> & {
   tabList: ReadonlyArray<{
     value: string
     step?: string
-    label: string
+    label?: string
     labelIcon?: string
     descriptionIcon?: string
     descriptionIconStyle?: string
-    description: string
+    description?: string
     descriptionColor?: string
     disabled?: boolean
   }>
@@ -31,11 +31,17 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
         'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#0c0124,#5C1D959D)] data-[state=active]:hover:before:brightness-110',
       default:
         'before:absolute before:inset-0 data-[state=active]:before:bg-[linear-gradient(0deg,#080126,#4a0f70)] data-[state=active]:hover:before:brightness-110',
+      operation: `
+          before:absolute before:inset-0 before:rounded-t-2xl before:bg-black/20
+          data-[state=active]:before:bg-gradient-to-t data-[state=active]:before:from-purple-950/80 border-2 border-purple-900/70 rounded-xl data-[state=active]:before:to-violet-950/20
+          hover:before:bg-black/30 data-[state=active]:text-white
+        `,
     },
     size: {
       default: 'py-4 before:rounded-t-xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
       md: 'py-6 min-w-[15rem] text-xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
       lg: 'py-8 text-left min-w-[15rem] text-xl lg:text-2xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
+      operation: 'py-2 text-base before:rounded-xl',
     },
   },
   defaultVariants: {
@@ -56,7 +62,7 @@ export function Tabs({
 }: TabsProps) {
   return (
     <PrimitiveTabs.Root value={search} className="w-full " onValueChange={onValueChange}>
-      <PrimitiveTabs.List className={`flex ${icon ? 'gap-12' : 'gap-2'} overflow-x-auto pb-3`}>
+      <PrimitiveTabs.List className={`flex ${icon ? 'gap-12' : 'gap-2'} overflow-x-auto`}>
         {tabList.map((tab, index) => (
           <div className="w-full flex items-center relative">
             <PrimitiveTabs.Trigger
@@ -89,7 +95,7 @@ export function Tabs({
         ))}
       </PrimitiveTabs.List>
       {tabContent?.map(({ value, content }) => (
-        <PrimitiveTabs.Content key={value} className="mt-5" value={value}>
+        <PrimitiveTabs.Content key={value} value={value}>
           {content}
         </PrimitiveTabs.Content>
       ))}

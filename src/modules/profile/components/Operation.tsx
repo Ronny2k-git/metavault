@@ -1,6 +1,7 @@
 import { useGetTokenBalance, useGetTokenDecimals, useGetVaultBalance } from '@/modules/global/hooks'
 import { Card, Divider, Icon, Input, Spinner } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
+import { Tabs } from '@/ui/components/Tabs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
@@ -8,9 +9,10 @@ import { useForm } from 'react-hook-form'
 import type { Address } from 'viem'
 import { formatUnits, parseUnits } from 'viem'
 import { useAccount } from 'wagmi'
+import { OPERATION_TAB_INFO } from '../constants'
 import { useDeposit, useGetAllUserTransactions, useSaveUserSwap, useValidateTransactions, useWithdraw } from '../hooks'
-import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/TradesSchemas'
-import { DepositSchema, WithdrawSchema } from '../schemas/TradesSchemas'
+import type { DepositSchemaType, WithdrawSchemaType } from '../schemas/OperationSchema'
+import { DepositSchema, WithdrawSchema } from '../schemas/OperationSchema'
 import type { baseVaultType } from './DepositCard'
 import { DepositCard } from './DepositCard'
 import { ProfileHeading } from './ProfileHeading'
@@ -18,7 +20,7 @@ import { UserCardRowTrades } from './UserCardRowTrades'
 import { WithdrawCard } from './WithdrawCard'
 
 export function Operation() {
-  const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
+  const [operationTab, setOperationTab] = useState<'deposit' | 'withdraw'>('deposit')
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
   const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
   const [searchTransaction, setSearchTransaction] = useState('')
@@ -26,6 +28,7 @@ export function Operation() {
   const account = useAccount()
   const queryClient = useQueryClient()
   const { data: userTransactions, isLoading } = useGetAllUserTransactions({ limit: 6, page: transactionsPage })
+  const tabList = OPERATION_TAB_INFO
 
   // Hooks used to get the token and vault values
   const { getTokenDecimal } = useGetTokenDecimals()
@@ -65,12 +68,12 @@ export function Operation() {
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
     resolver: zodResolver(DepositSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { amount: undefined },
   })
   // Withdraw Form
   const withdrawForm = useForm<WithdrawSchemaType>({
     resolver: zodResolver(WithdrawSchema),
-    defaultValues: { amount: 0 },
+    defaultValues: { amount: undefined },
   })
 
   // Deposit functionality
@@ -153,14 +156,16 @@ export function Operation() {
     ])
   }
 
-  // TO DO
+  // // TO DO
 
   // 1 A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
-  // 2 CHANGE THE TRADES TAB TO USE THE TABS COMPONENT TO SWITCH BETWEEN DEPOSIT AND WITHDRAW
+  // 2 CREATE A LANGUAGE SELECTOR TO CHANGE THE WEBSITE LANGUAGE TO THE SELECTED LANGUAGE
+  // 3 CREATE A NEW DESIGN FOR THE OPERATION TABS
+  // 4 ADD MORE VAULT INFOS INSIDE THE DEPOSIT AND WITHDRAW CARDS
 
   return (
     <div className="h-full w-full flex flex-col relative">
-      <Divider />
+      <Divider className="mt-12" />
 
       <div className="flex flex-col w-full gap-8 my-12">
         <h1 className="sm:text-4xl text-3xl text-center">
@@ -175,7 +180,66 @@ export function Operation() {
             variant={'gradient'}
             className="relative w-full max-w-[30rem] min-h-81 flex flex-col items-center p-2 gap-2 rounded-3xl "
           >
-            <button
+            <Tabs
+              variant={'operation'}
+              size={'operation'}
+              search={operationTab}
+              onValueChange={(value) => {
+                setOperationTab(value as 'deposit' | 'withdraw')
+                depositForm.reset()
+                withdrawForm.reset()
+                setTempVault(null)
+                setSelectedVault(null)
+              }}
+              tabList={tabList}
+              tabContent={[
+                {
+                  value: 'deposit',
+                  content: (
+                    <DepositCard
+                      className="mt-2"
+                      title="Deposit"
+                      variant={'secondary'}
+                      trigger={
+                        <Button className={`absolute right-[19.5px] h-7 max-w-32 rounded-3xl text-sm`}>
+                          Select Vault
+                        </Button>
+                      }
+                      register={depositForm.register}
+                      error={depositForm.formState}
+                      tokenBalance={tokenBalance || 0n}
+                      vaultBalance={vaultBalance || 0n}
+                      tempVault={tempVault}
+                      setTempVault={setTempVault}
+                      selectedVault={selectedVault}
+                      setSelectedVault={setSelectedVault}
+                    />
+                  ),
+                },
+                {
+                  value: 'withdraw',
+                  content: (
+                    <WithdrawCard
+                      className="mt-2"
+                      title="Withdraw"
+                      variant={'secondary'}
+                      trigger={
+                        <Button className={`absolute right-7 h-7 max-w-32 rounded-3xl text-sm`}>Select Vault</Button>
+                      }
+                      register={withdrawForm.register}
+                      error={withdrawForm.formState}
+                      tokenBalance={tokenBalance || 0n}
+                      vaultBalance={vaultBalance || 0n}
+                      tempVault={tempVault}
+                      setTempVault={setTempVault}
+                      selectedVault={selectedVault}
+                      setSelectedVault={setSelectedVault}
+                    />
+                  ),
+                },
+              ]}
+            />
+            {/* <button
               className={`absolute ${activeCard === 'Deposit' ? 'top-44' : 'top-31'} z-1 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
             cursor-pointer border-2 border-purple-900/50`}
               onClick={() => {
@@ -187,53 +251,14 @@ export function Operation() {
               }}
             >
               <Icon>Arrow_Downward</Icon>
-            </button>
+            </button> */}
 
-            {/* Deposit in a vault */}
-            <DepositCard
-              title="Deposit"
-              variant={'secondary'}
-              disabled={activeCard === 'Withdraw'}
-              trigger={
-                activeCard === 'Deposit' && (
-                  <Button className={`absolute right-6 h-7 max-w-32 rounded-3xl text-sm`}>Select Vault</Button>
-                )
-              }
-              register={depositForm.register}
-              error={depositForm.formState}
-              tokenBalance={tokenBalance || 0n}
-              vaultBalance={vaultBalance || 0n}
-              tempVault={tempVault}
-              setTempVault={setTempVault}
-              selectedVault={selectedVault}
-              setSelectedVault={setSelectedVault}
-            />
-
-            {/* Withdraw in a vault */}
-            <WithdrawCard
-              title="Withdraw"
-              variant={'secondary'}
-              disabled={activeCard === 'Deposit'}
-              trigger={
-                activeCard === 'Withdraw' && (
-                  <Button className={`absolute right-6 h-7 max-w-32 rounded-3xl text-sm`}>Select Vault</Button>
-                )
-              }
-              register={withdrawForm.register}
-              error={withdrawForm.formState}
-              tokenBalance={tokenBalance || 0n}
-              vaultBalance={vaultBalance || 0n}
-              tempVault={tempVault}
-              setTempVault={setTempVault}
-              selectedVault={selectedVault}
-              setSelectedVault={setSelectedVault}
-            />
             <Button
               className="text-lg flex gap-2"
               variant={'primary'}
               size={'xl'}
               onClick={() => {
-                if (activeCard === 'Deposit') {
+                if (operationTab === 'deposit') {
                   depositForm.handleSubmit(handleDeposit)()
                 } else {
                   withdrawForm.handleSubmit(handleWithdraw)()
@@ -242,13 +267,13 @@ export function Operation() {
               disabled={!selectedVault || !!depositStatus || !!withdrawStatus}
             >
               {/*Spinner */}
-              {(activeCard === 'Deposit' && depositStatus) || (activeCard === 'Withdraw' && withdrawStatus) ? (
+              {(operationTab === 'deposit' && depositStatus) || (operationTab === 'withdraw' && withdrawStatus) ? (
                 <Spinner className="size-6.5" />
               ) : null}
 
               {/*Button Label */}
               {selectedVault
-                ? activeCard === 'Deposit'
+                ? operationTab === 'deposit'
                   ? depositStatus || 'Deposit'
                   : withdrawStatus || 'Withdraw'
                 : 'Select a vault'}

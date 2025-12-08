@@ -3,9 +3,10 @@ import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated } from '../hooks'
-import type { DepositSchemaType } from '../schemas/TradesSchemas'
+import type { DepositSchemaType } from '../schemas/OperationSchema'
 import { baseVaultCardTradesProps } from '../types'
 import { getTotalVaultAmount } from '../utils'
 import { BaseCardTrade } from './BaseCardTrade'
@@ -16,6 +17,7 @@ interface DepositCardProps extends baseVaultCardTradesProps {
   disabled?: boolean
   register: UseFormRegister<DepositSchemaType>
   error?: UseFormStateReturn<DepositSchemaType>
+  className?: string
 }
 
 export type baseVaultType = NonNullable<Awaited<ReturnType<typeof useGetAllVaultsCreated>>['data']>['items'][number]
@@ -33,6 +35,7 @@ export function DepositCard({
   selectedVault,
   setSelectedVault,
   disabled = false,
+  className,
 }: DepositCardProps) {
   const { address } = useAccount()
   const [openModal, setOpenModal] = useState(false)
@@ -47,7 +50,7 @@ export function DepositCard({
   }
 
   return (
-    <BaseCardTrade className="relative" title={title} variant={disabled ? 'disabled' : variant}>
+    <BaseCardTrade className={twMerge('relative', className)} title={title} variant={disabled ? 'disabled' : variant}>
       <Modal
         isOpen={openModal}
         onOpenChange={setOpenModal}
@@ -56,7 +59,7 @@ export function DepositCard({
         variant={'gradient'}
         trigger={trigger}
       >
-        <div className="max-h-[70vh] overflow-y-auto mb-4">
+        <div className="max-h-[50vh] overflow-y-auto mb-4">
           {/* Heading */}
           <h2 className="text-lg text-gray-300 mb-4">Available Vaults ( Live )</h2>
           <Divider />
@@ -85,11 +88,11 @@ export function DepositCard({
           )}
 
           <Divider />
+        </div>
 
-          <div className="flex gap-2 text-[14.5px]">
-            <Icon className="mt-1 text-yellow-500">error</Icon>
-            <span className="text-gray-300">Deposits use the same token chosen when the vault was created.</span>
-          </div>
+        <div className="flex gap-2 my-2 text-[14.5px]">
+          <Icon className="mt-1 text-yellow-500">error</Icon>
+          <span className="text-gray-300">Deposits use the same token chosen when the vault was created.</span>
         </div>
 
         <Button
@@ -112,34 +115,86 @@ export function DepositCard({
           type="number"
           placeholder="0"
           disabled={disabled}
-          {...register('amount', { valueAsNumber: true })}
+          {...register('amount', {
+            setValueAs: (v) => (v === '' ? undefined : Number(v)),
+          })}
           error={error?.errors.amount?.message}
           showErrorStyle={false}
         />
 
         {!disabled && (
-          <div className="flex w-full justify-between gap-4">
-            <div className="flex flex-col text-sm text-gray-300">
-              <p className="text-white">Balance:</p>
-              <div className="flex gap-2 items-center text-green-500 font-semibold text-[17px]">
-                {formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0))}
-                <span className="text-gray-300 font-normal text-sm">{selectedVault?.assetTokenSymbol || ''}</span>
-              </div>
+          <section className="flex flex-col gap-3 mt-2">
+            {/* MAIN GRID */}
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-2">
+              {/* BASE CARD */}
+              {[
+                {
+                  label: 'Balance',
+                  value: formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0)),
+                  symbol: selectedVault?.assetTokenSymbol,
+                },
+                {
+                  label: 'Vault',
+                  vault: selectedVault?.vaultName,
+                  deposited: formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0)),
+                  symbol: selectedVault?.assetTokenSymbol,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-lg bg-purple-950/40 px-2 py-2 max-sm:px-1 max-sm:py-1 border border-white/10"
+                >
+                  {/* LABEL */}
+                  <p className="text-[11px] text-gray-400 mb-1 tracking-wide">{item.label}</p>
+
+                  {/* BALANCE */}
+                  {item.value && (
+                    <div className="flex items-end gap-1">
+                      <span className="text-green-400 text-lg font-semibold leading-none max-sm:text-base">
+                        {item.value}
+                      </span>
+                      <span className="text-gray-300 text-xs font-medium">{item.symbol}</span>
+                    </div>
+                  )}
+
+                  {/* VAULT */}
+                  {item.vault && (
+                    <>
+                      <p className="text-indigo-300 text-xs font-semibold truncate mb-1">{item.vault}</p>
+                      <div className="flex items-center gap-1 text-gray-300 text-[11px]">
+                        Deposited:
+                        <span className="text-green-400 text-base font-semibold leading-none ml-1">
+                          {item.deposited}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
             </div>
 
-            <div className="flex flex-col text-sm">
-              <div className="flex gap-2 text-gray-300">
-                <span className="text-white">Vault:</span>
-                <p className="text-indigo-300 font-semibold">{selectedVault?.vaultName || 'No selected'}</p>
-              </div>
-              <div className="flex items-center gap-2 ">
-                Deposited:
-                <span className="text-[17px] text-green-500 font-semibold">
-                  {formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0))}
-                </span>
-              </div>
+            {/* MIN/MAX GRID */}
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2  gap-2">
+              {[
+                { label: 'Min Deposit', value: selectedVault?.minDeposit || 0 },
+                { label: 'Max Deposit', value: selectedVault?.maxDeposit || 0 },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-lg bg-purple-950/40 px-2 py-2 max-sm:px-1 max-sm:py-1 border border-white/10"
+                >
+                  <p className="text-[11px] text-gray-400 mb-1 tracking-wide">{item.label}</p>
+
+                  <div className="flex items-end gap-1">
+                    <span className="text-green-400 text-lg font-semibold leading-none max-sm:text-base">
+                      {formatNumber(Number(item.value))}
+                    </span>
+                    <span className="text-gray-300 text-xs font-medium">{selectedVault?.assetTokenSymbol}</span>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          </section>
         )}
       </div>
     </BaseCardTrade>

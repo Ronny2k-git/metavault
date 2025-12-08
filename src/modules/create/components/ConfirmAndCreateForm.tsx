@@ -131,7 +131,7 @@ export function ConfirmAndCreateForm() {
 
   return (
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
-      <Divider />
+      <Divider className="mt-12" />
 
       <CreateFormHeading
         className="col-span-full"

@@ -3,9 +3,10 @@ import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
+import { twMerge } from 'tailwind-merge'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated } from '../hooks'
-import type { WithdrawSchemaType } from '../schemas/TradesSchemas'
+import type { WithdrawSchemaType } from '../schemas/OperationSchema'
 import { baseVaultCardTradesProps } from '../types'
 import { getTotalVaultAmount } from '../utils'
 import { BaseCardTrade } from './BaseCardTrade'
@@ -16,6 +17,7 @@ interface WithdrawCardProps extends baseVaultCardTradesProps {
   disabled?: boolean
   register: UseFormRegister<WithdrawSchemaType>
   error?: UseFormStateReturn<WithdrawSchemaType>
+  className?: string
 }
 
 export function WithdrawCard({
@@ -31,6 +33,7 @@ export function WithdrawCard({
   selectedVault,
   setSelectedVault,
   disabled,
+  className,
 }: WithdrawCardProps) {
   const [openModal, setOpenModal] = useState(false)
   const { address } = useAccount()
@@ -54,7 +57,7 @@ export function WithdrawCard({
   }
 
   return (
-    <BaseCardTrade title={title} variant={disabled ? 'disabled' : variant}>
+    <BaseCardTrade className={twMerge('', className)} title={title} variant={disabled ? 'disabled' : variant}>
       <Modal
         className="relative shadow-2xs max-w-md"
         title="Select Your Vault To Withdraw"
@@ -63,7 +66,7 @@ export function WithdrawCard({
         isOpen={openModal}
         onOpenChange={setOpenModal}
       >
-        <div className="max-h-[70vh] overflow-y-auto mb-4">
+        <div className="max-h-[50vh] overflow-y-auto mb-4">
           {/* Heading */}
           <h2 className="text-lg text-gray-300 mb-4">Deposited Vaults</h2>
           <Divider />
@@ -90,11 +93,11 @@ export function WithdrawCard({
           )}
 
           <Divider />
+        </div>
 
-          <div className="flex gap-2 text-[14.5px]">
-            <Icon className="mt-1 text-yellow-500">error</Icon>
-            <span className="text-gray-300">The withdrawal token will be the same as you deposited.</span>
-          </div>
+        <div className="flex gap-2 text-[14.5px]">
+          <Icon className="mt-1 text-yellow-500">error</Icon>
+          <span className="text-gray-300">The withdrawal token will be the same as you deposited.</span>
         </div>
 
         <Button
@@ -117,7 +120,9 @@ export function WithdrawCard({
           type="number"
           placeholder="0"
           disabled={disabled}
-          {...register('amount', { valueAsNumber: true })}
+          {...register('amount', {
+            setValueAs: (v) => (v === '' ? undefined : Number(v)),
+          })}
           error={error?.errors.amount?.message}
           showErrorStyle={false}
         />
