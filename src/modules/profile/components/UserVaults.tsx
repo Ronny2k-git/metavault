@@ -176,9 +176,9 @@ export function UserVaults() {
                 banner={vault.banner}
                 logo={vault.logo}
                 vaultName={vault.vaultName}
-                discordIcon={vault.discord}
-                telegramIcon={vault.telegram}
-                twitterIcon={vault.twitter}
+                discord={vault.discord}
+                telegram={vault.telegram}
+                twitter={vault.twitter}
                 creatorName={vault.creatorName}
                 network={'Sepolia'}
                 minDeposit={vault.minDeposit}
@@ -254,9 +254,9 @@ export function UserVaults() {
                 banner={vault.banner}
                 logo={vault.logo}
                 vaultName={vault.vaultName}
-                discordIcon={vault.discord}
-                telegramIcon={vault.telegram}
-                twitterIcon={vault.twitter}
+                discord={vault.discord}
+                telegram={vault.telegram}
+                twitter={vault.twitter}
                 creatorName={vault.creatorName}
                 network={'Sepolia'}
                 minDeposit={vault.minDeposit}

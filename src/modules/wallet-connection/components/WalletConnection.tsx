@@ -24,7 +24,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
     query: { enabled: !!userAddress },
   })
 
-  // Close the modal when the user connects or disconnects their wallet.
+  // Close the wallet connection when the user connects or disconnects their wallet.
   useEffect(() => {
     if (userAddress) {
       const timer = setTimeout(() => {

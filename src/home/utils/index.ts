@@ -13,8 +13,8 @@ export const CARD_ROUTER_INFO = [
     desc: 'View and manage all your vaults in one place.',
   },
   {
-    tab: 'trades',
-    title: 'Trade',
+    tab: 'operation',
+    title: 'Operation',
     img: '/icons/trade.png',
     desc: 'Deposit or Withdraw anytime, anywhere.',
   },

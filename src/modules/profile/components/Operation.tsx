@@ -17,7 +17,7 @@ import { ProfileHeading } from './ProfileHeading'
 import { UserCardRowTrades } from './UserCardRowTrades'
 import { WithdrawCard } from './WithdrawCard'
 
-export function Trades() {
+export function Operation() {
   const [activeCard, setActiveCard] = useState<'Deposit' | 'Withdraw' | null>('Deposit')
   const [selectedVault, setSelectedVault] = useState<baseVaultType | null>(null)
   const [tempVault, setTempVault] = useState<baseVaultType | null>(null)
@@ -155,7 +155,8 @@ export function Trades() {
 
   // TO DO
 
-  // A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
+  // 1 A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
+  // 2 CHANGE THE TRADES TAB TO USE THE TABS COMPONENT TO SWITCH BETWEEN DEPOSIT AND WITHDRAW
 
   return (
     <div className="h-full w-full flex flex-col relative">

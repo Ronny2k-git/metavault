@@ -1,4 +1,4 @@
-export const PROFILE_TABS = ['user-vaults', 'trades', 'edit-profile']
+export const PROFILE_TABS = ['user-vaults', 'operation', 'edit-profile']
 
 export const PROFILE_TABS_INFO = [
   {
@@ -9,8 +9,8 @@ export const PROFILE_TABS_INFO = [
     descriptionColor: 'text-gray-300',
   },
   {
-    value: 'trades',
-    label: 'Trades',
+    value: 'operation',
+    label: 'Operation',
     labelIcon: 'payment',
     description: 'Deposit or Withdraw in a vault',
     descriptionColor: 'text-gray-300',

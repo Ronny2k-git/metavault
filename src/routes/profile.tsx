@@ -3,7 +3,7 @@ import { GlobalLoader } from '@/modules/global/components'
 import { useGetUserProfileData } from '@/modules/global/hooks'
 import { abreviateAddress } from '@/modules/global/utils'
 import { connectorIcons } from '@/modules/global/utils/connectorIcons'
-import { EditProfileForm, Trades, UserVaults } from '@/modules/profile/components'
+import { EditProfileForm, Operation, UserVaults } from '@/modules/profile/components'
 import { PROFILE_TABS, PROFILE_TABS_INFO } from '@/modules/profile/constants'
 import { Card, Divider, Icon } from '@/ui/components'
 import { Tabs } from '@/ui/components/Tabs'
@@ -96,8 +96,8 @@ function Profile() {
               content: <UserVaults />,
             },
             {
-              value: 'trades',
-              content: <Trades />,
+              value: 'operation',
+              content: <Operation />,
             },
             {
               value: 'edit-profile',

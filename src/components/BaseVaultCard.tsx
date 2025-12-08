@@ -15,9 +15,9 @@ interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> 
   startDate: Date
   endDate: Date
   status: vaultStatus
-  discordIcon?: React.ReactNode
-  telegramIcon?: React.ReactNode
-  twitterIcon?: React.ReactNode
+  discord?: React.ReactNode
+  telegram?: React.ReactNode
+  twitter?: React.ReactNode
   address?: string
   deposited?: number
   onWithdrawChange?: () => void
@@ -60,18 +60,18 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
         {/*User Vault Socials */}
         <div className="flex gap-2 items-center">
-          {data.discordIcon && (
-            <a className="hover:mb-1 hover:border-b-1" href={String(data.discordIcon)}>
+          {data.discord && (
+            <a className="hover:mb-1 hover:border-b-1" href={String(data.discord)}>
               <DiscordIcon />
             </a>
           )}
-          {data.telegramIcon && (
-            <a className="hover:mb-1 hover:border-b-1" href={String(data.telegramIcon)}>
+          {data.telegram && (
+            <a className="hover:mb-1 hover:border-b-1" href={String(data.telegram)}>
               <TelegramIcon />
             </a>
           )}
-          {data.twitterIcon && (
-            <a className="hover:mb-1 hover:border-b-1" href={String(data.twitterIcon)}>
+          {data.twitter && (
+            <a className="hover:mb-1 hover:border-b-1" href={String(data.twitter)}>
               <TwitterIcon />
             </a>
           )}
@@ -86,6 +86,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
         {data.tokenName && (
           <div className="flex justify-between">
+            r38tao
             <h3>TokenName:</h3>
             <div className="text-indigo-300">{data.tokenName || 'Unknown'}</div>
           </div>
