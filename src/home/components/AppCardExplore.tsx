@@ -24,7 +24,7 @@ export function AppCardExplore({ trigger, className }: AppCardExploreProps) {
         {CARD_ROUTER_INFO.map((value, index) => (
           <CardRouter
             key={index}
-            className="hover:border-x-4 hover:border-t-4 hover:scale-98 cursor-pointer"
+            className="hover:border-x-4 hover:border-t-4 hover:scale-105 cursor-pointer"
             title={value.title}
             img={value.img}
             desc={value.desc}

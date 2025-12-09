@@ -202,7 +202,7 @@ export function UserVaults() {
             <Pagination
               key={livePage}
               page={livePage}
-              totalPages={liveVaults?.totalPages!}
+              totalPages={liveVaults?.totalPages}
               onChange={setLivePage}
               scrollId="user-live-vaults"
             />
@@ -372,7 +372,7 @@ export function UserVaults() {
               <Pagination
                 key={completedPage}
                 page={completedPage}
-                totalPages={completedVaults?.totalPages!}
+                totalPages={completedVaults?.totalPages}
                 onChange={setCompletedPage}
                 scrollId="user-completed-vaults"
               />

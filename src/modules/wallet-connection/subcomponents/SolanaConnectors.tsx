@@ -10,7 +10,7 @@ export function SolanaConnectors() {
     <div className="flex flex-col gap-4">
       <h1 className="text-md">Solana Connectors</h1>
 
-      {/*Mock */}
+      {/* Mock */}
       <ConnectedWalletCard address="Not implemented" connector={connector} />
     </div>
   )

@@ -93,7 +93,7 @@ export function UserCardRowTrades({
       {userTransactions && userTransactions.totalPages > 1 && (
         <Pagination
           page={page}
-          totalPages={userTransactions?.totalPages!}
+          totalPages={userTransactions?.totalPages}
           scrollId="user-transactions-heading"
           onChange={onPageChange}
         />

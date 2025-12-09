@@ -13,50 +13,53 @@ export default function Header() {
   const currentPath = router.state.location.pathname
 
   return (
-    <header className=" w-full min-h-20 h-auto max-sm:p-4 px-4 flex header-background text-white justify-between">
-      <nav className="w-full flex max-[460px]:flex-col gap-4 items-center justify-between max-w-4xl mx-auto">
-        {/*Logo */}
-        <img src="/icon.png" className="size-14" />
+    <header className=" w-full min-h-20 h-auto max-md:p-4 px-4 flex header-background text-white justify-between">
+      <nav className="w-full flex max-md:flex-col gap-8 md:gap-4 items-center justify-between max-w-6xl mx-auto">
+        {/* Logo */}
+        <img src="/icon.png" className="size-14 max-md:hidden" />
 
-        <div className="flex gap- h-full ">
+        <div className="flex h-full ">
           {PROJECT_ROUTES.map((route) => (
             <Link
               to={route.path}
               key={route.path}
               activeProps={{
-                className: 'border-b-2 p-6 border-indigo-300',
+                className: 'border-b-2 p-6 hover:bg-purple-950/20 border-indigo-300',
               }}
             >
-              <div className="hover:bg-purple-950/30 flex px-4 h-full items-center gap-2">
+              <div className="hover:bg-purple-950/20 flex px-4 h-full items-center gap-2">
                 <Icon>{route.icon}</Icon>
-                {currentPath === route.path && <span className="md:hidden">{route.label}</span>}
-                <span className="max-md:hidden">{route.label}</span>
+                {currentPath === route.path && <span className="hidden max-[900px]:flex">{route.label}</span>}
+                <span className="max-[900px]:hidden">{route.label}</span>
               </div>
             </Link>
           ))}
         </div>
         <ClientOnly>
-          <WalletConnection
-            trigger={
-              <div>
-                <Button
-                  className="w-full px-6 hidden rounded-xl sm:flex"
-                  size={'md'}
-                  variant={connectedWallet ? 'primary' : 'secondary'}
-                  iconLeft={<Icon>wallet</Icon>}
-                >
-                  {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
-                </Button>
-                <div className="sm:hidden">
-                  <Icon
-                    className={` !text-3xl mt-2 ${connectedWallet ? 'text-purple-800/90 hover:text-purple-700/50' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
+          <div className="flex items-center gap-6">
+            <span className="w-30 h-6 bg-gray-300 rounded-full "></span>
+            <WalletConnection
+              trigger={
+                <div>
+                  <Button
+                    className="w-full px-6 hidden rounded-xl sm:flex"
+                    size={'md'}
+                    variant={connectedWallet ? 'primary' : 'secondary'}
+                    iconLeft={<Icon>wallet</Icon>}
                   >
-                    wallet
-                  </Icon>
+                    {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
+                  </Button>
+                  <div className="sm:hidden">
+                    <Icon
+                      className={` !text-3xl mt-2 ${connectedWallet ? 'text-purple-800/90 hover:text-purple-700/50' : 'text-gray-300 hover:text-gray-400'} cursor-pointer`}
+                    >
+                      wallet
+                    </Icon>
+                  </div>
                 </div>
-              </div>
-            }
-          />
+              }
+            />
+          </div>
         </ClientOnly>
       </nav>
     </header>

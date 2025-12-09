@@ -58,7 +58,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         </div>
 
-        {/*User Vault Socials */}
+        {/* User Vault Socials */}
         <div className="flex gap-2 items-center">
           {data.discord && (
             <a className="hover:mb-1 hover:border-b-1" href={String(data.discord)}>
@@ -92,7 +92,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           </div>
         )}
 
-        {/*Vault data */}
+        {/* Vault data */}
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>Min dep:</h3>

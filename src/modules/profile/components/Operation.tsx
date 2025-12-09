@@ -264,12 +264,12 @@ export function Operation() {
               }}
               disabled={!selectedVault || !!depositStatus || !!withdrawStatus}
             >
-              {/*Spinner */}
+              {/* Spinner */}
               {(operationTab === 'deposit' && depositStatus) || (operationTab === 'withdraw' && withdrawStatus) ? (
                 <Spinner className="size-6.5" />
               ) : null}
 
-              {/*Button Label */}
+              {/* Button Label */}
               {selectedVault
                 ? operationTab === 'deposit'
                   ? depositStatus || 'Deposit'
@@ -309,7 +309,7 @@ export function Operation() {
             key={'user-recent-transactions'}
             searchTransaction={searchTransaction}
             page={transactionsPage}
-            userTransactions={userTransactions!}
+            userTransactions={userTransactions}
             onPageChange={setTransactionsPage}
             isLoading={isLoading}
           />

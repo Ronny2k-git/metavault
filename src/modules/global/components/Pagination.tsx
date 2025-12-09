@@ -22,12 +22,12 @@ export function Pagination({ page, totalPages, onChange, scrollId }: PaginationP
         <Icon>keyboard_double_arrow_left</Icon>
       </Button>
 
-      {/*First page */}
+      {/* First page */}
       <Button className={'w-14 h-9'} variant={page == 1 ? 'black' : 'primary'} onClick={() => navigate(1)}>
         1
       </Button>
 
-      {/*Second page */}
+      {/* Second page */}
       {page > 2 && page - 1 && (
         <Button className={'w-14 h-9'} variant={page == 2 ? 'black' : 'primary'} onClick={() => navigate(page - 1)}>
           {page - 1}

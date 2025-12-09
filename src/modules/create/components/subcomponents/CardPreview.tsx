@@ -13,9 +13,9 @@ export function CardPreview() {
       banner={vaultData.banner}
       logo={vaultData.logo}
       vaultName={vaultData.vaultName}
-      discordIcon={userData.discord}
-      telegramIcon={userData.telegram}
-      twitterIcon={userData.twitter}
+      discord={userData.discord}
+      telegram={userData.telegram}
+      twitter={userData.twitter}
       network={vaultData.network}
       creatorName={vaultData.creatorName}
       minDeposit={vaultData.minDeposit}

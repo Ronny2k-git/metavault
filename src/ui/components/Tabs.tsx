@@ -38,9 +38,9 @@ const tabTrigger = cva(`relative w-full h-full flex flex-col items-center justif
         `,
     },
     size: {
-      default: 'py-4 before:rounded-t-xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
-      md: 'py-6 min-w-[15rem] text-xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
-      lg: 'py-8 text-left min-w-[15rem] text-xl lg:text-2xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-white',
+      default: 'py-4 before:rounded-t-xl data-[state=active]:border-b-2 data-[state=active]:border-b-indigo-300',
+      md: 'py-6 min-w-[15rem] text-xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-indigo-300',
+      lg: 'py-8 text-left min-w-[15rem] text-xl lg:text-2xl before:rounded-t-3xl data-[state=active]:border-b-2 data-[state=active]:border-b-indigo-300',
       operation: 'py-2 text-base before:rounded-xl',
     },
   },
@@ -64,7 +64,7 @@ export function Tabs({
     <PrimitiveTabs.Root value={search} className="w-full " onValueChange={onValueChange}>
       <PrimitiveTabs.List className={`flex ${icon ? 'gap-12' : 'gap-2'} overflow-x-auto`}>
         {tabList.map((tab, index) => (
-          <div className="w-full flex items-center relative">
+          <div className={`w-full flex items-center relative ${variant != 'operation' ? 'mb-6' : ''}`}>
             <PrimitiveTabs.Trigger
               id={`tab-${tab.value}`}
               key={tab.value}
