@@ -1,0 +1,58 @@
+{
+  "header": {
+    "subtitle": "Decentralized. Secure. Yours.",
+    "description": "Create your vault and secure your crypto today — built for transparency and control.",
+    "startGuide": "Start Guide",
+    "exploreDapps": "Explore dApps",
+    "noWalletRequired": "Explore freely — no wallet required."
+  },
+
+  "featuresSection": {
+    "title": "Why Use Meta Vault?"
+  },
+
+  "howItWorks": {
+    "title": "How it works"
+  },
+
+  "finalHeader": {
+    "title": "Nothing more to explore. Let's start today",
+    "getStarted": "Get Started"
+  },
+
+  "mapped": {
+    "features": {
+      "secureStorage": {
+        "title": "Secure Storage",
+        "desc": "Store your crypto securely using advanced decentralized vault technology."
+      },
+      "easyManagement": {
+        "title": "Easy Management",
+        "desc": "Control, manage, and view your assets with a clean and intuitive interface."
+      },
+      "fastTransactions": {
+        "title": "Fast Transactions",
+        "desc": "Send, receive, and track assets with lightning-fast performance."
+      },
+      "fullTransparency": {
+        "title": "Full Transparency",
+        "desc": "Open-source and auditable architecture for complete trust."
+      }
+    },
+
+    "how": {
+      "step1": {
+        "title": "Create Your Vault",
+        "desc": "Set up your secure vault in just a few clicks."
+      },
+      "step2": {
+        "title": "Deposit Assets",
+        "desc": "Add crypto assets to your vault quickly and safely."
+      },
+      "step3": {
+        "title": "Manage Anytime",
+        "desc": "Access your vault anytime, anywhere with full control."
+      }
+    }
+  }
+}

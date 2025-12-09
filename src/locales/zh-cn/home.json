@@ -1,0 +1,58 @@
+{
+  "header": {
+    "subtitle": "去中心化。安全。属于你。",
+    "description": "创建你的金库并立即保护你的加密资产 — 为透明性和掌控而打造。",
+    "startGuide": "入门指南",
+    "exploreDapps": "探索 dApps",
+    "noWalletRequired": "无需钱包 — 自由探索。"
+  },
+
+  "featuresSection": {
+    "title": "为什么选择 Meta Vault？"
+  },
+
+  "howItWorks": {
+    "title": "如何运作"
+  },
+
+  "finalHeader": {
+    "title": "没有更多可探索的了。今天就开始吧",
+    "getStarted": "开始"
+  },
+
+  "mapped": {
+    "features": {
+      "secureStorage": {
+        "title": "安全存储",
+        "desc": "使用先进的去中心化金库技术安全存储你的加密资产。"
+      },
+      "easyManagement": {
+        "title": "轻松管理",
+        "desc": "通过简洁直观的界面控制和管理你的资产。"
+      },
+      "fastTransactions": {
+        "title": "快速交易",
+        "desc": "以闪电般的速度发送、接收和追踪资产。"
+      },
+      "fullTransparency": {
+        "title": "完全透明",
+        "desc": "开源且可审计的架构，带来完全信任。"
+      }
+    },
+
+    "how": {
+      "step1": {
+        "title": "创建你的金库",
+        "desc": "只需几次点击即可设置你的安全金库。"
+      },
+      "step2": {
+        "title": "存入资产",
+        "desc": "快速、安全地将加密资产添加到你的金库中。"
+      },
+      "step3": {
+        "title": "随时管理",
+        "desc": "随时随地访问你的金库，完全掌控。"
+      }
+    }
+  }
+}

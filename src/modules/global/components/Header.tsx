@@ -5,6 +5,7 @@ import { Button } from '@/ui/components/Button'
 import { ClientOnly, Link, useRouter } from '@tanstack/react-router'
 import { useAccount } from 'wagmi'
 import { abreviateAddress } from '../utils'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 export default function Header() {
   const account = useAccount()
@@ -37,7 +38,8 @@ export default function Header() {
         </div>
         <ClientOnly>
           <div className="flex items-center gap-6">
-            <span className="w-30 h-6 bg-gray-300 rounded-full "></span>
+            <LanguageSwitcher />
+
             <WalletConnection
               trigger={
                 <div>

@@ -1,0 +1,58 @@
+{
+  "header": {
+    "subtitle": "Descentralizado. Seguro. Tuyo.",
+    "description": "Crea tu bóveda y asegura tus criptos hoy — diseñada para transparencia y control.",
+    "startGuide": "Guía Inicial",
+    "exploreDapps": "Explorar dApps",
+    "noWalletRequired": "Explora libremente — sin necesidad de wallet."
+  },
+
+  "featuresSection": {
+    "title": "¿Por qué usar Meta Vault?"
+  },
+
+  "howItWorks": {
+    "title": "Cómo funciona"
+  },
+
+  "finalHeader": {
+    "title": "Nada más por explorar. Empecemos hoy",
+    "getStarted": "Comenzar"
+  },
+
+  "mapped": {
+    "features": {
+      "secureStorage": {
+        "title": "Almacenamiento Seguro",
+        "desc": "Guarda tus criptos de forma segura con tecnología de bóvedas descentralizadas."
+      },
+      "easyManagement": {
+        "title": "Gestión Fácil",
+        "desc": "Controla, gestiona y visualiza tus activos con una interfaz limpia e intuitiva."
+      },
+      "fastTransactions": {
+        "title": "Transacciones Rápidas",
+        "desc": "Envía, recibe y rastrea activos con un rendimiento ultrarrápido."
+      },
+      "fullTransparency": {
+        "title": "Transparencia Total",
+        "desc": "Arquitectura open-source y auditable para confianza absoluta."
+      }
+    },
+
+    "how": {
+      "step1": {
+        "title": "Crea tu Bóveda",
+        "desc": "Configura tu bóveda segura en pocos clics."
+      },
+      "step2": {
+        "title": "Deposita Activos",
+        "desc": "Agrega criptos a tu bóveda rápida y seguramente."
+      },
+      "step3": {
+        "title": "Gestiona en Cualquier Momento",
+        "desc": "Accede a tu bóveda cuando quieras, desde donde quieras, con control total."
+      }
+    }
+  }
+}

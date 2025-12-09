@@ -1,0 +1,58 @@
+{
+  "header": {
+    "subtitle": "Descentralizado. Seguro. Seu.",
+    "description": "Crie seu vault e proteja suas criptos hoje — desenvolvido para transparência e controle.",
+    "startGuide": "Iniciar Guia",
+    "exploreDapps": "Explorar dApps",
+    "noWalletRequired": "Explore livremente — sem precisar de carteira."
+  },
+
+  "featuresSection": {
+    "title": "Por que usar o Meta Vault?"
+  },
+
+  "howItWorks": {
+    "title": "Como funciona"
+  },
+
+  "finalHeader": {
+    "title": "Nada mais para explorar. Vamos começar hoje",
+    "getStarted": "Começar agora"
+  },
+
+  "mapped": {
+    "features": {
+      "secureStorage": {
+        "title": "Armazenamento Seguro",
+        "desc": "Guarde suas criptos com segurança usando tecnologia avançada de vault descentralizado."
+      },
+      "easyManagement": {
+        "title": "Gerenciamento Fácil",
+        "desc": "Controle, gerencie e visualize seus ativos com uma interface limpa e intuitiva."
+      },
+      "fastTransactions": {
+        "title": "Transações Rápidas",
+        "desc": "Envie, receba e acompanhe seus ativos com desempenho ultrarrápido."
+      },
+      "fullTransparency": {
+        "title": "Total Transparência",
+        "desc": "Arquitetura open-source e auditável para confiança completa."
+      }
+    },
+
+    "how": {
+      "step1": {
+        "title": "Crie Seu Vault",
+        "desc": "Configure seu vault seguro em apenas alguns cliques."
+      },
+      "step2": {
+        "title": "Deposite Ativos",
+        "desc": "Adicione criptos ao seu vault de forma rápida e segura."
+      },
+      "step3": {
+        "title": "Gerencie Quando Quiser",
+        "desc": "Acesse seu vault a qualquer hora e em qualquer lugar, com controle total."
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "header": {
+    "subtitle": "탈중앙화. 안전함. 당신의 것.",
+    "description": "금고를 생성하고 오늘 바로 암호자산을 보호하세요 — 투명성과 완전한 제어를 위해 설계되었습니다.",
+    "startGuide": "시작 가이드",
+    "exploreDapps": "dApps 탐색",
+    "noWalletRequired": "지갑 없이 자유롭게 탐색하세요."
+  },
+
+  "featuresSection": {
+    "title": "왜 Meta Vault인가?"
+  },
+
+  "howItWorks": {
+    "title": "작동 방식"
+  },
+
+  "finalHeader": {
+    "title": "더 이상 탐색할 것이 없습니다. 오늘 시작해봅시다",
+    "getStarted": "시작하기"
+  },
+
+  "mapped": {
+    "features": {
+      "secureStorage": {
+        "title": "안전한 보관",
+        "desc": "최신 탈중앙화 금고 기술로 암호자산을 안전하게 보관하세요."
+      },
+      "easyManagement": {
+        "title": "간편한 관리",
+        "desc": "깔끔하고 직관적인 인터페이스로 자산을 관리하고 확인하세요."
+      },
+      "fastTransactions": {
+        "title": "빠른 거래",
+        "desc": "번개처럼 빠르게 자산을 송수신하고 추적하세요."
+      },
+      "fullTransparency": {
+        "title": "완전한 투명성",
+        "desc": "완전히 신뢰할 수 있는 오픈소스·감사 가능한 구조."
+      }
+    },
+
+    "how": {
+      "step1": {
+        "title": "금고 만들기",
+        "desc": "몇 번의 클릭만으로 안전한 금고를 설정하세요."
+      },
+      "step2": {
+        "title": "자산 입금",
+        "desc": "빠르고 안전하게 암호자산을 금고에 추가하세요."
+      },
+      "step3": {
+        "title": "언제든지 관리",
+        "desc": "언제 어디서든 금고에 접근하여 완전한 제어를 유지하세요."
+      }
+    }
+  }
+}
