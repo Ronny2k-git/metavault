@@ -16,6 +16,10 @@ export function useValidateTransactions({ selectedVault, tokenBalance, totalDepo
         message: 'Insufficient token balance',
       },
       {
+        invalid: type === 'deposit' && amount + totalDeposited > Number(selectedVault.maxDeposit),
+        message: `Amount exceeds the maximum deposit ${amount}+${totalDeposited}`,
+      },
+      {
         invalid: type === 'deposit' && amount < Number(selectedVault?.minDeposit),
         message: 'Amount is lower than the minimum deposit',
       },

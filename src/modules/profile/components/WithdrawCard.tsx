@@ -111,7 +111,7 @@ export function WithdrawCard({
         </Button>
       </Modal>
 
-      <div className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2">
         <Input
           label=""
           className={`-pt-0.5 bg-transparent border-0 my-0.5 -ml-2 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed text-gray-300' : ''}
@@ -126,31 +126,85 @@ export function WithdrawCard({
           error={error?.errors.amount?.message}
           showErrorStyle={false}
         />
+
         {!disabled && (
-          <div className="flex w-full justify-between gap-4">
-            <div className="flex flex-col text-sm text-gray-300">
-              <p className="text-white">Balance:</p>
-              <div className="flex gap-2 items-center text-green-500 font-semibold text-[17px]">
-                {formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0))}{' '}
-                <span className="text-gray-300 font-normal text-sm">{selectedVault?.assetTokenSymbol || ''}</span>
-              </div>
+          <section className="flex flex-col gap-3 mt-2">
+            {/* MAIN GRID */}
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2 gap-2">
+              {/* BASE CARD */}
+              {[
+                {
+                  label: 'Balance',
+                  value: formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0)),
+                  symbol: selectedVault?.assetTokenSymbol,
+                },
+                {
+                  label: 'Vault',
+                  vault: selectedVault?.vaultName,
+                  deposited: formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0)),
+                  symbol: selectedVault?.assetTokenSymbol,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-lg bg-purple-950/40 px-2 py-2 max-sm:px-1 max-sm:py-1 border border-white/10"
+                >
+                  {/* LABEL */}
+                  <p className="text-[11px] text-gray-400 mb-1 tracking-wide">{item.label}</p>
+
+                  {/* BALANCE */}
+                  {item.value && (
+                    <div className="flex items-end gap-1">
+                      <span className="text-green-400 text-lg font-semibold leading-none max-sm:text-base">
+                        {item.value}
+                      </span>
+                      <span className="text-gray-300 text-xs font-medium">{item.symbol}</span>
+                    </div>
+                  )}
+
+                  {/* VAULT */}
+                  {item.vault && (
+                    <>
+                      <p className="text-indigo-300 text-xs font-semibold truncate mb-1">{item.vault}</p>
+                      <div className="flex items-center gap-1 text-gray-300 text-[11px]">
+                        Deposited:
+                        <span className="text-green-400 text-base font-semibold leading-none ml-1">
+                          {item.deposited}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              ))}
             </div>
 
-            <div className="flex flex-col text-sm">
-              <div className="flex gap-2 text-gray-300">
-                <span className="text-white">Vault:</span>
-                <p className="text-indigo-300 font-semibold">{selectedVault?.vaultName || 'No selected'}</p>
-              </div>
-              <div className="flex items-center gap-2 ">
-                Deposited:
-                <span className="text-[17px] text-green-500 font-semibold">
-                  {formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0))}
-                </span>
-              </div>
+            {/* MIN/MAX GRID */}
+            <div className="grid grid-cols-1 min-[400px]:grid-cols-2  gap-2">
+              {[
+                { label: 'Min Withdraw', value: selectedVault?.minDeposit || 0 },
+                {
+                  label: 'Max Withdraw',
+                  value: formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0),
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="rounded-lg bg-purple-950/40 px-2 py-2 max-sm:px-1 max-sm:py-1 border border-white/10"
+                >
+                  <p className="text-[11px] text-gray-400 mb-1 tracking-wide">{item.label}</p>
+
+                  <div className="flex items-end gap-1">
+                    <span className="text-green-400 text-lg font-semibold leading-none max-sm:text-base">
+                      {formatNumber(Number(item.value))}
+                    </span>
+                    <span className="text-gray-300 text-xs font-medium">{selectedVault?.assetTokenSymbol}</span>
+                  </div>
+                </div>
+              ))}
             </div>
-          </div>
+          </section>
         )}
-      </div>
+      </section>
     </BaseCardTrade>
   )
 }

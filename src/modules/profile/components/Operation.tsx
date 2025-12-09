@@ -85,9 +85,9 @@ export function Operation() {
     const decimals = await tokenDecimals()
 
     // 1. Validate transaction
-    const validationError = error.validate(data.amount, 'deposit')
-    if (validationError) {
-      depositForm.setError('amount', { message: validationError })
+    const transactionValidation = error.validate(data.amount, 'deposit')
+    if (transactionValidation) {
+      depositForm.setError('amount', { message: transactionValidation })
       return null
     }
 
@@ -158,10 +158,8 @@ export function Operation() {
 
   // // TO DO
 
-  // 1 A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
+  // 1 CREATE A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
   // 2 CREATE A LANGUAGE SELECTOR TO CHANGE THE WEBSITE LANGUAGE TO THE SELECTED LANGUAGE
-  // 3 CREATE A NEW DESIGN FOR THE OPERATION TABS
-  // 4 ADD MORE VAULT INFOS INSIDE THE DEPOSIT AND WITHDRAW CARDS
 
   return (
     <div className="h-full w-full flex flex-col relative">

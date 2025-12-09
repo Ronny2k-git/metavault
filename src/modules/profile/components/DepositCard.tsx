@@ -106,7 +106,7 @@ export function DepositCard({
         </Button>
       </Modal>
 
-      <div className="flex flex-col gap-2">
+      <section className="flex flex-col gap-2">
         <Input
           label=""
           className={`-pt-0.5 bg-transparent border-0 -ml-2 my-0.5 text-4xl placeholder:opacity-50 ${disabled ? 'cursor-not-allowed text-gray-300' : ''}
@@ -196,7 +196,7 @@ export function DepositCard({
             </div>
           </section>
         )}
-      </div>
+      </section>
     </BaseCardTrade>
   )
 }
