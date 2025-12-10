@@ -8,12 +8,21 @@
       "createVault": "Create Vault",
       "profile": "Profile"
     },
+     "languageSelector": {
+     "en": "English",
+     "pt": "Portuguese",
+     "es": "Spanish",
+     "ko": "Korean",
+     "zhcn": "Chinese"
+    },
     "walletConnection": {
       "title": "Ecosystem",
       "titleWallet": "Wallets",
       "connect": "Connect Wallet",
       "connectors": "Connectors",
       "connectedTitle": "Your User Data",
+      "connectedTitleButton": "Profile",
+      "notImplemented": "Not implemented",
       "desc": {
         "balance": "Balance",
         "learn": "Learn",

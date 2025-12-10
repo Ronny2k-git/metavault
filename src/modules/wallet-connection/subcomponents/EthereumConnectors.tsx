@@ -19,10 +19,15 @@ export function EthereumConnectors() {
 
   return (
     <div className="flex flex-col gap-2 max-h-[18rem] overflow-y-auto">
-      <h1 className="text-md mb-2">{isConnected ? t('connectedWallet') : `${t('connectors')}`}</h1>
+      <h1 className="text-md mb-2">{isConnected ? t('connectedTitle') : `${t('connectors')}`}</h1>
 
       {isConnected ? (
-        <ConnectedWalletCard address={abreviateAddress(address)} disconnect={() => disconnect()} connector={conn} />
+        <ConnectedWalletCard
+          address={abreviateAddress(address)}
+          disconnect={() => disconnect()}
+          connector={conn}
+          titleButton={t('connectedTitleButton')}
+        />
       ) : (
         connectors.map((connector, index) => {
           const isFirst = index === 0

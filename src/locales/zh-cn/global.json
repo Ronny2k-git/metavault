@@ -7,11 +7,21 @@
       "createVault": "创建保险库",
       "profile": "个人资料"
     },
+    "languageSelector": {
+    "en": "英语",
+    "pt": "葡萄牙语",
+    "es": "西班牙语",
+    "ko": "韩语",
+    "zhcn": "中文"
+  },
     "walletConnection": {
-    "title": "钱包",
+    "title": "生態系統",
+    "titleWallet": "钱包",
     "connect": "连接钱包",
     "connectors": "連接器",
-    "connectedTitle": "",
+    "connectedTitle": "你的用户数据",
+    "connectedTitleButton": "輪廓",
+    "notImplemented": "未實施",
     "desc": {
       "balance": "余额",
       "learn": "了解",

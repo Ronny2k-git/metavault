@@ -7,12 +7,21 @@
       "createVault": "Crear Bóveda",
       "profile": "Perfil"
     },
+    "languageSelector": {
+    "en": "Inglés",
+    "pt": "Portugués",
+    "es": "Español",
+    "ko": "Coreano",
+    "zhcn": "Chino"
+},
     "walletConnection": {
     "title": "Ecosistema",
     "titleWallet": "Carteras",
     "connect": "Conectar Billetera",
     "connectors": "Conectores",
-    "connectedTitle": "",
+    "connectedTitle": "Tus datos de usuario",
+    "connectedTitleButton": "Perfil",
+    "notImplemented": "No implementado",
     "desc": {
       "balance": "Saldo",
       "learn": "Aprender",

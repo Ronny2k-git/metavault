@@ -13,7 +13,11 @@ export function SolanaConnectors() {
       <h1 className="text-base">{t('connectors')}</h1>
 
       {/* Mock */}
-      <ConnectedWalletCard address="Not implemented" connector={connector} />
+      <ConnectedWalletCard
+        address={t('notImplemented')}
+        connector={connector}
+        titleButton={t('connectedTitleButton')}
+      />
     </div>
   )
 }

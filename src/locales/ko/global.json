@@ -7,12 +7,21 @@
       "createVault": "볼트 생성",
       "profile": "프로필"
     },
+    "languageSelector": {
+    "en": "영어",
+    "pt": "포르투갈어",
+    "es": "스페인어",
+    "ko": "한국어",
+    "zhcn": "중국어"
+  },
     "walletConnection": {
     "title": "생태계",
     "titleWallet": "지갑",
     "connect": "지갑 연결",
     "connectors": "커넥터",
-    "connectedTitle": "",
+    "connectedTitle": "사용자 데이터",
+    "connectedTitleButton": "윤곽",
+    "notImplemented": "구현되지 않음",
     "desc": {
       "balance": "잔액",
       "learn": "배우기",

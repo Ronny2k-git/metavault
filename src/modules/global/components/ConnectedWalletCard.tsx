@@ -8,10 +8,17 @@ interface ConnectedWalletCardProps {
   address?: string
   disconnect?: () => void
   connector?: Connector
+  titleButton: string
   className?: string
 }
 
-export function ConnectedWalletCard({ address, disconnect, connector, className }: ConnectedWalletCardProps) {
+export function ConnectedWalletCard({
+  address,
+  disconnect,
+  connector,
+  titleButton,
+  className,
+}: ConnectedWalletCardProps) {
   return (
     <Card
       className={twMerge(
@@ -45,7 +52,7 @@ export function ConnectedWalletCard({ address, disconnect, connector, className 
           iconLeft={<Icon className="!text-xl">account_circle</Icon>}
           variant={'primary'}
         >
-          Profile
+          {titleButton}
         </Button>
       </a>
     </Card>

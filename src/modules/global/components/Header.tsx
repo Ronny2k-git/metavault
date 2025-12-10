@@ -56,7 +56,7 @@ export default function Header() {
                     variant={connectedWallet ? 'primary' : 'secondary'}
                     iconLeft={<Icon>wallet</Icon>}
                   >
-                    {connectedWallet ? `${abreviateAddress(account.address)}` : 'Connect Wallet'}
+                    {connectedWallet ? `${abreviateAddress(account.address)}` : t('header.walletConnection.connect')}
                   </Button>
                   <div className="sm:hidden">
                     <Icon

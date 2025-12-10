@@ -7,12 +7,21 @@
       "createVault": "Criar Cofre",
       "profile": "Perfil"
     },
+    "languageSelector": {
+    "en": "Inglês",
+    "pt": "Português",
+    "es": "Espanhol",
+    "ko": "Coreano",
+    "zhcn": "Chinês"
+  },
     "walletConnection": {
     "title": "Ecossistema",
     "titleWallet": "Carteiras",
     "connect": "Conectar Carteira",
     "connectors": "Conectores",
-    "connectedTitle": "",
+    "connectedTitle": "Seus dados de usuário",
+    "connectedTitleButton": "Perfil",
+    "notImplemented": "Não implementado",
     "desc": {
       "balance": "Saldo",
       "learn": "Aprender",
