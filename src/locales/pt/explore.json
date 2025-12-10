@@ -1,0 +1,21 @@
+{
+  "title": "dApps Disponíveis",
+  "items": {
+    "createVault": {
+      "title": "Criar Cofre",
+      "desc": "Crie e personalize um cofre em poucos passos."
+    },
+    "userVaults": {
+      "title": "Cofres do Usuário",
+      "desc": "Veja e gerencie todos os seus cofres em um só lugar."
+    },
+    "operation": {
+      "title": "Operações",
+      "desc": "Deposite ou saque a qualquer hora, em qualquer lugar."
+    },
+    "editProfile": {
+      "title": "Editar Perfil",
+      "desc": "Atualize seus dados e carteiras conectadas."
+    }
+  }
+}

@@ -1,7 +1,10 @@
 import { GithubIcon } from '@/ui/components/icons'
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 
 export function AppFooter() {
+  const { t } = useTranslation('global')
+
   return (
     <footer className="z-0 header-background text-gray-300 text-sm w-full border-t border-white/10">
       <div className="w-full flex justify-center px-6 md:py-16 pt-16 pb-10">
@@ -11,9 +14,7 @@ export function AppFooter() {
             <div className="flex items-center gap-2 mb-2">
               <img src="/logo.png" alt="Meta Vault" className="h-8" />
             </div>
-            <p className="text-gray-300 max-w-xs max-sm:text-center">
-              Decentralized crypto vaults — secure, transparent, and built for you.
-            </p>
+            <p className="text-gray-300 max-w-xs max-sm:text-center">{t('footer.brand.description')}</p>
           </section>
 
           {/* Web site links */}

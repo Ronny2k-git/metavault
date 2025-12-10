@@ -141,7 +141,7 @@ function HomePage() {
 
         {/* ===== FINAL HEADER SECTION ===== */}
         <section id="final-header" className="my-28 pb-[25rem] flex flex-col items-center text-center gap-4 px-6">
-          <p className="uppercase font-extrabold max-sm:text-3xl text-[clamp(2.5rem,2vw,10rem)] mt-16">
+          <p className="uppercase font-extrabold max-sm:text-3xl max-w-[50rem] text-[clamp(2.5rem,2vw,10rem)] mt-16">
             {t('finalHeader.title')}
           </p>
 
@@ -159,7 +159,6 @@ function HomePage() {
           className="absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
           src="/banners/footer-banner.png"
         />
-
         <div className="relative w-full">
           <img
             className="h-[6.5rem] animate-gentle-swing absolute max-max-w-4xl object-cover -top-[18.5rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"

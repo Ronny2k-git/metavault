@@ -1,0 +1,44 @@
+{
+  "header": {
+    "navigation": {
+      "home": "Home",
+      "createVault": "Create Vault",
+      "profile": "Profile"
+    },
+    "wallet": {
+      "connect": "Connect Wallet",
+      "connected": "Connected"
+    },
+    "language": {
+      "select": "Select Language"
+    },
+    "accessibility": {
+      "logoAlt": "Project Logo",
+      "walletIcon": "Wallet Icon"
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "description": "Decentralized crypto vaults — secure, transparent, and built for you."
+    },
+
+    "links": {
+      "titleExplore": "Explore",
+      "home": "Home",
+      "createVault": "Create Vault",
+      "profile": "Profile",
+      "sepoliaExplorer": "Sepolia Explorer"
+    },
+
+    "community": {
+      "titleCommunity": "Community",
+      "github": "GitHub"
+    },
+
+    "legal": {
+      "rights": "© 2025 Meta Vault — Built on Sepolia Network",
+      "madeBy": "Made with ❤️ by Ronny"
+    }
+  }
+}
