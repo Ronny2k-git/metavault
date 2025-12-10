@@ -1,8 +1,8 @@
-import { PROJECT_ROUTES } from '@/modules/global/constants'
 import WalletConnection from '@/modules/wallet-connection/components/WalletConnection'
 import { Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { ClientOnly, Link, useRouter } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import { abreviateAddress } from '../utils'
 import { LanguageSwitcher } from './LanguageSwitcher'
@@ -12,6 +12,13 @@ export default function Header() {
   const connectedWallet = account.address
   const router = useRouter()
   const currentPath = router.state.location.pathname
+  const { t } = useTranslation('global')
+
+  const PROJECT_ROUTES = [
+    { path: '/', label: t('header.navigation.home'), icon: 'home' },
+    { path: '/create-vault', label: t('header.navigation.createVault'), icon: 'add_circle' },
+    { path: '/profile', label: t('header.navigation.profile'), icon: 'account_circle' },
+  ]
 
   return (
     <header className=" w-full min-h-20 h-auto max-md:p-4 px-4 flex header-background text-white justify-between">

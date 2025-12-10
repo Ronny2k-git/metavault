@@ -85,7 +85,7 @@ function HomePage() {
               return (
                 <div
                   key={title}
-                  className={`flex gap-8 md::gap-16 items-center max-md:flex-col ${
+                  className={`flex gap-8 md:gap-16 items-center max-md:flex-col ${
                     isEven ? 'flex-row' : 'flex-row-reverse'
                   }`}
                 >

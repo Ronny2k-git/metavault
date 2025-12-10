@@ -1,0 +1,62 @@
+{
+  "comment": "헤더와 푸터 컴포넌트를 번역하는 데 사용됩니다",
+
+  "header": {
+    "navigation": {
+      "home": "홈",
+      "createVault": "볼트 생성",
+      "profile": "프로필"
+    },
+    "walletConnection": {
+    "title": "생태계",
+    "titleWallet": "지갑",
+    "connect": "지갑 연결",
+    "connectors": "커넥터",
+    "connectedTitle": "",
+    "desc": {
+      "balance": "잔액",
+      "learn": "배우기",
+      "title": "지갑이란?",
+      "subtitle1": "당신의 디지털 집",
+      "heading1": "ETH, 토큰, NFT와 같은 자산이 안전하게 보관되는 장소입니다.",
+      "subtitle2": "로그인하는 새로운 방식",
+      "heading2": "블록체인에서 보유한 모든 것을 보내고, 받고, 관리하세요."
+    }
+  },
+    "wallet": {
+      "connect": "지갑 연결",
+      "connected": "연결됨"
+    },
+    "language": {
+      "select": "언어 선택"
+    },
+    "accessibility": {
+      "logoAlt": "프로젝트 로고",
+      "walletIcon": "지갑 아이콘"
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "description": "탈중앙화 암호화폐 볼트 — 안전하고 투명하며 당신을 위해 제작되었습니다."
+    },
+
+    "links": {
+      "titleExplore": "탐색",
+      "home": "홈",
+      "createVault": "볼트 생성",
+      "profile": "프로필",
+      "sepoliaExplorer": "Sepolia 익스플로러"
+    },
+
+    "community": {
+      "titleCommunity": "커뮤니티",
+      "github": "GitHub"
+    },
+
+    "legal": {
+      "rights": "© 2025 Meta Vault — Sepolia 네트워크 기반",
+      "madeBy": "Ronny가 ❤️로 제작"
+    }
+  }
+}

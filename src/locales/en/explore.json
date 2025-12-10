@@ -1,21 +1,24 @@
 {
+  "comment": "Used to translate the 'Explore' component inside the homepage",
+
   "title": "Available dApps",
-  "items": {
-    "createVault": {
+  
+  "cards": [
+    {
       "title": "Create Vault",
       "desc": "Create and customize a vault in just a few steps."
     },
-    "userVaults": {
+    {
       "title": "User Vaults",
       "desc": "View and manage all your vaults in one place."
     },
-    "operation": {
+    {
       "title": "Operation",
       "desc": "Deposit or Withdraw anytime, anywhere."
     },
-    "editProfile": {
+    {
       "title": "Edit Profile",
       "desc": "Update your profile info and connected wallets."
     }
-  }
+  ]
 }

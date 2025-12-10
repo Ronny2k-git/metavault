@@ -5,6 +5,7 @@ import { formatNumber } from '@/modules/global/utils'
 import { Icon, Modal } from '@/ui/components'
 import { Tabs } from 'radix-ui'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { sepolia } from 'viem/chains'
 import { useAccount, useBalance } from 'wagmi'
 import { EthereumConnectors, MoveConnectors, SolanaConnectors } from '../subcomponents'
@@ -17,6 +18,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
   const [open, setOpen] = useState(false)
   const account = useAccount()
   const userAddress = account.address
+  const { t } = useTranslation('global')
 
   const { data: sepoliaBalance } = useBalance({
     address: userAddress,
@@ -41,7 +43,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
     <Modal
       className="flex w-full min-h-[28rem] h-auto max-sm:max-w-[20rem] sm:max-w-[45rem]"
       variant={'gradient'}
-      title="Ecosystem"
+      title={t('header.walletConnection.title')}
       isOpen={open}
       onOpenChange={setOpen}
       trigger={trigger}
@@ -64,7 +66,7 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
 
           <div className="flex items-center gap-4 py-4">
             <div className="w-1/2 h-0.5 bg-gradient-to-l via-purple-900" />
-            Wallets
+            {t('header.walletConnection.titleWallet')}
             <div className="w-1/2 h-0.5  bg-gradient-to-l via-purple-900" />
           </div>
           <Tabs.Content value="ethereum">
@@ -78,27 +80,27 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
           </Tabs.Content>
         </Tabs.Root>
         <section className="max-sm:hidden sm:flex -mt-10">
-          {/*Vertical divider */}
+          {/* Vertical divider */}
           <div className="min-h-[26rem] mx-8 -mt-1 w-[1px] bg-gradient-to-b via-purple-900 " />
 
-          {/*Right section  */}
+          {/* Right section  */}
           <div className="flex flex-col md:gap-6 max-md:gap-4 items-center">
             <div className=" w-60 bottom-[24rem] mb-4 text-sm font-semibold h-8 flex items-center justify-center bg-black/15 rounded-full">
-              Balance:
+              {t('header.walletConnection.desc.balance')}
               <p className="mx-2 text-indigo-300">{formatNumber(Number(sepoliaBalance?.formatted || 0))} sepolia</p>
             </div>
 
-            <p className="text-xs uppercase tracking-widest= text-indigo-300">Learn</p>
+            <p className="text-xs uppercase tracking-widest= text-indigo-300">
+              {t('header.walletConnection.desc.learn')}
+            </p>
 
-            <h2 className="text-2xl font-semibold text-white mb-4">What Is a Wallet?</h2>
+            <h2 className="text-2xl font-semibold text-white mb-4"> {t('header.walletConnection.desc.title')}</h2>
 
             <div className="flex gap-4 items-center">
               <Icon className="!text-4xl p-3.5 -mt-6 bg-indigo-500/30 text-indigo-300 rounded-full">wifi_home</Icon>
               <div className="flex flex-col w-full text-white max-w-[15rem] text-sm mb-4 leading-relaxed">
-                <p>Your digital home</p>
-                <h3 className="text-gray-400">
-                  The place where your assets are safely stored, such as ETH, tokens, and NFTs.
-                </h3>
+                <p> {t('header.walletConnection.desc.subtitle1')}</p>
+                <h3 className="text-gray-400">{t('header.walletConnection.desc.heading1')}</h3>
               </div>
             </div>
 
@@ -108,8 +110,8 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
               </Icon>
 
               <div className="text-white max-w-[15rem] text-sm mb-4 leading-relaxed">
-                <p>A new way to log in</p>
-                <h3 className="text-gray-400">Send, receive, and manage everything you own on the blockchain.</h3>
+                <p>{t('header.walletConnection.desc.subtitle2')}</p>
+                <h3 className="text-gray-400">{t('header.walletConnection.desc.heading2')}</h3>
               </div>
             </div>
           </div>

@@ -1,0 +1,24 @@
+{
+  "comment": "Used to translate the 'Explore' component inside the homepage",
+
+  "title": "Aplicaciones disponibles",
+
+  "cards": [
+    {
+      "title": "Crear Bóveda",
+      "desc": "Crea y personaliza una bóveda en solo unos pasos."
+    },
+    {
+      "title": "Bóvedas del Usuario",
+      "desc": "Visualiza y gestiona todas tus bóvedas en un solo lugar."
+    },
+    {
+      "title": "Operación",
+      "desc": "Deposita o retira en cualquier momento y desde cualquier lugar."
+    },
+    {
+      "title": "Editar Perfil",
+      "desc": "Actualiza la información de tu perfil y las billeteras conectadas."
+    }
+  ]
+}

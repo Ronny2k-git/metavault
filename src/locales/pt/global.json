@@ -1,0 +1,62 @@
+{
+  "comment": "Usado para traduzir os componentes de header e footer",
+
+  "header": {
+    "navigation": {
+      "home": "Início",
+      "createVault": "Criar Cofre",
+      "profile": "Perfil"
+    },
+    "walletConnection": {
+    "title": "Ecossistema",
+    "titleWallet": "Carteiras",
+    "connect": "Conectar Carteira",
+    "connectors": "Conectores",
+    "connectedTitle": "",
+    "desc": {
+      "balance": "Saldo",
+      "learn": "Aprender",
+      "title": "O que é uma Carteira?",
+      "subtitle1": "Sua casa digital",
+      "heading1": "O lugar onde seus ativos ficam armazenados com segurança, como ETH, tokens e NFTs.",
+      "subtitle2": "Uma nova forma de logar",
+      "heading2": "Envie, receba e gerencie tudo o que você possui na blockchain."
+    }
+  },
+    "wallet": {
+      "connect": "Conectar Carteira",
+      "connected": "Conectado"
+    },
+    "language": {
+      "select": "Selecionar Idioma"
+    },
+    "accessibility": {
+      "logoAlt": "Logo do Projeto",
+      "walletIcon": "Ícone da Carteira"
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "description": "Cofres de criptomoedas descentralizados — seguros, transparentes e feitos para você."
+    },
+
+    "links": {
+      "titleExplore": "Explorar",
+      "home": "Início",
+      "createVault": "Criar Cofre",
+      "profile": "Perfil",
+      "sepoliaExplorer": "Explorador Sepolia"
+    },
+
+    "community": {
+      "titleCommunity": "Comunidade",
+      "github": "GitHub"
+    },
+
+    "legal": {
+      "rights": "© 2025 Meta Vault — Construído na rede Sepolia",
+      "madeBy": "Feito com ❤️ por Ronny"
+    }
+  }
+}

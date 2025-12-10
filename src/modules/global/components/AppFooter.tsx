@@ -19,39 +19,37 @@ export function AppFooter() {
 
           {/* Web site links */}
           <section className="flex flex-col gap-2 items-center sm:items-start">
-            <h3 className="text-white font-semibold mb-1">Explore</h3>
+            <h3 className="text-white font-semibold mb-1">{t('footer.links.titleExplore')}</h3>
             <Link to="/" className="hover:text-indigo-300 ">
-              Home
+              {t('footer.links.home')}
             </Link>
             <Link to="/create-vault" className="hover:text-indigo-300 transition">
-              Create Vault
+              {t('footer.links.createVault')}
             </Link>
             <Link to="/profile" className="hover:text-indigo-300">
-              Profile
+              {t('footer.links.profile')}
             </Link>
             <a href="https://sepolia.etherscan.io/" target="_blank" className="hover:text-indigo-300">
-              Sepolia Explorer
+              {t('footer.links.sepoliaExplorer')}
             </a>
           </section>
 
           {/* My Social Links */}
           <section className="flex flex-col gap-2 items-center sm:items-start">
-            <h3 className="text-white font-semibold mb-1">Community</h3>
+            <h3 className="text-white font-semibold mb-1">{t('footer.community.titleCommunity')}</h3>
             <a
               href="https://github.com/Ronny2k-git"
               target="_blank"
               className="flex items-center gap-2 hover:text-indigo-300"
             >
-              <GithubIcon /> GitHub
+              <GithubIcon /> {t('footer.community.github')}
             </a>
           </section>
         </div>
       </div>
       <section className="border-t border-purple-900/50 pt-8 max-sm:pb-8 text-center text-gray-400 text-sm">
-        <p>© 2025 Meta Vault — Built on Sepolia Network</p>
-        <p className="mt-1">
-          Made with <span className="text-red-400">❤️</span> by Ronny
-        </p>
+        <p>{t('footer.legal.rights')}</p>
+        <p className="mt-1">{t('footer.legal.madeBy')}</p>
       </section>
 
       <div className="flex items-center justify-center px-2 text-[clamp(2rem,15vw,14rem)]">

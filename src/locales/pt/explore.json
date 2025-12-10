@@ -1,21 +1,29 @@
 {
-  "title": "dApps Disponíveis",
-  "items": {
-    "createVault": {
-      "title": "Criar Cofre",
-      "desc": "Crie e personalize um cofre em poucos passos."
-    },
-    "userVaults": {
-      "title": "Cofres do Usuário",
-      "desc": "Veja e gerencie todos os seus cofres em um só lugar."
-    },
-    "operation": {
-      "title": "Operações",
-      "desc": "Deposite ou saque a qualquer hora, em qualquer lugar."
-    },
-    "editProfile": {
-      "title": "Editar Perfil",
-      "desc": "Atualize seus dados e carteiras conectadas."
-    }
-  }
+
+"comment": "Usado para traduzir o componente 'Explorar' na página inicial",
+
+"title": "dApps disponíveis",
+
+"cards": [
+{
+"title": "Criar Cofre",
+"desc": "Crie e personalize um cofre em poucos passos."
+},
+
+{
+"title": "Cofres do Usuário",
+"desc": "Visualize e gerencie todos os seus cofres em um só lugar."
+
+},
+
+{
+"title": "Operação",
+"desc": "Deposite ou saque a qualquer hora, em qualquer lugar."
+},
+
+{
+"title": "Editar Perfil",
+"desc": "Atualize as informações do seu perfil e as carteiras conectadas."
+}
+]
 }

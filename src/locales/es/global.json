@@ -1,0 +1,62 @@
+{
+  "comment": "Used to translate the header and footer components",
+
+  "header": {
+    "navigation": {
+      "home": "Inicio",
+      "createVault": "Crear Bóveda",
+      "profile": "Perfil"
+    },
+    "walletConnection": {
+    "title": "Ecosistema",
+    "titleWallet": "Carteras",
+    "connect": "Conectar Billetera",
+    "connectors": "Conectores",
+    "connectedTitle": "",
+    "desc": {
+      "balance": "Saldo",
+      "learn": "Aprender",
+      "title": "¿Qué es una Billetera?",
+      "subtitle1": "Tu hogar digital",
+      "heading1": "El lugar donde tus activos se almacenan de forma segura, como ETH, tokens y NFTs.",
+      "subtitle2": "Una nueva forma de iniciar sesión",
+      "heading2": "Envía, recibe y gestiona todo lo que posees en la blockchain."
+    }
+  },
+    "wallet": {
+      "connect": "Conectar Billetera",
+      "connected": "Conectado"
+    },
+    "language": {
+      "select": "Seleccionar Idioma"
+    },
+    "accessibility": {
+      "logoAlt": "Logo del Proyecto",
+      "walletIcon": "Ícono de Billetera"
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "description": "Bóvedas de criptomonedas descentralizadas: seguras, transparentes y hechas para ti."
+    },
+
+    "links": {
+      "titleExplore": "Explorar",
+      "home": "Inicio",
+      "createVault": "Crear Bóveda",
+      "profile": "Perfil",
+      "sepoliaExplorer": "Explorador de Sepolia"
+    },
+
+    "community": {
+      "titleCommunity": "Comunidad",
+      "github": "GitHub"
+    },
+
+    "legal": {
+      "rights": "© 2025 Meta Vault — Construido en la red Sepolia",
+      "madeBy": "Hecho con ❤️ por Ronny"
+    }
+  }
+}

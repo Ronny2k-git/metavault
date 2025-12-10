@@ -1,0 +1,61 @@
+{
+  "comment": "用于翻译页眉和页脚组件",
+
+  "header": {
+    "navigation": {
+      "home": "首页",
+      "createVault": "创建保险库",
+      "profile": "个人资料"
+    },
+    "walletConnection": {
+    "title": "钱包",
+    "connect": "连接钱包",
+    "connectors": "連接器",
+    "connectedTitle": "",
+    "desc": {
+      "balance": "余额",
+      "learn": "了解",
+      "title": "什么是钱包？",
+      "subtitle1": "你的数字之家",
+      "heading1": "安全存放你的资产，例如 ETH、代币和 NFT 的地方。",
+      "subtitle2": "全新的登录方式",
+      "heading2": "在区块链上随时发送、接收并管理你拥有的一切。"
+    }
+  },
+    "wallet": {
+      "connect": "连接钱包",
+      "connected": "已连接"
+    },
+    "language": {
+      "select": "选择语言"
+    },
+    "accessibility": {
+      "logoAlt": "项目标志",
+      "walletIcon": "钱包图标"
+    }
+  },
+
+  "footer": {
+    "brand": {
+      "description": "去中心化加密保险库 —— 安全、透明，为你而建。"
+    },
+
+    "links": {
+      "titleExplore": "探索",
+      "home": "首页",
+      "createVault": "创建保险库",
+      "profile": "个人资料",
+      "sepoliaExplorer": "Sepolia 区块浏览器"
+    },
+
+    "community": {
+      "titleCommunity": "社区",
+      "github": "GitHub"
+    },
+
+    "legal": {
+      "rights": "© 2025 Meta Vault — 基于 Sepolia 网络构建",
+      "madeBy": "由 Ronny ❤️ 制作"
+    }
+  }
+}

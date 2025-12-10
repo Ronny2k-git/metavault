@@ -20,10 +20,10 @@ export function CardRouter({ title, img, desc, path, onSelectTab, onNavigate, ta
 
   return (
     <div onClick={handleClick}>
-      <Card variant={'disabled'} className={twMerge('relative max-md:h-30 h-60 rounded-2xl p-4', className)}>
+      <Card variant={'disabled'} className={twMerge('relative max-md:h-38 h-60 rounded-2xl p-4', className)}>
         <div className="flex h-full flex-col justify-between">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold text-indigo-300">{title}</h1>
+            <h1 className="text-xl break-words font-semibold text-indigo-300">{title}</h1>
             <Icon className="text-gray-300">arrow_forward</Icon>
           </div>
           <div className="hidde md:flex max-md:absolute bottom-2 right-2 md:mt-2 items-center justify-center">

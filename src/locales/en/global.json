@@ -1,13 +1,28 @@
+
 {
+  "comment": "Used to translate the header and footer components",
+
   "header": {
     "navigation": {
       "home": "Home",
       "createVault": "Create Vault",
       "profile": "Profile"
     },
-    "wallet": {
+    "walletConnection": {
+      "title": "Ecosystem",
+      "titleWallet": "Wallets",
       "connect": "Connect Wallet",
-      "connected": "Connected"
+      "connectors": "Connectors",
+      "connectedTitle": "Your User Data",
+      "desc": {
+        "balance": "Balance",
+        "learn": "Learn",
+        "title": "What is a Wallet?",
+        "subtitle1": "Your digital home",
+        "heading1": "The place where your assets are safely stored, such as ETH, tokens, and NFTs.",
+         "subtitle2": "A new way to log in",
+        "heading2": "Send, receive, and manage everything you own on the blockchain."
+      }
     },
     "language": {
       "select": "Select Language"

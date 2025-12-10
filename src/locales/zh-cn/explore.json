@@ -1,0 +1,24 @@
+{
+  "comment": "Used to translate the 'Explore' component inside the homepage",
+
+  "title": "可用的去中心化应用",
+
+  "cards": [
+    {
+      "title": "创建金库",
+      "desc": "只需几步即可创建并自定义你的金库。"
+    },
+    {
+      "title": "用户金库",
+      "desc": "在一个地方查看并管理你所有的金库。"
+    },
+    {
+      "title": "操作",
+      "desc": "随时随地存入或提取。"
+    },
+    {
+      "title": "编辑资料",
+      "desc": "更新你的资料信息和已连接的钱包。"
+    }
+  ]
+}
