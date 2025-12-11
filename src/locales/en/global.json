@@ -9,11 +9,11 @@
       "profile": "Profile"
     },
      "languageSelector": {
-     "en": "English",
-     "pt": "Portuguese",
-     "es": "Spanish",
-     "ko": "Korean",
-     "zhcn": "Chinese"
+      "en": "English",
+      "pt": "Portuguese",
+      "es": "Spanish",
+      "ko": "Korean",
+      "zhcn": "Chinese"
     },
     "walletConnection": {
       "title": "Ecosystem",

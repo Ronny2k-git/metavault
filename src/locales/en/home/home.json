@@ -23,10 +23,11 @@
   },
 
   "mapped": {
+
     "features": {
       "secureStorage": {
         "title": "Secure Storage",
-        "desc": "Store your crypto securely using advanced decentralized vault technology."
+        "desc": "Your vault runs on immutable smart contracts. No custodians, no intermediaries — only verifiable on-chain security. Your assets stay 100% under your control."
       },
       "easyManagement": {
         "title": "Easy Management",
@@ -34,27 +35,32 @@
       },
       "fastTransactions": {
         "title": "Fast Transactions",
-        "desc": "Send, receive, and track assets with lightning-fast performance."
+        "desc": "Built on the Sepolia network for near-instant confirmations. Deposits and withdrawals settle in seconds, ensuring a smooth and responsive experience."
       },
       "fullTransparency": {
         "title": "Full Transparency",
-        "desc": "Open-source and auditable architecture for complete trust."
+        "desc": "Monitor balances and activity in real time with data pulled directly from the blockchain. Full visibility into every action, whenever you need it."
       }
     },
 
     "how": {
       "step1": {
-        "title": "Create Your Vault",
-        "desc": "Set up your secure vault in just a few clicks."
+        "title": "Connect your wallet",
+        "desc": "Use MetaMask or WalletConnect to get started instantly."
       },
       "step2": {
-        "title": "Deposit Assets",
-        "desc": "Add crypto assets to your vault quickly and safely."
+        "title": "Verify sepolia balance",
+        "desc": "It will be necessary to create your vault and make trades."
       },
       "step3": {
-        "title": "Manage Anytime",
-        "desc": "Access your vault anytime, anywhere with full control."
+        "title": "Create a Vault",
+        "desc": "Set parameters and deploy your secure vault into the blockchain in minutes."
+      },
+      "step4": {
+        "title": "Deposit & Track",
+        "desc": "Deposit tokens and monitor vault performance in real time."
       }
+      
     }
   }
 }

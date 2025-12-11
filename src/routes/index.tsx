@@ -21,7 +21,7 @@ function HomePage() {
     <div className="w-full flex flex-col text-white">
       <div className="relative w-full flex pt-20 pb-40 ">
         <img
-          src="/banners/header-banner3.png"
+          src={'/banners/header-banner3.png'}
           className="absolute inset-0 w-full h-full -z-10 object-cover object-bottom"
         />
 
