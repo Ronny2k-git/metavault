@@ -1,6 +1,6 @@
 import { AppCardExplore } from '@/home/components'
 import { GlobalLoader } from '@/modules/global/components'
-import { FEATURES_SECTION, WORKS_SECTION } from '@/modules/global/constants'
+import { FEATURES_SECTION_PATHS, WORKS_SECTION_ICONS } from '@/modules/global/constants'
 import { scrollToConteiner } from '@/modules/global/utils'
 import { BrandLogo, Card, Divider, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
@@ -16,6 +16,9 @@ export const Route = createFileRoute('/')({
 
 function HomePage() {
   const { t } = useTranslation('home')
+
+  const translatedFeatures = t('mapped.features', { returnObjects: true }) as Array<{ title: string; desc: string }>
+  const translatedHow = t('mapped.how', { returnObjects: true }) as Array<{ title: string; desc: string }>
 
   return (
     <div className="w-full flex flex-col text-white">
@@ -79,12 +82,12 @@ function HomePage() {
           <h2 className="flex flex-col text-3xl font-semibold items-center mb-12">{t('featuresSection.title')}</h2>
 
           <div className="flex flex-col gap-8">
-            {FEATURES_SECTION.map(({ icon, title, desc, srcVideo }, index) => {
+            {FEATURES_SECTION_PATHS.map(({ icon, srcVideo }, index) => {
               const isEven = index % 2 === 0
 
               return (
                 <div
-                  key={title}
+                  key={index}
                   className={`flex gap-8 md:gap-16 items-center max-md:flex-col ${
                     isEven ? 'flex-row' : 'flex-row-reverse'
                   }`}
@@ -93,19 +96,21 @@ function HomePage() {
                     className="md:max-h-[15rem] md:max-w-[25rem] max-w-[35rem] items-center justify-center rounded-2xl"
                     variant="ghost"
                   >
-                    <video autoPlay loop muted playsInline className="rounded-2xl p-3 w-full h-full object-cover">
-                      <source src={srcVideo} />
-                    </video>
+                    <div className="rounded-2xl p-3 w-full h-full overflow-hidden">
+                      <video autoPlay loop muted className="rounded-2xl w-full h-full object-cover block">
+                        <source src={srcVideo} />
+                      </video>
+                    </div>
                   </Card>
 
                   <div className="flex flex-col w-full max-md:items-center max-md:max-w-[25rem] gap-2">
                     <h3 className="flex gap-2 items-center text-2xl font-semibold mb-1">
                       <Icon className="text-indigo-400 !text-5xl">{icon}</Icon>
 
-                      {title}
+                      {translatedFeatures[index].title}
                     </h3>
 
-                    <p className="text-base text-gray-300 max-sm:text-center">{desc}</p>
+                    <p className="text-base text-gray-300 max-sm:text-center">{translatedFeatures[index].desc}</p>
                   </div>
                 </div>
               )
@@ -118,9 +123,9 @@ function HomePage() {
           <h2 className="text-3xl font-semibold mb-12">{t('howItWorks.title')}</h2>
 
           <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-8">
-            {WORKS_SECTION.map(({ icon, title, desc }) => (
+            {WORKS_SECTION_ICONS.map(({ icon }, index) => (
               <motion.div
-                key={title}
+                key={index}
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 120 }}
                 transition={{ duration: 1 }}
@@ -131,8 +136,8 @@ function HomePage() {
                     <Icon className="text-indigo-400 !text-4xl">{icon}</Icon>
                   </div>
 
-                  <h3 className="text-xl font-semibold">{title}</h3>
-                  <p className="text-gray-300 max-w-xs">{desc}</p>
+                  <h3 className="text-xl font-semibold">{translatedHow[index].title}</h3>
+                  <p className="text-gray-300 max-w-xs">{translatedHow[index].desc}</p>
                 </Card>
               </motion.div>
             ))}

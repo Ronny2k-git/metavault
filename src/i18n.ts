@@ -11,13 +11,15 @@ import esHome from '@/locales/es/home/home.json'
 import koHome from '@/locales/ko/home/home.json'
 import ptHome from '@/locales/pt/home/home.json'
 import zhCnHome from '@/locales/zh-CN/home/home.json'
-
 // Home: Explore dApps card
 import enExplore from '@/locales/en/home/explore.json'
 import esExplore from '@/locales/es/home/explore.json'
 import koExplore from '@/locales/ko/home/explore.json'
 import ptExplore from '@/locales/pt/home/explore.json'
 import zhCnExplore from '@/locales/zh-CN/home/explore.json'
+
+// Create: 3 Steps
+import enCreate from '@/locales/en/create.json'
 
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
@@ -27,7 +29,7 @@ i18n.use(initReactI18next).init({
   lng: 'en',
   interpolation: { escapeValue: false },
   resources: {
-    en: { global: enGlobal, home: enHome, explore: enExplore },
+    en: { global: enGlobal, home: enHome, explore: enExplore, create: enCreate },
     es: { global: esGlobal, home: esHome, explore: esExplore },
     ko: { global: koGlobal, home: koHome, explore: koExplore },
     pt: { global: ptGlobal, home: ptHome, explore: ptExplore },

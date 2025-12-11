@@ -21,38 +21,41 @@
   },
 
   "mapped": {
-    "features": {
-      "secureStorage": {
+    "features": [
+      {
         "title": "Armazenamento Seguro",
-        "desc": "Guarde suas criptos com segurança usando tecnologia avançada de vault descentralizado."
+        "desc": "Seu cofre funciona com contratos inteligentes imutáveis. Sem custodiante, sem intermediários — apenas segurança verificável on-chain. Seus ativos permanecem 100% sob seu controle."
       },
-      "easyManagement": {
+      {
         "title": "Gerenciamento Fácil",
         "desc": "Controle, gerencie e visualize seus ativos com uma interface limpa e intuitiva."
       },
-      "fastTransactions": {
+      {
         "title": "Transações Rápidas",
-        "desc": "Envie, receba e acompanhe seus ativos com desempenho ultrarrápido."
+        "desc": "Construído na rede Sepolia para confirmações quase instantâneas. Depósitos e saques são concluídos em segundos, garantindo uma experiência fluida."
       },
-      "fullTransparency": {
+      {
         "title": "Total Transparência",
-        "desc": "Arquitetura open-source e auditável para confiança completa."
+        "desc": "Monitore saldos e atividades em tempo real com dados diretamente da blockchain. Visibilidade total de cada ação, sempre que precisar."
       }
-    },
-
-    "how": {
-      "step1": {
-        "title": "Crie Seu Vault",
-        "desc": "Configure seu vault seguro em apenas alguns cliques."
+    ],
+    "how": [
+      {
+        "title": "Conecte sua carteira",
+        "desc": "Use MetaMask ou WalletConnect para começar instantaneamente."
       },
-      "step2": {
-        "title": "Deposite Ativos",
-        "desc": "Adicione criptos ao seu vault de forma rápida e segura."
+      {
+        "title": "Verifique o saldo em Sepolia",
+        "desc": "Será necessário para criar seu cofre e realizar transações."
       },
-      "step3": {
-        "title": "Gerencie Quando Quiser",
-        "desc": "Acesse seu vault a qualquer hora e em qualquer lugar, com controle total."
+      {
+        "title": "Crie um Cofre",
+        "desc": "Defina os parâmetros e implemente seu cofre seguro na blockchain em minutos."
+      },
+      {
+        "title": "Deposite & Acompanhe",
+        "desc": "Deposite tokens e acompanhe o desempenho do cofre em tempo real."
       }
-    }
-  }
+    ]
+}
 }

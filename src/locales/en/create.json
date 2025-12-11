@@ -1,0 +1,47 @@
+{
+    "comment": "Used to translate the creation page into 3 steps",
+    
+    "tabs": [
+     {
+        "step": "Step 1",
+        "title": "Vault Data",
+        "status ": "Unlocked"
+     },
+     {
+        "step": "Step 2",
+        "title": "User Data",
+        "status ": "Locked"
+     },
+      {
+        "step": "Step 3",
+        "title": "Confirm & Create",
+        "status ": "Locked"
+     }
+    ],
+
+    "vaultData": {
+     "titles": {
+      "vault": "Basic Vault Data"
+     },
+     "inputs": {
+
+     },
+     "buttons": {
+        "reset": "Reset fields",
+        "Move":"Move to user data"
+    }
+    },
+    "usertData": {
+
+    },
+    "confirmAndCreate": {
+
+    },
+   "errors": {
+
+    },
+    "WalletConnectionRequired": {
+
+    }
+
+}

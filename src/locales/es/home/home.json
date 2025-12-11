@@ -20,39 +20,46 @@
     "getStarted": "Comenzar"
   },
 
-  "mapped": {
-    "features": {
-      "secureStorage": {
-        "title": "Almacenamiento Seguro",
-        "desc": "Guarda tus criptos de forma segura con tecnología de bóvedas descentralizadas."
-      },
-      "easyManagement": {
-        "title": "Gestión Fácil",
-        "desc": "Controla, gestiona y visualiza tus activos con una interfaz limpia e intuitiva."
-      },
-      "fastTransactions": {
-        "title": "Transacciones Rápidas",
-        "desc": "Envía, recibe y rastrea activos con un rendimiento ultrarrápido."
-      },
-      "fullTransparency": {
-        "title": "Transparencia Total",
-        "desc": "Arquitectura open-source y auditable para confianza absoluta."
-      }
-    },
 
-    "how": {
-      "step1": {
-        "title": "Crea tu Bóveda",
-        "desc": "Configura tu bóveda segura en pocos clics."
+  "mapped": {
+    "features": [
+      {
+        "title": "Almacenamiento Seguro",
+        "desc": "Tu bóveda funciona con contratos inteligentes inmutables. Sin custodios, sin intermediarios — solo seguridad verificable on-chain. Tus activos permanecen 100% bajo tu control."
       },
-      "step2": {
-        "title": "Deposita Activos",
-        "desc": "Agrega criptos a tu bóveda rápida y seguramente."
+      {
+        "title": "Gestión Sencilla",
+        "desc": "Controla, administra y visualiza tus activos con una interfaz limpia e intuitiva."
       },
-      "step3": {
-        "title": "Gestiona en Cualquier Momento",
-        "desc": "Accede a tu bóveda cuando quieras, desde donde quieras, con control total."
+      {
+        "title": "Transacciones Rápidas",
+        "desc": "Construido sobre la red Sepolia para confirmaciones casi instantáneas. Depósitos y retiros se procesan en segundos, ofreciendo una experiencia fluida."
+      },
+      {
+        "title": "Transparencia Total",
+        "desc": "Supervisa saldos y actividad en tiempo real con datos obtenidos directamente de la blockchain. Visibilidad completa en cada acción, siempre que lo necesites."
       }
-    }
-  }
+    ],
+    
+    "how": [
+      {
+        "title": "Conecta tu billetera",
+        "desc": "Usa MetaMask o WalletConnect para comenzar al instante."
+      },
+      {
+        "title": "Verifica el saldo en Sepolia",
+        "desc": "Será necesario para crear tu bóveda y realizar transacciones."
+      },
+      {
+        "title": "Crea una Bóveda",
+        "desc": "Configura los parámetros y despliega tu bóveda segura en la blockchain en cuestión de minutos."
+      },
+      {
+        "title": "Deposita y Monitorea",
+        "desc": "Deposita tokens y monitorea el rendimiento de la bóveda en tiempo real."
+      }
+    ]
+}
+
+
 }
