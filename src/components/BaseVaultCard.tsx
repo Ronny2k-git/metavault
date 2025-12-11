@@ -6,6 +6,7 @@ import { Card, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
 import { Collapsible } from 'radix-ui'
+import { useTranslation } from 'react-i18next'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { StatusChip } from './StatusChip'
 
@@ -25,6 +26,8 @@ interface BaseVaultProps extends Omit<VaultDataFormType, 'assetToken' | 'salt'> 
 }
 
 export function BaseVaultCard(data: BaseVaultProps) {
+  const { t } = useTranslation('global', { keyPrefix: 'baseVaultCard' })
+
   const isValidUrl = (url: string) => {
     try {
       new URL(url)
@@ -80,14 +83,13 @@ export function BaseVaultCard(data: BaseVaultProps) {
 
       <section className="flex flex-col mt-4 mb-2 mx-2 gap-0.5 text-[15px]">
         <div className="flex justify-between">
-          <h3>Creator</h3>
+          <h3>{t('creator')}</h3>
           <div className="text-indigo-300">{data.creatorName || 'unnamed'}</div>
         </div>
 
         {data.tokenName && (
           <div className="flex justify-between">
-            r38tao
-            <h3>TokenName:</h3>
+            <h3>{t('tokenName')}:</h3>
             <div className="text-indigo-300">{data.tokenName || 'Unknown'}</div>
           </div>
         )}
@@ -95,35 +97,35 @@ export function BaseVaultCard(data: BaseVaultProps) {
         {/* Vault data */}
         <div className="flex justify-between">
           <div className="flex gap-1">
-            <h3>Min dep:</h3>
+            <h3>{t('minDeposit')}:</h3>
             <div className="text-indigo-300">{data.minDeposit || 0}</div>
           </div>
           <div className="flex gap-1">
-            <h3>Start:</h3>
+            <h3>{t('start')}:</h3>
             <div className="text-indigo-300">{formatDate(Number(data.startDate)) || '00/00/0000'}</div>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="flex gap-1">
-            <h3>Max dep:</h3>
+            <h3>{t('maxDeposit')}:</h3>
             <div className="text-indigo-300">{formatNumber(Number(data.maxDeposit)) || 0}</div>
           </div>
 
           <div className="flex gap-1">
-            <h3>End:</h3>
+            <h3>{t('end')}:</h3>
             <div className="text-indigo-300">{formatDate(Number(data.endDate)) || '00/00/0000'}</div>
           </div>
         </div>
 
         {data.status != 'ended' ? (
           <div className="flex flex-col items-center mt-3">
-            <h3>{data.status === 'coming' ? 'Starts in:' : 'Ends in:'}</h3>
+            <h3>{data.status === 'coming' ? t('countdownLabels.start') : t('countdownLabels.end')}</h3>
 
             <CountDownClock startDate={data.startDate} endDate={data.endDate} />
           </div>
         ) : (
           <Card variant={'tertiary'} className="items-center mt-3 py-2 rounded-lg">
-            <p className="text-base text-white">Finished: </p>
+            <p className="text-base text-white">{t('status.ended')}: </p>
             <p className="text-lg font-bold text-indigo-300">{formatDate(data.endDate, 'long')}</p>
           </Card>
         )}
@@ -134,7 +136,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
       <section className="flex flex-col px-2">
         {data.status != 'ended' && data.deposited != null ? (
           <Card variant={'tertiary'} className="items-center mt-3 py-2 rounded-lg">
-            <p className="text-sm text-white">Total Deposited</p>
+            <p className="text-sm text-white">{t('deposited')}</p>
             <p className="text-xl font-bold text-indigo-300">{formatNumber(data.deposited)}</p>
           </Card>
         ) : (
@@ -144,13 +146,13 @@ export function BaseVaultCard(data: BaseVaultProps) {
             onClick={data.onWithdrawChange}
             iconLeft={<Icon className="text-indigo-300">account_balance_wallet</Icon>}
           >
-            Withdraw All
+            {t('withdraw')}
           </Button>
         )}
 
         {data.address && (
           <div className="flex items-center justify-between">
-            <h3>View Vault</h3>
+            <h3>{t('view')}</h3>
             <a href={`https://sepolia.etherscan.io/address/${data.address}`}>
               <Icon className="mt-1 hover:border-b-1 text-indigo-300">eye_tracking</Icon>
             </a>
@@ -164,7 +166,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <Collapsible.Trigger className="group w-full" asChild>
             <Button className="relative p-1 mt-2 text-sm w-ful rounded-full cursor-pointer" variant={'gradient'}>
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 left-4 top-1/2 -translate-y-1/2 size-5" />
-              Vault Description
+              {t('desc')}
               <MdKeyboardArrowDown className="absolute transition-transform duration-300 group-data-[state=open]:rotate-180 right-4 top-1/2 -translate-y-1/2 size-5" />
             </Button>
           </Collapsible.Trigger>

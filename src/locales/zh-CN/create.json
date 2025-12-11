@@ -118,7 +118,22 @@
   }
 },
 
-  "confirmAndCreate": {},
+ "confirmAndCreate": {
+  "titles": {
+    "required": "( 所有字段均为必填项 )",
+    "vault": "保险库时间",
+    "preview": "卡片预览",
+    "previewInfo": "( 您的保险库将显示为 )"
+  },
+  "fields": {
+    "start": "开始日期",
+    "end": "结束日期"
+  },
+  "buttons": {
+    "reset": "重置字段",
+    "create": "创建保险库"
+  }
+},
 
   "errors": {},
 

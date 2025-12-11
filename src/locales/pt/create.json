@@ -118,8 +118,23 @@
   }
 },
 
-  "confirmAndCreate": {},
-  
+ "confirmAndCreate": {
+  "titles": {
+    "required": "( Todos os campos são obrigatórios )",
+    "vault": "Tempo do Vault",
+    "preview": "Pré-visualização do Card",
+    "previewInfo": "( Seu vault ficará assim )"
+  },
+  "fields": {
+    "start": "Data de início",
+    "end": "Data de término"
+  },
+  "buttons": {
+    "reset": "Redefinir campos",
+    "create": "Criar Vault"
+  }
+},
+
   "errors": {},
   "WalletConnectionRequired": {
   "title": "Conecte Sua Carteira",

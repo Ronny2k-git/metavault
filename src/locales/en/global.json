@@ -64,5 +64,38 @@
       "rights": "© 2025 Meta Vault — Built on Sepolia Network",
       "madeBy": "Made with ❤️ by Ronny"
     }
-  }
+  },
+
+  "baseVaultCard": {
+     "status": {
+       "live": "Live",
+       "coming": "Coming soon",
+       "ended": "Completed",
+       "undefined": "Undefined"
+        },
+     "creator": "Creator",
+     "tokenName": "Token Name",
+     "minDeposit": "Min Deposit",
+     "maxDeposit": "Max Deposit",
+     "start": "Start",
+     "end": "End",
+     "countdown": {
+      "day": "day",
+      "days": "days",
+      "hour": "hour",
+      "hours": "hours",
+      "min": "min",
+      "sec": "sec"
+    },
+     "countdownLabels": {
+        "coming": "Coming in",
+        "start": "Starts in",
+        "end": "Finish in"
+     },
+     
+     "deposited": "Total Deposited",
+     "withdraw": "Withdraw All",
+     "view": "View Vault",
+     "desc": "Vault Description"
+    }
 }

@@ -9,6 +9,7 @@ import { useAtom, useAtomValue } from 'jotai'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import type { Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useAccount } from 'wagmi'
@@ -27,6 +28,7 @@ export function ConfirmAndCreateForm() {
   const [confirmData, setConfirmData] = useAtom(confirmFormAtom)
   const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
   const navigate = useNavigate()
+  const { t } = useTranslation('create', { keyPrefix: 'confirmAndCreate' })
 
   const account = useAccount()
   const createVaultOnDb = useCreateVaultOnDb()
@@ -129,21 +131,28 @@ export function ConfirmAndCreateForm() {
     navigate({ from: '/profile' })
   }
 
+  // TO DO LATER
+
+  // 1 FINISH TO IMPLEMENT THE TRANSLATOR FOR CONFIRM AND CREATE STEP
+  //   "CARD DIALOG" AND AND 'ERRORS'
+  // 2 IMPLEMENT FOR ALL REMAINING PAGES (PROFILE: 3 TABS)
+  // 3
+
   return (
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
       <Divider className="mt-12" />
 
       <CreateFormHeading
         className="col-span-full"
-        title="Vault Time"
+        title={t('titles.vault')}
         icon={'help'}
-        subTitle="( All fields are required )"
+        subTitle={t('titles.required')}
       />
 
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Start Date"
+        label={t('fields.start')}
         type="date"
         {...register('startDate', {
           onChange(event) {
@@ -155,7 +164,7 @@ export function ConfirmAndCreateForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="End Date"
+        label={t('fields.end')}
         type="date"
         {...register('endDate', {
           onChange(event) {
@@ -169,9 +178,9 @@ export function ConfirmAndCreateForm() {
 
       <CreateFormHeading
         className="col-span-full"
-        title="Card Preview"
+        title={t('titles.preview')}
         icon={'help'}
-        subTitle="( Your vault will look like )"
+        subTitle={t('titles.previewInfo')}
       />
       <CardPreview />
 
@@ -179,7 +188,7 @@ export function ConfirmAndCreateForm() {
 
       <div className="flex col-span-full gap-3">
         <Button
-          className="max-w-[10rem]"
+          className="max-w-[13rem]"
           variant={'secondary'}
           size={'md'}
           iconLeft={<Icon>backspace</Icon>}
@@ -188,7 +197,7 @@ export function ConfirmAndCreateForm() {
             reset(initialConfirmForm)
           }}
         >
-          Reset fields
+          {t('buttons.reset')}
         </Button>
         <Button
           className="max-w-[15rem]"
@@ -197,7 +206,7 @@ export function ConfirmAndCreateForm() {
           iconLeft={<Icon>add_circle</Icon>}
           onClick={handleSubmit(onSubmit)}
         >
-          Create a vault
+          {t('buttons.create')}
         </Button>
       </div>
       <TransactionCardDialog

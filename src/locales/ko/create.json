@@ -119,8 +119,23 @@
   }
 },
 
-  "confirmAndCreate": {},
-  
+  "confirmAndCreate": {
+  "titles": {
+    "required": "( 모든 필드는 필수입니다 )",
+    "vault": "볼트 기간",
+    "preview": "카드 미리보기",
+    "previewInfo": "( 볼트는 이렇게 표시됩니다 )"
+  },
+  "fields": {
+    "start": "시작 날짜",
+    "end": "종료 날짜"
+  },
+  "buttons": {
+    "reset": "필드 초기화",
+    "create": "볼트 생성"
+  }
+},
+
   "errors": {},
 
   "WalletConnectionRequired": {

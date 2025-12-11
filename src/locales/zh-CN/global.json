@@ -67,5 +67,38 @@
       "rights": "© 2025 Meta Vault — 基于 Sepolia 网络构建",
       "madeBy": "由 Ronny ❤️ 制作"
     }
-  }
+  },
+
+  "baseVaultCard": {
+  "status": {
+    "live": "进行中",
+    "coming": "即将开始",
+    "ended": "已结束",
+    "undefined": "未定义"
+  },
+  "creator": "创建者",
+  "tokenName": "代币名称",
+  "minDeposit": "最小存款",
+  "maxDeposit": "最大存款",
+  "start": "开始时间",
+  "end": "结束时间",
+  "countdown": {
+    "day": "天",
+    "days": "天",
+    "hour": "小时",
+    "hours": "小时",
+    "min": "分",
+    "sec": "秒"
+    },
+  "countdownLabels": {
+    "coming": "将在…开始",
+    "start": "距离开始",
+    "end": "距离结束"
+  },
+  "deposited": "总存款",
+  "withdraw": "全部提取",
+  "view": "查看 Vault",
+  "desc": "Vault 描述"
+}
+
 }

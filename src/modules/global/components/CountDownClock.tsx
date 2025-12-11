@@ -1,5 +1,6 @@
 import { Card } from '@/ui/components'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 type CountDownClockProps = {
   startDate: Date
@@ -8,6 +9,7 @@ type CountDownClockProps = {
 
 export function CountDownClock({ startDate, endDate }: CountDownClockProps) {
   const [timeLeft, setTimeLeft] = useState(0)
+  const { t } = useTranslation('global', { keyPrefix: 'baseVaultCard.countdown' })
 
   const calculateTimeLeft = () => {
     const now = new Date()
@@ -52,7 +54,7 @@ export function CountDownClock({ startDate, endDate }: CountDownClockProps) {
               <Card variant={'basic'} className="px-2 rounded-sm font-semibold text-indigo-300">
                 {twoDigits(days)}
               </Card>
-              <span className="text-gray-200 text-xs uppercase">{days <= 1 ? 'day' : 'days'}</span>
+              <span className="text-gray-200 text-xs uppercase">{days <= 1 ? t('day') : t('days')}</span>
             </div>
 
             <span className="opacity-40">/</span>
@@ -62,21 +64,21 @@ export function CountDownClock({ startDate, endDate }: CountDownClockProps) {
         {/* Hours */}
         <div className="flex flex-col items-center gap-1">
           <Card className="px-2 rounded-sm font-semibold text-indigo-300">{twoDigits(hours)}</Card>
-          <span className="text-gray-200 text-xs uppercase">{hours <= 1 ? 'hour' : 'hours'}</span>
+          <span className="text-gray-200 text-xs uppercase">{hours <= 1 ? t('hour') : t('hours')}</span>
         </div>
         <span className="opacity-50">:</span>
 
         {/* Minutes */}
         <div className="flex flex-col items-center gap-1">
           <Card className="px-2 rounded-sm font-semibold text-indigo-300">{twoDigits(minutes)}</Card>
-          <span className="text-gray-200 text-xs uppercase">min</span>
+          <span className="text-gray-200 text-xs uppercase">{t('min')}</span>
         </div>
         <span className="opacity-50">:</span>
 
         {/* Seconds */}
         <div className="flex flex-col items-center gap-1">
           <Card className="px-2 rounded-sm font-semibold text-indigo-300">{twoDigits(seconds)}</Card>
-          <span className="text-gray-200 text-xs uppercase">sec</span>
+          <span className="text-gray-200 text-xs uppercase">{t('sec')}</span>
         </div>
       </div>
     </Card>

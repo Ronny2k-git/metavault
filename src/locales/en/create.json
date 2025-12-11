@@ -122,7 +122,20 @@
     },
 
     "confirmAndCreate": {
-
+      "titles": {
+       "required": "( All fields are required )",
+       "vault": "Vault Time",
+       "preview": "Card Preview",
+       "previewInfo": "( Your vault will look like )"
+     },
+     "fields": {
+      "start": "Start Date",
+      "end": "End Date"
+    },
+    "buttons": {
+      "reset": "Reset fields",
+      "create":"Create Vault"
+    }
     },
 
    "errors": {

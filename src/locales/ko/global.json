@@ -67,5 +67,38 @@
       "rights": "© 2025 Meta Vault — Sepolia 네트워크 기반",
       "madeBy": "Ronny가 ❤️로 제작"
     }
-  }
+  },
+
+"baseVaultCard": {
+  "status": {
+    "live": "진행 중",
+    "coming": "곧 시작",
+    "ended": "종료됨",
+    "undefined": "미정"
+  },
+  "creator": "제작자",
+  "tokenName": "토큰 이름",
+  "minDeposit": "최소 예치금",
+  "maxDeposit": "최대 예치금",
+  "start": "시작",
+  "end": "종료",
+  "countdown": {
+    "day": "일",
+    "days": "일",
+    "hour": "시간",
+    "hours": "시간",
+    "min": "분",
+    "sec": "초"
+    },
+  "countdownLabels": {
+    "coming": "시작까지",
+    "start": "시작까지",
+    "end": "종료까지"
+  },
+  "deposited": "총 예치금",
+  "withdraw": "모두 인출",
+  "view": "Vault 보기",
+  "desc": "Vault 설명"
+}
+
 }

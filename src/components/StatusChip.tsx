@@ -1,4 +1,5 @@
 import type { vaultStatus } from '@/modules/global/types'
+import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 
 export type StatusChipProps = {
@@ -6,15 +7,18 @@ export type StatusChipProps = {
   className?: string
 }
 
-const mappedPoolStatus: Record<vaultStatus, { label: string; color: string }> = {
-  live: { label: 'Live', color: 'bg-green-600 border-green-700' },
-  coming: { label: 'Coming soon', color: 'bg-orange-400 border-orange-700' },
-  ended: { label: 'Completed', color: 'bg-red-400 border-red-700' },
-  undefined: { label: 'Undefined', color: 'bg-gray-500 border-gray-700' },
+const mappedPoolStatus: Record<vaultStatus, { color: string }> = {
+  live: { color: 'bg-green-600 border-green-700' },
+  coming: { color: 'bg-orange-400 border-orange-700' },
+  ended: { color: 'bg-red-400 border-red-700' },
+  undefined: { color: 'bg-gray-500 border-gray-700' },
 }
 
 export function StatusChip({ status, className }: StatusChipProps) {
+  const { t } = useTranslation('global', { keyPrefix: 'baseVaultCard.status' })
+
   const mappedStatus = mappedPoolStatus[status]
+
   return (
     <div
       className={twMerge(
@@ -23,7 +27,7 @@ export function StatusChip({ status, className }: StatusChipProps) {
         className,
       )}
     >
-      <span className="text-black">{mappedStatus.label}</span>
+      <span className="text-black">{t(status)}</span>
     </div>
   )
 }
