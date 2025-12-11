@@ -1,5 +1,6 @@
 import { Input, TextArea } from '@/ui/components'
 import type { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { UserProfileDataFormType } from '../../schemas/userProfileDataFormSchema'
 
 type UserProfileFormProps = {
@@ -10,14 +11,16 @@ type UserProfileFormProps = {
 }
 
 export function UserProfileForm({ register, error, setUserProfile, heading }: UserProfileFormProps) {
+  const { t } = useTranslation('create', { keyPrefix: 'userData' })
+
   return (
     <div className="grid grid-cols-2 col-span-full gap-4.5">
       {heading}
 
       <TextArea
         className="max-md:col-span-full min-h-[10rem] max-h-[11.5rem] md:max-h-[10rem]"
-        label="User about (required)"
-        placeholder="Tell us a bit about yourselves"
+        label={t('fields.userAbout.label')}
+        placeholder={t('fields.userAbout.placeholder')}
         {...register('userAbout', {
           onChange(event) {
             setUserProfile((prev) => ({ ...prev, userAbout: event.target.value }))
@@ -30,8 +33,8 @@ export function UserProfileForm({ register, error, setUserProfile, heading }: Us
         <Input
           inputVariant={'default'}
           inputSize={'xl'}
-          label="Avatar Url (required)"
-          placeholder="Add your profile avatar url"
+          label={t('fields.userAvatar.label')}
+          placeholder={t('fields.userAvatar.placeholder')}
           className="max-md:col-span-full"
           {...register('avatarUrl', {
             onChange(event) {
@@ -43,8 +46,8 @@ export function UserProfileForm({ register, error, setUserProfile, heading }: Us
         <Input
           inputVariant={'default'}
           inputSize={'xl'}
-          label="Web Site (optional)"
-          placeholder="Add your web site url"
+          label={t('fields.userSite.label')}
+          placeholder={t('fields.userSite.placeholder')}
           className="max-md:col-span-full"
           {...register('webSite', {
             onChange(event) {

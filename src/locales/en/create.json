@@ -1,47 +1,139 @@
 {
     "comment": "Used to translate the creation page into 3 steps",
     
-    "tabs": [
-     {
+    "tabs": {
+        "step1": {
         "step": "Step 1",
-        "title": "Vault Data",
-        "status ": "Unlocked"
-     },
-     {
+        "label": "Vault Data"
+        },
+
+       "step2": {
         "step": "Step 2",
-        "title": "User Data",
-        "status ": "Locked"
-     },
-      {
+        "label": "User Data"
+        },
+
+        "step3": {
         "step": "Step 3",
-        "title": "Confirm & Create",
-        "status ": "Locked"
-     }
-    ],
+        "label": "Confirm & Create"
+        },
+
+        "status": {
+            "locked": "Locked",
+            "unlocked": "Unlocked",
+            "completed": "Completed"
+        }
+    },
 
     "vaultData": {
      "titles": {
-      "vault": "Basic Vault Data"
+      "required": "( All fields are required )",
+      "vault": "Basic Vault Data",
+      "token": "Token Data"
      },
-     "inputs": {
-
+     "fields": {
+      "vaultName": {
+        "label": "Vault Name",
+        "placeholder": "Your Vault Name"
+      },
+      "logo": {
+        "label": "Logo Url",
+        "placeholder": "Your Logo Url"
+      },
+      "banner": {
+        "label": "Banner Url",
+        "placeholder": "Your Vault Banner"
+      },
+      "creator": {
+        "label": "Creator Name",
+        "placeholder": "Creator Vault Name"
+      },
+      "desc": {
+        "label": "Vault Description",
+        "placeholder": "Tell us a little bit about your vault. "
+      },
+      "asset": {
+        "label": "Asset Token",
+        "placeholder": "Your asset token to deposit in the vault"
+      },
+      "salt": {
+        "label": "Salt",
+        "placeholder": "Vault Sault "
+      },
+      "minDeposit": {
+        "label": "Min Deposit",
+        "placeholder": "Min deposit per wallet "
+      },
+      "maxDeposit": {
+        "label": "Max Deposit",
+        "placeholder": "Max deposit per wallet "
+      },
+      "network": {
+        "label": "Select a network",
+        "chain": "Sepolia "
+      }
      },
      "buttons": {
         "reset": "Reset fields",
-        "Move":"Move to user data"
+        "move":"Move to user data"
     }
     },
-    "usertData": {
-
+    
+    "userData": {
+     "titles": {
+      "required": "( At least one social must be provided )",
+      "userVault": "User Vault Data",
+      "userProfile": "User Profile Data",
+      "userProfileInfo": "( Displayed only on your first vault creation )"
+     },
+     "fields": {
+      "discord": {
+        "label": "Discord Url",
+        "placeholder": "Your discord url"
+      },
+      "telegram": {
+        "label": "Telegram Url",
+        "placeholder": "Your telegram url"
+      },
+      "twitter": {
+        "label": "Twitter Url",
+        "placeholder": "Your twitter url"
+      },
+      "tag": {
+        "label": "Tag (optional)",
+        "placeholder": "Add your custom tag"
+      },
+      "userAbout": {
+        "label": "User about (required)",
+        "placeholder": "Tell us a little bit about yourselves."
+      },
+      "userAvatar": {
+        "label": "Avatar Url (required)",
+        "placeholder": "Add your profile avatar url"
+      },
+      "userSite": {
+        "label": "Web Site (optional)",
+        "placeholder": "Add your web site url"
+      }
+     },
+     "buttons": {
+      "reset": "Reset fields",
+      "move":"Move to confirm"
+    }
     },
+
     "confirmAndCreate": {
 
     },
+
    "errors": {
 
     },
-    "WalletConnectionRequired": {
 
+    "WalletConnectionRequired": {
+       "title": "Connect Your Wallet",
+       "desc": "To create a new vault, you first need to connect your wallet. This ensures your assets and profile are linked securely.",
+       "walletButton": "Connect your wallet",
+       "moveButton": "Move back to home page"
     }
 
 }

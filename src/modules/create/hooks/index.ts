@@ -1,3 +1,4 @@
+export * from './useCreateInfoSteps'
 export * from './useCreateUserProfileOnDb'
 export * from './useCreateVault'
 export * from './useCreateVaultOnDb'

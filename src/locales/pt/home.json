@@ -20,6 +20,28 @@
     "getStarted": "Começar agora"
   },
 
+  "explore": {
+  "title": "dApps disponíveis",
+  "cards": [
+    {
+      "title": "Criar Cofre",
+      "desc": "Crie e personalize um cofre em apenas alguns passos."
+    },
+    {
+      "title": "Meus Cofres",
+      "desc": "Veja e gerencie todos os seus cofres em um único lugar."
+    },
+    {
+      "title": "Operações",
+      "desc": "Deposite ou saque a qualquer hora, de qualquer lugar."
+    },
+    {
+      "title": "Editar Perfil",
+      "desc": "Atualize suas informações de perfil e carteiras conectadas."
+    }
+  ]
+},
+
   "mapped": {
     "features": [
       {

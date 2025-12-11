@@ -1,0 +1,132 @@
+{
+  "comment": "Usado para traducir la página de creación en 3 pasos",
+
+  "tabs": {
+    "step1": {
+      "step": "Paso 1",
+      "label": "Datos de la Bóveda"
+    },
+    "step2": {
+      "step": "Paso 2",
+      "label": "Datos del Usuario"
+    },
+    "step3": {
+      "step": "Paso 3",
+      "label": "Confirmar y Crear"
+    },
+    "status": {
+      "locked": "Bloqueado",
+      "unlocked": "Desbloqueado",
+      "completed": "Completado"
+    }
+  },
+
+  "vaultData": {
+    "titles": {
+      "required": "( Todos los campos son obligatorios )",
+      "vault": "Datos Básicos de la Bóveda",
+      "token": "Datos del Token"
+    },
+    "fields": {
+    "vaultName": {
+      "label": "Nombre de la Bóveda",
+      "placeholder": "Nombre de tu bóveda"
+    },
+    "logo": {
+      "label": "URL del Logo",
+      "placeholder": "URL de tu logo"
+    },
+    "banner": {
+      "label": "URL del Banner",
+      "placeholder": "Banner de tu bóveda"
+    },
+    "creator": {
+      "label": "Nombre del Creador",
+      "placeholder": "Nombre del creador de la bóveda"
+    },
+    "desc": {
+      "label": "Descripción de la Bóveda",
+      "placeholder": "Cuéntanos un poco sobre tu bóveda."
+    },
+    "asset": {
+      "label": "Token del Activo",
+      "placeholder": "Token del activo para depositar en la bóveda"
+    },
+    "salt": {
+      "label": "Salt",
+      "placeholder": "Salt de la bóveda"
+    },
+    "minDeposit": {
+      "label": "Depósito Mínimo",
+      "placeholder": "Depósito mínimo por cartera"
+    },
+    "maxDeposit": {
+      "label": "Depósito Máximo",
+      "placeholder": "Depósito máximo por cartera"
+    },
+    "network": {
+      "label": "Selecciona una red",
+      "chain": "Sepolia"
+    }
+    },
+    "buttons": {
+      "reset": "Restablecer campos",
+      "move": "Pasar a datos del usuario"
+    }
+  },
+
+  "userData": {
+  "titles": {
+    "required": "( Se debe proporcionar al menos una red social )",
+    "userVault": "Datos del Cofre del Usuario",
+    "userProfile": "Datos del Perfil del Usuario",
+    "userProfileInfo": "( Mostrado solo en la creación de tu primer cofre )"
+  },
+  "fields": {
+    "discord": {
+      "label": "URL de Discord",
+      "placeholder": "Tu URL de Discord"
+    },
+    "telegram": {
+      "label": "URL de Telegram",
+      "placeholder": "Tu URL de Telegram"
+    },
+    "twitter": {
+      "label": "URL de Twitter",
+      "placeholder": "Tu URL de Twitter"
+    },
+    "tag": {
+      "label": "Tag (opcional)",
+      "placeholder": "Agrega tu etiqueta personalizada"
+    },
+    "userAbout": {
+      "label": "Sobre el usuario (obligatorio)",
+      "placeholder": "Cuéntanos un poco sobre ti."
+    },
+    "userAvatar": {
+      "label": "URL del Avatar (obligatorio)",
+      "placeholder": "Agrega la URL de tu avatar"
+    },
+    "userSite": {
+      "label": "Sitio web (opcional)",
+      "placeholder": "Agrega la URL de tu sitio web"
+    }
+  },
+  "buttons": {
+    "reset": "Restablecer campos",
+    "move": "Pasar a confirmación"
+  }
+},
+
+  "confirmAndCreate": {},
+  
+  "errors": {},
+
+  "WalletConnectionRequired": {
+  "title": "Conecta Tu Billetera",
+  "desc": "Para crear una nueva bóveda, primero debes conectar tu billetera. Esto garantiza que tus activos y tu perfil estén vinculados de forma segura.",
+  "walletButton": "Conectar tu billetera",
+  "moveButton": "Volver a la página principal"
+
+  }
+}

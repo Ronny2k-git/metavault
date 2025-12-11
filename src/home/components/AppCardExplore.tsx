@@ -12,15 +12,15 @@ export type AppCardExploreProps = {
 
 export function AppCardExplore({ trigger, className }: AppCardExploreProps) {
   const navigate = useNavigate()
-  const { t } = useTranslation('explore')
+  const { t } = useTranslation('home')
 
-  const translatedCards = t('cards', { returnObjects: true }) as Array<{ title: string; desc: string }>
+  const translatedCards = t('explore.cards', { returnObjects: true }) as Array<{ title: string; desc: string }>
 
   return (
     <Modal
       className={twMerge('max-w-4xl max-h-[90vh] overflow-y-auto', className)}
       variant={'gradient2'}
-      title={t('title')}
+      title={t('explore.title')}
       titleStyle="text-3xl flex justify-center"
       trigger={trigger}
     >

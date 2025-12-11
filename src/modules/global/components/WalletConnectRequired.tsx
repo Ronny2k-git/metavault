@@ -1,10 +1,12 @@
 import WalletConnection from '@/modules/wallet-connection/components/WalletConnection'
 import { Icon, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 
 export function WalletConnectionRequired() {
   const account = useAccount()
+  const { t } = useTranslation('create')
 
   return (
     <Modal title="" variant={'gradient'} className="flex flex-col max-w-sm" isOpen={!account.address}>
@@ -15,23 +17,20 @@ export function WalletConnectionRequired() {
         </div>
       </div>
       {/* Primary text */}
-      <h2 className="text-xl text-center mb-2 text-white">Connect Your Wallet</h2>
-      <p className="text-gray-300 text-md text-center mb-8">
-        To create a new vault, you first need to connect your wallet. This ensures your assets and profile are linked
-        securely.
-      </p>
+      <h2 className="text-xl text-center mb-2 text-white">{t('WalletConnectionRequired.title')}</h2>
+      <p className="text-gray-300 text-md text-center mb-8">{t('WalletConnectionRequired.desc')}</p>
 
       <div className="flex flex-col gap-3">
         <WalletConnection
           trigger={
             <Button className="text-md" variant={'gradient'} size={'md'} iconLeft={<Icon>wallet</Icon>}>
-              Connect your wallet
+              {t('WalletConnectionRequired.walletButton')}
             </Button>
           }
         />
         <a href="/">
           <Button className="text-md" variant={'secondary'} size={'md'} iconLeft={<Icon>house</Icon>}>
-            Move back to home page
+            {t('WalletConnectionRequired.moveButton')}
           </Button>
         </a>
 

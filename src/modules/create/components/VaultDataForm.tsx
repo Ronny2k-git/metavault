@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { vaultFormAtom, vaultFormValidAtom } from '../atoms/createAtoms'
 import type { VaultDataFormType } from '../schemas/VaultDataFormSchema'
 import { vaultDataFormSchema } from '../schemas/VaultDataFormSchema'
@@ -14,12 +15,13 @@ import { CreateFormHeading } from './subcomponents'
 export function VaultDataForm() {
   const [vaultData, setVaultData] = useAtom(vaultFormAtom)
   const [, setVaultFormValid] = useAtom(vaultFormValidAtom)
+  const navigate = useNavigate({ from: '/create-vault' })
+  const { t } = useTranslation('create', { keyPrefix: 'vaultData' })
 
   const { register, handleSubmit, reset, formState } = useForm<VaultDataFormType>({
     resolver: zodResolver(vaultDataFormSchema),
     defaultValues: vaultData,
   })
-  const navigate = useNavigate({ from: '/create-vault' })
 
   const networError = formState.errors.network
 
@@ -29,17 +31,17 @@ export function VaultDataForm() {
 
       <CreateFormHeading
         className="col-span-full"
-        title="Basic Vault Data"
+        title={t('titles.vault')}
         icon={'help'}
-        subTitle="( All fields are required )"
+        subTitle={t('titles.required')}
       />
 
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
         className="max-md:col-span-full"
-        label="Vault Name"
-        placeholder="Your vault name"
+        label={t('fields.vaultName.label')}
+        placeholder={t('fields.vaultName.placeholder')}
         {...register('vaultName', {
           onChange(event) {
             setVaultData((prev) => ({ ...prev, vaultName: event.target.value }))
@@ -50,8 +52,8 @@ export function VaultDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Logo Url"
-        placeholder="Your logo url"
+        label={t('fields.logo.label')}
+        placeholder={t('fields.logo.placeholder')}
         className="max-md:col-span-full"
         {...register('logo', {
           onChange(event) {
@@ -63,8 +65,8 @@ export function VaultDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        placeholder="Your banner url"
-        label="Banner Url"
+        label={t('fields.banner.label')}
+        placeholder={t('fields.banner.placeholder')}
         className="max-md:col-span-full"
         {...register('banner', {
           onChange(event) {
@@ -77,8 +79,8 @@ export function VaultDataForm() {
         inputVariant={'default'}
         inputSize={'xl'}
         className="max-md:col-span-full"
-        label="Creator Name"
-        placeholder="Creatror Vault Name"
+        label={t('fields.creator.label')}
+        placeholder={t('fields.creator.placeholder')}
         {...register('creatorName', {
           onChange(event) {
             setVaultData((prev) => ({ ...prev, creatorName: event.target.value }))
@@ -88,8 +90,8 @@ export function VaultDataForm() {
       />
       <TextArea
         className="col-span-full min-h-[14rem] max-h-[14rem]"
-        label="Vault Description"
-        placeholder="Tell us a bit about your vault"
+        label={t('fields.desc.label')}
+        placeholder={t('fields.desc.placeholder')}
         {...register('description', {
           onChange(event) {
             setVaultData((prev) => ({
@@ -105,11 +107,11 @@ export function VaultDataForm() {
       <Divider />
 
       <div className="col-span-full w-full flex max-sm:flex-col justify-between gap-4.5">
-        <CreateFormHeading title="Token Data" icon={'help'} subTitle="( All fields are required )" />
+        <CreateFormHeading title={t('titles.token')} icon={'help'} subTitle={t('titles.required')} />
 
         <div className="flex flex-col relative">
           <select
-            className={`bg-gradient-to-t from-purple-950 to-[#3C1C994D] h-12 w-full px-6 rounded-3xl text-gray-300 outline-none
+            className={`bg-gradient-to-t from-purple-950 to-[#3C1C994D] h-12 w-full max-w-48 px-6 rounded-3xl text-gray-300 outline-none
           ${networError ? 'shadow-[0_0_10px_1px_rgba(255_1_1)] border-0' : 'border-transparent'}`}
             {...register('network', {
               onChange(event) {
@@ -118,10 +120,10 @@ export function VaultDataForm() {
             })}
           >
             <option value="" hidden>
-              Select a network
+              {t('fields.network.label')}
             </option>
             <option className="bg-purple-950" value="Sepolia">
-              Sepolia
+              {t('fields.network.chain')}
             </option>
           </select>
           {networError && <span className="mt-1 pl-2 text-sm text-red-400">{networError.message}</span>}
@@ -131,8 +133,8 @@ export function VaultDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Asset Token"
-        placeholder="Your asset token to deposit in the vault"
+        label={t('fields.asset.label')}
+        placeholder={t('fields.asset.placeholder')}
         {...register('assetToken', {
           onChange(event) {
             setVaultData((prev) => ({
@@ -146,8 +148,8 @@ export function VaultDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Salt"
-        placeholder="Vault Salt"
+        label={t('fields.salt.label')}
+        placeholder={t('fields.salt.placeholder')}
         type={'number'}
         min={0}
         {...register('salt', {
@@ -163,8 +165,8 @@ export function VaultDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Min Deposit"
-        placeholder="Min deposit per wallet"
+        label={t('fields.minDeposit.label')}
+        placeholder={t('fields.minDeposit.placeholder')}
         type={'number'}
         min={0}
         {...register('minDeposit', {
@@ -180,8 +182,8 @@ export function VaultDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Max Deposit"
-        placeholder="Max deposit per wallet"
+        label={t('fields.maxDeposit.label')}
+        placeholder={t('fields.maxDeposit.placeholder')}
         type={'number'}
         min={0}
         {...register('maxDeposit', {
@@ -199,7 +201,7 @@ export function VaultDataForm() {
 
       <div className="flex col-span-full gap-3">
         <Button
-          className="max-w-[10rem]"
+          className="max-w-[13rem]"
           variant={'secondary'}
           size={'md'}
           iconLeft={<Icon>backspace</Icon>}
@@ -208,7 +210,7 @@ export function VaultDataForm() {
             reset(initialVaultForm)
           }}
         >
-          Reset fields
+          {t('buttons.reset')}
         </Button>
         <Button
           className="max-w-[15rem]"
@@ -221,7 +223,7 @@ export function VaultDataForm() {
             navigate({ search: { tab: 'user-data' } })
           })}
         >
-          Move to user data
+          {t('buttons.move')}
         </Button>
       </div>
     </div>

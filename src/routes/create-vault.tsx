@@ -5,8 +5,8 @@ import { VaultDataForm } from '@/modules/create/components'
 import { ConfirmAndCreateForm } from '@/modules/create/components/ConfirmAndCreateForm'
 import { UserDataForm } from '@/modules/create/components/UserDataForm'
 import { CREATE_TAB_STEPS } from '@/modules/create/constants'
+import { useCreateInfoSteps } from '@/modules/create/hooks'
 import type { CreateTabSteps } from '@/modules/create/types'
-import { getCreateInfoSteps } from '@/modules/create/utils'
 import { GlobalLoader, WalletConnectionRequired } from '@/modules/global/components'
 import { Icon } from '@/ui/components'
 import { Tabs } from '@/ui/components/Tabs'
@@ -34,7 +34,11 @@ function CreateVault() {
   const userFormValid = useAtomValue(userFormValidAtom)
   const confirmFormValid = useAtomValue(confirmFormValidAtom)
 
-  const tabList = getCreateInfoSteps(vaultFormValid, userFormValid, confirmFormValid)
+  const createTabsInfo = useCreateInfoSteps({
+    validStep1: vaultFormValid,
+    validStep2: userFormValid,
+    validStep3: confirmFormValid,
+  })
 
   return (
     <div className=" page min-h-screen background-image flex flex-col gap-1 items-center text-white overflow-x-auto">
@@ -50,7 +54,7 @@ function CreateVault() {
             navigate({ search: { tab: value as CreateTabSteps } })
           }}
           key={search.tab}
-          tabList={tabList}
+          tabList={createTabsInfo}
           tabContent={[
             {
               value: 'vault-data',

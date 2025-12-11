@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from '@tanstack/react-router'
 import { useAtom } from 'jotai'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import { userFormValidAtom, userProfileFormAtom, userVaultFormAtom } from '../atoms/createAtoms'
 import type { UserProfileDataFormType } from '../schemas/userProfileDataFormSchema'
@@ -22,6 +23,7 @@ export function UserDataForm() {
   const [userProfileDataAtom, setUserProfileDataAtom] = useAtom(userProfileFormAtom)
   const [, setUserFormValid] = useAtom(userFormValidAtom)
   const { data: userProfileData = [] } = useGetUserProfileData(address!)
+  const { t } = useTranslation('create', { keyPrefix: 'userData' })
 
   const vaultForm = useForm<UserVaultDataFormType>({
     resolver: zodResolver(userVaultDataFormSchema),
@@ -44,7 +46,7 @@ export function UserDataForm() {
 
       <CreateFormHeading
         className="col-span-full"
-        title="User Vault Data"
+        title={t('titles.userVault')}
         icon={'help'}
         subTitle="( At least one social must be provided )"
       />
@@ -53,8 +55,8 @@ export function UserDataForm() {
         inputVariant={'default'}
         inputSize={'xl'}
         className="max-md:col-span-full"
-        label="Discord Url"
-        placeholder="Your discord url"
+        label={t('fields.discord.label')}
+        placeholder={t('fields.discord.placeholder')}
         {...vaultForm.register('discord', {
           onChange(event) {
             setUserData((prev) => ({ ...prev, discord: event.target.value }))
@@ -65,8 +67,8 @@ export function UserDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Telegram Url"
-        placeholder="Your telegram url"
+        label={t('fields.telegram.label')}
+        placeholder={t('fields.telegram.placeholder')}
         className="max-md:col-span-full"
         {...vaultForm.register('telegram', {
           onChange(event) {
@@ -78,8 +80,8 @@ export function UserDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Twitter Url"
-        placeholder="Your Twitter url"
+        label={t('fields.twitter.label')}
+        placeholder={t('fields.twitter.placeholder')}
         className="max-md:col-span-full"
         {...vaultForm.register('twitter', {
           onChange(event) {
@@ -91,8 +93,8 @@ export function UserDataForm() {
       <Input
         inputVariant={'default'}
         inputSize={'xl'}
-        label="Tag (optional)"
-        placeholder="Add your tag"
+        label={t('fields.tag.label')}
+        placeholder={t('fields.tag.placeholder')}
         className="max-md:col-span-full"
         {...vaultForm.register('tag', {
           onChange(event) {
@@ -110,9 +112,9 @@ export function UserDataForm() {
             heading={
               <CreateFormHeading
                 className="col-span-full"
-                title="User Profile Data"
+                title={t('titles.userProfile')}
                 icon={'help'}
-                subTitle="( Displayed only on your first vault creation )"
+                subTitle={t('titles.userProfileInfo')}
               />
             }
             error={profileForm.formState.errors}
@@ -126,7 +128,7 @@ export function UserDataForm() {
 
       <div className="flex col-span-full gap-3">
         <Button
-          className="max-w-[10rem]"
+          className="max-w-[13rem]"
           variant={'secondary'}
           size={'md'}
           iconLeft={<Icon>backspace</Icon>}
@@ -137,7 +139,7 @@ export function UserDataForm() {
             profileForm.reset(initialProfiletUserForm)
           }}
         >
-          Reset fields
+          {t('buttons.reset')}
         </Button>
         <Button
           className="max-w-[15rem]"
@@ -156,7 +158,7 @@ export function UserDataForm() {
             }
           }}
         >
-          Move to confirm
+          {t('buttons.move')}
         </Button>
       </div>
     </div>

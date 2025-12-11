@@ -1,0 +1,131 @@
+{
+  "comment": "用于翻译创建页面的三个步骤",
+
+  "tabs": {
+    "step1": {
+      "step": "步骤 1",
+      "label": "保险库数据"
+    },
+    "step2": {
+      "step": "步骤 2",
+      "label": "用户数据"
+    },
+    "step3": {
+      "step": "步骤 3",
+      "label": "确认并创建"
+    },
+    "status": {
+      "locked": "已锁定",
+      "unlocked": "已解锁",
+      "completed": "已完成"
+    }
+  },
+
+  "vaultData": {
+    "titles": {
+      "required": "( 所有字段均为必填项 )",
+      "vault": "保险库基础数据",
+      "token": "代币数据"
+    },
+    "fields": {
+    "vaultName": {
+      "label": "金库名称",
+      "placeholder": "输入您的金库名称"
+    },
+    "logo": {
+      "label": "Logo 链接",
+      "placeholder": "输入您的 Logo 链接"
+    },
+    "banner": {
+      "label": "横幅链接",
+      "placeholder": "输入您的金库横幅"
+    },
+    "creator": {
+      "label": "创建者名称",
+      "placeholder": "金库创建者名称"
+    },
+    "desc": {
+      "label": "金库描述",
+      "placeholder": "简单介绍一下您的金库。"
+    },
+    "asset": {
+      "label": "资产代币",
+      "placeholder": "用于存入金库的资产代币"
+    },
+    "salt": {
+      "label": "Salt",
+      "placeholder": "金库 Salt"
+    },
+    "minDeposit": {
+      "label": "最小存款",
+      "placeholder": "每个钱包的最小存款"
+    },
+    "maxDeposit": {
+      "label": "最大存款",
+      "placeholder": "每个钱包的最大存款"
+    },
+    "network": {
+      "label": "选择网络",
+      "chain": "Sepolia"
+    }
+    },
+    "buttons": {
+      "reset": "重置字段",
+      "move": "前往用户数据"
+    }
+  },
+
+  "userData": {
+  "titles": {
+    "required": "( 至少需要提供一个社交链接 )",
+    "userVault": "用户金库数据",
+    "userProfile": "用户资料数据",
+    "userProfileInfo": "( 仅在创建第一个金库时显示 )"
+  },
+  "fields": {
+    "discord": {
+      "label": "Discord 地址",
+      "placeholder": "你的 Discord 地址"
+    },
+    "telegram": {
+      "label": "Telegram 地址",
+      "placeholder": "你的 Telegram 地址"
+    },
+    "twitter": {
+      "label": "Twitter 地址",
+      "placeholder": "你的 Twitter 地址"
+    },
+    "tag": {
+      "label": "标签（可选）",
+      "placeholder": "添加你的自定义标签"
+    },
+    "userAbout": {
+      "label": "用户简介（必填）",
+      "placeholder": "简单介绍一下你自己。"
+    },
+    "userAvatar": {
+      "label": "头像地址（必填）",
+      "placeholder": "添加你的头像 URL"
+    },
+    "userSite": {
+      "label": "网站（可选）",
+      "placeholder": "添加你的网站 URL"
+    }
+  },
+  "buttons": {
+    "reset": "重置字段",
+    "move": "继续到确认"
+  }
+},
+
+  "confirmAndCreate": {},
+
+  "errors": {},
+
+  "WalletConnectionRequired": {
+  "title": "连接您的钱包",
+  "desc": "要创建新的保险库，您需要先连接您的钱包。这样可以确保您的资产和资料被安全关联。",
+  "walletButton": "连接您的钱包",
+  "moveButton": "返回首页"
+  }
+}

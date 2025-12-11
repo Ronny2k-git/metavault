@@ -20,6 +20,27 @@
     "getStarted": "Comenzar"
   },
 
+  "explore": {
+  "title": "dApps disponibles",
+  "cards": [
+    {
+      "title": "Crear Bóveda",
+      "desc": "Crea y personaliza una bóveda en solo unos pasos."
+    },
+    {
+      "title": "Bóvedas del Usuario",
+      "desc": "Consulta y gestiona todas tus bóvedas en un solo lugar."
+    },
+    {
+      "title": "Operaciones",
+      "desc": "Deposita o retira en cualquier momento y desde cualquier lugar."
+    },
+    {
+      "title": "Editar Perfil",
+      "desc": "Actualiza la información de tu perfil y las wallets conectadas."
+    }
+  ]
+},
 
   "mapped": {
     "features": [

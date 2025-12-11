@@ -1,0 +1,130 @@
+{
+  "comment": "Usado para traduzir a página de criação em 3 etapas",
+
+  "tabs": {
+    "step1": {
+      "step": "Etapa 1",
+      "label": "Dados do Cofre"
+    },
+    "step2": {
+      "step": "Etapa 2",
+      "label": "Dados do Usuário"
+    },
+    "step3": {
+      "step": "Etapa 3",
+      "label": "Confirmar e Criar"
+    },
+    "status": {
+      "locked": "Bloqueado",
+      "unlocked": "Desbloqueado",
+      "completed": "Concluído"
+    }
+  },
+
+  "vaultData": {
+    "titles": {
+      "required": "( Todos os campos são obrigatórios )",
+      "vault": "Dados Básicos do Cofre",
+      "token": "Dados do Token"
+    },
+    "fields": {
+    "vaultName": {
+      "label": "Nome do Cofre",
+      "placeholder": "Nome do seu cofre"
+    },
+    "logo": {
+      "label": "URL do Logo",
+      "placeholder": "URL do seu logo"
+    },
+    "banner": {
+      "label": "URL do Banner",
+      "placeholder": "Banner do seu cofre"
+    },
+    "creator": {
+      "label": "Nome do Criador",
+      "placeholder": "Nome do criador do cofre"
+    },
+    "desc": {
+      "label": "Descrição do Cofre",
+      "placeholder": "Conte um pouco sobre o seu cofre."
+    },
+    "asset": {
+      "label": "Token do Ativo",
+      "placeholder": "Token de ativo a ser depositado no cofre"
+    },
+    "salt": {
+      "label": "Salt",
+      "placeholder": "Salt do cofre"
+    },
+    "minDeposit": {
+      "label": "Depósito Mínimo",
+      "placeholder": "Depósito mínimo por carteira"
+    },
+    "maxDeposit": {
+      "label": "Depósito Máximo",
+      "placeholder": "Depósito máximo por carteira"
+    },
+    "network": {
+      "label": "Selecione uma rede",
+      "chain": "Sepolia"
+    }
+    },
+    "buttons": {
+      "reset": "Redefinir campos",
+      "move": "Ir para dados do usuário"
+    }
+  },
+
+  "userData": {
+  "titles": {
+    "required": "( Pelo menos uma rede social deve ser fornecida )",
+    "userVault": "Dados do Usuário do Cofre",
+    "userProfile": "Dados do Perfil do Usuário",
+    "userProfileInfo": "( Exibido apenas na criação do seu primeiro cofre )"
+  },
+  "fields": {
+    "discord": {
+      "label": "URL do Discord",
+      "placeholder": "Sua URL do Discord"
+    },
+    "telegram": {
+      "label": "URL do Telegram",
+      "placeholder": "Sua URL do Telegram"
+    },
+    "twitter": {
+      "label": "URL do Twitter",
+      "placeholder": "Sua URL do Twitter"
+    },
+    "tag": {
+      "label": "Tag (opcional)",
+      "placeholder": "Adicione sua tag personalizada"
+    },
+    "userAbout": {
+      "label": "Sobre o usuário (obrigatório)",
+      "placeholder": "Conte-nos um pouco sobre você."
+    },
+    "userAvatar": {
+      "label": "URL do Avatar (obrigatório)",
+      "placeholder": "Adicione a URL do seu avatar"
+    },
+    "userSite": {
+      "label": "Site (opcional)",
+      "placeholder": "Adicione a URL do seu site"
+    }
+  },
+  "buttons": {
+    "reset": "Resetar campos",
+    "move": "Mover para confirmação"
+  }
+},
+
+  "confirmAndCreate": {},
+  
+  "errors": {},
+  "WalletConnectionRequired": {
+  "title": "Conecte Sua Carteira",
+  "desc": "Para criar um novo cofre, você primeiro precisa conectar sua carteira. Isso garante que seus ativos e seu perfil estejam vinculados com segurança.",
+  "walletButton": "Conectar sua carteira",
+  "moveButton": "Voltar para a página inicial"
+  }
+}
