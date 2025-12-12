@@ -1,6 +1,11 @@
 {
   "comment": "헤더와 푸터 컴포넌트를 번역하는 데 사용됩니다",
 
+  "globalMessages": {
+  "connectWallet": "지갑을 연결하세요",
+  "wrongNetwork": "지갑을 Sepolia 테스트넷으로 전환하세요"
+},
+
   "header": {
     "navigation": {
       "home": "홈",
@@ -99,6 +104,23 @@
   "withdraw": "모두 인출",
   "view": "Vault 보기",
   "desc": "Vault 설명"
+},
+
+"cardDialogCreate": {
+  "title": "생성 작업",
+  "subtitle": "생성을 확인하세요",
+  "messages": {
+    "wrongNetwork": "잘못된 네트워크입니다",
+    "simulate": "시뮬레이션",
+    "simulated": "성공적으로 시뮬레이션됨",
+    "simulatePending": "컨트랙트 시뮬레이션 중",
+    "confirm": "생성 확인",
+    "confirmPending": "지갑에서 확인하세요",
+    "wait": "트랜잭션 영수증을 기다리는 중",
+    "success": "볼트가 생성되었습니다!",
+    "error": "볼트 생성 중 오류 발생"
+  }
 }
+
 
 }

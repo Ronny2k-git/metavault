@@ -1,6 +1,11 @@
 {
   "comment": "用于翻译页眉和页脚组件",
 
+  "globalMessages": {
+  "connectWallet": "请连接您的钱包",
+  "wrongNetwork": "请将您的钱包切换到 Sepolia 测试网"
+  },
+
   "header": {
     "navigation": {
       "home": "首页",
@@ -99,6 +104,23 @@
   "withdraw": "全部提取",
   "view": "查看 Vault",
   "desc": "Vault 描述"
+},
+
+"cardDialogCreate": {
+  "title": "你的创建",
+  "subtitle": "确认你的创建",
+  "messages": {
+    "wrongNetwork": "网络错误",
+    "simulate": "模拟",
+    "simulated": "模拟成功",
+    "simulatePending": "正在模拟合约",
+    "confirm": "确认创建",
+    "confirmPending": "请在钱包中确认",
+    "wait": "等待交易回执",
+    "success": "Vault 创建成功！",
+    "error": "创建 Vault 时出错"
+  }
 }
+
 
 }

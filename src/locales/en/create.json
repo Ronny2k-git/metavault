@@ -132,6 +132,10 @@
       "start": "Start Date",
       "end": "End Date"
     },
+    "messages": {
+      "error": "Failed to get the contract address",
+      "success": "Vault created successfully!"
+    },
     "buttons": {
       "reset": "Reset fields",
       "create":"Create Vault"

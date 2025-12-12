@@ -29,6 +29,8 @@ export function ConfirmAndCreateForm() {
   const [, setConfirmFormValid] = useAtom(confirmFormValidAtom)
   const navigate = useNavigate()
   const { t } = useTranslation('create', { keyPrefix: 'confirmAndCreate' })
+  const { t: t2 } = useTranslation('global')
+  const { t: t3 } = useTranslation('global', { keyPrefix: 'cardDialogCreate.messages' })
 
   const account = useAccount()
   const createVaultOnDb = useCreateVaultOnDb()
@@ -46,23 +48,34 @@ export function ConfirmAndCreateForm() {
   })
 
   const create = useCreateVault({
+    messages: {
+      connectWallet: t('globalMessages.connectWallet'),
+      simulate: t3('simulate'),
+      simulation: t3('simulation'),
+      simulatePending: t3('simulatePending'),
+      simulationSuccess: t3('simulated'),
+      confirm: t3('confirm'),
+      confirmPending: t3('confirmPending'),
+      wait: t3('wait'),
+      vaultCreated: t3('success'),
+    },
+
     onStatusChange: (status) => {
       if (status === 'openModal') setIsModalOpen(true)
       if (status === 'closeModal') setIsModalOpen(false)
     },
-
     onSuccess: () => {
       setIsModalOpen(false)
     },
     onError: () => {
       setIsModalOpen(false)
-      toast.error('Error creating vault')
+      toast.error(t2('cardDialogCreate.messages.error'))
     },
   })
 
   const onSubmit = async () => {
     if (!account.address) {
-      toast.error('Please connect your wallet')
+      toast.error(t2('globalMessages.connectWallet'))
       return
     }
     // Get token data
@@ -93,7 +106,7 @@ export function ConfirmAndCreateForm() {
     const tx = await create.createVault(vaultData as VaultContractData)
 
     if (!tx) {
-      console.error('Failed to get contract address')
+      console.error(t('messages.error'))
       return
     }
 
@@ -126,7 +139,7 @@ export function ConfirmAndCreateForm() {
     }
 
     // 5. Clean the form and all states and redirect from profile page.
-    toast.success('Vault created successfully')
+    toast.success(t('messages.success'))
     resetAll()
     navigate({ from: '/profile' })
   }
@@ -134,8 +147,10 @@ export function ConfirmAndCreateForm() {
   // TO DO LATER
 
   // 1 FINISH TO IMPLEMENT THE TRANSLATOR FOR CONFIRM AND CREATE STEP
-  //   "CARD DIALOG" AND AND 'ERRORS'
+  //   "CARD DIALOG" AND 'ERRORS'
+
   // 2 IMPLEMENT FOR ALL REMAINING PAGES (PROFILE: 3 TABS)
+
   // 3
 
   return (
@@ -211,8 +226,8 @@ export function ConfirmAndCreateForm() {
       </div>
       <TransactionCardDialog
         className="min-h-64 max-w-sm"
-        title="Confirm your Creation"
-        subtitle="You Create"
+        title={t2('cardDialogCreate.title')}
+        subtitle={t2('cardDialogCreate.subtitle')}
         chainName={getChainName(sepolia.id)}
         info={allFormData.vaultName}
         vaultLogo={allFormData.logo}

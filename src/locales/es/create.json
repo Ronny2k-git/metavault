@@ -129,6 +129,10 @@
     "start": "Fecha de inicio",
     "end": "Fecha de finalización"
   },
+  "messages": {
+    "error": "No se pudo obtener la dirección del contrato",
+    "success": "¡Vault creado con éxito!"
+  },
   "buttons": {
     "reset": "Restablecer campos",
     "create": "Crear Vault"

@@ -1,6 +1,11 @@
 {
   "comment": "Used to translate the header and footer components",
 
+  "globalMessages": {
+  "connectWallet": "Conecta tu billetera",
+  "wrongNetwork": "Cambia tu cartera a la red de prueba Sepolia"
+  },
+
   "header": {
     "navigation": {
       "home": "Inicio",
@@ -99,6 +104,23 @@
   "withdraw": "Retirar Todo",
   "view": "Ver Vault",
   "desc": "Descripción de la Vault"
+},
+
+"cardDialogCreate": {
+  "title": "Tu Creación",
+  "subtitle": "Confirma tu Creación",
+  "messages": {
+    "wrongNetwork": "Red incorrecta",
+    "simulate": "Simular",
+    "simulated": "Simulado con éxito",
+    "simulatePending": "Simulando contrato",
+    "confirm": "Confirmar creación",
+    "confirmPending": "Confirma en tu cartera",
+    "wait": "Esperando recibo de la transacción",
+    "success": "¡Vault creado!",
+    "error": "Error al crear el vault"
+  }
 }
+
 
 }

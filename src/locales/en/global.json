@@ -2,6 +2,11 @@
 {
   "comment": "Used to translate the header and footer components",
 
+  "globalMessages": {
+    "connectWallet": "Please connect your wallet",
+    "wrongNetwork": "Switch your wallet to Sepolia testnet"
+  },
+
   "header": {
     "navigation": {
       "home": "Home",
@@ -97,5 +102,21 @@
      "withdraw": "Withdraw All",
      "view": "View Vault",
      "desc": "Vault Description"
+    },
+
+    "cardDialogCreate": {
+      "title": "Confirm your Creation",
+      "subtitle": "You Create",
+      "messages": {
+        "wrongNetwork": "Switch your wallet to Sepolia testnet",
+        "simulate": "Simulate",
+        "simulated": "Simulated Successfully",
+        "simulatePending": "Simulating Contract",
+        "confirm": "Confirm Create",
+        "confirmPending": "Confirm in your wallet",
+        "wait": "Waiting For Tx Receipt",
+        "success": "Vault Created!",
+        "error": "Error creating vault"
+      }
     }
 }

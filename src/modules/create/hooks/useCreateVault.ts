@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 import type { Abi, Address } from 'viem'
 import { parseUnits } from 'viem'
 import { sepolia } from 'viem/chains'
-import { useAccount, useChainId, useWriteContract } from 'wagmi'
+import { useAccount, useWriteContract } from 'wagmi'
 import { simulateContract, waitForTransactionReceipt } from 'wagmi/actions'
 import type { VaultContractData } from '../schemas/VaultContractSchema'
 
@@ -22,17 +22,30 @@ export type useCreateVaultArgs = {
   onError?: VoidFunction
   onSuccess?: VoidFunction
   onStatusChange: (status: 'openModal' | 'closeModal' | null) => void
+  messages: {
+    connectWallet: string
+
+    simulate: string
+    simulation: string
+    simulatePending: string
+    simulationSuccess: string
+
+    confirm: string
+    confirmPending: string
+    wait: string
+
+    vaultCreated: string
+  }
 }
 
-const initialCreateSteps = {
-  simulation: { label: 'Simulate ', status: 'pending' },
-  'confirm-create': { label: 'Confirm Create', status: 'idle' },
-} as const
+export function useCreateVault({ onError, onSuccess, onStatusChange, messages }: useCreateVaultArgs) {
+  const initialCreateSteps = {
+    simulation: { label: 'Simulate ', status: 'pending' },
+    'confirm-create': { label: 'Confirm Create', status: 'idle' },
+  } as const
 
-export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreateVaultArgs) {
   const { writeContractAsync } = useWriteContract()
   const { isConnected } = useAccount()
-  const chainId = useChainId()
   const steps = useSteps(initialCreateSteps)
   const { getTokenDecimal } = useGetTokenDecimals()
 
@@ -60,10 +73,7 @@ export function useCreateVault({ onError, onSuccess, onStatusChange }: useCreate
         toast.error('Please connect your wallet')
         return
       }
-      if (chainId != sepolia.id) {
-        toast.error('Switch your wallet to Sepolia testnet')
-        return
-      }
+
       onStatusChange('openModal')
       steps.init()
 

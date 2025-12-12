@@ -129,6 +129,10 @@
     "start": "开始日期",
     "end": "结束日期"
   },
+  "messages": {
+    "error": "无法获取合约地址",
+    "success": "Vault 创建成功！"
+  },
   "buttons": {
     "reset": "重置字段",
     "create": "创建保险库"
