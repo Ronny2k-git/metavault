@@ -134,7 +134,46 @@
     "success": "볼트가 생성되었습니다!",
     "error": "볼트 생성 중 오류 발생"
   }
-}
+},
 
+ "emptyBanner": {
+    "userVaults": {
+      "live": {
+        "message": "활성 Vault를 찾을 수 없습니다",
+        "subMessage": "필터를 확인하거나 지갑을 연결하세요",
+        "buttonLabel": "Vault 생성하기"
+      },
+      "toWithdraw": {
+        "message": "출금할 Vault를 찾을 수 없습니다",
+        "subMessage": "필터를 확인하거나 지갑을 연결하세요",
+        "buttonLabel": "Vault 생성하기"
+      },
+      "completed": {
+        "message": "완료된 Vault를 찾을 수 없습니다",
+        "subMessage": "필터를 확인하거나 지갑을 연결하세요",
+        "buttonLabel": "Vault 생성하기"
+      }
+    },
+
+    "operation": {
+      "deposit": {
+        "subMessage": "Vault를 찾을 수 없습니다. 지갑을 연결하거나 하나 생성해 보세요"
+      },
+      "withdraw": {
+        "subMessage": "Vault를 찾을 수 없습니다. 지갑을 연결하거나 Vault에 입금해 보세요"
+      },
+      "transactions": {
+        "message": "거래 내역을 찾을 수 없습니다",
+        "subMessage": "Vault에 입금 또는 출금하거나, 필터를 확인하거나, 지갑을 연결하세요",
+        "buttonLabel": "Vault 생성하기"
+      }
+    },
+
+    "editProfile": {
+      "message": "프로필 데이터를 찾을 수 없습니다",
+      "subMessage": "프로필 데이터를 표시하려면 첫 Vault를 생성하거나 지갑을 연결하세요",
+      "buttonLabel": "Vault 생성하기"
+    }
+  }
 
 }

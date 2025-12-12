@@ -148,6 +148,8 @@ export function ConfirmAndCreateForm() {
 
 FILES TO TRANSLATE LATER
 
+SAVE LATER THE SELECTED LANGUAGE TO LOCAL STORAGE 
+
 1 CREATION PAGE: {
 1.1 ConfirmAndCreateFormSchema.ts
 1.2 userProfileDataFormSchema.ts

@@ -134,7 +134,46 @@
     "success": "¡Vault creado!",
     "error": "Error al crear el vault"
   }
-}
+},
 
+"emptyBanner": {
+    "userVaults": {
+      "live": {
+        "message": "No se encontraron Vaults activos",
+        "subMessage": "Por favor revisa tus filtros o conecta tu cartera",
+        "buttonLabel": "Crea tu Vault"
+      },
+      "toWithdraw": {
+        "message": "No se encontraron Vaults para retirar",
+        "subMessage": "Por favor revisa tus filtros o conecta tu cartera",
+        "buttonLabel": "Crea tu Vault"
+      },
+      "completed": {
+        "message": "No se encontraron Vaults completados",
+        "subMessage": "Por favor revisa tus filtros o conecta tu cartera",
+        "buttonLabel": "Crea tu Vault"
+      }
+    },
+
+    "operation": {
+      "deposit": {
+        "subMessage": "No se encontraron vaults. Intenta conectar tu cartera o crear uno"
+      },
+      "withdraw": {
+        "subMessage": "No se encontraron vaults. Intenta conectar tu cartera o depositar en uno"
+      },
+      "transactions": {
+        "message": "No se encontraron transacciones",
+        "subMessage": "Por favor deposita o retira en un vault, revisa tus filtros o conecta tu cartera",
+        "buttonLabel": "Crea tu Vault"
+      }
+    },
+
+    "editProfile": {
+      "message": "No se encontraron datos de perfil",
+      "subMessage": "Crea tu primer vault para mostrar tus datos de perfil o conecta tu cartera",
+      "buttonLabel": "Crea tu Vault"
+    }
+  }
 
 }

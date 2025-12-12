@@ -1,0 +1,51 @@
+{
+  "cardProfile": {},
+
+  "tabs": {},
+
+  "userVaults": {
+    "heading": {
+      "live": {
+        "title": "进行中的金库",
+        "subtitle": "如需向进行中的金库存款，请前往 Trades 选项卡。",
+        "info": "进行中的金库总数"
+      },
+      "toWithdraw": {
+        "title": "可提现金库",
+        "subtitle": "您已完成且有可提现金额的金库",
+        "info": "可提现金库总数"
+      },
+      "completed": {
+        "title": "已完成的金库",
+        "subtitle": "您已完成且没有待处理操作的金库",
+        "info": "已完成金库总数"
+      }
+    },
+
+    "inputs": {
+      "info": {
+        "label": "搜索金库",
+        "placeholder": "通过地址、名称、创建者或链名称搜索您的金库。"
+      }
+    }
+  },
+
+  "operation": {
+    "heading": {},
+
+    "operations": {
+      "deposit": "存款",
+      "withdraw": "取款"
+    },
+
+    "transactions": {}
+  },
+
+  "editProfile": {
+    "heading": {},
+
+    "inputs": {},
+
+    "buttons": {}
+  }
+}

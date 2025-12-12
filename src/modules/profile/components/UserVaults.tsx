@@ -27,6 +27,7 @@ export function UserVaults() {
   const saveSwap = useSaveUserSwap()
   const queryClient = useQueryClient()
   const { t } = useTranslation('global')
+  const { t: t2 } = useTranslation('profile', { keyPrefix: 'userVaults' })
 
   // Vault data
   const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
@@ -51,6 +52,12 @@ export function UserVaults() {
 
   // Withdraw hook
   const { withdraw, status: withdrawStatus } = useWithdraw({
+    messages: {
+      approve: t2('status.approve'),
+      simulate: t2('status.simulate'),
+      withdraw: t2('status.withdraw'),
+      success: t2('status.success'),
+    },
     onSuccess: () => {
       refetchCompletedVaults()
       setWithdrawOpen(false)
@@ -121,7 +128,7 @@ export function UserVaults() {
       },
     })
 
-    toast.success('Withdraw made successfully', { duration: 4000 })
+    toast.success(t2('status.success'), { duration: 4000 })
 
     // 4. Refetch the completed vaults and user transactions
     await Promise.all([
@@ -140,17 +147,17 @@ export function UserVaults() {
           id="user-live-vaults"
           className="mt-12"
           icon={<Icon className="!text-4xl">live_tv</Icon>}
-          title="Live Vaults"
-          subtitle="To deposit into live vaults, go to the Trades tab."
-          valueLabel="Total Live Vaults"
+          title={t2('heading.live.title')}
+          subtitle={t2('heading.live.subtitle')}
+          valueLabel={t2('heading.live.info')}
           value={liveVaults?.total || 0}
         />
         <Input
           className="w-full sm:max-w-[27rem]"
           iconLeft={<Icon className="text-indigo-300">search</Icon>}
           inputSize={'sm'}
-          label="Search Vault"
-          placeholder="Search your vaults by address,name, creator and chain name."
+          label={t2('inputs.info.label')}
+          placeholder={t2('inputs.info.placeholder')}
           value={searchLiveVaults}
           onChange={(e) => setSearchLiveVaults(e.target.value)}
         />
@@ -218,17 +225,17 @@ export function UserVaults() {
           id="user-completed-vaults-to-withdraw"
           className="mt-24"
           icon={<Icon className="!text-4xl">award_star</Icon>}
-          title="Vaults to Withdraw"
-          subtitle="Your completed vaults that have any deposited value to withdraw"
-          valueLabel="Total Vaults To Withdraw"
+          title={t2('heading.toWithdraw.title')}
+          subtitle={t2('heading.toWithdraw.subtitle')}
+          valueLabel={t2('heading.toWithdraw.info')}
           value={vaultsToWithdraw?.length || 0}
         />
         <Input
           className="w-full sm:max-w-[27rem]"
           iconLeft={<Icon className="text-indigo-300">search</Icon>}
           inputSize={'sm'}
-          label="Search Vault"
-          placeholder="Search your vaults by address,name, creator and chain name."
+          label={t2('inputs.info.label')}
+          placeholder={t2('inputs.info.placeholder')}
           value={searchVaultsToWithdraw}
           onChange={(e) => setSearchVaultsToWithdraw(e.target.value)}
         />
@@ -294,7 +301,7 @@ export function UserVaults() {
         >
           <div className="flex items-center gap-2">
             {withdrawStatus && <Spinner />}
-            {withdrawStatus || 'Waiting...'}
+            {withdrawStatus || t2('status.wait')}
           </div>
         </TransactionCardDialog>
       </section>
@@ -305,8 +312,9 @@ export function UserVaults() {
           id="user-completed-vaults"
           className="mt-24"
           icon={<Icon className="!text-4xl">bookmark_check</Icon>}
-          title="Completed Vaults"
-          valueLabel="Total Completed Vaults"
+          title={t2('heading.completed.title')}
+          subtitle={t2('heading.completed.subtitle')}
+          valueLabel={t2('heading.completed.info')}
           value={filteredCompletedVaults?.length || 0}
         />
 
@@ -314,8 +322,8 @@ export function UserVaults() {
           className="w-full sm:max-w-[27rem]"
           iconLeft={<Icon className="text-indigo-300">search</Icon>}
           inputSize={'sm'}
-          label="Search Vault"
-          placeholder="Search your vaults by address,name, creator and chain name."
+          label={t2('inputs.info.label')}
+          placeholder={t2('inputs.info.placeholder')}
           value={searchCompletedVaults}
           onChange={(e) => setSearchCompletedVaults(e.target.value)}
         />

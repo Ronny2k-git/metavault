@@ -1,0 +1,65 @@
+{
+    "cardProfile": {},
+
+    "tabs": {},
+
+    "userVaults": {
+     "heading": {
+      "live": {
+        "title": "Live Vaults",
+        "subtitle": "To deposit into live vaults, go to the Trades tab.",
+        "info": "Total Live Vaults"
+       },
+      "toWithdraw": {
+        "title": "Vaults to Withdraw",
+        "subtitle": "Your completed vaults that have any deposited value to withdraw",
+        "info": "Total Vaults To Withdraw"
+      },
+      "completed": {
+        "title": "Completed Vaults",
+        "subtitle": "Your completed vaults without pending actions",
+        "info": "Total Completed Vaults"
+      }
+    },
+
+    "status": {
+      "approve": "Approving token...",
+      "simulate": "Simulating Withdraw...",
+      "withdraw": "Withdrawing...",
+      "wait": "Waiting...",
+      "success": "Withdraw made successfully"
+
+    },
+
+    "inputs": {
+      "info": {
+        "label": "Search Vault",
+        "placeholder": "Search your vaults by address,name, creator and chain name."
+       }
+    }
+    },
+
+    "operation": {
+
+     "heading": {},
+
+    "operations": {
+     "deposit": "",
+     "withdraw": ""
+    },
+
+    "transactions": {}
+    
+    },
+
+    "editProfile": {
+
+     "heading": {},
+
+    "inputs": {},
+
+    "buttons": {}
+    
+    }
+    
+}

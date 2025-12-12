@@ -1,0 +1,51 @@
+{
+  "cardProfile": {},
+
+  "tabs": {},
+
+  "userVaults": {
+    "heading": {
+      "live": {
+        "title": "실시간 볼트",
+        "subtitle": "실시간 볼트에 예치하려면 Trades 탭으로 이동하세요.",
+        "info": "총 실시간 볼트"
+      },
+      "toWithdraw": {
+        "title": "출금 가능한 볼트",
+        "subtitle": "출금 가능한 금액이 있는 완료된 볼트",
+        "info": "총 출금 가능한 볼트"
+      },
+      "completed": {
+        "title": "완료된 볼트",
+        "subtitle": "추가 작업이 필요 없는 완료된 볼트",
+        "info": "총 완료된 볼트"
+      }
+    },
+
+    "inputs": {
+      "info": {
+        "label": "볼트 검색",
+        "placeholder": "주소, 이름, 생성자, 체인 이름으로 볼트를 검색하세요."
+      }
+    }
+  },
+
+  "operation": {
+    "heading": {},
+
+    "operations": {
+      "deposit": "입금",
+      "withdraw": "출금"
+    },
+
+    "transactions": {}
+  },
+
+  "editProfile": {
+    "heading": {},
+
+    "inputs": {},
+
+    "buttons": {}
+  }
+}

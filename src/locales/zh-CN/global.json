@@ -134,7 +134,46 @@
     "success": "Vault 创建成功！",
     "error": "创建 Vault 时出错"
   }
-}
+},
 
+"emptyBanner": {
+    "userVaults": {
+      "live": {
+        "message": "未找到正在运行的 Vault",
+        "subMessage": "请检查您的筛选条件或连接您的钱包",
+        "buttonLabel": "创建您的 Vault"
+      },
+      "toWithdraw": {
+        "message": "未找到可提取的 Vault",
+        "subMessage": "请检查您的筛选条件或连接您的钱包",
+        "buttonLabel": "创建您的 Vault"
+      },
+      "completed": {
+        "message": "未找到已完成的 Vault",
+        "subMessage": "请检查您的筛选条件或连接您的钱包",
+        "buttonLabel": "创建您的 Vault"
+      }
+    },
+
+    "operation": {
+      "deposit": {
+        "subMessage": "未找到任何 Vault。请尝试连接您的钱包或创建一个"
+      },
+      "withdraw": {
+        "subMessage": "未找到任何 Vault。请尝试连接您的钱包或向某个 Vault 存款"
+      },
+      "transactions": {
+        "message": "未找到交易记录",
+        "subMessage": "请在某个 Vault 中存款或取款，检查您的筛选条件，或连接您的钱包",
+        "buttonLabel": "创建您的 Vault"
+      }
+    },
+
+    "editProfile": {
+      "message": "未找到个人资料数据",
+      "subMessage": "创建您的第一个 Vault 以显示个人资料数据，或连接您的钱包",
+      "buttonLabel": "创建您的 Vault"
+    }
+  }
 
 }

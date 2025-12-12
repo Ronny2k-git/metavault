@@ -16,9 +16,15 @@ type useWithdrawProps = {
 type useWithdrawStateProps = {
   onError?: VoidFunction
   onSuccess?: VoidFunction
+  messages: {
+    approve: string
+    simulate: string
+    withdraw: string
+    success: string
+  }
 }
 
-export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
+export function useWithdraw({ onError, onSuccess, messages }: useWithdrawStateProps) {
   const [status, setStatus] = useState('')
   const { approve } = useApproveToken()
   const { writeContractAsync } = useWriteContract()
@@ -32,7 +38,7 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
 
     try {
       // 1. Approve token hash to spend with the vault contract
-      setStatus('Approving token...')
+      setStatus(messages.approve)
 
       const approveHash = await approve({ amount, tokenAddress, spenderAddress })
 
@@ -42,7 +48,7 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
       })
 
       // 2. Simulate transaction to verify errors
-      setStatus('Simulating Withdraw...')
+      setStatus(messages.simulate)
       const simulation = await simulateContract(wagmiAppConfig, {
         ...configParams,
         functionName: 'withdraw',
@@ -50,7 +56,7 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
       })
 
       // 3. Wait transaction to be confirmed
-      setStatus('Withdrawing...')
+      setStatus(messages.withdraw)
       const txHash = await writeContractAsync(simulation.request)
 
       await waitForTransactionReceipt(wagmiAppConfig, {
@@ -58,7 +64,7 @@ export function useWithdraw({ onError, onSuccess }: useWithdrawStateProps) {
         chainId: sepolia.id,
       })
 
-      setStatus('Withdraw made successfully')
+      setStatus(messages.success)
       onSuccess?.()
       setTimeout(() => {
         setStatus('')

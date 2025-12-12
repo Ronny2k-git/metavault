@@ -19,6 +19,13 @@ import koCreate from '@/locales/ko/create.json'
 import ptCreate from '@/locales/pt/create.json'
 import zhCnCreate from '@/locales/zh-CN/create.json'
 
+// Profile Page: 3 Pages
+import enProfile from '@/locales/en/profile.json'
+import esProfile from '@/locales/es/profile.json'
+import koProfile from '@/locales/ko/profile.json'
+import ptProfile from '@/locales/pt/profile.json'
+import zhCnProfile from '@/locales/zh-CN/profile.json'
+
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
@@ -27,11 +34,11 @@ i18n.use(initReactI18next).init({
   lng: 'en',
   interpolation: { escapeValue: false },
   resources: {
-    en: { global: enGlobal, home: enHome, create: enCreate },
-    es: { global: esGlobal, home: esHome, create: esCreate },
-    ko: { global: koGlobal, home: koHome, create: koCreate },
-    pt: { global: ptGlobal, home: ptHome, create: ptCreate },
-    'zh-CN': { global: zhCnGlobal, home: zhCnHome, create: zhCnCreate },
+    en: { global: enGlobal, home: enHome, create: enCreate, profile: enProfile },
+    es: { global: esGlobal, home: esHome, create: esCreate, profile: esProfile },
+    ko: { global: koGlobal, home: koHome, create: koCreate, profile: koProfile },
+    pt: { global: ptGlobal, home: ptHome, create: ptCreate, profile: ptProfile },
+    'zh-CN': { global: zhCnGlobal, home: zhCnHome, create: zhCnCreate, profile: zhCnProfile },
   },
 })
 

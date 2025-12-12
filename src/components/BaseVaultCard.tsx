@@ -1,7 +1,7 @@
 import type { VaultDataFormType } from '@/modules/create/schemas/VaultDataFormSchema'
 import { CountDownClock } from '@/modules/global/components'
 import type { vaultStatus } from '@/modules/global/types'
-import { formatDate, formatNumber } from '@/modules/global/utils'
+import { formatDate, formatNumber, formatToCompactIntl } from '@/modules/global/utils'
 import { Card, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
@@ -98,7 +98,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>{t('minDeposit')}:</h3>
-            <div className="text-indigo-300">{data.minDeposit || 0}</div>
+            <div className="text-indigo-300">{formatToCompactIntl(Number(data.minDeposit || 0))}</div>
           </div>
           <div className="flex gap-1">
             <h3>{t('start')}:</h3>
@@ -108,7 +108,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
         <div className="flex justify-between">
           <div className="flex gap-1">
             <h3>{t('maxDeposit')}:</h3>
-            <div className="text-indigo-300">{formatNumber(Number(data.maxDeposit)) || 0}</div>
+            <div className="text-indigo-300">{formatToCompactIntl(Number(data.maxDeposit)) || 0}</div>
           </div>
 
           <div className="flex gap-1">

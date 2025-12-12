@@ -134,7 +134,46 @@
     "success": "Vault criado!",
     "error": "Erro ao criar o vault"
   }
-}
+},
 
+"emptyBanner": {
+    "userVaults": {
+      "live": {
+        "message": "Nenhum Vault ativo encontrado",
+        "subMessage": "Por favor, verifique seus filtros ou conecte sua carteira",
+        "buttonLabel": "Crie seu Vault"
+      },
+      "toWithdraw": {
+        "message": "Nenhum Vault para saque encontrado",
+        "subMessage": "Por favor, verifique seus filtros ou conecte sua carteira",
+        "buttonLabel": "Crie seu Vault"
+      },
+      "completed": {
+        "message": "Nenhum Vault concluído encontrado",
+        "subMessage": "Por favor, verifique seus filtros ou conecte sua carteira",
+        "buttonLabel": "Crie seu Vault"
+      }
+    },
+
+    "operation": {
+      "deposit": {
+        "subMessage": "Nenhum vault encontrado. Tente conectar sua carteira ou criar um"
+      },
+      "withdraw": {
+        "subMessage": "Nenhum vault encontrado. Tente conectar sua carteira ou depositar em um"
+      },
+      "transactions": {
+        "message": "Nenhuma transação encontrada",
+        "subMessage": "Por favor, deposite ou saque em um vault, verifique seus filtros ou conecte sua carteira",
+        "buttonLabel": "Crie seu Vault"
+      }
+    },
+
+    "editProfile": {
+      "message": "Nenhum dado de perfil encontrado",
+      "subMessage": "Crie seu primeiro vault para mostrar seus dados de perfil ou conecte sua carteira",
+      "buttonLabel": "Crie seu Vault"
+    }
+  }
 
 }

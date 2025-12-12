@@ -1,0 +1,51 @@
+{
+  "cardProfile": {},
+
+  "tabs": {},
+
+  "userVaults": {
+    "heading": {
+      "live": {
+        "title": "Vaults Ativos",
+        "subtitle": "Para depositar em vaults ativos, vá para a aba Trades.",
+        "info": "Total de Vaults Ativos"
+      },
+      "toWithdraw": {
+        "title": "Vaults para Saque",
+        "subtitle": "Seus vaults concluídos que possuem algum valor disponível para saque",
+        "info": "Total de Vaults para Saque"
+      },
+      "completed": {
+        "title": "Vaults Concluídos",
+        "subtitle": "Seus vaults concluídos sem ações pendentes",
+        "info": "Total de Vaults Concluídos"
+      }
+    },
+
+    "inputs": {
+      "info": {
+        "label": "Buscar Vault",
+        "placeholder": "Busque seus vaults por endereço, nome, criador e nome da chain."
+      }
+    }
+  },
+
+  "operation": {
+    "heading": {},
+
+    "operations": {
+      "deposit": "Depósito",
+      "withdraw": "Saque"
+    },
+
+    "transactions": {}
+  },
+
+  "editProfile": {
+    "heading": {},
+
+    "inputs": {},
+
+    "buttons": {}
+  }
+}
