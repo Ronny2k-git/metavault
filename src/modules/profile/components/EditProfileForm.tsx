@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import { useEditUserProfile } from '../hooks/useEditUserProfile'
 
@@ -14,6 +15,7 @@ export function EditProfileForm() {
   const { address } = useAccount()
   const { data: userProfileData } = useGetUserProfileData(address!)
   const editUserProfile = useEditUserProfile()
+  const { t } = useTranslation('global')
 
   const profileData = userProfileData?.[0]
 
@@ -62,9 +64,9 @@ export function EditProfileForm() {
         {!userProfileData?.length ? (
           <EmptyBanner
             className="text-center"
-            message="No profile data found"
-            subMessage="Create your first vault to show your profile data or connect your wallet"
-            buttonLabel="Create your vault"
+            message={t('emptyBanner.editProfile.message')}
+            subMessage={t('emptyBanner.editProfile.subMessage')}
+            buttonLabel={t('emptyBanner.editProfile.buttonLabel')}
             icon={<Icon className="!text-7xl">sentiment_dissatisfied</Icon>}
           />
         ) : (

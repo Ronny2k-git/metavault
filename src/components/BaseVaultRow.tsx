@@ -6,6 +6,7 @@ interface BaseVaultRowProps extends Omit<VaultDataFormType, 'salt' | 'assetToken
   status: vaultStatus
   endDate: string
   tx: string
+  buttonLabel: string
   children?: React.ReactNode
 }
 
@@ -20,7 +21,7 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
               <div>{data.vaultName}</div>
               <div className="flex gap-2 items-center mt-1">
                 <img src={data.logo} className="size-5 rounded-full" />
-                <div className="text-xs">Sepolia</div>
+                <div className="text-xs">{data.network}</div>
               </div>
             </div>
           </div>
@@ -32,7 +33,7 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
           <div className="w-24 mr-4">
             <a href={`https://sepolia.etherscan.io/address/${data.tx}`}>
               <Button className="max-w-20 mx-6 border border-violet-500" size="xs">
-                view
+                {data.buttonLabel}
               </Button>
             </a>
           </div>

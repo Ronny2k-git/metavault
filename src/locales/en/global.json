@@ -104,11 +104,25 @@
      "desc": "Vault Description"
     },
 
+    "table": {
+      "header": {
+        "name": "Project Name",
+        "minDeposit": "Min deposit",
+        "maxDeposit": "Max deposit",
+        "end": "End Date",
+        "view": "View"
+      },
+     "baseVaultRow": {
+     "network": "Sepolia",
+     "buttonLabel": "View"
+    }
+    },
+
     "cardDialogCreate": {
       "title": "Confirm your Creation",
       "subtitle": "You Create",
+      "valueTitle": "Value",
       "messages": {
-        "wrongNetwork": "Switch your wallet to Sepolia testnet",
         "simulate": "Simulate",
         "simulated": "Simulated Successfully",
         "simulatePending": "Simulating Contract",
@@ -117,6 +131,46 @@
         "wait": "Waiting For Tx Receipt",
         "success": "Vault Created!",
         "error": "Error creating vault"
+      }
+    },
+
+    "emptyBanner": {
+      "userVaults": {
+      "live": {
+       "message": "No Live Vaults found",
+        "subMessage": "Please, check your filters or Connect your wallet",
+        "buttonLabel": "Create Your Vault"
+      },
+      "toWithdraw": {
+        "message": "No Vaults to Withdraw found",
+        "subMessage": "Please, check your filters or connect your wallet",
+        "buttonLabel": "Create Your Vault"
+      },
+      "completed": {
+        "message": "No Completed Vaults found",
+        "subMessage": "Please, check your filters or connect your wallet",
+        "buttonLabel": "Create Your Vault"
+      }
+      },
+
+      "operation": {
+        "deposit": {
+          "subMessage": "No vaults found. Try connecting your wallet or creating one"
+        },
+        "withdraw": {
+          "subMessage": "No vaults found. Try connecting your wallet or depositing into one."
+        },
+        "transactions": {
+          "message": "No Transactions found",
+          "subMessage": "Please, deposit or withdraw in an vault, check your filters or connect your wallet",
+          "buttonLabel": "Create Your Vault"
+        }
+      },
+
+      "editProfile": {
+         "message": "No profile data found",
+         "subMessage": "Create your first vault to show your profile data or connect your wallet",
+         "buttonLabel": "Create Your Vault"
       }
     }
 }

@@ -3,6 +3,7 @@ import { Divider, EmptyBanner, Icon, Input, Modal } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { useState } from 'react'
 import type { UseFormRegister, UseFormStateReturn } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { useAccount } from 'wagmi'
 import { useGetAllVaultsCreated } from '../hooks'
@@ -38,6 +39,7 @@ export function WithdrawCard({
   const [openModal, setOpenModal] = useState(false)
   const { address } = useAccount()
   const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
+  const { t } = useTranslation('global')
 
   // Filter the live vaults that have at least some value deposited to withdraw
   const activeVaultsToWithdraw = availableVaults?.items
@@ -74,7 +76,7 @@ export function WithdrawCard({
           {isLoading || !address || !activeVaultsToWithdraw?.length ? (
             <EmptyBanner
               className="h-40 p-4 text-center"
-              subMessage="No vaults found. Try connecting your wallet or depositing into one."
+              subMessage={t('emptyBanner.operation.withdraw.subMessage')}
               message=""
               icon={<Icon className="!text-5xl">sentiment_dissatisfied</Icon>}
             />

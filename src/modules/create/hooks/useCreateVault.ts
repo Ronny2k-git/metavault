@@ -24,24 +24,20 @@ export type useCreateVaultArgs = {
   onStatusChange: (status: 'openModal' | 'closeModal' | null) => void
   messages: {
     connectWallet: string
-
     simulate: string
-    simulation: string
     simulatePending: string
     simulationSuccess: string
-
     confirm: string
     confirmPending: string
     wait: string
-
     vaultCreated: string
   }
 }
 
 export function useCreateVault({ onError, onSuccess, onStatusChange, messages }: useCreateVaultArgs) {
   const initialCreateSteps = {
-    simulation: { label: 'Simulate ', status: 'pending' },
-    'confirm-create': { label: 'Confirm Create', status: 'idle' },
+    simulation: { label: messages.simulate, status: 'pending' },
+    'confirm-create': { label: messages.confirm, status: 'idle' },
   } as const
 
   const { writeContractAsync } = useWriteContract()
@@ -70,7 +66,7 @@ export function useCreateVault({ onError, onSuccess, onStatusChange, messages }:
 
     try {
       if (!isConnected) {
-        toast.error('Please connect your wallet')
+        toast.error(messages.connectWallet)
         return
       }
 
@@ -78,24 +74,24 @@ export function useCreateVault({ onError, onSuccess, onStatusChange, messages }:
       steps.init()
 
       // 1. Simulate transaction to avoid errors
-      steps.update({ id: 'simulation', label: 'Simulating Contract', status: 'pending' })
+      steps.update({ id: 'simulation', label: messages.simulatePending, status: 'pending' })
       await new Promise((resolve) => setTimeout(resolve, 2_000))
       const simulation = await simulateContract(wagmiAppConfig, configParams)
       const newContractAddress = simulation.result
-      steps.update({ id: 'simulation', label: 'Simulated Successfully', status: 'success' })
+      steps.update({ id: 'simulation', label: messages.simulationSuccess, status: 'success' })
 
       // 2. Wait for user confirm the transaction
-      steps.update({ id: 'confirm-create', label: 'Confirm in your wallet', status: 'pending' })
+      steps.update({ id: 'confirm-create', label: messages.confirmPending, status: 'pending' })
       const tx = await writeContractAsync(simulation.request)
 
       // 3. Wait transaction to be confirmed
-      steps.update({ id: 'confirm-create', label: 'Waiting For Tx Receipt', status: 'pending' })
+      steps.update({ id: 'confirm-create', label: messages.wait, status: 'pending' })
       await waitForTransactionReceipt(wagmiAppConfig, {
         hash: tx,
         chainId: sepolia.id,
       })
 
-      steps.update({ id: 'confirm-create', label: 'Vault Created!', status: 'success' })
+      steps.update({ id: 'confirm-create', label: messages.vaultCreated, status: 'success' })
       await new Promise((resolve) => setTimeout(resolve, 1_000))
       onSuccess?.()
 

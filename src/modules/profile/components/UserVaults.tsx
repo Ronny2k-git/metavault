@@ -7,6 +7,7 @@ import { Divider, EmptyBanner, Icon, Input, Spinner } from '@/ui/components'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 import { Address } from 'viem'
 import { sepolia } from 'viem/chains'
 import { useAccount } from 'wagmi'
@@ -25,6 +26,7 @@ export function UserVaults() {
   const { address } = useAccount()
   const saveSwap = useSaveUserSwap()
   const queryClient = useQueryClient()
+  const { t } = useTranslation('global')
 
   // Vault data
   const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
@@ -157,9 +159,9 @@ export function UserVaults() {
           <EmptyBanner
             className="mt-10 text-center"
             icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-            message="No Live Vaults found"
-            subMessage="Please, check your filters or Connect your wallet"
-            buttonLabel="Create Your Vault"
+            message={t('emptyBanner.userVaults.live.message')}
+            subMessage={t('emptyBanner.userVaults.live.subMessage')}
+            buttonLabel={t('emptyBanner.userVaults.live.buttonLabel')}
           />
         )}
         {isLoadingLive ? (
@@ -235,9 +237,9 @@ export function UserVaults() {
           <EmptyBanner
             className="mt-10 text-center"
             icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-            message="No Vaults to Withdraw found"
-            subMessage="Please, check your filters or Connect your wallet"
-            buttonLabel="Create Your Vault"
+            message={t('emptyBanner.userVaults.toWithdraw.message')}
+            subMessage={t('emptyBanner.userVaults.toWithdraw.subMessage')}
+            buttonLabel={t('emptyBanner.userVaults.toWithdraw.buttonLabel')}
           />
         )}
         {isLoadingCompleted ? (
@@ -321,9 +323,9 @@ export function UserVaults() {
           <EmptyBanner
             className="mt-10 text-center"
             icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-            message="No Completed Vaults found"
-            subMessage="Please, check your filters or Connect your wallet"
-            buttonLabel="Create Your Vault"
+            message={t('emptyBanner.userVaults.completed.message')}
+            subMessage={t('emptyBanner.userVaults.completed.subMessage')}
+            buttonLabel={t('emptyBanner.userVaults.completed.buttonLabel')}
           />
         )}
         {isLoadingCompleted ? (
@@ -339,11 +341,11 @@ export function UserVaults() {
                 <tr className="[&_td]:text-nowrap ">
                   <td colSpan={5} className="p-0">
                     <div className="flex items-center h-10 px-2">
-                      <div className="flex-1 pl-30">Project Name</div>
-                      <div className="w-32 text-center">Min deposit</div>
-                      <div className="w-32 text-center">Max deposit</div>
-                      <div className="w-32 text-center">End Date</div>
-                      <div className="w-24 text-center">View</div>
+                      <div className="flex-1 pl-30">{t('table.header.name')}</div>
+                      <div className="w-32 text-center">{t('table.header.minDeposit')}</div>
+                      <div className="w-32 text-center">{t('table.header.maxDeposit')}</div>
+                      <div className="w-32 text-center">{t('table.header.end')}</div>
+                      <div className="w-24 text-center">{t('table.header.view')}</div>
                     </div>
                   </td>
                 </tr>
@@ -355,7 +357,7 @@ export function UserVaults() {
                     banner={vault.banner}
                     logo={vault.logo}
                     vaultName={vault.vaultName}
-                    network={'Sepolia'}
+                    network={t('table.baseVaultRow.network')}
                     minDeposit={vault.minDeposit}
                     maxDeposit={formatNumber(Number(vault.maxDeposit))}
                     endDate={formatDate(Number(vault.endDate))}
@@ -364,6 +366,7 @@ export function UserVaults() {
                       startDate: String(vault.startDate),
                       endDate: String(vault.endDate),
                     })}
+                    buttonLabel={t('table.baseVaultRow.buttonLabel')}
                   />
                 ))}
               </tbody>

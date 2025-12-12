@@ -106,17 +106,31 @@
   "desc": "Descripción de la Vault"
 },
 
+"table": {
+    "header": {
+      "name": "Nombre del Proyecto",
+      "minDeposit": "Depósito mín",
+      "maxDeposit": "Depósito máx",
+      "end": "Fecha de finalización",
+      "view": "Ver"
+    },
+    "baseVaultRow": {
+      "network": "Sepolia",
+      "buttonLabel": "Ver"
+    }
+  },
+
 "cardDialogCreate": {
   "title": "Tu Creación",
   "subtitle": "Confirma tu Creación",
+  "valueTitle": "Valor",
   "messages": {
-    "wrongNetwork": "Red incorrecta",
     "simulate": "Simular",
     "simulated": "Simulado con éxito",
     "simulatePending": "Simulando contrato",
     "confirm": "Confirmar creación",
     "confirmPending": "Confirma en tu cartera",
-    "wait": "Esperando recibo de la transacción",
+    "wait": "Esperando el recibo de la transacción",
     "success": "¡Vault creado!",
     "error": "Error al crear el vault"
   }

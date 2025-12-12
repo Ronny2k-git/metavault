@@ -106,11 +106,25 @@
   "desc": "Descrição da Vault"
 },
 
+"table": {
+    "header": {
+      "name": "Nome do Projeto",
+      "minDeposit": "Depósito mín",
+      "maxDeposit": "Depósito máx",
+      "end": "Data de término",
+      "view": "Ver"
+    },
+    "baseVaultRow": {
+      "network": "Sepolia",
+      "buttonLabel": "Ver"
+    }
+  },
+
 "cardDialogCreate": {
   "title": "Sua Criação",
   "subtitle": "Confirme sua Criação",
+  "valueTitle": "Valor",
   "messages": {
-    "wrongNetwork": "Rede incorreta",
     "simulate": "Simular",
     "simulated": "Simulado com sucesso",
     "simulatePending": "Simulando contrato",

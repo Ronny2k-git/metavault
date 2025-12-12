@@ -7,6 +7,7 @@ export interface TransactionCardProps extends Omit<ModalProps, 'title' | 'trigge
   chainName?: string
   info?: string
   vaultLogo?: string
+  valueTitle?: string
   value?: number
   tokenSymbol?: string
   children?: React.ReactNode
@@ -20,6 +21,7 @@ export function TransactionCardDialog({
   chainName,
   info,
   vaultLogo,
+  valueTitle,
   value,
   tokenSymbol,
   children,
@@ -44,7 +46,7 @@ export function TransactionCardDialog({
           </div>
           {value && (
             <div className="flex items-center gap-2 text-indigo-300 text-base">
-              Value: <span className="text-white ">{value}</span>
+              {valueTitle}: <span className="text-white ">{value}</span>
               <p>{tokenSymbol}</p>
             </div>
           )}

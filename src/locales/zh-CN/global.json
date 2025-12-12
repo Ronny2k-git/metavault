@@ -106,11 +106,25 @@
   "desc": "Vault 描述"
 },
 
+"table": {
+    "header": {
+      "name": "项目名称",
+      "minDeposit": "最低存款",
+      "maxDeposit": "最高存款",
+      "end": "结束日期",
+      "view": "查看"
+    },
+    "baseVaultRow": {
+      "network": "Sepolia",
+      "buttonLabel": "查看"
+    }
+  },
+
 "cardDialogCreate": {
   "title": "你的创建",
   "subtitle": "确认你的创建",
+  "valueTitle": "数值",
   "messages": {
-    "wrongNetwork": "网络错误",
     "simulate": "模拟",
     "simulated": "模拟成功",
     "simulatePending": "正在模拟合约",

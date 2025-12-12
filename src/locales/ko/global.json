@@ -106,12 +106,26 @@
   "desc": "Vault 설명"
 },
 
+"table": {
+    "header": {
+      "name": "프로젝트 이름",
+      "minDeposit": "최소 예치금",
+      "maxDeposit": "최대 예치금",
+      "end": "종료 날짜",
+      "view": "보기"
+    },
+    "baseVaultRow": {
+      "network": "Sepolia",
+      "buttonLabel": "보기"
+    }
+  },
+
 "cardDialogCreate": {
   "title": "생성 작업",
   "subtitle": "생성을 확인하세요",
+  "valueTitle": "값",
   "messages": {
-    "wrongNetwork": "잘못된 네트워크입니다",
-    "simulate": "시뮬레이션",
+   "simulate": "시뮬레이션",
     "simulated": "성공적으로 시뮬레이션됨",
     "simulatePending": "컨트랙트 시뮬레이션 중",
     "confirm": "생성 확인",

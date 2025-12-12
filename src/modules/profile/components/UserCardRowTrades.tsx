@@ -2,6 +2,7 @@ import { Pagination } from '@/modules/global/components/Pagination'
 import { useDebounce } from '@/modules/global/hooks'
 import { formatBigIntToNumber, formatDate, formatNumber, toUpperCaseFirst } from '@/modules/global/utils'
 import { Card, EmptyBanner, Icon } from '@/ui/components'
+import { useTranslation } from 'react-i18next'
 import { twMerge } from 'tailwind-merge'
 import { useAccount } from 'wagmi'
 import { useGetAllUserTransactions } from '../hooks'
@@ -28,6 +29,7 @@ export function UserCardRowTrades({
 }: UserCardRowTradesProps) {
   const { address } = useAccount()
   const debouncedValue = useDebounce(searchTransaction, 300)
+  const { t: translate } = useTranslation('global', { keyPrefix: 'emptyBanner.operation.transactions' })
 
   // Filter the user recent transactions by type and tx hash.
   const filteredTransactions = userTransactions?.items.filter((t) => {
@@ -41,9 +43,9 @@ export function UserCardRowTrades({
       {(!address || !filteredTransactions?.length) && !isLoading ? (
         <EmptyBanner
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-          message="No Transactions found"
-          subMessage="Please, deposit or withdraw in an vault, check your filters or connect your wallet"
-          buttonLabel="Create a vault"
+          message={translate('message')}
+          subMessage={translate('subMessage')}
+          buttonLabel={translate('buttonLabel')}
         />
       ) : (
         <Card

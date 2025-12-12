@@ -1,7 +1,6 @@
 import { useApproveToken } from '@/modules/global/hooks'
 import { vaultInteractionAbi } from '@/modules/global/utils/vaultInteractionAbi'
 import { wagmiAppConfig } from '@/modules/wallet-connection/wagmi'
-import console from 'console'
 import { useState } from 'react'
 import type { Address } from 'viem'
 import { sepolia } from 'viem/chains'

@@ -49,9 +49,8 @@ export function ConfirmAndCreateForm() {
 
   const create = useCreateVault({
     messages: {
-      connectWallet: t('globalMessages.connectWallet'),
+      connectWallet: t2('globalMessages.connectWallet'),
       simulate: t3('simulate'),
-      simulation: t3('simulation'),
       simulatePending: t3('simulatePending'),
       simulationSuccess: t3('simulated'),
       confirm: t3('confirm'),
@@ -69,7 +68,7 @@ export function ConfirmAndCreateForm() {
     },
     onError: () => {
       setIsModalOpen(false)
-      toast.error(t2('cardDialogCreate.messages.error'))
+      toast.error(t3('error'))
     },
   })
 
@@ -144,14 +143,38 @@ export function ConfirmAndCreateForm() {
     navigate({ from: '/profile' })
   }
 
-  // TO DO LATER
+  {
+    /*
 
-  // 1 FINISH TO IMPLEMENT THE TRANSLATOR FOR CONFIRM AND CREATE STEP
-  //   "CARD DIALOG" AND 'ERRORS'
+FILES TO TRANSLATE LATER
 
-  // 2 IMPLEMENT FOR ALL REMAINING PAGES (PROFILE: 3 TABS)
+1 CREATION PAGE: {
+1.1 ConfirmAndCreateFormSchema.ts
+1.2 userProfileDataFormSchema.ts
+1.3 UserVaultDataFormSchema.ts
+1.4 VaultDataFormSchema.ts
+}
 
-  // 3
+2 PROFILE PAGE: {
+2.1 BaseVaultRow.tsx
+2.2 Profile.tsx
+2.3 useDeposit.ts (transaction status)
+2.4 useValidateTransactions.ts (messages)
+2.5 useWithdraw.ts (transaction status)
+2.6 operationSchema.ts (validations)
+2.7 DepositCard.tsx
+2.8 WithdrawCard.tsx
+2.9 EditProfileForm.tsx
+2.10 Operation.tsx
+2.11 UserCardRowTrades.tsx
+2.12 UserVaults.tsx
+}
+
+3 GLOBAL: {
+3.1 NotFoundPage.tsx
+}   
+    */
+  }
 
   return (
     <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-4.5">
@@ -233,6 +256,7 @@ export function ConfirmAndCreateForm() {
         vaultLogo={allFormData.logo}
         isOpen={isModalOpen}
         onOpenChange={setIsModalOpen}
+        valueTitle={t2('cardDialogCreate.valueTitle')}
       >
         {create.steps && <Stepper steps={create.steps} />}
       </TransactionCardDialog>
