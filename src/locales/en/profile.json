@@ -34,6 +34,56 @@
       }
     },
 
+    "inputs": {
+      "info": {
+        "label": "Search Vault",
+        "placeholder": "Search your vaults by address,name, creator and chain name."
+       }
+    }
+    },
+
+    "operation": {
+    "heading": {
+      "title": "Deposit or Withdraw",
+      "subtitle": "(anytime, anywhere)",
+      "warning": "Deposits are only allowed in live vaults",
+      "info": "Deposit or withdraw in a vault on sepolia ethereum network anytime, anywhere"
+    },
+
+    "cardOperations": {
+     "deposit": {
+      "title": "Deposit",
+      "test1": "",
+      "test2": ""
+     },
+     "withdraw": {
+      "title": "Withdraw",
+      "test1": "",
+      "test2": ""
+     }
+    },
+
+    "transactions": {
+      "heading": {
+        "title": "User Transactions",
+        "info": "Total User Transactions"
+      },
+
+      "input": {
+      "info": {
+        "label": "Search Transaction",
+        "placeholder": "Search your transactions by type or tx hash."
+       }
+    }
+    }
+    },
+
+    "editProfile": {
+    "heading": {},
+    "inputs": {},
+    "buttons": {}
+    },
+
     "status": {
       "deposit": {
        "approve": "Approving token...",
@@ -48,39 +98,14 @@
        "redeem": "Withdrawing...",
        "wait": "Waiting...",
        "success": "Withdraw made successfully"    
+      },
+      "validateTransaction": {
+        "select": "Select a vault first",
+        "balance": "Insufficient token balance",
+        "minDeposit": "Amount is lower than the minimum deposit",
+        "maxDeposit": "Amount exceeds the maximum deposit",
+        "withdraw": "Amount exceeds the deposited vaut value"
       }
-    
-    },
-
-    "inputs": {
-      "info": {
-        "label": "Search Vault",
-        "placeholder": "Search your vaults by address,name, creator and chain name."
-       }
-    }
-    },
-
-    "operation": {
-
-     "heading": {},
-
-    "operations": {
-     "deposit": "",
-     "withdraw": ""
-    },
-
-    "transactions": {}
-    
-    },
-
-    "editProfile": {
-
-     "heading": {},
-
-    "inputs": {},
-
-    "buttons": {}
-    
     }
     
 }

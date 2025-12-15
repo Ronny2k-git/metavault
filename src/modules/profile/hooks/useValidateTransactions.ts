@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { baseVaultType } from '../components'
 
 export type useValidateTransactionsProps = {
@@ -7,29 +8,31 @@ export type useValidateTransactionsProps = {
 }
 
 export function useValidateTransactions({ selectedVault, tokenBalance, totalDeposited }: useValidateTransactionsProps) {
+  const { t } = useTranslation('profile', { keyPrefix: 'status' })
+
   const validate = (amount: number, type: 'deposit' | 'withdraw') => {
-    if (!selectedVault) return 'Select a vault first'
+    if (!selectedVault) return t('validateTransaction.select')
 
     const rules = [
       {
         invalid: type === 'deposit' && amount > tokenBalance,
-        message: 'Insufficient token balance',
+        message: t('validateTransaction.balance'),
       },
       {
         invalid: type === 'deposit' && amount + totalDeposited > Number(selectedVault.maxDeposit),
-        message: `Amount exceeds the maximum deposit ${amount}+${totalDeposited}`,
+        message: `${t('validateTransaction.maxDeposit')} ${amount} + ${totalDeposited}`,
       },
       {
         invalid: type === 'deposit' && amount < Number(selectedVault?.minDeposit),
-        message: 'Amount is lower than the minimum deposit',
+        message: t('validateTransaction.minDeposit'),
       },
       {
         invalid: type === 'deposit' && amount > Number(selectedVault?.maxDeposit),
-        message: 'Amount exceeds the maximum deposit',
+        message: t('validateTransaction.maxDeposit'),
       },
       {
         invalid: type === 'withdraw' && amount > totalDeposited,
-        message: 'Amount exceeds the deposited vaut value',
+        message: t('validateTransaction.withdraw'),
       },
     ]
 

@@ -34,14 +34,6 @@
       }
     },
 
-    "status": {
-    "approve": "Aprovando token...",
-    "simulate": "Simulando saque...",
-    "withdraw": "Sacando...",
-    "wait": "Aguardando...",
-    "success": "Saque realizado com sucesso"
-  },
-
     "inputs": {
       "info": {
         "label": "Buscar Vault",
@@ -67,5 +59,29 @@
     "inputs": {},
 
     "buttons": {}
+  },
+
+  "status": {
+    "deposit": {
+      "approve": "Aprovando token...",
+      "simulate": "Simulando depósito...",
+      "store": "Depositando...",
+      "wait": "Aguardando...",
+      "success": "Depósito realizado com sucesso"
+    },
+    "withdraw": {
+      "approve": "Aprovando token...",
+      "simulate": "Simulando saque...",
+      "redeem": "Sacando...",
+      "wait": "Aguardando...",
+      "success": "Saque realizado com sucesso"
+    },
+    "validateTransaction": {
+      "select": "Selecione um vault primeiro",
+      "balance": "Saldo de token insuficiente",
+      "minDeposit": "O valor é menor que o depósito mínimo",
+      "maxDeposit": "O valor excede o depósito máximo",
+      "withdraw": "O valor excede o total depositado no vault"
+    }
   }
 }

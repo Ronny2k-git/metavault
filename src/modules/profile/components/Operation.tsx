@@ -30,7 +30,8 @@ export function Operation() {
   const queryClient = useQueryClient()
   const { data: userTransactions, isLoading } = useGetAllUserTransactions({ limit: 6, page: transactionsPage })
   const tabList = OPERATION_TAB_INFO
-  const { t: t2 } = useTranslation('profile', { keyPrefix: 'userVaults' })
+  const { t } = useTranslation('profile')
+  const { t: t2 } = useTranslation('profile', { keyPrefix: 'operation' })
 
   // Hooks used to get the token and vault values
   const { getTokenDecimal } = useGetTokenDecimals()
@@ -54,10 +55,10 @@ export function Operation() {
   const saveSwap = useSaveUserSwap()
   const { deposit, status: depositStatus } = useDeposit({
     messages: {
-      approve: t2('status.deposit.approve'),
-      simulate: t2('status.deposit.simulate'),
-      deposit: t2('status.deposit.store'),
-      success: t2('status.deposit.success'),
+      approve: t('status.deposit.approve'),
+      simulate: t('status.deposit.simulate'),
+      deposit: t('status.deposit.store'),
+      success: t('status.deposit.success'),
     },
     onSuccess: () => {
       refetchVaultBalance()
@@ -67,10 +68,10 @@ export function Operation() {
   })
   const { withdraw, status: withdrawStatus } = useWithdraw({
     messages: {
-      approve: t2('status.withdraw.approve'),
-      simulate: t2('status.withdraw.simulate'),
-      withdraw: t2('status.withdraw.redeem'),
-      success: t2('status.withdraw.success'),
+      approve: t('status.withdraw.approve'),
+      simulate: t('status.withdraw.simulate'),
+      withdraw: t('status.withdraw.redeem'),
+      success: t('status.withdraw.success'),
     },
     onSuccess: () => {
       refetchVaultBalance()

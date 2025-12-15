@@ -28,6 +28,7 @@ export function UserVaults() {
   const queryClient = useQueryClient()
   const { t } = useTranslation('global')
   const { t: t2 } = useTranslation('profile', { keyPrefix: 'userVaults' })
+  const { t: t3 } = useTranslation('profile')
 
   // Vault data
   const { data: vaultBalance } = useGetVaultBalance(selectedVault?.address as Address)
@@ -53,10 +54,10 @@ export function UserVaults() {
   // Withdraw hook
   const { withdraw, status: withdrawStatus } = useWithdraw({
     messages: {
-      approve: t2('status.withdraw.approve'),
-      simulate: t2('status.withdraw.simulate'),
-      withdraw: t2('status.withdraw.redeem'),
-      success: t2('status.withdraw.success'),
+      approve: t3('status.withdraw.approve'),
+      simulate: t3('status.withdraw.simulate'),
+      withdraw: t3('status.withdraw.redeem'),
+      success: t3('status.withdraw.success'),
     },
     onSuccess: () => {
       refetchCompletedVaults()
@@ -128,7 +129,7 @@ export function UserVaults() {
       },
     })
 
-    toast.success(t2('status.success'), { duration: 4000 })
+    toast.success(t3('status.success'), { duration: 4000 })
 
     // 4. Refetch the completed vaults and user transactions
     await Promise.all([

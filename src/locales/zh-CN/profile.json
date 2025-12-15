@@ -34,14 +34,6 @@
       }
     },
 
-    "status": {
-    "approve": "正在授权代币...",
-    "simulate": "正在模拟提现...",
-    "withdraw": "正在提现...",
-    "wait": "请稍候...",
-    "success": "提现成功完成"
-  },
-
     "inputs": {
       "info": {
         "label": "搜索金库",
@@ -67,5 +59,29 @@
     "inputs": {},
 
     "buttons": {}
+  },
+
+  "status": {
+    "deposit": {
+      "approve": "正在批准代币...",
+      "simulate": "正在模拟存款...",
+      "store": "正在存款...",
+      "wait": "等待中...",
+      "success": "存款成功"
+    },
+    "withdraw": {
+      "approve": "正在批准代币...",
+      "simulate": "正在模拟取款...",
+      "redeem": "正在取款...",
+      "wait": "等待中...",
+      "success": "取款成功"
+    },
+    "validateTransaction": {
+      "select": "请先选择一个 vault",
+      "balance": "代币余额不足",
+      "minDeposit": "金额低于最低存款额",
+      "maxDeposit": "金额超过最大存款额",
+      "withdraw": "金额超过 vault 中已存入的总额"
+    }
   }
 }

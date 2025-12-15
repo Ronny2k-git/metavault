@@ -48,7 +48,6 @@ function Profile() {
   }
   
   2 PROFILE PAGE: {
-  2.4 useValidateTransactions.ts (messages)
   2.6 operationSchema.ts (validations)
   2.7 DepositCard.tsx
   2.8 WithdrawCard.tsx
