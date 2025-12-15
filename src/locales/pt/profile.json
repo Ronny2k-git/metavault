@@ -1,7 +1,19 @@
 {
-  "cardProfile": {},
+  "cardProfile": {
+        "": "",
+        "": "",
+        "": "",
+        "": "",
+        "": ""
+    },
 
-  "tabs": {},
+    "tabs": {
+        "": "",
+        "": "",
+        "": "",
+        "": "",
+        "": ""
+    },
 
   "userVaults": {
     "heading": {
@@ -21,6 +33,14 @@
         "info": "Total de Vaults Concluídos"
       }
     },
+
+    "status": {
+    "approve": "Aprovando token...",
+    "simulate": "Simulando saque...",
+    "withdraw": "Sacando...",
+    "wait": "Aguardando...",
+    "success": "Saque realizado com sucesso"
+  },
 
     "inputs": {
       "info": {

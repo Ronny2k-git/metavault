@@ -1,7 +1,19 @@
 {
-    "cardProfile": {},
+    "cardProfile": {
+        "": "",
+        "": "",
+        "": "",
+        "": "",
+        "": ""
+    },
 
-    "tabs": {},
+    "tabs": {
+        "": "",
+        "": "",
+        "": "",
+        "": "",
+        "": ""
+    },
 
     "userVaults": {
      "heading": {
@@ -23,12 +35,21 @@
     },
 
     "status": {
-      "approve": "Approving token...",
-      "simulate": "Simulating Withdraw...",
-      "withdraw": "Withdrawing...",
-      "wait": "Waiting...",
-      "success": "Withdraw made successfully"
-
+      "deposit": {
+       "approve": "Approving token...",
+       "simulate": "Simulating Deposit...",
+       "store": "Depositing...",
+       "wait": "Waiting...",
+       "success": "Deposit made successfully"
+      },
+      "withdraw": {
+       "approve": "Approving token...",
+       "simulate": "Simulating Withdraw...",
+       "redeem": "Withdrawing...",
+       "wait": "Waiting...",
+       "success": "Withdraw made successfully"    
+      }
+    
     },
 
     "inputs": {

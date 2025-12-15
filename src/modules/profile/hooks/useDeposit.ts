@@ -16,9 +16,15 @@ export type useDepositProps = {
 type useDepositStateProps = {
   onError?: VoidFunction
   onSuccess?: VoidFunction
+  messages: {
+    approve: string
+    simulate: string
+    deposit: string
+    success: string
+  }
 }
 
-export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
+export function useDeposit({ onError, onSuccess, messages }: useDepositStateProps) {
   const [status, setStatus] = useState('')
   const { approve } = useApproveToken()
   const { writeContractAsync } = useWriteContract()
@@ -32,7 +38,7 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
 
     try {
       // 1. Approve token hash to spend with the vault contract
-      setStatus('Approving token...')
+      setStatus(messages.approve)
       const approveHash = await approve({ amount, spenderAddress, tokenAddress })
 
       await waitForTransactionReceipt(wagmiAppConfig, {
@@ -40,14 +46,14 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
         chainId: sepolia.id,
       })
 
-      setStatus('Simulating Deposit...')
+      setStatus(messages.simulate)
       const simulation = await simulateContract(wagmiAppConfig, {
         ...configParams,
         functionName: 'deposit',
         args: [amount],
       })
 
-      setStatus('Depositing...')
+      setStatus(messages.deposit)
       const txHash = await writeContractAsync(simulation.request)
 
       await waitForTransactionReceipt(wagmiAppConfig, {
@@ -55,7 +61,7 @@ export function useDeposit({ onError, onSuccess }: useDepositStateProps) {
         chainId: sepolia.id,
       })
 
-      setStatus('Deposit made successfully')
+      setStatus(messages.success)
       onSuccess?.()
       setTimeout(() => {
         setStatus('')

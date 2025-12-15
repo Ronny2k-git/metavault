@@ -33,6 +33,36 @@ function Profile() {
   const tabList = PROFILE_TABS_INFO
   const profileData = userProfileData?.[0]
 
+  {
+    /*
+  
+  FILES TO TRANSLATE LATER
+  
+  SAVE LATER THE SELECTED LANGUAGE TO LOCAL STORAGE 
+  
+  1 CREATION PAGE: {
+  1.1 ConfirmAndCreateFormSchema.ts
+  1.2 userProfileDataFormSchema.ts
+  1.3 UserVaultDataFormSchema.ts
+  1.4 VaultDataFormSchema.ts
+  }
+  
+  2 PROFILE PAGE: {
+  2.4 useValidateTransactions.ts (messages)
+  2.6 operationSchema.ts (validations)
+  2.7 DepositCard.tsx
+  2.8 WithdrawCard.tsx
+  2.9 EditProfileForm.tsx
+  2.10 Operation.tsx
+  2.11 UserCardRowTrades.tsx
+  }
+  
+  3 GLOBAL: {
+  3.1 NotFoundPage.tsx
+  }   
+      */
+  }
+
   return (
     <div className="background-image page min-h-screen flex flex-col w-full items-center pb-10 text-white">
       <div className="w-full max-w-4xl">

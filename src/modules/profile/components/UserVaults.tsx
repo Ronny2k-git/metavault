@@ -53,10 +53,10 @@ export function UserVaults() {
   // Withdraw hook
   const { withdraw, status: withdrawStatus } = useWithdraw({
     messages: {
-      approve: t2('status.approve'),
-      simulate: t2('status.simulate'),
-      withdraw: t2('status.withdraw'),
-      success: t2('status.success'),
+      approve: t2('status.withdraw.approve'),
+      simulate: t2('status.withdraw.simulate'),
+      withdraw: t2('status.withdraw.redeem'),
+      success: t2('status.withdraw.success'),
     },
     onSuccess: () => {
       refetchCompletedVaults()

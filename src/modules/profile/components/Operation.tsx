@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import type { Address } from 'viem'
 import { formatUnits, parseUnits } from 'viem'
 import { useAccount } from 'wagmi'
@@ -29,6 +30,7 @@ export function Operation() {
   const queryClient = useQueryClient()
   const { data: userTransactions, isLoading } = useGetAllUserTransactions({ limit: 6, page: transactionsPage })
   const tabList = OPERATION_TAB_INFO
+  const { t: t2 } = useTranslation('profile', { keyPrefix: 'userVaults' })
 
   // Hooks used to get the token and vault values
   const { getTokenDecimal } = useGetTokenDecimals()
@@ -51,6 +53,12 @@ export function Operation() {
 
   const saveSwap = useSaveUserSwap()
   const { deposit, status: depositStatus } = useDeposit({
+    messages: {
+      approve: t2('status.deposit.approve'),
+      simulate: t2('status.deposit.simulate'),
+      deposit: t2('status.deposit.store'),
+      success: t2('status.deposit.success'),
+    },
     onSuccess: () => {
       refetchVaultBalance()
       refetchTokenBalance()
@@ -58,6 +66,12 @@ export function Operation() {
     },
   })
   const { withdraw, status: withdrawStatus } = useWithdraw({
+    messages: {
+      approve: t2('status.withdraw.approve'),
+      simulate: t2('status.withdraw.simulate'),
+      withdraw: t2('status.withdraw.redeem'),
+      success: t2('status.withdraw.success'),
+    },
     onSuccess: () => {
       refetchVaultBalance()
       refetchTokenBalance()
