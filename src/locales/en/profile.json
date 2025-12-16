@@ -82,15 +82,30 @@
       "button": {
         "select": "Select a vault",
         "proceed": "Proceed with deposit"
+      },
+      "infoCards": {
+        "balance": "Balance",
+        "vault": "Vault",
+        "saved": "Deposited",
+        "minDeposit": "Min Deposit",
+        "maxDeposit": "Max Deposit"
       }
      },
      "withdraw": {
       "title": "Select Your Vault To Withdraw",
-      "test1": "Deposited Vaults",
-      "info": "The withdrawal token will be the same as you deposited.",
+      "subtitle": "Deposited Vaults",
+      "info": "Balance",
+      "warning": "The withdrawal token will be the same as you deposited.",
        "button": {
         "select": "Select a vault",
         "proceed": "Proceed with withdraw"
+      },
+      "infoCards": {
+        "balance": "Balance",
+        "vault": "Vault",
+        "saved": "Deposited",
+        "minWithdraw": "Min Withdraw",
+        "maxWithdraw": "Max Withdraw"
       }
      }
     },

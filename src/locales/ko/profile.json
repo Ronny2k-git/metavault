@@ -73,16 +73,41 @@
           "select": "Vault 선택"
         }
       },
-      "deposit": {
-        "title": "입금",
-        "test1": "",
-        "test2": ""
-      },
-      "withdraw": {
-        "title": "출금",
-        "test1": "",
-        "test2": ""
-      }
+    "deposit": {
+    "title": "입금할 볼트를 선택하세요",
+    "subtitle": "사용 가능한 볼트 (활성)",
+    "info": "잔액",
+    "warning": "입금은 볼트 생성 시 선택된 동일한 토큰을 사용합니다.",
+    "button": {
+      "select": "볼트 선택",
+      "proceed": "입금 진행"
+    },
+    "infoCards": {
+      "balance": "잔액",
+      "vault": "볼트",
+      "saved": "입금됨",
+      "minDeposit": "최소 입금",
+      "maxDeposit": "최대 입금"
+    }
+  },
+    "withdraw": {
+    "title": "출금할 볼트를 선택하세요",
+    "subtitle": "입금된 볼트",
+    "info": "잔액",
+    "warning": "출금 토큰은 입금 시 사용한 토큰과 동일합니다.",
+    "button": {
+      "select": "볼트 선택",
+      "proceed": "출금 진행"
+    },
+    "infoCards": {
+      "balance": "잔액",
+      "vault": "볼트",
+      "saved": "입금됨",
+      "minWithdraw": "최소 출금",
+      "maxWithdraw": "최대 출금"
+    }
+  }
+
     },
     "transactions": {
       "heading": {

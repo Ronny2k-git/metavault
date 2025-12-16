@@ -73,17 +73,42 @@
           "select": "Selecionar um vault"
         }
       },
-      "deposit": {
-        "title": "Depositar",
-        "test1": "",
-        "test2": ""
-      },
-      "withdraw": {
-        "title": "Sacar",
-        "test1": "",
-        "test2": ""
-      }
+    "deposit": {
+    "title": "Selecione um Cofre para Depositar",
+    "subtitle": "Cofres Disponíveis (Ativos)",
+    "info": "Saldo",
+    "warning": "Os depósitos usam o mesmo token escolhido quando o cofre foi criado.",
+    "button": {
+      "select": "Selecionar um cofre",
+      "proceed": "Prosseguir com o depósito"
     },
+    "infoCards": {
+      "balance": "Saldo",
+      "vault": "Vault",
+      "saved": "Depositado",
+      "minDeposit": "Depósito Mínimo",
+      "maxDeposit": "Depósito Máximo"
+    }
+  },
+    "withdraw": {
+    "title": "Selecione seu Cofre para Sacar",
+    "subtitle": "Cofres com Depósitos",
+    "info": "Saldo",
+    "warning": "O token de saque será o mesmo utilizado no depósito.",
+    "button": {
+      "select": "Selecionar um cofre",
+      "proceed": "Prosseguir com o saque"
+    },
+    "infoCards": {
+      "balance": "Saldo",
+      "vault": "Cofre",
+      "saved": "Depositado",
+      "minWithdraw": "Saque Mínimo",
+      "maxWithdraw": "Saque Máximo"
+    }
+  }
+  },
+
     "transactions": {
       "heading": {
         "title": "Transações do Usuário",

@@ -73,16 +73,41 @@
           "select": "Seleccionar un vault"
         }
       },
-      "deposit": {
-        "title": "Depositar",
-        "test1": "",
-        "test2": ""
-      },
-      "withdraw": {
-        "title": "Retirar",
-        "test1": "",
-        "test2": ""
-      }
+    "deposit": {
+    "title": "Selecciona una Bóveda para Depositar",
+    "subtitle": "Bóvedas Disponibles (Activas)",
+    "info": "Saldo",
+    "warning": "Los depósitos utilizan el mismo token elegido cuando se creó la bóveda.",
+    "button": {
+      "select": "Seleccionar una bóveda",
+      "proceed": "Continuar con el depósito"
+    },
+    "infoCards": {
+      "balance": "Saldo",
+      "vault": "Vault",
+      "saved": "Depositado",
+      "minDeposit": "Depósito Mínimo",
+      "maxDeposit": "Depósito Máximo"
+    }
+  },
+   "withdraw": {
+    "title": "Selecciona tu Vault para Retirar",
+    "subtitle": "Vaults con Depósitos",
+    "info": "Saldo",
+    "warning": "El token de retiro será el mismo que utilizaste al depositar.",
+    "button": {
+      "select": "Seleccionar un vault",
+      "proceed": "Continuar con el retiro"
+    },
+    "infoCards": {
+      "balance": "Saldo",
+      "vault": "Vault",
+      "saved": "Depositado",
+      "minWithdraw": "Retiro Mínimo",
+      "maxWithdraw": "Retiro Máximo"
+    }
+  }
+
     },
     "transactions": {
       "heading": {

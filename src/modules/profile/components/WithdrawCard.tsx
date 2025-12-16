@@ -40,6 +40,7 @@ export function WithdrawCard({
   const { address } = useAccount()
   const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
   const { t } = useTranslation('global')
+  const { t: tWithdraw } = useTranslation('profile', { keyPrefix: 'operation.cardOperations.withdraw' })
 
   // Filter the live vaults that have at least some value deposited to withdraw
   const activeVaultsToWithdraw = availableVaults?.items
@@ -62,7 +63,7 @@ export function WithdrawCard({
     <BaseCardTrade className={twMerge('', className)} title={title} variant={disabled ? 'disabled' : variant}>
       <Modal
         className="relative shadow-2xs max-w-md"
-        title="Select Your Vault To Withdraw"
+        title={tWithdraw('title')}
         variant={'gradient'}
         trigger={trigger}
         isOpen={openModal}
@@ -70,7 +71,7 @@ export function WithdrawCard({
       >
         <div className="max-h-[50vh] overflow-y-auto mb-4">
           {/* Heading */}
-          <h2 className="text-lg text-gray-300 mb-4">Deposited Vaults</h2>
+          <h2 className="text-lg text-gray-300 mb-4">{tWithdraw('subtitle')}</h2>
           <Divider />
 
           {isLoading || !address || !activeVaultsToWithdraw?.length ? (
@@ -86,7 +87,7 @@ export function WithdrawCard({
                 key={`${index}_${vault.id}`}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
-                info="Balance"
+                info={tWithdraw('info')}
                 amount={formatNumber(getTotalVaultAmount(vault, vault.swaps))}
                 tokenSymbol={vault.assetTokenSymbol!}
                 selected={tempVault?.id === vault.id}
@@ -99,8 +100,8 @@ export function WithdrawCard({
         </div>
 
         <div className="flex gap-2 text-[14.5px]">
-          <Icon className="mt-1 text-yellow-500">error</Icon>
-          <span className="text-gray-300">The withdrawal token will be the same as you deposited.</span>
+          <Icon className="text-yellow-500">error</Icon>
+          <span className="text-gray-300">{tWithdraw('warning')}</span>
         </div>
 
         <Button
@@ -110,7 +111,7 @@ export function WithdrawCard({
           onClick={() => handleWithdrawProceed()}
           disabled={!tempVault || !activeVaultsToWithdraw}
         >
-          {!tempVault ? 'Select a vault' : 'Proceed with withdraw'}
+          {!tempVault ? tWithdraw('button.select') : tWithdraw('button.proceed')}
         </Button>
       </Modal>
 
@@ -137,12 +138,12 @@ export function WithdrawCard({
               {/* BASE CARD */}
               {[
                 {
-                  label: 'Balance',
+                  label: tWithdraw('infoCards.balance'),
                   value: formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0)),
                   symbol: selectedVault?.assetTokenSymbol,
                 },
                 {
-                  label: 'Vault',
+                  label: tWithdraw('infoCards.vault'),
                   vault: selectedVault?.vaultName,
                   deposited: formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0)),
                   symbol: selectedVault?.assetTokenSymbol,
@@ -170,7 +171,7 @@ export function WithdrawCard({
                     <>
                       <p className="text-indigo-300 text-xs font-semibold truncate mb-1">{item.vault}</p>
                       <div className="flex items-center gap-1 text-gray-300 text-[11px]">
-                        Deposited:
+                        {tWithdraw('infoCards.saved')}
                         <span className="text-green-400 text-base font-semibold leading-none ml-1">
                           {item.deposited}
                         </span>
@@ -184,9 +185,9 @@ export function WithdrawCard({
             {/* MIN/MAX GRID */}
             <div className="grid grid-cols-1 min-[400px]:grid-cols-2  gap-2">
               {[
-                { label: 'Min Withdraw', value: selectedVault?.minDeposit || 0 },
+                { label: tWithdraw('infoCards.minWithdraw'), value: selectedVault?.minDeposit || 0 },
                 {
-                  label: 'Max Withdraw',
+                  label: tWithdraw('infoCards.maxWithdraw'),
                   value: formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0),
                 },
               ].map((item, i) => (

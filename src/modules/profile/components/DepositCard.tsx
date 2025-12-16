@@ -133,12 +133,12 @@ export function DepositCard({
               {/* BASE CARD */}
               {[
                 {
-                  label: 'Balance',
+                  label: tDeposit('infoCards.balance'),
                   value: formatNumber(formatBigIntToNumber(tokenBalance, selectedVault?.assetTokenDecimals || 0)),
                   symbol: selectedVault?.assetTokenSymbol,
                 },
                 {
-                  label: 'Vault',
+                  label: tDeposit('infoCards.vault'),
                   vault: selectedVault?.vaultName,
                   deposited: formatNumber(formatBigIntToNumber(vaultBalance, selectedVault?.assetTokenDecimals || 0)),
                   symbol: selectedVault?.assetTokenSymbol,
@@ -166,7 +166,7 @@ export function DepositCard({
                     <>
                       <p className="text-indigo-300 text-xs font-semibold truncate mb-1">{item.vault}</p>
                       <div className="flex items-center gap-1 text-gray-300 text-[11px]">
-                        Deposited:
+                        {tDeposit('infoCards.saved')}
                         <span className="text-green-400 text-base font-semibold leading-none ml-1">
                           {item.deposited}
                         </span>
@@ -180,8 +180,8 @@ export function DepositCard({
             {/* MIN/MAX GRID */}
             <div className="grid grid-cols-1 min-[400px]:grid-cols-2  gap-2">
               {[
-                { label: 'Min Deposit', value: selectedVault?.minDeposit || 0 },
-                { label: 'Max Deposit', value: selectedVault?.maxDeposit || 0 },
+                { label: tDeposit('infoCards.minDeposit'), value: selectedVault?.minDeposit || 0 },
+                { label: tDeposit('infoCards.maxDeposit'), value: selectedVault?.maxDeposit || 0 },
               ].map((item, i) => (
                 <div
                   key={i}

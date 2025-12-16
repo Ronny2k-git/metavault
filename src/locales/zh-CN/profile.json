@@ -73,16 +73,41 @@
           "select": "选择一个 vault"
         }
       },
-      "deposit": {
-        "title": "存款",
-        "test1": "",
-        "test2": ""
-      },
-      "withdraw": {
-        "title": "取款",
-        "test1": "",
-        "test2": ""
-      }
+    "deposit": {
+    "title": "选择要存入的金库",
+    "subtitle": "可用金库（运行中）",
+    "info": "余额",
+    "warning": "存款将使用创建金库时选择的相同代币。",
+    "button": {
+      "select": "选择金库",
+      "proceed": "继续存款"
+    },
+    "infoCards": {
+      "balance": "余额",
+      "vault": "金库",
+      "saved": "已存入",
+      "minDeposit": "最低存款",
+      "maxDeposit": "最高存款"
+    }
+  },
+   "withdraw": {
+    "title": "选择要提现的金库",
+    "subtitle": "已存入的金库",
+    "info": "余额",
+    "warning": "提现的代币将与存入时使用的代币相同。",
+    "button": {
+      "select": "选择金库",
+      "proceed": "继续提现吗"
+    },
+    "infoCards": {
+      "balance": "余额",
+      "vault": "金库",
+      "saved": "已存入",
+      "minWithdraw": "最低提现",
+      "maxWithdraw": "最高提现"
+    }
+  }
+
     },
     "transactions": {
       "heading": {
