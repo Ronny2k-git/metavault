@@ -132,9 +132,33 @@
   },
 
   "editProfile": {
-    "heading": {},
-    "inputs": {},
-    "buttons": {}
+    "heading": {
+      "title": "编辑个人资料",
+      "subtitle": "快速轻松地更新您的个人信息。"
+    },
+    "inputs": {
+      "about": {
+        "label": "用户简介（必填）",
+        "placeholder": "简单介绍一下你自己"
+      },
+      "avatar": {
+        "label": "头像 URL（必填）",
+        "placeholder": "添加你的头像链接"
+      },
+      "site": {
+        "label": "网站（可选）",
+        "placeholder": "添加你的网站链接"
+      },
+      "wallet": {
+        "label": "钱包地址（必填）",
+        "placeholder": "更改你的钱包地址"
+      }
+    },
+    "warning": "更新钱包地址后，你需要连接新的钱包。",
+    "buttons": {
+      "reset": "重置字段",
+      "save": "保存更改"
+    }
   },
 
   "status": {

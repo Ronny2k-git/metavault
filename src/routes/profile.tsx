@@ -58,7 +58,7 @@ function Profile() {
 
   3 FILES TO TRANSLATE LATER
   
-  SAVE LATER THE SELECTED LANGUAGE TO LOCAL STORAGE 
+  SAVE LATER THE SELECTED LANGUAGE INTO LOCAL STORAGE 
   
   1 CREATION PAGE: {
   1.1 ConfirmAndCreateFormSchema.ts
@@ -69,10 +69,7 @@ function Profile() {
   
   2 PROFILE PAGE: {
   2.6 operationSchema.ts (validations)
-  2.7 DepositCard.tsx
-  2.8 WithdrawCard.tsx
   2.9 EditProfileForm.tsx
-
   }
     
       */

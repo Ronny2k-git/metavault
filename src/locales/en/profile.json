@@ -133,9 +133,33 @@
     },
 
     "editProfile": {
-    "heading": {},
-    "inputs": {},
-    "buttons": {}
+    "heading": {
+      "title": "Edit your profile",
+      "subtitle": "Update your profile details quickly and easily."
+    },
+    "inputs": {
+       "about": {
+        "label": "User about (required)",
+        "placeholder": "Tell us a bit about yourselves"
+       },
+       "avatar": {
+        "label": "Avatar Url (required)",
+        "placeholder": "Add your profile avatar url"
+       },
+       "site": {
+        "label": "Web Site (optional)",
+        "placeholder": "Add your web site url"
+       },
+       "wallet": {
+        "label": "Your wallet address (required)",
+        "placeholder": "Change your wallet address"
+       }
+    },
+    "warning": "After updating your wallet address, you must connect the changed wallet.",
+    "buttons": {
+      "reset": "Reset fields",
+      "save": "Save changes"
+    }
     },
 
     "status": {

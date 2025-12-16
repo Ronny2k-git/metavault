@@ -16,6 +16,7 @@ export function EditProfileForm() {
   const { data: userProfileData } = useGetUserProfileData(address!)
   const editUserProfile = useEditUserProfile()
   const { t } = useTranslation('global')
+  const { t: tEditForm } = useTranslation('profile', { keyPrefix: 'editProfile' })
 
   const profileData = userProfileData?.[0]
 
@@ -54,10 +55,10 @@ export function EditProfileForm() {
         {/* HEADER */}
         <div className="flex items-center gap-3">
           <Icon className="!text-4xl text-purple-300">person_edit</Icon>
-          <h1 className="text-3xl font-semibold tracking-tight text-purple-100">Edit your profile</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-purple-100">{tEditForm('heading.title')}</h1>
         </div>
 
-        <h2 className="text-indigo-300">Update your profile details quickly and easily.</h2>
+        <h2 className="text-indigo-300">{tEditForm('heading.subtitle')}</h2>
 
         <Divider className="border-purple-900/40" />
 
@@ -74,8 +75,8 @@ export function EditProfileForm() {
             {/* ABOUT */}
             <TextArea
               className="min-h-[14rem] max-h-[14rem]"
-              label="User about (required)"
-              placeholder="Tell us a bit about yourselves"
+              label={tEditForm('inputs.about.label')}
+              placeholder={tEditForm('inputs.about.placeholder')}
               error={editProfileForm.formState.errors.userAbout?.message}
               {...editProfileForm.register('userAbout')}
             />
@@ -84,8 +85,8 @@ export function EditProfileForm() {
               <Input
                 inputVariant="default"
                 inputSize="xl"
-                label="Avatar Url (required)"
-                placeholder="Add your profile avatar url"
+                label={tEditForm('inputs.avatar.label')}
+                placeholder={tEditForm('inputs.avatar.placeholder')}
                 error={editProfileForm.formState.errors.avatarUrl?.message}
                 {...editProfileForm.register('avatarUrl')}
               />
@@ -93,8 +94,8 @@ export function EditProfileForm() {
               <Input
                 inputVariant="default"
                 inputSize="xl"
-                label="Web Site (optional)"
-                placeholder="Add your web site url"
+                label={tEditForm('inputs.site.label')}
+                placeholder={tEditForm('inputs.site.placeholder')}
                 error={editProfileForm.formState.errors.webSite?.message}
                 {...editProfileForm.register('webSite')}
               />
@@ -102,8 +103,8 @@ export function EditProfileForm() {
               <Input
                 inputVariant="default"
                 inputSize="xl"
-                label="Your wallet address (required)"
-                placeholder="Change your wallet address"
+                label={tEditForm('inputs.wallet.label')}
+                placeholder={tEditForm('inputs.wallet.placeholder')}
                 error={editProfileForm.formState.errors.address?.message}
                 {...editProfileForm.register('address')}
               />
@@ -112,7 +113,7 @@ export function EditProfileForm() {
             {/* WARNING */}
             <div className="mt-1 flex items-center gap-2 text-red-300/80 bg-red-900/10 px-3 py-2 rounded-lg border border-red-900/30">
               <Icon className="!text-2xl">warning</Icon>
-              <p className="text-sm">After updating your wallet address, you must connect the changed wallet.</p>
+              <p className="text-sm">{tEditForm('warning')}</p>
             </div>
 
             <Divider className="border-purple-900/40" />
@@ -125,7 +126,7 @@ export function EditProfileForm() {
                 iconLeft={<Icon>backspace</Icon>}
                 onClick={() => editProfileForm.reset()}
               >
-                Reset fields
+                {tEditForm('buttons.reset')}
               </Button>
 
               <Button
@@ -135,7 +136,7 @@ export function EditProfileForm() {
                 iconLeft={<Icon>save</Icon>}
                 onClick={editProfileForm.handleSubmit(onSubmit)}
               >
-                Save changes
+                {tEditForm('buttons.save')}
               </Button>
             </div>
           </>

@@ -131,10 +131,34 @@
     }
   },
 
-  "editProfile": {
-    "heading": {},
-    "inputs": {},
-    "buttons": {}
+   "editProfile": {
+    "heading": {
+      "title": "Editar seu perfil",
+      "subtitle": "Atualize os dados do seu perfil de forma rápida e fácil."
+    },
+    "inputs": {
+      "about": {
+        "label": "Sobre o usuário (obrigatório)",
+        "placeholder": "Conte um pouco sobre você"
+      },
+      "avatar": {
+        "label": "URL do avatar (obrigatório)",
+        "placeholder": "Adicione a URL do avatar do seu perfil"
+      },
+      "site": {
+        "label": "Site (opcional)",
+        "placeholder": "Adicione a URL do seu site"
+      },
+      "wallet": {
+        "label": "Endereço da sua carteira (obrigatório)",
+        "placeholder": "Altere o endereço da sua carteira"
+      }
+    },
+    "warning": "Após atualizar o endereço da carteira, você deve conectar a nova carteira.",
+    "buttons": {
+      "reset": "Redefinir campos",
+      "save": "Salvar alterações"
+    }
   },
 
   "status": {

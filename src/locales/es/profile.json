@@ -132,9 +132,33 @@
   },
 
   "editProfile": {
-    "heading": {},
-    "inputs": {},
-    "buttons": {}
+    "heading": {
+      "title": "Editar tu perfil",
+      "subtitle": "Actualiza los datos de tu perfil de forma rápida y sencilla."
+    },
+    "inputs": {
+      "about": {
+        "label": "Sobre el usuario (obligatorio)",
+        "placeholder": "Cuéntanos un poco sobre ti"
+      },
+      "avatar": {
+        "label": "URL del avatar (obligatorio)",
+        "placeholder": "Añade la URL del avatar de tu perfil"
+      },
+      "site": {
+        "label": "Sitio web (opcional)",
+        "placeholder": "Añade la URL de tu sitio web"
+      },
+      "wallet": {
+        "label": "Dirección de tu billetera (obligatorio)",
+        "placeholder": "Cambia la dirección de tu billetera"
+      }
+    },
+    "warning": "Después de actualizar la dirección de tu billetera, debes conectar la billetera modificada.",
+    "buttons": {
+      "reset": "Restablecer campos",
+      "save": "Guardar cambios"
+    }
   },
 
   "status": {

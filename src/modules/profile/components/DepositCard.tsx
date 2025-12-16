@@ -95,7 +95,7 @@ export function DepositCard({
         </div>
 
         <div className="flex gap-2 my-2 text-[14.5px]">
-          <Icon className="mt-1 text-yellow-500">error</Icon>
+          <Icon className="text-yellow-500">error</Icon>
           <span className="text-gray-300">{tDeposit('warning')}</span>
         </div>
 
