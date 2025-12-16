@@ -41,20 +41,24 @@ export function LanguageSwitcher() {
           className="absolute flex flex-col gap-1 right-0 mt-2 border-purple-900/70 rounded-xl shadow-lg z-50 w-44 p-2"
           variant={'gradient2'}
         >
-          {LANGUAGES.map((langItem) => (
-            <Button
-              key={langItem.code}
-              className="flex bg-transparent border-none items-center justify-start w-full gap-3 px-3 rounded-lg hover:bg-purple-950/40"
-              variant={'primary'}
-              onClick={() => {
-                i18n.changeLanguage(langItem.code)
-                setOpen(!open)
-              }}
-            >
-              <span className="text-xl">{langItem.flag}</span>
-              <span>{t(langItem.label)}</span>
-            </Button>
-          ))}
+          {LANGUAGES.map((langItem) => {
+            const isActive = langItem.code === lang
+
+            return (
+              <Button
+                key={langItem.code}
+                className={`flex bg-transparent border-none items-cente justify-start w-full gap-3 px-3 rounded-lg hover:bg-purple-950/40 ${isActive ? 'bg-purple-950/40' : ''}`}
+                variant={'primary'}
+                onClick={() => {
+                  i18n.changeLanguage(langItem.code)
+                  setOpen(!open)
+                }}
+              >
+                <span className="text-xl">{langItem.flag}</span>
+                <span>{t(langItem.label)}</span>
+              </Button>
+            )
+          })}
         </Card>
       )}
     </div>

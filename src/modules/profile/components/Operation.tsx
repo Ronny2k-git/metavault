@@ -105,7 +105,7 @@ export function Operation() {
     const decimals = await tokenDecimals()
 
     // 1. Validate transaction
-    const transactionValidation = error.validate(data.amount, 'deposit')
+    const transactionValidation = error.validate({ amount: data.amount, type: 'deposit' })
     if (transactionValidation) {
       depositForm.setError('amount', { message: transactionValidation })
       return null
@@ -145,7 +145,7 @@ export function Operation() {
     const decimals = await tokenDecimals()
 
     // 1. Validate transaction
-    const validationError = error.validate(data.amount, 'withdraw')
+    const validationError = error.validate({ amount: data.amount, type: 'withdraw' })
     if (validationError) {
       withdrawForm.setError('amount', { message: validationError })
       return null

@@ -7,10 +7,15 @@ export type useValidateTransactionsProps = {
   totalDeposited: number
 }
 
+export type useValidateProps = {
+  amount: number
+  type: 'deposit' | 'withdraw'
+}
+
 export function useValidateTransactions({ selectedVault, tokenBalance, totalDeposited }: useValidateTransactionsProps) {
   const { t } = useTranslation('profile', { keyPrefix: 'status' })
 
-  const validate = (amount: number, type: 'deposit' | 'withdraw') => {
+  const validate = ({ amount, type }: useValidateProps) => {
     if (!selectedVault) return t('validateTransaction.select')
 
     const rules = [

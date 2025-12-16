@@ -42,6 +42,7 @@ export function DepositCard({
   const [openModal, setOpenModal] = useState(false)
   const { data: availableVaults, isLoading } = useGetAllVaultsCreated({ userAddress: address!, live: true })
   const { t } = useTranslation('global')
+  const { t: tDeposit } = useTranslation('profile', { keyPrefix: 'operation.cardOperations.deposit' })
 
   // Only pass the selected vault data when the submit button is pressed.
   const handleDepositProceed = () => {
@@ -57,13 +58,13 @@ export function DepositCard({
         isOpen={openModal}
         onOpenChange={setOpenModal}
         className="relative shadow-2xs max-w-md "
-        title="Select a Vault to Deposit"
+        title={tDeposit('title')}
         variant={'gradient'}
         trigger={trigger}
       >
         <div className="max-h-[50vh] overflow-y-auto mb-4">
           {/* Heading */}
-          <h2 className="text-lg text-gray-300 mb-4">Available Vaults ( Live )</h2>
+          <h2 className="text-lg text-gray-300 mb-4">{tDeposit('subtitle')}</h2>
           <Divider />
 
           {isLoading || !address || !availableVaults?.items.length ? (
@@ -80,6 +81,7 @@ export function DepositCard({
                   key={`${index}_${vault.id}`}
                   vaultName={vault.vaultName}
                   vaultDate={formatDate(vault.startDate)}
+                  info={tDeposit('info')}
                   amount={formatNumber(getTotalVaultAmount(vault, vault.swaps))}
                   tokenSymbol={vault.assetTokenSymbol!}
                   selected={tempVault?.id === vault.id}
@@ -94,7 +96,7 @@ export function DepositCard({
 
         <div className="flex gap-2 my-2 text-[14.5px]">
           <Icon className="mt-1 text-yellow-500">error</Icon>
-          <span className="text-gray-300">Deposits use the same token chosen when the vault was created.</span>
+          <span className="text-gray-300">{tDeposit('warning')}</span>
         </div>
 
         <Button
@@ -104,7 +106,7 @@ export function DepositCard({
           onClick={() => handleDepositProceed()}
           disabled={!tempVault || !availableVaults}
         >
-          {!tempVault ? 'Select a vault' : 'Proceed with deposit'}
+          {!tempVault ? tDeposit('button.select') : tDeposit('button.proceed')}
         </Button>
       </Modal>
 

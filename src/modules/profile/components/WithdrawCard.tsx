@@ -86,6 +86,7 @@ export function WithdrawCard({
                 key={`${index}_${vault.id}`}
                 vaultName={vault.vaultName}
                 vaultDate={formatDate(vault.startDate)}
+                info="Balance"
                 amount={formatNumber(getTotalVaultAmount(vault, vault.swaps))}
                 tokenSymbol={vault.assetTokenSymbol!}
                 selected={tempVault?.id === vault.id}

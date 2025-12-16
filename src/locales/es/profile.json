@@ -1,19 +1,26 @@
 {
   "cardProfile": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
-    },
+    "title": "Tu Perfil",
+    "subtitle": "Explora tus vaults, realiza operaciones y edita tu perfil.",
+    "connected": "Billetera conectada",
+    "disconnected": "Billetera no conectada",
+    "connect": "Conecta tu billetera para ver los datos de tu perfil"
+  },
 
-    "tabs": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
+     "tabs": {
+    "vaults": {
+      "title": "Vaults",
+      "info": "Todos tus vaults estarán aquí"
     },
+    "operation": {
+      "title": "Operaciones",
+      "info": "Deposita o retira en un vault"
+    },
+    "editProfile": {
+      "title": "Editar Perfil",
+      "info": "Edita los datos de tu perfil"
+    }
+  },
 
   "userVaults": {
     "heading": {
@@ -88,15 +95,14 @@
           "placeholder": "Busca tus transacciones por tipo o hash de transacción."
         }
       },
-      "cardTransactions": {
-        "title": "Tus Transacciones Recientes",
-        "transaction": {
-          "title": {
-            "withdraw": "Retiro",
-            "deposit": "Depósito"
-          }
-        }
+      "mainCard": {
+      "title": "Tus Transacciones Recientes",
+      "view": "Ver tu transacción en la blockchain",
+      "cardTransaction": {
+        "withdraw": "Retiro",
+        "deposit": "Depósito"
       }
+    }
     }
   },
 

@@ -1,19 +1,26 @@
 {
   "cardProfile": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
-    },
+    "title": "您的个人资料",
+    "subtitle": "探索您的 vault，进行交易并编辑您的个人资料。",
+    "connected": "钱包已连接",
+    "disconnected": "钱包未连接",
+    "connect": "连接您的钱包以查看个人资料数据"
+  },
 
     "tabs": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
+    "vaults": {
+      "title": "金库",
+      "info": "您的所有 vault 都会显示在这里"
     },
+    "operation": {
+      "title": "操作",
+      "info": "在 vault 中进行存款或取款"
+    },
+    "editProfile": {
+      "title": "编辑个人资料",
+      "info": "编辑您的个人资料信息"
+    }
+  },
 
   "userVaults": {
     "heading": {
@@ -88,15 +95,14 @@
           "placeholder": "按类型或交易哈希搜索您的交易。"
         }
       },
-      "cardTransactions": {
-        "title": "最近的交易",
-        "transaction": {
-          "title": {
-            "withdraw": "取款",
-            "deposit": "存款"
-          }
-        }
+      "mainCard": {
+      "title": "您的最近交易",
+      "view": "在区块链上查看交易",
+      "cardTransaction": {
+        "withdraw": "提取",
+        "deposit": "存入"
       }
+    }
     }
   },
 

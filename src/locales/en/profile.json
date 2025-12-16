@@ -1,10 +1,10 @@
 {
     "cardProfile": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
+        "title": "Your Profile",
+        "subtitle": "Explore your vaults, make trades and edit your profile.",
+        "connected": "Connected Wallet",
+        "disconnected": "Wallet not connected",
+        "connect": "Connect your wallet to see your profile data"
     },
 
     "tabs": {
@@ -75,14 +75,23 @@
         }
       },
      "deposit": {
-      "title": "Deposit",
-      "test1": "",
-      "test2": ""
+      "title": "Select a Vault to Deposit",
+      "subtitle": "Available Vaults ( Live )",
+      "info": "Balance",
+      "warning": "Deposits use the same token chosen when the vault was created.",
+      "button": {
+        "select": "Select a vault",
+        "proceed": "Proceed with deposit"
+      }
      },
      "withdraw": {
-      "title": "Withdraw",
-      "test1": "",
-      "test2": ""
+      "title": "Select Your Vault To Withdraw",
+      "test1": "Deposited Vaults",
+      "info": "The withdrawal token will be the same as you deposited.",
+       "button": {
+        "select": "Select a vault",
+        "proceed": "Proceed with withdraw"
+      }
      }
     },
 
@@ -97,15 +106,14 @@
         "placeholder": "Search your transactions by type or tx hash."
        }
     },
-     "cardTransactions": {
-      "title": "Your Recent Transactions",
-      "transaction": {
-        "title": {
+     "mainCard": {
+       "title": "Your Recent Transactions",
+       "view": "View your transaction on the blockchain",
+       "cardTransaction": {
           "withdraw": "Withdraw",
           "deposit": "Deposit"
-        }
       }
-     }
+    }
     }
     },
 

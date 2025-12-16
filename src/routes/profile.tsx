@@ -9,6 +9,7 @@ import { Card, Divider, Icon } from '@/ui/components'
 import { Tabs } from '@/ui/components/Tabs'
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { zodValidator } from '@tanstack/zod-adapter'
+import { useTranslation } from 'react-i18next'
 import { useAccount } from 'wagmi'
 import z from 'zod'
 
@@ -29,18 +30,33 @@ function Profile() {
   const search = Route.useSearch()
   const navigate = useNavigate({ from: '/profile' })
   const { data: userProfileData } = useGetUserProfileData(address!)
+  const { t: tProfile } = useTranslation('profile')
 
-  const tabList = PROFILE_TABS_INFO
+  const tabList = PROFILE_TABS_INFO.map((tab) => ({
+    ...tab,
+    label: tProfile(tab.label),
+    description: tProfile(tab.description),
+  }))
   const profileData = userProfileData?.[0]
 
   {
+    tProfile('tabs')
     /*
 
   TO DO
 
   1 Create a function to format the input numbers for "deposit" and "withdraw" functionalities.
 
-  2 FILES TO TRANSLATE LATER
+  2 ADD SUPORT FOR THE LANGUAGES:
+
+  2.1 Japonês (ja)
+  2.2 Russo (ru)
+  2.3 Turco (tr)
+  2.4 Vietnamita (vi)
+  2.5 Francês
+  2.6 MAYBE Tailandês
+
+  3 FILES TO TRANSLATE LATER
   
   SAVE LATER THE SELECTED LANGUAGE TO LOCAL STORAGE 
   
@@ -56,13 +72,9 @@ function Profile() {
   2.7 DepositCard.tsx
   2.8 WithdrawCard.tsx
   2.9 EditProfileForm.tsx
-  2.10 Operation.tsx
-  2.11 UserCardRowTrades.tsx
+
   }
-  
-  3 GLOBAL: {
-  3.1 NotFoundPage.tsx
-  }   
+    
       */
   }
 
@@ -87,8 +99,8 @@ function Profile() {
               </div>
 
               <div className="flex flex-col">
-                <h1 className="text-3xl font-semibold">Your Profile</h1>
-                <h2 className="text-sm text-gray-300 ">Explore your vaults, make trades and edit your profile.</h2>
+                <h1 className="text-3xl font-semibold">{tProfile('cardProfile.title')}</h1>
+                <h2 className="text-sm text-gray-300 ">{tProfile('cardProfile.subtitle')}</h2>
               </div>
             </div>
             {/* RIGHT SIDE — WALLET */}
@@ -104,9 +116,11 @@ function Profile() {
               )}
 
               <div className="flex flex-col">
-                <span className="text-sm text-gray-300">{address ? 'Connected Wallet' : 'Wallet not connected'}</span>
+                <span className="text-sm text-gray-300">
+                  {address ? tProfile('cardProfile.connected') : tProfile('cardProfile.disconnected')}
+                </span>
                 <span className="text-lg font-semibold text-indigo-300">{address && abreviateAddress(address)}</span>
-                {!address && <span className="text-sm text-red-300">Connect your wallet to see your profile data</span>}
+                {!address && <span className="text-sm text-red-300">{tProfile('cardProfile.connect')}</span>}
               </div>
             </div>
           </div>

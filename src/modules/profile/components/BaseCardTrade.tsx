@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 
 export type BaseCardTradeProps = {
   children?: React.ReactNode
-  title: 'Deposit' | 'Withdraw'
+  title: string
   className?: string
 } & VariantProps<typeof cardStyle>
 

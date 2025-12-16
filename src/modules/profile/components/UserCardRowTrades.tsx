@@ -29,7 +29,8 @@ export function UserCardRowTrades({
 }: UserCardRowTradesProps) {
   const { address } = useAccount()
   const debouncedValue = useDebounce(searchTransaction, 300)
-  const { t: translate } = useTranslation('global', { keyPrefix: 'emptyBanner.operation.transactions' })
+  const { t: tCardTransaction } = useTranslation('profile', { keyPrefix: 'operation.transactions' })
+  const { t: tBanner } = useTranslation('global', { keyPrefix: 'emptyBanner.operation.transactions' })
 
   // Filter the user recent transactions by type and tx hash.
   const filteredTransactions = userTransactions?.items.filter((t) => {
@@ -43,9 +44,9 @@ export function UserCardRowTrades({
       {(!address || !filteredTransactions?.length) && !isLoading ? (
         <EmptyBanner
           icon={<Icon className="!text-7xl text-white">sentiment_dissatisfied</Icon>}
-          message={translate('message')}
-          subMessage={translate('subMessage')}
-          buttonLabel={translate('buttonLabel')}
+          message={tBanner('message')}
+          subMessage={tBanner('subMessage')}
+          buttonLabel={tBanner('buttonLabel')}
         />
       ) : (
         <Card
@@ -53,20 +54,17 @@ export function UserCardRowTrades({
           className="w-full flex flex-col gap-4 p-4 min-h-[28rem] rounded-2xl shadow-2xs"
           variant={'gradient'}
         >
-          <h3 className="text-lg font-semibold text-white">Your Recent Transactions</h3>
+          <h3 className="text-lg font-semibold text-white">{tCardTransaction('mainCard.title')}</h3>
 
           <div className=" flex flex-col gap-2">
-            {/* Card row */}
+            {/* Card row transaction */}
             {isLoading
               ? Array.from({ length: 6 }).map((_, index) => <UserTransactionRowSkeleton key={index} />)
               : filteredTransactions?.map((tx, index) => (
-                  <a
-                    href={`https://sepolia.etherscan.io/tx/${tx.txHash}`}
-                    title="View your transaction on the blockchain"
-                  >
+                  <a href={`https://sepolia.etherscan.io/tx/${tx.txHash}`} title={tCardTransaction('mainCard.view')}>
                     <div
                       key={`tx_${tx.txHash}_${index}`}
-                      className="flex justify-between items-center max-[460px]:flex-col gap-4 px-4 py-2 rounded-xl bg-black/30 hover:bg-black/50 transition cursor-pointer"
+                      className="flex justify-between items-center [460px]:flex-col gap-4 px-4 py-2 rounded-xl bg-black/30 hover:bg-black/50 transition cursor-pointer"
                     >
                       <div className="flex items-center gap-2">
                         <div
@@ -77,7 +75,9 @@ export function UserCardRowTrades({
                           {tx.type[0].toUpperCase()}
                         </div>
                         <div className="flex flex-col">
-                          <span className="font-semibold text-white">{toUpperCaseFirst(tx.type)}</span>
+                          <span className="font-semibold text-white">
+                            {toUpperCaseFirst(tCardTransaction(`mainCard.cardTransaction.${tx.type}`))}
+                          </span>
                           <span className="text-gray-300 text-sm">{formatDate(tx.createdAt, 'long')}</span>
                         </div>
                       </div>

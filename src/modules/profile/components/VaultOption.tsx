@@ -4,6 +4,7 @@ export type VaultCardTradeSelectProps = {
   vaultName?: string
   vaultDate?: string
   amount?: string
+  info: string
   tokenSymbol?: string
   selected: boolean
   onSelect: () => void
@@ -12,6 +13,7 @@ export type VaultCardTradeSelectProps = {
 export function VaultOption({
   vaultName,
   vaultDate,
+  info,
   amount,
   tokenSymbol,
   selected,
@@ -37,7 +39,7 @@ export function VaultOption({
       </div>
 
       <div className="flex flex-col items-end text-sm">
-        <span className="text-gray-400">Balance</span>
+        <span className="text-gray-400">{info}</span>
         <span className="text-indigo-300 font-semibold">
           {amount} {tokenSymbol}
         </span>

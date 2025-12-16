@@ -1,19 +1,26 @@
 {
   "cardProfile": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
-    },
+    "title": "내 프로필",
+    "subtitle": "vault를 탐색하고 거래를 진행하며 프로필을 수정하세요.",
+    "connected": "지갑 연결됨",
+    "disconnected": "지갑이 연결되지 않음",
+    "connect": "프로필 데이터를 보려면 지갑을 연결하세요"
+  },
 
     "tabs": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
+    "vaults": {
+      "title": "금고",
+      "info": "모든 vault가 여기에 표시됩니다"
     },
+    "operation": {
+      "title": "작업",
+      "info": "vault에서 입금 또는 출금하세요"
+    },
+    "editProfile": {
+      "title": "프로필 수정",
+      "info": "프로필 정보를 수정하세요"
+    }
+  },
 
   "userVaults": {
     "heading": {
@@ -88,15 +95,14 @@
           "placeholder": "유형 또는 트랜잭션 해시로 검색하세요."
         }
       },
-      "cardTransactions": {
-        "title": "최근 트랜잭션",
-        "transaction": {
-          "title": {
-            "withdraw": "출금",
-            "deposit": "입금"
-          }
-        }
+      "mainCard": {
+      "title": "최근 트랜잭션",
+      "view": "블록체인에서 트랜잭션 보기",
+      "cardTransaction": {
+        "withdraw": "출금",
+        "deposit": "입금"
       }
+    }
     }
   },
 
