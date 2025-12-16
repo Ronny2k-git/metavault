@@ -43,21 +43,66 @@
   },
 
   "operation": {
-    "heading": {},
-
-    "operations": {
-      "deposit": "입금",
-      "withdraw": "출금"
+    "heading": {
+      "title": "입금 또는 출금",
+      "subtitle": "(언제 어디서나)",
+      "warning": "입금은 활성화된 vault에서만 가능합니다",
+      "info": "Sepolia 이더리움 네트워크의 vault에서 언제 어디서나 입금 또는 출금할 수 있습니다"
     },
-
-    "transactions": {}
+    "cardOperations": {
+      "tabs": {
+        "deposit": "입금",
+        "withdraw": "출금"
+      },
+      "cardLabels": {
+        "deposit": "입금",
+        "withdraw": "출금"
+      },
+      "buttons": {
+        "modal": "Vault 선택",
+        "transaction": {
+          "deposit": "입금",
+          "withdraw": "출금",
+          "select": "Vault 선택"
+        }
+      },
+      "deposit": {
+        "title": "입금",
+        "test1": "",
+        "test2": ""
+      },
+      "withdraw": {
+        "title": "출금",
+        "test1": "",
+        "test2": ""
+      }
+    },
+    "transactions": {
+      "heading": {
+        "title": "사용자 트랜잭션",
+        "info": "총 사용자 트랜잭션"
+      },
+      "input": {
+        "info": {
+          "label": "트랜잭션 검색",
+          "placeholder": "유형 또는 트랜잭션 해시로 검색하세요."
+        }
+      },
+      "cardTransactions": {
+        "title": "최근 트랜잭션",
+        "transaction": {
+          "title": {
+            "withdraw": "출금",
+            "deposit": "입금"
+          }
+        }
+      }
+    }
   },
 
   "editProfile": {
     "heading": {},
-
     "inputs": {},
-
     "buttons": {}
   },
 

@@ -4,7 +4,7 @@ import { baseVaultType } from '../components'
 
 export interface baseVaultCardTradesProps {
   variant: VariantProps<typeof cardStyle>['variant']
-  title: 'Deposit' | 'Withdraw'
+  title: string
   vaultBalance: bigint
   tokenBalance: bigint
   tempVault: baseVaultType | null

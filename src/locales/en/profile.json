@@ -8,11 +8,18 @@
     },
 
     "tabs": {
-        "": "",
-        "": "",
-        "": "",
-        "": "",
-        "": ""
+        "vaults": {
+          "title": "Vaults",
+          "info": "All your vaults will be here"
+        },
+        "operation": {
+          "title": "Operation",
+          "info": "Deposit or withdraw in a vault"
+        },
+        "editProfile": {
+          "title": "Edit Your Profile",
+          "info": "Edit your profile data"
+        }
     },
 
     "userVaults": {
@@ -51,6 +58,22 @@
     },
 
     "cardOperations": {
+      "tabs": {
+      "deposit": "Deposit",
+      "withdraw": "Withdraw"
+      },
+      "cardLabels": {
+        "deposit": "Deposit",
+        "withdraw": "Withdraw"
+      },
+      "buttons": {
+        "modal": "Select Vault",
+        "transaction": {
+            "deposit": "Deposit",
+            "withdraw": "Withdraw",
+            "select": "Select a vault"
+        }
+      },
      "deposit": {
       "title": "Deposit",
       "test1": "",
@@ -68,13 +91,21 @@
         "title": "User Transactions",
         "info": "Total User Transactions"
       },
-
       "input": {
       "info": {
         "label": "Search Transaction",
         "placeholder": "Search your transactions by type or tx hash."
        }
-    }
+    },
+     "cardTransactions": {
+      "title": "Your Recent Transactions",
+      "transaction": {
+        "title": {
+          "withdraw": "Withdraw",
+          "deposit": "Deposit"
+        }
+      }
+     }
     }
     },
 

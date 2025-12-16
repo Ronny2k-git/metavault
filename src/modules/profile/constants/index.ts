@@ -27,12 +27,12 @@ export const PROFILE_TABS_INFO = [
 export const OPERATION_TAB_INFO = [
   {
     value: 'deposit',
-    label: 'Deposit',
+    label: 'tabs.deposit',
     labelIcon: 'account_balance_wallet',
   },
   {
     value: 'withdraw',
-    label: 'Withdraw',
+    label: 'tabs.withdraw',
     labelIcon: 'payments',
   },
 ]

@@ -43,21 +43,66 @@
   },
 
   "operation": {
-    "heading": {},
-
-    "operations": {
-      "deposit": "Depósito",
-      "withdraw": "Saque"
+    "heading": {
+      "title": "Depositar ou Sacar",
+      "subtitle": "(a qualquer hora, em qualquer lugar)",
+      "warning": "Depósitos são permitidos apenas em vaults ativos",
+      "info": "Deposite ou saque em um vault na rede Ethereum Sepolia a qualquer hora, em qualquer lugar"
     },
-
-    "transactions": {}
+    "cardOperations": {
+      "tabs": {
+        "deposit": "Depositar",
+        "withdraw": "Sacar"
+      },
+      "cardLabels": {
+        "deposit": "Depositar",
+        "withdraw": "Sacar"
+      },
+      "buttons": {
+        "modal": "Selecionar Vault",
+        "transaction": {
+          "deposit": "Depositar",
+          "withdraw": "Sacar",
+          "select": "Selecionar um vault"
+        }
+      },
+      "deposit": {
+        "title": "Depositar",
+        "test1": "",
+        "test2": ""
+      },
+      "withdraw": {
+        "title": "Sacar",
+        "test1": "",
+        "test2": ""
+      }
+    },
+    "transactions": {
+      "heading": {
+        "title": "Transações do Usuário",
+        "info": "Total de Transações do Usuário"
+      },
+      "input": {
+        "info": {
+          "label": "Buscar Transação",
+          "placeholder": "Busque suas transações por tipo ou hash da transação."
+        }
+      },
+      "cardTransactions": {
+        "title": "Suas Transações Recentes",
+        "transaction": {
+          "title": {
+            "withdraw": "Saque",
+            "deposit": "Depósito"
+          }
+        }
+      }
+    }
   },
 
   "editProfile": {
     "heading": {},
-
     "inputs": {},
-
     "buttons": {}
   },
 

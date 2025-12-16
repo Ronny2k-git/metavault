@@ -43,21 +43,66 @@
   },
 
   "operation": {
-    "heading": {},
-
-    "operations": {
-      "deposit": "存款",
-      "withdraw": "取款"
+    "heading": {
+      "title": "存款或取款",
+      "subtitle": "（随时随地）",
+      "warning": "仅允许在活跃的 vault 中进行存款",
+      "info": "您可以随时随地在 Sepolia 以太坊网络的 vault 中存款或取款"
     },
-
-    "transactions": {}
+    "cardOperations": {
+      "tabs": {
+        "deposit": "存款",
+        "withdraw": "取款"
+      },
+      "cardLabels": {
+        "deposit": "存款",
+        "withdraw": "取款"
+      },
+      "buttons": {
+        "modal": "选择 Vault",
+        "transaction": {
+          "deposit": "存款",
+          "withdraw": "取款",
+          "select": "选择一个 vault"
+        }
+      },
+      "deposit": {
+        "title": "存款",
+        "test1": "",
+        "test2": ""
+      },
+      "withdraw": {
+        "title": "取款",
+        "test1": "",
+        "test2": ""
+      }
+    },
+    "transactions": {
+      "heading": {
+        "title": "用户交易",
+        "info": "用户交易总数"
+      },
+      "input": {
+        "info": {
+          "label": "搜索交易",
+          "placeholder": "按类型或交易哈希搜索您的交易。"
+        }
+      },
+      "cardTransactions": {
+        "title": "最近的交易",
+        "transaction": {
+          "title": {
+            "withdraw": "取款",
+            "deposit": "存款"
+          }
+        }
+      }
+    }
   },
 
   "editProfile": {
     "heading": {},
-
     "inputs": {},
-
     "buttons": {}
   },
 

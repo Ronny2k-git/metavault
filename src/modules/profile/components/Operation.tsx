@@ -29,9 +29,14 @@ export function Operation() {
   const account = useAccount()
   const queryClient = useQueryClient()
   const { data: userTransactions, isLoading } = useGetAllUserTransactions({ limit: 6, page: transactionsPage })
-  const tabList = OPERATION_TAB_INFO
   const { t } = useTranslation('profile')
   const { t: t2 } = useTranslation('profile', { keyPrefix: 'operation' })
+  const { t: tOperation } = useTranslation('profile', { keyPrefix: 'operation.cardOperations' })
+
+  const tabList = OPERATION_TAB_INFO.map((tab) => ({
+    ...tab,
+    label: tOperation(tab.label),
+  }))
 
   // Hooks used to get the token and vault values
   const { getTokenDecimal } = useGetTokenDecimals()
@@ -171,22 +176,18 @@ export function Operation() {
     ])
   }
 
-  // // TO DO
-
-  // 1 CREATE A FUNCTION TO FORMAT THE NUMBERS FOR DEPOSIT AND WITHDRAW
-  // 2 CREATE A LANGUAGE SELECTOR TO CHANGE THE WEBSITE LANGUAGE TO THE SELECTED LANGUAGE
-
   return (
     <div className="h-full w-full flex flex-col relative">
       <Divider className="mt-12" />
 
       <div className="flex flex-col w-full gap-8 my-12">
         <h1 className="sm:text-4xl text-3xl text-center">
-          Deposit or Withdraw <br /> <span className="sm:text-3xl text-2xl text-gray-300">(anytime, anywhere)</span>
+          {t2('heading.title')} <br />{' '}
+          <span className="sm:text-3xl text-2xl text-gray-300">{t2('heading.subtitle')}</span>
         </h1>
         <h2 className="flex items-center justify-center gap-2 text-gray-300 ">
           <Icon className="text-yellow-500 ">error</Icon>
-          Deposits are only allowed in live vaults
+          {t2('heading.warning')}
         </h2>
         <div className="w-full flex flex-col items-center gap-8">
           <Card
@@ -211,11 +212,11 @@ export function Operation() {
                   content: (
                     <DepositCard
                       className="mt-2"
-                      title="Deposit"
+                      title={tOperation('cardLabels.deposit')}
                       variant={'secondary'}
                       trigger={
                         <Button className={`absolute right-[19.5px] h-7 max-w-32 rounded-3xl text-sm`}>
-                          Select Vault
+                          {tOperation('buttons.modal')}
                         </Button>
                       }
                       register={depositForm.register}
@@ -234,10 +235,12 @@ export function Operation() {
                   content: (
                     <WithdrawCard
                       className="mt-2"
-                      title="Withdraw"
+                      title={tOperation('cardLabels.withdraw')}
                       variant={'secondary'}
                       trigger={
-                        <Button className={`absolute right-7 h-7 max-w-32 rounded-3xl text-sm`}>Select Vault</Button>
+                        <Button className={`absolute right-7 h-7 max-w-32 rounded-3xl text-sm`}>
+                          {tOperation('buttons.modal')}
+                        </Button>
                       }
                       register={withdrawForm.register}
                       error={withdrawForm.formState}
@@ -252,19 +255,6 @@ export function Operation() {
                 },
               ]}
             />
-            {/* <button
-              className={`absolute ${activeCard === 'Deposit' ? 'top-44' : 'top-31'} z-1 h-11 w-11 bg-gray-900 hover:bg-black/40 flex items-center rounded-xl justify-center 
-            cursor-pointer border-2 border-purple-900/50`}
-              onClick={() => {
-                setActiveCard(activeCard === 'Deposit' ? 'Withdraw' : 'Deposit')
-                depositForm.reset()
-                withdrawForm.reset()
-                setTempVault(null)
-                setSelectedVault(null)
-              }}
-            >
-              <Icon>Arrow_Downward</Icon>
-            </button> */}
 
             <Button
               className="text-lg flex gap-2"
@@ -287,14 +277,12 @@ export function Operation() {
               {/* Button Label */}
               {selectedVault
                 ? operationTab === 'deposit'
-                  ? depositStatus || 'Deposit'
-                  : withdrawStatus || 'Withdraw'
-                : 'Select a vault'}
+                  ? depositStatus || tOperation('buttons.transaction.deposit')
+                  : withdrawStatus || tOperation('buttons.transaction.withdraw')
+                : tOperation('buttons.transaction.select')}
             </Button>
           </Card>
-          <p className="text-center max-sm:text-base text- max-w-[30rem] text-gray-300 mb-4">
-            Deposit or withdraw in a vault on sepolia ethereum network anytime, anywhere
-          </p>
+          <p className="text-center max-sm:text-base text- max-w-[30rem] text-gray-300 mb-4">{t2('heading.info')}</p>
         </div>
         <Divider />
 
@@ -304,8 +292,8 @@ export function Operation() {
             id="user-transactions-heading"
             className="mt-12 max-sm:mb-4"
             icon={<Icon className="!text-4xl">live_tv</Icon>}
-            title="User Transactions"
-            valueLabel="Total User Transactions"
+            title={t2('transactions.heading.title')}
+            valueLabel={t2('transactions.heading.info')}
             value={userTransactions?.total || 0}
           />
 
@@ -313,8 +301,8 @@ export function Operation() {
             className="w-full sm:max-w-[27rem]"
             iconLeft={<Icon className="text-indigo-300">search</Icon>}
             inputSize={'sm'}
-            label="Search transaction"
-            placeholder="Search your transactions by type and tx hash"
+            label={t2('transactions.input.info.label')}
+            placeholder={t2('transactions.input.info.placeholder')}
             value={searchTransaction}
             onChange={(e) => setSearchTransaction(e.target.value)}
           />

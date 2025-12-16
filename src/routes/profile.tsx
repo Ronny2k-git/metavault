@@ -35,8 +35,12 @@ function Profile() {
 
   {
     /*
-  
-  FILES TO TRANSLATE LATER
+
+  TO DO
+
+  1 Create a function to format the input numbers for "deposit" and "withdraw" functionalities.
+
+  2 FILES TO TRANSLATE LATER
   
   SAVE LATER THE SELECTED LANGUAGE TO LOCAL STORAGE 
   
