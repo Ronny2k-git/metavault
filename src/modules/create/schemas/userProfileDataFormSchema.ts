@@ -1,16 +1,21 @@
+import { TFunction } from 'i18next'
 import z from 'zod'
 
-export const userProfileDataFormSchema = z.object({
-  avatarUrl: z.string().nonempty({ message: 'Avatar url is required' }).url(),
-  userAbout: z
-    .string()
-    .min(25, { message: 'Minimum of 25 characters ' })
-    .max(120, { message: 'Maximum of 120 characters' }),
-  webSite: z.string().url('Invalid URL').or(z.literal('')).optional(),
-  address: z
-    .string()
-    .nonempty({ message: 'Wallet address is required' })
-    .regex(/^0x[a-fA-F0-9]{40}$/, { message: 'Invalid wallet address format' }),
-})
+export const userProfileDataFormSchema = (t: TFunction) =>
+  z.object({
+    avatarUrl: z
+      .string()
+      .nonempty({ message: t('form.errors.avatar') })
+      .url(),
+    userAbout: z
+      .string()
+      .min(25, { message: t('form.errors.userAbout.min') })
+      .max(120, { message: t('form.errors.userAbout.max') }),
+    webSite: z.string().url('Invalid website URL').or(z.literal('')).optional(),
+    address: z
+      .string()
+      .nonempty({ message: t('form.errors.wallet.required') })
+      .regex(/^0x[a-fA-F0-9]{40}$/, { message: t('form.errors.wallet.invalid') }),
+  })
 
-export type UserProfileDataFormType = z.infer<typeof userProfileDataFormSchema>
+export type UserProfileDataFormType = z.infer<ReturnType<typeof userProfileDataFormSchema>>

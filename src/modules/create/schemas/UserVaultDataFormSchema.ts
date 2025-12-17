@@ -1,15 +1,17 @@
+import { TFunction } from 'i18next'
 import z from 'zod'
 
-export const userVaultDataFormSchema = z
-  .object({
-    discord: z.string().url('Invalid Discord URL').or(z.literal('')).optional(),
-    telegram: z.string().url('Invalid Telegram URL').or(z.literal('')).optional(),
-    twitter: z.string().url('Invalid Twitter URL').or(z.literal('')).optional(),
-    tag: z.string().optional(),
-  })
-  .refine((data) => data.discord || data.telegram || data.twitter, {
-    message: 'At least one social must be provided: discord, telegram or twitter',
-    path: ['discord'],
-  })
+export const userVaultDataFormSchema = (t: TFunction) =>
+  z
+    .object({
+      discord: z.string().url(t('form.errors.discord')).or(z.literal('')).optional(),
+      telegram: z.string().url(t('form.errors.telegram')).or(z.literal('')).optional(),
+      twitter: z.string().url(t('form.errors.twitter')).or(z.literal('')).optional(),
+      tag: z.string().optional(),
+    })
+    .refine((data) => data.discord || data.telegram || data.twitter, {
+      message: t('form.errors.warn'),
+      path: ['discord'],
+    })
 
-export type UserVaultDataFormType = z.infer<typeof userVaultDataFormSchema>
+export type UserVaultDataFormType = z.infer<ReturnType<typeof userVaultDataFormSchema>>

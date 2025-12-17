@@ -43,7 +43,7 @@ export function ConfirmAndCreateForm() {
   const allFormData = useAtomValue(combinedCreateDataAtom)
 
   const { register, handleSubmit, reset, formState } = useForm<ConfirmAndCreateFormType>({
-    resolver: zodResolver(confirmAndCreateFormSchema),
+    resolver: zodResolver(confirmAndCreateFormSchema(t)),
     defaultValues: confirmData,
   })
 

@@ -22,6 +22,35 @@
   },
 
   "vaultData": {
+    "form": {
+    "errors": {
+      "network": "网络是必填项",
+      "vaultName": "金库名称是必填项",
+      "logo": "Logo 是必填项",
+      "banner": "横幅是必填项",
+      "creatorName": "创建者名称是必填项",
+      "description": {
+        "min": "最少需要 50 个字符",
+        "max": "最多允许 120 个字符"
+      },
+      "token": {
+        "required": "资产代币是必填项",
+        "invalid": "以太坊地址格式无效"
+      },
+      "salt": {
+        "required": "Salt 是必填项",
+        "invalid": "值必须大于或等于 1"
+      },
+      "minDeposit": {
+        "required": "最低存款是必填项",
+        "invalid": "值必须大于 0"
+      },
+      "maxDeposit": {
+        "required": "最高存款是必填项",
+        "invalid": "值必须大于或等于 1"
+      }
+    }
+  },
     "titles": {
       "required": "( 所有字段均为必填项 )",
       "vault": "保险库基础数据",
@@ -76,6 +105,24 @@
   },
 
   "userData": {
+    "form": {
+    "errors": {
+      "discord": "Discord URL 无效",
+      "telegram": "Telegram URL 无效",
+      "twitter": "Twitter URL 无效",
+      "warn": "至少需要提供一个社交账号：Discord、Telegram 或 Twitter",
+      "avatar": "头像 URL 是必填项",
+      "userAbout": {
+        "min": "最少需要 25 个字符",
+        "max": "最多允许 120 个字符"
+      },
+      "website": "网站 URL 无效",
+      "wallet": {
+        "required": "钱包地址是必填项",
+        "invalid": "钱包地址格式无效"
+      }
+    }
+  },
   "titles": {
     "required": "( 至少需要提供一个社交链接 )",
     "userVault": "用户金库数据",
@@ -119,6 +166,12 @@
 },
 
  "confirmAndCreate": {
+   "form": {
+    "errors": {
+      "startDate": "开始日期是必填项",
+      "endDate": "结束日期是必填项"
+    }
+  },
   "titles": {
     "required": "( 所有字段均为必填项 )",
     "vault": "保险库时间",

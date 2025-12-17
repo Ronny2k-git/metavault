@@ -25,6 +25,35 @@
     },
 
     "vaultData": {
+      "form": {
+        "errors": {
+          "network": "Network is required",
+          "vaultName": "Vault name is required",
+          "logo": "Logo is required",
+          "banner": "Banner is required",
+          "creatorName": "Creator name is required",
+          "description": {
+            "min": "Minimum of 50 characters",
+            "max": "Maximum of 120 characters"
+          },
+          "token": {
+            "required": "Asset token is required",
+            "invalid": "Invalid Ethereum address format"
+          },
+          "salt": {
+            "required": "Salt is required",
+            "invalid": "Value must be greater than or equal to 1"
+          },
+          "minDeposit": {
+            "required": "Minimum deposit is required",
+            "invalid": "Value must be greater than 0"
+          },
+          "maxDeposit": {
+            "required": "Maximum deposit is required",
+            "invalid": "Value must be greater than or equal to 1"
+          }
+        }
+      },
      "titles": {
       "required": "( All fields are required )",
       "vault": "Basic Vault Data",
@@ -79,6 +108,24 @@
     },
     
     "userData": {
+      "form": {
+        "errors": {
+          "discord": "Invalid Discord URL",
+          "telegram": "Invalid Telegram URL",
+          "twitter": "Invalid Twitter URL",
+          "warn": "At least one social must be provided: discord, telegram or twitter",
+          "avatar": "Avatar url is required",
+          "userAbout": {
+            "min": "Minimum of 25 characters",
+            "max": "Maximum of 120 characters"
+          },
+          "website": "Invalid website URL",
+          "wallet": {
+            "required": "Wallet address is required",
+            "invalid": "Invalid wallet address format"
+          }
+        }
+      },
      "titles": {
       "required": "( At least one social must be provided )",
       "userVault": "User Vault Data",
@@ -122,6 +169,12 @@
     },
 
     "confirmAndCreate": {
+      "form": {
+        "errors": {
+          "startDate": "Start date is required",
+          "endDate": "End date is required"
+        }
+      },
       "titles": {
        "required": "( All fields are required )",
        "vault": "Vault Time",

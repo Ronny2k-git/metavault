@@ -26,12 +26,12 @@ export function UserDataForm() {
   const { t } = useTranslation('create', { keyPrefix: 'userData' })
 
   const vaultForm = useForm<UserVaultDataFormType>({
-    resolver: zodResolver(userVaultDataFormSchema),
+    resolver: zodResolver(userVaultDataFormSchema(t)),
     defaultValues: userData,
   })
 
   const profileForm = useForm<UserProfileDataFormType>({
-    resolver: zodResolver(userProfileDataFormSchema),
+    resolver: zodResolver(userProfileDataFormSchema(t)),
     defaultValues: {
       ...userProfileDataAtom,
       address: address || '',

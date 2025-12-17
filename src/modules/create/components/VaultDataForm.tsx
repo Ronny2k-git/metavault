@@ -19,7 +19,7 @@ export function VaultDataForm() {
   const { t } = useTranslation('create', { keyPrefix: 'vaultData' })
 
   const { register, handleSubmit, reset, formState } = useForm<VaultDataFormType>({
-    resolver: zodResolver(vaultDataFormSchema),
+    resolver: zodResolver(vaultDataFormSchema(t)),
     defaultValues: vaultData,
   })
 

@@ -22,6 +22,35 @@
   },
 
   "vaultData": {
+    "form": {
+    "errors": {
+      "network": "A rede é obrigatória",
+      "vaultName": "O nome do cofre é obrigatório",
+      "logo": "O logo é obrigatório",
+      "banner": "O banner é obrigatório",
+      "creatorName": "O nome do criador é obrigatório",
+      "description": {
+        "min": "Mínimo de 50 caracteres",
+        "max": "Máximo de 120 caracteres"
+      },
+      "token": {
+        "required": "O token do ativo é obrigatório",
+        "invalid": "Formato de endereço Ethereum inválido"
+      },
+      "salt": {
+        "required": "O salt é obrigatório",
+        "invalid": "O valor deve ser maior ou igual a 1"
+      },
+      "minDeposit": {
+        "required": "O depósito mínimo é obrigatório",
+        "invalid": "O valor deve ser maior que 0"
+      },
+      "maxDeposit": {
+        "required": "O depósito máximo é obrigatório",
+        "invalid": "O valor deve ser maior ou igual a 1"
+      }
+    }
+  },
     "titles": {
       "required": "( Todos os campos são obrigatórios )",
       "vault": "Dados Básicos do Cofre",
@@ -76,6 +105,24 @@
   },
 
   "userData": {
+    "form": {
+    "errors": {
+      "discord": "URL do Discord inválida",
+      "telegram": "URL do Telegram inválida",
+      "twitter": "URL do Twitter inválida",
+      "warn": "Pelo menos uma rede social deve ser informada: Discord, Telegram ou Twitter",
+      "avatar": "A URL do avatar é obrigatória",
+      "userAbout": {
+        "min": "Mínimo de 25 caracteres",
+        "max": "Máximo de 120 caracteres"
+      },
+      "website": "URL do site inválida",
+      "wallet": {
+        "required": "O endereço da carteira é obrigatório",
+        "invalid": "Formato de endereço de carteira inválido"
+      }
+    }
+  },
   "titles": {
     "required": "( Pelo menos uma rede social deve ser fornecida )",
     "userVault": "Dados do Usuário do Cofre",
@@ -119,6 +166,12 @@
 },
 
  "confirmAndCreate": {
+   "form": {
+    "errors": {
+      "startDate": "A data de início é obrigatória",
+      "endDate": "A data de término é obrigatória"
+    }
+  },
   "titles": {
     "required": "( Todos os campos são obrigatórios )",
     "vault": "Tempo do Vault",

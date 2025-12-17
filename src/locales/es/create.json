@@ -22,6 +22,35 @@
   },
 
   "vaultData": {
+    "form": {
+    "errors": {
+      "network": "La red es obligatoria",
+      "vaultName": "El nombre de la bóveda es obligatorio",
+      "logo": "El logo es obligatorio",
+      "banner": "El banner es obligatorio",
+      "creatorName": "El nombre del creador es obligatorio",
+      "description": {
+        "min": "Mínimo de 50 caracteres",
+        "max": "Máximo de 120 caracteres"
+      },
+      "token": {
+        "required": "El token del activo es obligatorio",
+        "invalid": "Formato de dirección de Ethereum inválido"
+      },
+      "salt": {
+        "required": "El salt es obligatorio",
+        "invalid": "El valor debe ser mayor o igual a 1"
+      },
+      "minDeposit": {
+        "required": "El depósito mínimo es obligatorio",
+        "invalid": "El valor debe ser mayor que 0"
+      },
+      "maxDeposit": {
+        "required": "El depósito máximo es obligatorio",
+        "invalid": "El valor debe ser mayor o igual a 1"
+      }
+    }
+  },
     "titles": {
       "required": "( Todos los campos son obligatorios )",
       "vault": "Datos Básicos de la Bóveda",
@@ -76,6 +105,24 @@
   },
 
   "userData": {
+    "form": {
+    "errors": {
+      "discord": "URL de Discord inválida",
+      "telegram": "URL de Telegram inválida",
+      "twitter": "URL de Twitter inválida",
+      "warn": "Se debe proporcionar al menos una red social: Discord, Telegram o Twitter",
+      "avatar": "La URL del avatar es obligatoria",
+      "userAbout": {
+        "min": "Mínimo de 25 caracteres",
+        "max": "Máximo de 120 caracteres"
+      },
+      "website": "URL del sitio web inválida",
+      "wallet": {
+        "required": "La dirección de la billetera es obligatoria",
+        "invalid": "Formato de dirección de billetera inválido"
+      }
+    }
+  },
   "titles": {
     "required": "( Se debe proporcionar al menos una red social )",
     "userVault": "Datos del Cofre del Usuario",
@@ -119,6 +166,12 @@
 },
 
   "confirmAndCreate": {
+   "form": {
+    "errors": {
+      "startDate": "La fecha de inicio es obligatoria",
+      "endDate": "La fecha de finalización es obligatoria"
+    }
+  },
   "titles": {
     "required": "( Todos los campos son obligatorios )",
     "vault": "Tiempo del Vault",

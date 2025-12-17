@@ -58,12 +58,6 @@ function Profile() {
 
   3 SAVE LATER THE SELECTED LANGUAGE INTO LOCAL STORAGE 
   
-  1 CREATION PAGE: {
-  1.1 ConfirmAndCreateFormSchema.ts
-  1.2 userProfileDataFormSchema.ts
-  1.3 UserVaultDataFormSchema.ts
-  1.4 VaultDataFormSchema.ts
-  }
   
       */
   }

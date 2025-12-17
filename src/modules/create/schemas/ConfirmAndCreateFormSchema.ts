@@ -1,8 +1,10 @@
+import { TFunction } from 'i18next'
 import z from 'zod'
 
-export const confirmAndCreateFormSchema = z.object({
-  startDate: z.string().nonempty({ message: 'Start date is required' }),
-  endDate: z.string().nonempty({ message: 'End date is required' }),
-})
+export const confirmAndCreateFormSchema = (t: TFunction) =>
+  z.object({
+    startDate: z.string().nonempty({ message: t('form.errors.startDate') }),
+    endDate: z.string().nonempty({ message: t('form.errors.endDate') }),
+  })
 
-export type ConfirmAndCreateFormType = z.infer<typeof confirmAndCreateFormSchema>
+export type ConfirmAndCreateFormType = z.infer<ReturnType<typeof confirmAndCreateFormSchema>>

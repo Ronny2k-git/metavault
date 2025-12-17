@@ -22,6 +22,35 @@
   },
 
   "vaultData": {
+    "form": {
+    "errors": {
+      "network": "네트워크는 필수입니다",
+      "vaultName": "볼트 이름은 필수입니다",
+      "logo": "로고는 필수입니다",
+      "banner": "배너는 필수입니다",
+      "creatorName": "생성자 이름은 필수입니다",
+      "description": {
+        "min": "최소 50자 이상이어야 합니다",
+        "max": "최대 120자까지 가능합니다"
+      },
+      "token": {
+        "required": "자산 토큰은 필수입니다",
+        "invalid": "이더리움 주소 형식이 올바르지 않습니다"
+      },
+      "salt": {
+        "required": "Salt는 필수입니다",
+        "invalid": "값은 1 이상이어야 합니다"
+      },
+      "minDeposit": {
+        "required": "최소 입금액은 필수입니다",
+        "invalid": "값은 0보다 커야 합니다"
+      },
+      "maxDeposit": {
+        "required": "최대 입금액은 필수입니다",
+        "invalid": "값은 1 이상이어야 합니다"
+      }
+    }
+  },
     "titles": {
       "required": "( 모든 필드는 필수입니다 )",
       "vault": "기본 볼트 데이터",
@@ -77,6 +106,24 @@
     },
     
 "userData": {
+  "form": {
+    "errors": {
+      "discord": "Discord URL이 올바르지 않습니다",
+      "telegram": "Telegram URL이 올바르지 않습니다",
+      "twitter": "Twitter URL이 올바르지 않습니다",
+      "warn": "최소 하나의 소셜 계정이 필요합니다: Discord, Telegram 또는 Twitter",
+      "avatar": "아바타 URL은 필수입니다",
+      "userAbout": {
+        "min": "최소 25자 이상이어야 합니다",
+        "max": "최대 120자까지 가능합니다"
+      },
+      "website": "웹사이트 URL이 올바르지 않습니다",
+      "wallet": {
+        "required": "지갑 주소는 필수입니다",
+        "invalid": "지갑 주소 형식이 올바르지 않습니다"
+      }
+    }
+  },
   "titles": {
     "required": "( 최소 한 개의 소셜 링크가 필요합니다 )",
     "userVault": "사용자 금고 데이터",
@@ -120,6 +167,12 @@
 },
 
   "confirmAndCreate": {
+   "form": {
+    "errors": {
+      "startDate": "시작 날짜는 필수입니다",
+      "endDate": "종료 날짜는 필수입니다"
+    }
+  },
   "titles": {
     "required": "( 모든 필드는 필수입니다 )",
     "vault": "볼트 기간",
