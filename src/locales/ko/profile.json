@@ -50,6 +50,12 @@
   },
 
   "operation": {
+   "form": {
+    "errors": {
+      "amount": "금액을 입력해 주세요",
+      "positiveAmount": "금액은 0보다 커야 합니다"
+    }
+  },
     "heading": {
       "title": "입금 또는 출금",
       "subtitle": "(언제 어디서나)",

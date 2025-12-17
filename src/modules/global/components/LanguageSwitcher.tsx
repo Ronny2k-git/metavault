@@ -1,7 +1,7 @@
 import i18n from '@/i18n'
 import { Card } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const LANGUAGES = [
@@ -15,6 +15,7 @@ const LANGUAGES = [
 export function LanguageSwitcher() {
   const [lang, setLang] = useState(i18n.language)
   const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation('global', { keyPrefix: 'header.languageSelector' })
 
   useEffect(() => {
@@ -25,8 +26,21 @@ export function LanguageSwitcher() {
 
   const selected = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0]
 
+  // Close the selector when the user clicks outside de card.
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (open && containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [open])
+
   return (
-    <div className="relative inline-block">
+    <div ref={containerRef} className="relative inline-block">
       <Button
         className="flex px-4 gap-3 max-h-12 shadow-2xs rounded-xl border-purple-900/70"
         variant={'black'}

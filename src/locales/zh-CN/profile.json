@@ -50,6 +50,12 @@
   },
 
   "operation": {
+   "form": {
+    "errors": {
+      "amount": "请输入金额",
+      "positiveAmount": "金额必须大于 0"
+    }
+  },
     "heading": {
       "title": "存款或取款",
       "subtitle": "（随时随地）",

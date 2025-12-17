@@ -50,6 +50,12 @@
   },
 
   "operation": {
+   "form": {
+    "errors": {
+      "amount": "Por favor, introduce una cantidad",
+      "positiveAmount": "La cantidad debe ser mayor que 0"
+    }
+  },
     "heading": {
       "title": "Depositar o Retirar",
       "subtitle": "(en cualquier momento, en cualquier lugar)",

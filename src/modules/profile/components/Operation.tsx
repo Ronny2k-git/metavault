@@ -87,12 +87,12 @@ export function Operation() {
 
   // Deposit Form
   const depositForm = useForm<DepositSchemaType>({
-    resolver: zodResolver(DepositSchema),
+    resolver: zodResolver(DepositSchema(t2)),
     defaultValues: { amount: undefined },
   })
   // Withdraw Form
   const withdrawForm = useForm<WithdrawSchemaType>({
-    resolver: zodResolver(WithdrawSchema),
+    resolver: zodResolver(WithdrawSchema(t2)),
     defaultValues: { amount: undefined },
   })
 

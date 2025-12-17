@@ -50,6 +50,13 @@
     },
 
     "operation": {
+     "form": {
+      "errors": {
+        "amount": "Please enter an amount",
+        "positiveAmount": "Amount must be greater than 0"
+      }
+    },
+
     "heading": {
       "title": "Deposit or Withdraw",
       "subtitle": "(anytime, anywhere)",

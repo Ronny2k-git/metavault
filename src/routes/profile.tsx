@@ -56,9 +56,7 @@ function Profile() {
   2.5 Francês
   2.6 MAYBE Tailandês
 
-  3 FILES TO TRANSLATE LATER
-  
-  SAVE LATER THE SELECTED LANGUAGE INTO LOCAL STORAGE 
+  3 SAVE LATER THE SELECTED LANGUAGE INTO LOCAL STORAGE 
   
   1 CREATION PAGE: {
   1.1 ConfirmAndCreateFormSchema.ts
@@ -67,11 +65,6 @@ function Profile() {
   1.4 VaultDataFormSchema.ts
   }
   
-  2 PROFILE PAGE: {
-  2.6 operationSchema.ts (validations)
-  2.9 EditProfileForm.tsx
-  }
-    
       */
   }
 

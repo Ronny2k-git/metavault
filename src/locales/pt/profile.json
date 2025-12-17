@@ -50,6 +50,12 @@
   },
 
   "operation": {
+   "form": {
+    "errors": {
+      "amount": "Por favor, informe um valor",
+      "positiveAmount": "O valor deve ser maior que 0"
+    }
+   },
     "heading": {
       "title": "Depositar ou Sacar",
       "subtitle": "(a qualquer hora, em qualquer lugar)",
