@@ -17,11 +17,12 @@ export function EditProfileForm() {
   const editUserProfile = useEditUserProfile()
   const { t } = useTranslation('global')
   const { t: tEditForm } = useTranslation('profile', { keyPrefix: 'editProfile' })
+  const { t: tCreate } = useTranslation('create', { keyPrefix: 'userData' })
 
   const profileData = userProfileData?.[0]
 
   const editProfileForm = useForm<UserProfileDataFormType>({
-    resolver: zodResolver(userProfileDataFormSchema),
+    resolver: zodResolver(userProfileDataFormSchema(tCreate)),
   })
 
   useEffect(() => {

@@ -105,23 +105,26 @@
   },
 
   "userData": {
-    "form": {
+   "form": {
     "errors": {
-      "discord": "URL do Discord inválida",
-      "telegram": "URL do Telegram inválida",
-      "twitter": "URL do Twitter inválida",
-      "warn": "Pelo menos uma rede social deve ser informada: Discord, Telegram ou Twitter",
-      "avatar": "A URL do avatar é obrigatória",
-      "userAbout": {
-        "min": "Mínimo de 25 caracteres",
-        "max": "Máximo de 120 caracteres"
-      },
-      "website": "URL do site inválida",
-      "wallet": {
-        "required": "O endereço da carteira é obrigatório",
-        "invalid": "Formato de endereço de carteira inválido"
-      }
+    "discord": "URL do Discord inválida",
+    "telegram": "URL do Telegram inválida",
+    "twitter": "URL do Twitter inválida",
+    "warn": "Pelo menos uma rede social deve ser informada: Discord, Telegram ou Twitter",
+    "avatar": {
+      "required": "A URL do avatar é obrigatória",
+      "invalid": "URL do avatar inválida"
+    },
+    "userAbout": {
+      "min": "Mínimo de 25 caracteres",
+      "max": "Máximo de 120 caracteres"
+    },
+    "website": "URL do site inválida",
+    "wallet": {
+      "required": "O endereço da carteira é obrigatório",
+      "invalid": "Formato de endereço de carteira inválido"
     }
+  }
   },
   "titles": {
     "required": "( Pelo menos uma rede social deve ser fornecida )",

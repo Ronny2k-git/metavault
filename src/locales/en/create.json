@@ -114,7 +114,10 @@
           "telegram": "Invalid Telegram URL",
           "twitter": "Invalid Twitter URL",
           "warn": "At least one social must be provided: discord, telegram or twitter",
-          "avatar": "Avatar url is required",
+          "avatar": {
+            "required": "Avatar url is required",
+            "invalid": "Invalid avatar URL"
+          } ,
           "userAbout": {
             "min": "Minimum of 25 characters",
             "max": "Maximum of 120 characters"

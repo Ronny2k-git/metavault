@@ -5,13 +5,13 @@ export const userProfileDataFormSchema = (t: TFunction) =>
   z.object({
     avatarUrl: z
       .string()
-      .nonempty({ message: t('form.errors.avatar') })
-      .url(),
+      .nonempty({ message: t('form.errors.avatar.required') })
+      .url(t('form.errors.avatar.invalid')),
     userAbout: z
       .string()
       .min(25, { message: t('form.errors.userAbout.min') })
       .max(120, { message: t('form.errors.userAbout.max') }),
-    webSite: z.string().url('Invalid website URL').or(z.literal('')).optional(),
+    webSite: z.string().url(t('form.errors.website')).or(z.literal('')).optional(),
     address: z
       .string()
       .nonempty({ message: t('form.errors.wallet.required') })

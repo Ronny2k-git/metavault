@@ -105,23 +105,26 @@
   },
 
   "userData": {
-    "form": {
+   "form": {
     "errors": {
-      "discord": "Discord URL 无效",
-      "telegram": "Telegram URL 无效",
-      "twitter": "Twitter URL 无效",
-      "warn": "至少需要提供一个社交账号：Discord、Telegram 或 Twitter",
-      "avatar": "头像 URL 是必填项",
-      "userAbout": {
-        "min": "最少需要 25 个字符",
-        "max": "最多允许 120 个字符"
-      },
-      "website": "网站 URL 无效",
-      "wallet": {
-        "required": "钱包地址是必填项",
-        "invalid": "钱包地址格式无效"
-      }
+     "discord": "Discord URL 无效",
+     "telegram": "Telegram URL 无效",
+     "twitter": "Twitter URL 无效",
+     "warn": "至少需要提供一个社交账号：Discord、Telegram 或 Twitter",
+     "avatar": {
+      "required": "头像 URL 是必填项",
+      "invalid": "头像 URL 无效"
+     },
+     "userAbout": {
+      "min": "最少需要 25 个字符",
+      "max": "最多允许 120 个字符"
+     },
+     "website": "网站 URL 无效",
+     "wallet": {
+      "required": "钱包地址是必填项",
+      "invalid": "钱包地址格式无效"
     }
+  }
   },
   "titles": {
     "required": "( 至少需要提供一个社交链接 )",
