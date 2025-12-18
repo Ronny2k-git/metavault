@@ -43,7 +43,15 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <ClientOnly>
+        <ClientOnly
+          fallback={
+            <div className="flex items-center gap-6 opacity-0 pointer-events-none">
+              {/* placeholders com o mesmo tamanho */}
+              <div className="h-12 w-32 rounded-xl bg-transparent" />
+              <div className="h-12 w-40 rounded-xl bg-transparent" />
+            </div>
+          }
+        >
           <div className="flex items-center gap-6">
             <LanguageSwitcher />
 

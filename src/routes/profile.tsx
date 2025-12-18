@@ -39,26 +39,6 @@ function Profile() {
   }))
   const profileData = userProfileData?.[0]
 
-  {
-    tProfile('tabs')
-    /*
-
-  TO DO
-
-  1 Create a function to format the input numbers for "deposit" and "withdraw" functionalities.
-
-  2 ADD SUPORT FOR THE LANGUAGES:
-
-  2.1 Japonês (ja)
-  2.2 Russo (ru)
-  2.3 Turco (tr)
-  2.4 Vietnamita (vi)
-  2.5 Francês
-  2.6 MAYBE Tailandês
-
-      */
-  }
-
   return (
     <div className="background-image page min-h-screen flex flex-col w-full items-center pb-10 text-white">
       <div className="w-full max-w-4xl">
