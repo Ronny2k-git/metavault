@@ -46,7 +46,13 @@
         "label": "搜索金库",
         "placeholder": "通过地址、名称、创建者或链名称搜索您的金库。"
       }
-    }
+    },
+
+    "cardDialog": {
+    "title": "确认删除",
+    "subtitle": "您将提现吗",
+    "info": "总计"
+  }
   },
 
   "operation": {

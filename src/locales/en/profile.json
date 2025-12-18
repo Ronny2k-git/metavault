@@ -46,7 +46,14 @@
         "label": "Search Vault",
         "placeholder": "Search your vaults by address,name, creator and chain name."
        }
+    },
+
+    "cardDialog": {
+      "title": "Confirm your remotion",
+      "subtitle": "You Withdraw",
+      "info": "Total"
     }
+
     },
 
     "operation": {

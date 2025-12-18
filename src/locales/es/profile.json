@@ -46,7 +46,13 @@
         "label": "Buscar Vault",
         "placeholder": "Busca tus vaults por dirección, nombre, creador o nombre de la cadena."
       }
-    }
+    },
+
+    "cardDialog": {
+    "title": "Confirma tu eliminación",
+    "subtitle": "Retiras",
+    "info": "Total"
+  }
   },
 
   "operation": {

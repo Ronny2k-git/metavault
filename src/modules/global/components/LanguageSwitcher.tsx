@@ -18,6 +18,13 @@ export function LanguageSwitcher() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { t } = useTranslation('global', { keyPrefix: 'header.languageSelector' })
 
+  function changeLanguage(l: string) {
+    i18n.changeLanguage(l)
+    localStorage.setItem('lang', l)
+    setOpen(!open)
+  }
+
+  // Used to keep the state lang synchronized with the i18n
   useEffect(() => {
     const handler = (lng: string) => setLang(lng)
     i18n.on('languageChanged', handler)
@@ -26,18 +33,24 @@ export function LanguageSwitcher() {
 
   const selected = LANGUAGES.find((l) => l.code === lang) || LANGUAGES[0]
 
-  // Close the selector when the user clicks outside de card.
+  // Close the card if the user clicks outside the selector.
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (open && containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setOpen(false)
       }
     }
-
     document.addEventListener('mousedown', handleClickOutside)
 
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [open])
+
+  useEffect(() => {
+    const storedLang = localStorage.getItem('lang')
+    if (storedLang && storedLang != i18n.language) {
+      i18n.changeLanguage(storedLang)
+    }
+  }, [])
 
   return (
     <div ref={containerRef} className="relative inline-block">
@@ -63,10 +76,7 @@ export function LanguageSwitcher() {
                 key={langItem.code}
                 className={`flex bg-transparent border-none items-cente justify-start w-full gap-3 px-3 rounded-lg hover:bg-purple-950/40 ${isActive ? 'bg-purple-950/40' : ''}`}
                 variant={'primary'}
-                onClick={() => {
-                  i18n.changeLanguage(langItem.code)
-                  setOpen(!open)
-                }}
+                onClick={() => changeLanguage(langItem.code)}
               >
                 <span className="text-xl">{langItem.flag}</span>
                 <span>{t(langItem.label)}</span>

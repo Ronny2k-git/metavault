@@ -46,7 +46,13 @@
         "label": "볼트 검색",
         "placeholder": "주소, 이름, 생성자, 체인 이름으로 볼트를 검색하세요."
       }
-    }
+    },
+
+    "cardDialog": {
+    "title": "삭제를 확인하세요",
+    "subtitle": "출금",
+    "info": "총액"
+  }
   },
 
   "operation": {

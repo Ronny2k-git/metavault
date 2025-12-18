@@ -289,9 +289,10 @@ export function UserVaults() {
           </div>
         )}
         <TransactionCardDialog
-          className="min-h-64"
-          title="Confirm your Remotion"
-          subtitle="You Withdraw"
+          className="min-h-64 max-w-sm"
+          title={t2('cardDialog.title')}
+          subtitle={t2('cardDialog.subtitle')}
+          valueTitle={t2('cardDialog.info')}
           chainName={getChainName(sepolia.id)}
           info={selectedVault?.vaultName}
           vaultLogo={selectedVault?.logo}

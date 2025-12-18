@@ -56,9 +56,6 @@ function Profile() {
   2.5 Francês
   2.6 MAYBE Tailandês
 
-  3 SAVE LATER THE SELECTED LANGUAGE INTO LOCAL STORAGE 
-  
-  
       */
   }
 
