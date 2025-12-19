@@ -1,5 +1,5 @@
+import * as Dialog from '@radix-ui/react-dialog'
 import type { VariantProps } from 'class-variance-authority'
-import { Dialog } from 'radix-ui'
 import { RiCloseLine } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 import type { cardStyle } from './Card'

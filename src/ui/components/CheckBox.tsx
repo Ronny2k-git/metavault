@@ -1,16 +1,15 @@
-import type { Checkbox } from 'radix-ui'
-import { Checkbox as PrimitiveCheckBox } from 'radix-ui'
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { twMerge } from 'tailwind-merge'
 
-interface CheckBoxProps extends React.ComponentPropsWithoutRef<typeof Checkbox.Root> {
+interface CheckBoxProps extends React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> {
   children?: React.ReactNode
   className?: string
 }
 
 export function CheckBox({ children, className, ...props }: CheckBoxProps) {
   return (
-    <PrimitiveCheckBox.Root {...props} className={twMerge('flex w-full cursor-pointer transition ', className)}>
+    <CheckboxPrimitive.Root {...props} className={twMerge('flex w-full cursor-pointer transition ', className)}>
       {children}
-    </PrimitiveCheckBox.Root>
+    </CheckboxPrimitive.Root>
   )
 }

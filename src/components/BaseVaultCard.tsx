@@ -5,7 +5,7 @@ import { formatDate, formatNumber, formatToCompactIntl } from '@/modules/global/
 import { Card, Icon } from '@/ui/components'
 import { Button } from '@/ui/components/Button'
 import { DiscordIcon, TelegramIcon, TwitterIcon } from '@/ui/components/icons'
-import { Collapsible } from 'radix-ui'
+import * as Collapsible from '@radix-ui/react-collapsible'
 import { useTranslation } from 'react-i18next'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { StatusChip } from './StatusChip'
@@ -38,13 +38,13 @@ export function BaseVaultCard(data: BaseVaultProps) {
   }
 
   return (
-    <Card variant={`${data.status === 'live' ? 'basic2' : 'basic'}`} className={'relative lg:max-w-[23rem] rounded-lg'}>
+    <Card variant={`${data.status === 'live' ? 'basic2' : 'basic'}`} className={'relative lg:max-w-92 rounded-lg'}>
       <div className="absolute w-full flex justify-center">
         <StatusChip status={data.status} />
       </div>
 
       <img
-        className="rounded-lg mb-2 h-[14rem] w-full object-cover"
+        className="rounded-lg mb-2 h-56 w-full object-cover"
         src={isValidUrl(data.banner) ? data.banner : '/default-banner.jpg'}
         onError={(e) => (e.currentTarget.src = '/default-banner.jpg')}
       />
@@ -64,17 +64,17 @@ export function BaseVaultCard(data: BaseVaultProps) {
         {/* User Vault Socials */}
         <div className="flex gap-2 items-center">
           {data.discord && (
-            <a className="hover:mb-1 hover:border-b-1" href={String(data.discord)}>
+            <a className="hover:mb-1 hover:border-b" href={String(data.discord)}>
               <DiscordIcon />
             </a>
           )}
           {data.telegram && (
-            <a className="hover:mb-1 hover:border-b-1" href={String(data.telegram)}>
+            <a className="hover:mb-1 hover:border-b" href={String(data.telegram)}>
               <TelegramIcon />
             </a>
           )}
           {data.twitter && (
-            <a className="hover:mb-1 hover:border-b-1" href={String(data.twitter)}>
+            <a className="hover:mb-1 hover:border-b" href={String(data.twitter)}>
               <TwitterIcon />
             </a>
           )}
@@ -131,7 +131,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
         )}
       </section>
 
-      <div className="h-0.5 mt-2 w-full bg-gradient-to-r via-purple-900/90" />
+      <div className="h-0.5 mt-2 w-full bg-linear-to-r via-purple-900/90" />
 
       <section className="flex flex-col px-2">
         {data.status != 'ended' && data.deposited != null ? (
@@ -154,7 +154,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
           <div className="flex items-center justify-between">
             <h3>{t('view')}</h3>
             <a href={`https://sepolia.etherscan.io/address/${data.address}`}>
-              <Icon className="mt-1 hover:border-b-1 text-indigo-300">eye_tracking</Icon>
+              <Icon className="mt-1 hover:border-b text-indigo-300">eye_tracking</Icon>
             </a>
           </div>
         )}

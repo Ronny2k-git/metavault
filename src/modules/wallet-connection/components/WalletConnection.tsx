@@ -3,7 +3,7 @@
 import { ECOSYSTEMS } from '@/modules/global/constants'
 import { formatNumber } from '@/modules/global/utils'
 import { Icon, Modal } from '@/ui/components'
-import { Tabs } from 'radix-ui'
+import * as Tabs from '@radix-ui/react-tabs'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { sepolia } from 'viem/chains'
