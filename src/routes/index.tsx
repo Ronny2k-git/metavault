@@ -22,12 +22,10 @@ function HomePage() {
 
   return (
     <div className="w-full flex flex-col text-white">
-      <div className="relative w-full flex pt-20 pb-40 ">
-        <img
-          src={'/banners/header-banner3.png'}
-          className="absolute inset-0 w-full h-full -z-10 object-cover object-bottom"
-        />
-
+      <div
+        className="relative w-full flex pt-20 pb-40 bg-[url('/banners/header-banner3.png')]
+        bg-cover bg-bottom"
+      >
         {/* HOME PAGE HEADER */}
         <header className="w-full flex justify-center items-center">
           <div className="p-8 md:pt-24 flex flex-col max-md:items-center">
@@ -69,12 +67,7 @@ function HomePage() {
         </header>
       </div>
 
-      <main className="relative min-h-screen flex flex-col items-center">
-        <img
-          src="/banners/secondary-banner.png"
-          className="absolute inset-0 w-full h-full -z-10 object-cover object-left"
-        />
-
+      <main className="relative min-h-screen flex flex-col items-center bg-[url('/banners/secondary-banner.png')] bg-cover bg-left">
         <Divider className="h-px m-12" />
 
         {/* ===== FEATURES SECTION ===== */}

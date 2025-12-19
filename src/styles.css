@@ -67,7 +67,7 @@ html {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/banner2.png');
+  background: url('/mainBanner.jpg');
   opacity: 0.01;
   z-index: 0;
 }
