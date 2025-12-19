@@ -68,7 +68,6 @@ export function Operation() {
     onSuccess: () => {
       refetchVaultBalance()
       refetchTokenBalance()
-      depositForm.reset()
     },
   })
   const { withdraw, status: withdrawStatus } = useWithdraw({
@@ -81,7 +80,6 @@ export function Operation() {
     onSuccess: () => {
       refetchVaultBalance()
       refetchTokenBalance()
-      withdrawForm.reset()
     },
   })
 
@@ -134,6 +132,9 @@ export function Operation() {
       queryClient.invalidateQueries({ queryKey: ['get-user-transactions', account.address] }),
       queryClient.invalidateQueries({ queryKey: ['vaults', account.address] }),
     ])
+
+    //5. Clean the deposit input
+    depositForm.reset()
   }
 
   // Withdraw functionality
@@ -174,6 +175,9 @@ export function Operation() {
       queryClient.invalidateQueries({ queryKey: ['get-user-transactions', account.address] }),
       queryClient.invalidateQueries({ queryKey: ['vaults', account.address] }),
     ])
+
+    //5. Clean the deposit input
+    withdrawForm.reset()
   }
 
   return (
