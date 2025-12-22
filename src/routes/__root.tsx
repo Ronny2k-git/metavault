@@ -28,6 +28,7 @@ export const Route = createRootRoute({
       { rel: 'icon', href: '/icon.png' },
       { rel: 'preload', as: 'image', href: '/banners/header-banner3.png' },
       { rel: 'preload', as: 'image', href: '/banners/vault.png' },
+      { rel: 'preload', as: 'image', href: '/banners/secondary-banner.png' },
     ],
   }),
   shellComponent: RootDocument,
