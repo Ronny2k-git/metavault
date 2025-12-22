@@ -63,7 +63,12 @@ function HomePage() {
           </div>
 
           {/* RIGHT IMAGE */}
-          <img className="max-md:hidden max-h-[22rem] mt-20" src="/banners/vault.png" />
+          <img
+            className="max-md:hidden max-h-[22rem] mt-20"
+            src="/banners/vault.png"
+            loading="eager"
+            fetchPriority="high"
+          />
         </header>
       </div>
 

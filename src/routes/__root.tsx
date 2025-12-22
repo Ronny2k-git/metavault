@@ -26,6 +26,8 @@ export const Route = createRootRoute({
     links: [
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', href: '/icon.png' },
+      { rel: 'preload', as: 'image', href: '/banners/header-banner3.png' },
+      { rel: 'preload', as: 'image', href: '/banners/vault.png' },
     ],
   }),
   shellComponent: RootDocument,
