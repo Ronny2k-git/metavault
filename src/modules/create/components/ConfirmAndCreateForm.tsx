@@ -191,9 +191,9 @@ export function ConfirmAndCreateForm() {
 
       <Divider />
 
-      <div className="flex col-span-full gap-3">
+      <div className="flex col-span-full max-sm:flex-col gap-3">
         <Button
-          className="max-w-[13rem]"
+          className="sm:max-w-[13rem]"
           variant={'secondary'}
           size={'md'}
           iconLeft={<Icon>backspace</Icon>}
@@ -205,7 +205,7 @@ export function ConfirmAndCreateForm() {
           {t('buttons.reset')}
         </Button>
         <Button
-          className="max-w-[15rem]"
+          className="sm:max-w-[15rem]"
           variant={'primary'}
           size={'md'}
           iconLeft={<Icon>add_circle</Icon>}
