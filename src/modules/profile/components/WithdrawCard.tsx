@@ -76,7 +76,7 @@ export function WithdrawCard({
 
           {isLoading || !address || !activeVaultsToWithdraw?.length ? (
             <EmptyBanner
-              className="h-40 p-4 text-center"
+              className="h-40 !p-4 text-center"
               subMessage={t('emptyBanner.operation.withdraw.subMessage')}
               message=""
               icon={<Icon className="!text-5xl">sentiment_dissatisfied</Icon>}
