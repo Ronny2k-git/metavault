@@ -37,9 +37,9 @@ function HomePage() {
             {/* DESCRIPTION */}
             <h3 className="text-lg text-gray-300 max-w-xl max-md:text-center">{t('header.description')}</h3>
 
-            <div className="flex w-full max-md:justify-center max-[460px]:flex-col gap-2 mt-8">
+            <div className="flex w-full max-md:justify-center items-center max-[880px]:flex-col gap-2 mt-8">
               <Button
-                className="flex md:max-w-[13rem] w-full"
+                className="flex min-[880px]:max-w-[16rem] w-full"
                 variant="secondary"
                 size="xl"
                 onClick={() => requestAnimationFrame(() => scrollToConteiner('features-section'))}
@@ -51,7 +51,7 @@ function HomePage() {
               <AppCardExplore
                 className="max-w-4xl h-auto"
                 trigger={
-                  <Button className="md:max-w-[13rem] w-full" variant="primary" size="xl">
+                  <Button className="min-[880px]:max-w-[16rem] w-full" variant="primary" size="xl">
                     {t('header.exploreDapps')}
                   </Button>
                 }

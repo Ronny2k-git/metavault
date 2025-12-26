@@ -16,7 +16,12 @@ export function Icon({ fill, grad, wght, opsz, children, className, ...props }: 
 
   // The stylesheet was imported on the _root file
   return (
-    <span {...props} className={twMerge(className, 'material-symbols-rounded')} style={style}>
+    <span
+      translate="no"
+      {...props}
+      className={twMerge(className, 'material-symbols-rounded notranslate')}
+      style={style}
+    >
       {children}
     </span>
   )
