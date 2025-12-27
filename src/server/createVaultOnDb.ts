@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'
+
 import type { FullVaultType } from '@/modules/create/schemas'
 import { getChainId } from '@/modules/global/utils'
 import { createServerFn } from '@tanstack/react-start'

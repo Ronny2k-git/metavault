@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'
+
 import type { UserProfileDataFormType } from '@/modules/create/schemas/userProfileDataFormSchema'
 import { createServerFn } from '@tanstack/react-start'
 import { prisma } from './prisma'

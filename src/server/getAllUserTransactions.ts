@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'
+
 import { createServerFn } from '@tanstack/react-start'
 import type { Address } from 'viem'
 import { prisma } from './prisma'
