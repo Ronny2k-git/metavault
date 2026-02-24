@@ -12,7 +12,7 @@ export function AppFooter() {
           {/* Brand / Description */}
           <section className="flex flex-col items-center sm:items-start">
             <div className="flex items-center gap-2 mb-2">
-              <img src="/logo.png" alt="Meta Vault" className="h-8" />
+              <img src="/logo.webp" alt="Meta Vault" className="h-8" />
             </div>
             <p className="text-gray-300 max-w-xs max-sm:text-center">{t('footer.brand.description')}</p>
           </section>
@@ -53,10 +53,7 @@ export function AppFooter() {
       </section>
 
       <div className="flex items-center justify-center px-2 text-[clamp(2rem,15vw,14rem)]">
-        {/* <h2 className="font-extrabold bg-gradient-to-r from-purple-700 via-fuchsia-950 to-purple-700 bg-clip-text text-transparent">
-          Meta Vault
-        </h2> */}
-        <img className="max-h-40 my-6 px-4" src="/logo.png" />
+        <img className="max-h-40 my-6 px-4" src="/logo.webp" />
       </div>
     </footer>
   )

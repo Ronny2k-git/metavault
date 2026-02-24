@@ -23,7 +23,7 @@ function HomePage() {
   return (
     <div className="w-full flex flex-col text-white">
       <div
-        className="relative w-full flex pt-20 pb-40 bg-[url('/banners/header-banner3.png')]
+        className="relative w-full flex pt-20 pb-40 bg-[url('/banners/header-banner3.webp')]
         bg-cover bg-bottom"
       >
         {/* HOME PAGE HEADER */}
@@ -65,14 +65,14 @@ function HomePage() {
           {/* RIGHT IMAGE */}
           <img
             className="max-md:hidden max-h-[22rem] mt-20"
-            src="/banners/vault.png"
+            src="/banners/vault.webp"
             loading="eager"
             fetchPriority="high"
           />
         </header>
       </div>
 
-      <main className="relative min-h-screen flex flex-col items-center bg-[url('/banners/secondary-banner.png')] bg-cover bg-left">
+      <main className="relative min-h-screen flex flex-col items-center bg-[url('/banners/secondary-banner.webp')] bg-cover bg-left">
         <Divider className="h-px m-12" />
 
         {/* ===== FEATURES SECTION ===== */}
@@ -160,17 +160,17 @@ function HomePage() {
       <div className="relative z-[40] w-full flex justify-center">
         <img
           className="absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
-          src="/banners/footer-banner.png"
+          src="/banners/footer-banner.webp"
         />
         <div className="relative w-full">
           <img
             className="h-[6.5rem] animate-gentle-swing absolute max-max-w-4xl object-cover -top-[18.5rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
-            src="/banners/key.png"
+            src="/banners/key.webp"
           />
 
           <img
             className="absolute max-max-w-4xl object-cover -top-[5rem] h-[27rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
-            src="/banners/mascot.png"
+            src="/banners/mascot.webp"
           />
         </div>
       </div>
