@@ -44,6 +44,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
       </div>
 
       <img
+        alt="vault-banner"
         className="rounded-lg mb-2 h-56 w-full object-cover"
         src={isValidUrl(data.banner) ? data.banner : '/default-banner.jpg'}
         onError={(e) => (e.currentTarget.src = '/default-banner.jpg')}
@@ -51,6 +52,7 @@ export function BaseVaultCard(data: BaseVaultProps) {
       <div className="w-full flex justify-between px-2">
         <div className="flex gap-2 mx-">
           <img
+            alt="vault-logo"
             className="size-10 rounded-full object-cover"
             src={isValidUrl(data.logo) ? data.logo : '/default-icon.webp'}
             onError={(e) => (e.currentTarget.src = '/default-icon.webp')}

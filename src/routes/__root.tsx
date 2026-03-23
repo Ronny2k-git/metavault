@@ -41,6 +41,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <meta
+          name="description"
+          content="A decentralized platform that lets users create secure vaults to store and manage their crypto tokens safely and efficiently."
+        />
+
         <HeadContent />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />

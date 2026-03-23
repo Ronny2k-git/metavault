@@ -42,7 +42,7 @@ export function EthereumConnectors() {
               key={connector.id}
               iconLeft={
                 <img
-                  alt="connector icon"
+                  alt="connector-icon"
                   className="rounded-full size-8.5"
                   src={connectorIcons[connector.id.toLowerCase()] ?? '/icons/default.png'}
                 />

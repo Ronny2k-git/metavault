@@ -54,6 +54,7 @@ function Profile() {
                 <img
                   className=" min-h-18 min-w-18 max-h-18 max-w-18 my-1 rounded-full object-cover border-2 border-purple-900/50 shadow-md"
                   src={profileData?.avatarUrl || '/user.png'}
+                  alt="user-avatar"
                 />
 
                 <span className=" absolute bottom-1 right-0 size-5 rounded-full bg-green-500  border-2 border-gray-900 " />

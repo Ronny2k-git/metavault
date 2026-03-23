@@ -58,12 +58,12 @@ function HomePage() {
               />
             </div>
 
-            {/* NO WALLET REQUIRED */}
             <p className="text-gray-300 text-sm mt-4">{t('header.noWalletRequired')}</p>
           </div>
 
           {/* RIGHT IMAGE */}
           <img
+            alt="vault-image"
             className="max-md:hidden max-h-[22rem] mt-20"
             src="/banners/vault.webp"
             loading="eager"
@@ -97,6 +97,8 @@ function HomePage() {
                     <div className="rounded-2xl p-3 w-full h-full overflow-hidden">
                       <video autoPlay loop muted className="rounded-2xl w-full h-full object-cover block">
                         <source src={srcVideo} />
+
+                        <track kind="captions" src="/captions.vtt" srcLang="en" label="English" default />
                       </video>
                     </div>
                   </Card>
@@ -108,7 +110,7 @@ function HomePage() {
                       {translatedFeatures[index].title}
                     </h3>
 
-                    <p className="text-base text-gray-300 max-sm:text-center">{translatedFeatures[index].desc}</p>
+                    <p className="text-base text-gray-300 max-md:text-center">{translatedFeatures[index].desc}</p>
                   </div>
                 </div>
               )
@@ -159,16 +161,19 @@ function HomePage() {
       {/* FOOTER BANNERS */}
       <div className="relative z-[40] w-full flex justify-center">
         <img
+          alt="footer-banner"
           className="absolute max-md:hidden max-w-4xl -top-[13rem] object-cover max-h-[32.5rem] left-1/2 -translate-1/2"
           src="/banners/footer-banner.webp"
         />
         <div className="relative w-full">
           <img
+            alt="key-banner"
             className="h-[6.5rem] animate-gentle-swing absolute max-max-w-4xl object-cover -top-[18.5rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
             src="/banners/key.webp"
           />
 
           <img
+            alt="mascot-banner"
             className="absolute max-max-w-4xl object-cover -top-[5rem] h-[27rem] max-md:pl-4 md:pr-12 left-1/2 -translate-1/2"
             src="/banners/mascot.webp"
           />

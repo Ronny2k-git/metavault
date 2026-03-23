@@ -39,10 +39,14 @@ export function TransactionCardDialog({
     >
       <div className="flex w-full justify-between mb-8">
         <span className="text-indigo-300 text-[15px]">{subtitle}</span>
+
         <div className="flex flex-col items-end text-lg gap-2">
           <span className="text-indigo-300 text-sm text-end">{chainName}</span>
           <div className="flex gap-2">
-            {info} {vaultLogo && <img src={vaultLogo} className="h-7 w-7 border border-purple-900 rounded-full" />}
+            {info}{' '}
+            {vaultLogo && (
+              <img alt="vault-logo" src={vaultLogo} className="h-7 w-7 border border-purple-900 rounded-full" />
+            )}
           </div>
           {value && (
             <div className="flex items-center gap-2 text-indigo-300 text-base">

@@ -17,7 +17,7 @@ export function TextArea({ label, className, placeholder = '', error, ...props }
         placeholder:opacity-0 focus:placeholder:opacity-100 placeholder:text-indigo-300`}
         {...props}
       />
-      <div
+      <span
         className=" absolute left-4 top-2
         text-indigo-300 transition-all
         pointer-events-none
@@ -28,7 +28,7 @@ export function TextArea({ label, className, placeholder = '', error, ...props }
         peer-focus:text-indigo-300"
       >
         {label}
-      </div>
+      </span>
       {error && <span className="mt-1 pl-2 text-sm text-red-400">{error}</span>}
     </label>
   )

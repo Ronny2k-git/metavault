@@ -5,7 +5,7 @@ export type BrandLogoProps = {
 export function BrandLogo({ logoStyle }: BrandLogoProps) {
   return (
     <div className="flex">
-      <img src={'/logo.webp'} className={logoStyle} />
+      <img alt="brand-logo" accessKey="brand-logo" src={'/logo.webp'} className={logoStyle} />
     </div>
   )
 }

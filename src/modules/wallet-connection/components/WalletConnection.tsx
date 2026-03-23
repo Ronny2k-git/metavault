@@ -52,14 +52,13 @@ export default function WalletConnection({ trigger }: WalletConnectionProps) {
         <Tabs.Root defaultValue="ethereum">
           <Tabs.List className="flex gap-4">
             {ECOSYSTEMS.map((ecosystem, index) => (
-              <Tabs.Trigger className="group" key={index} value={ecosystem}>
-                <div
-                  className=" text-sm px-4 py-2 rounded-2xl bg-transparent shadow-none group-data-[state=active]:bg-purple-950/60
-                  group-data-[state=active]:border-b-2 border-indigo-300
-                  "
-                >
-                  {ecosystem}
-                </div>
+              <Tabs.Trigger
+                className=" text-sm px-4 py-2 rounded-2xl bg-transparent shadow-none data-[state=active]:bg-purple-950/60
+                  data-[state=active]:border-b-2 border-indigo-300 cursor-pointer"
+                key={index}
+                value={ecosystem}
+              >
+                {ecosystem}
               </Tabs.Trigger>
             ))}
           </Tabs.List>

@@ -64,7 +64,7 @@ export function Tabs({
     <PrimitiveTabs.Root value={search} className="w-full " onValueChange={onValueChange}>
       <PrimitiveTabs.List className={`flex ${icon ? 'gap-12' : 'gap-2'} overflow-x-auto`}>
         {tabList.map((tab, index) => (
-          <div className={`w-full flex items-center relative ${variant != 'operation' ? 'mb-6' : ''}`}>
+          <div key={tab.value} className={`w-full flex items-center relative ${variant != 'operation' ? 'mb-6' : ''}`}>
             <PrimitiveTabs.Trigger
               id={`tab-${tab.value}`}
               key={tab.value}

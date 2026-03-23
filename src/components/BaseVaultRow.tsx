@@ -16,19 +16,21 @@ export function BaseVaultRow(data: BaseVaultRowProps) {
       <td colSpan={5}>
         <div className="background-vault-row border border-purple-800/80 rounded-lg h-20 flex items-center">
           <div className="flex items-center flex-1">
-            <img src={data.banner} className="h-18 w-32 object-cover rounded-md" alt="vault-banner" />
+            <img alt="vault-banner" src={data.banner} className="h-18 w-32 object-cover rounded-md" />
+
             <div className="flex flex-col mx-4">
-              <div>{data.vaultName}</div>
+              <span>{data.vaultName}</span>
+
               <div className="flex gap-2 items-center mt-1">
-                <img src={data.logo} className="size-5 rounded-full" />
+                <img alt="vault-logo" src={data.logo} className="size-5 rounded-full" />
                 <div className="text-xs">{data.network}</div>
               </div>
             </div>
           </div>
 
-          <div className="w-32 text-center">{data.minDeposit}</div>
-          <div className="w-32 text-center">{data.maxDeposit}</div>
-          <div className="w-32 text-end">{data.endDate}</div>
+          <span className="w-32 text-center">{data.minDeposit}</span>
+          <span className="w-32 text-center">{data.maxDeposit}</span>
+          <span className="w-32 text-end">{data.endDate}</span>
 
           <div className="w-24 mr-4">
             <a target="_blank" href={`https://sepolia.etherscan.io/address/${data.tx}`}>
