@@ -25,7 +25,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
-      { rel: 'icon', href: '/icon.webp' },
+      { rel: 'icon', href: '/icon.ico' },
       { rel: 'preload', as: 'image', href: '/banners/header-banner3.webp' },
       { rel: 'preload', as: 'image', href: '/banners/vault.webp' },
       { rel: 'preload', as: 'image', href: '/banners/secondary-banner.webp' },

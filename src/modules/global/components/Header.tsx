@@ -24,7 +24,7 @@ export default function Header() {
     <header className=" w-full min-h-20 h-auto max-md:p-4 px-4 flex header-background text-white justify-between">
       <nav className="w-full flex max-md:flex-col gap-8 md:gap-4 items-center justify-between max-w-6xl mx-auto">
         {/* Logo */}
-        <img alt="website-logo" src="/icon.png" className="size-14 max-md:hidden" />
+        <img alt="website-logo" src="/icon.webp" className="size-14 max-md:hidden" />
 
         <div className="flex h-full ">
           {PROJECT_ROUTES.map((route) => (
