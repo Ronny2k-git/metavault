@@ -1,6 +1,6 @@
 <div align="center">
 
-# ⚡ Vault Exchange
+# ⚡ Metavault
 
 A decentralized Web3 platform for creating on-chain vaults, executing trades, and managing your portfolio — with the look and feel of a real exchange.
 
@@ -26,6 +26,15 @@ A clean, exchange-style interface for managing on-chain vaults and trades. Inclu
 - Monitor active and completed vaults in real time
 - Multi-language support
 - Clean, minimal exchange-inspired UI
+
+---
+
+### Screenshots
+
+![Home Page](public/banners/home-page-1.png)
+![Home Page](public/banners/home-page-2.png)
+![Home Page](public/banners/home-page-3.png)
+![Profile Page](public/banners/profile-page-1.png)
 
 ---
 
