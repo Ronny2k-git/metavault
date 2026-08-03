@@ -1,71 +1,44 @@
-# TanStack Start + Prisma: Server Functions and React Query
+<div align="center">
 
-### In the **tantack start framework** **it's neither necessary nor possible to create a route.ts inside SRC/API** just create a folder inside src only by **organization** called: server, for example:
+# ⚡ Vault Exchange
 
-Tanstack-start uses an internal fetch to make the calls. In this case, it's not necessary to manually create routes, for example: src/api/createVaultOnDb. You can just create the function with `createServerFn` and call this function on the client with `userServerFn`, `useMutation`, `useQuery` or somenthing like that.
+A decentralized Web3 platform for creating on-chain vaults, executing trades, and managing your portfolio — with the look and feel of a real exchange.
 
-## 1. Create data on the database
+![React](https://img.shields.io/badge/React-20232a?style=flat-square&logo=react&logoColor=61DAFB)
+![TanStack](https://img.shields.io/badge/TanStack-FF4154?style=flat-square&logo=react-query&logoColor=white)
+![Wagmi](https://img.shields.io/badge/wagmi-4C4C4C?style=flat-square&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
-Route example: (src/server/createTestOnDb.ts)
+</div>
 
-```ts
-export const createTestOnDb = createServerFn({
-method: 'POST',
-})
-.inputValidator()
-.handler() => {
-return prisma.vault.create({
-data: {
-ALL TABLE DATA HERE...
-},
-})
-}
-```
+---
 
-## 2. Fetch data from the database
+### Overview
 
-Route example: (src/server/getAllTestsCreated.ts)
+A clean, exchange-style interface for managing on-chain vaults and trades. Includes a full landing page, account creation, and real-time vault monitoring — built to feel like a simplified decentralized exchange rather than a typical Web3 demo.
 
-```ts
-export const getAllTestCreated = createServerFn().handler(async () => {
-try {
-const test = await prisma.test.findMany({
-select: {
-TABLE FIELDS HERE...
-},
-})
+**Core features:**
 
-return test
+- Landing page with full product overview
+- User account creation and profile management
+- Create and manage on-chain vaults
+- Execute trades directly on-chain
+- Monitor active and completed vaults in real time
+- Multi-language support
+- Clean, minimal exchange-inspired UI
 
-} catch (error) {
-console.error(error)
-throw new Error('Failed to fetching test')
-}
-})
-```
+---
 
-### To call these tanstack server functions on the client, use useMutation or useQuery for example:
+### Stack
 
-## 1.1 Create (client)
+| Layer          | Technologies                                            |
+| -------------- | ------------------------------------------------------- |
+| **Frontend**   | React · TanStack · Tailwind CSS · React Hook Form · Zod |
+| **Web3**       | Wagmi · Viem                                            |
+| **i18n**       | i18next                                                 |
+| **Database**   | Neon (PostgreSQL)                                       |
+| **Deployment** | Vercel                                                  |
 
-```ts
-export function useCreateTestOnDb() {
-  const query = useQueryClient()
+---
 
-  return useMutation({
-    mutationFn: createTestOnDb,
-    onSuccess: () => query.invalidateQueries({ queryKey: ['get-test'] }),
-  })
-}
-```
-
-## 2.2 Get (client)
-
-```ts
-export function useGetAllTestsCreated() {
-  return useQuery({
-    queryKey: ['get-test'],
-    queryFn: getAllTestsCreated,
-  })
-}
-```
+<sub>Built for educational and portfolio purposes · 3 months of development.</sub>
