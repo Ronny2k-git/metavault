@@ -31,10 +31,17 @@ A clean, exchange-style interface for managing on-chain vaults and trades. Inclu
 
 ### Screenshots
 
-![Home Page](public/banners/home-page-1.png)
-![Home Page](public/banners/home-page-2.png)
-![Home Page](public/banners/home-page-3.png)
-![Profile Page](public/banners/profile-page-1.png)
+**Landing Page**
+
+<p float="left">
+  <img src="public/banners/homepage-1.png" width="49%" />
+  <img src="public/banners/homepage-2.png" width="49%" />
+</p>
+
+<p float="left">
+  <img src="public/banners/homepage-3.png" width="49%" />
+  <img src="public/banners/profile-page-1.png" width="49%" />
+</p>
 
 ---
 
